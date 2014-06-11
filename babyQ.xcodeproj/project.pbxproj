@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89BC0EF117C4B498CA04172 /* libPods.a */; };
-		5F7FF004194802D600A48C86 /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D0A619479979003D3E94 /* LandingPage.storyboard */; };
 		5F7FF04B1948035C00A48C86 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
 		5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */; };
 		5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0091948035C00A48C86 /* babyq_menu_arrow_right.png */; };
@@ -69,6 +68,7 @@
 		5F7FF0841948035C00A48C86 /* babyq_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0471948035C00A48C86 /* babyq_logo.png */; };
 		5F7FF0851948035C00A48C86 /* babyq_popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0491948035C00A48C86 /* babyq_popover.png */; };
 		5F7FF0861948035C00A48C86 /* babyq_progressbar_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */; };
+		5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0871948053600A48C86 /* LandingPage.storyboard */; };
 		5FB84CA61947FCEC00FA862B /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB84CA51947FCEC00FA862B /* HomePageController.m */; };
 		5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09419479979003D3E94 /* Foundation.framework */; };
 		5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09619479979003D3E94 /* CoreGraphics.framework */; };
@@ -158,6 +158,7 @@
 		5F7FF0471948035C00A48C86 /* babyq_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_logo.png; sourceTree = "<group>"; };
 		5F7FF0491948035C00A48C86 /* babyq_popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_popover.png; sourceTree = "<group>"; };
 		5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_progressbar_bubble.png; sourceTree = "<group>"; };
+		5F7FF0871948053600A48C86 /* LandingPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
 		5FB84CA41947FCEC00FA862B /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
 		5FB84CA51947FCEC00FA862B /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
 		5FC3D09119479979003D3E94 /* babyQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = babyQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,7 +171,6 @@
 		5FC3D0A219479979003D3E94 /* babyQ-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "babyQ-Prefix.pch"; sourceTree = "<group>"; };
 		5FC3D0A319479979003D3E94 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5FC3D0A419479979003D3E94 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		5FC3D0A719479979003D3E94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LandingPage.storyboard; sourceTree = "<group>"; };
 		5FC3D0AC19479979003D3E94 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5FC3D0B219479979003D3E94 /* babyQTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = babyQTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC3D0B319479979003D3E94 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -386,8 +386,8 @@
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
 				5FB84CA41947FCEC00FA862B /* HomePageController.h */,
 				5FB84CA51947FCEC00FA862B /* HomePageController.m */,
-				5FC3D0A619479979003D3E94 /* LandingPage.storyboard */,
 				5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */,
+				5F7FF0871948053600A48C86 /* LandingPage.storyboard */,
 				5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
@@ -512,7 +512,6 @@
 				5F7FF0741948035C00A48C86 /* babyq_check_mark.png in Resources */,
 				5F7FF0511948035C00A48C86 /* babyq_feedback_avatar.png in Resources */,
 				5F7FF05C1948035C00A48C86 /* babyq_login_facebook_button.png in Resources */,
-				5F7FF004194802D600A48C86 /* LandingPage.storyboard in Resources */,
 				5F7FF05B1948035C00A48C86 /* babyq_join_button.png in Resources */,
 				5F7FF0501948035C00A48C86 /* babyq_orange_arrow_thin_right.png in Resources */,
 				5F7FF0611948035C00A48C86 /* babyq_signout_button.png in Resources */,
@@ -553,6 +552,7 @@
 				5F7FF06B1948035C00A48C86 /* babyq_header_back_arrow.png in Resources */,
 				5F7FF0701948035C00A48C86 /* babyq_tutorials_header.png in Resources */,
 				5F7FF0821948035C00A48C86 /* babyq_take_survey_X.png in Resources */,
+				5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */,
 				5FC3D09F19479979003D3E94 /* InfoPlist.strings in Resources */,
 				5F7FF0551948035C00A48C86 /* babyq_light_grid_background.png in Resources */,
 				5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */,
@@ -649,14 +649,6 @@
 				5FC3D09E19479979003D3E94 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		5FC3D0A619479979003D3E94 /* LandingPage.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5FC3D0A719479979003D3E94 /* Base */,
-			);
-			name = LandingPage.storyboard;
 			sourceTree = "<group>";
 		};
 		5FC3D0BC19479979003D3E94 /* InfoPlist.strings */ = {
