@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

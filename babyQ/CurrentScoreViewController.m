@@ -30,3 +30,21 @@
 }
 
 @end
+
+@implementation UILabel (CustomFontLabel)
+
+-(void)awakeFromNib{
+    float size = [self.font pointSize];
+    self.font = [UIFont fontWithName:@"Bebas" size:size];
+}
+
+@end
+
+@implementation UITextView (CustomFontLabel)
+
+-(void)awakeFromNib{
+    float size = [self.font pointSize];
+    self.font = [UIFont fontWithName:@"MyriadPro-Regular" size:size];
+}
+
+@end
