@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "SideSwipeTableViewCell.h"
+#import "MMDrawerController.h"
+#import "CurrentScoreViewController.h"
 
 @interface SideSwipeTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 

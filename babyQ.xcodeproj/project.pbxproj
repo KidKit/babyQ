@@ -94,6 +94,7 @@
 		5FC3D0C019479979003D3E94 /* babyQTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3D0BF19479979003D3E94 /* babyQTests.m */; };
 		5FC3D14C1947B5E5003D3E94 /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */; };
 		5FC3D14E1947CBA3003D3E94 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */; };
+		5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD84C7C194A4F16003A711E /* MyProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,6 +204,8 @@
 		5FC3D0BF19479979003D3E94 /* babyQTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = babyQTests.m; sourceTree = "<group>"; };
 		5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
+		5FD84C7B194A4F16003A711E /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
+		5FD84C7C194A4F16003A711E /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -429,6 +432,10 @@
 				5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */,
 				5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */,
 				5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */,
+				5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */,
+				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
+				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
+				5FD84C7C194A4F16003A711E /* MyProfileViewController.m */,
 				5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */,
 				5F7FF0871948053600A48C86 /* LandingPage.storyboard */,
 				5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */,
@@ -436,8 +443,6 @@
 				5F3FBD8B194A395A00FB0548 /* Settings.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
-				5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */,
-				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 			);
 			path = babyQ;
 			sourceTree = "<group>";
@@ -676,6 +681,7 @@
 			files = (
 				5FC3D0A519479979003D3E94 /* AppDelegate.m in Sources */,
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
+				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
 				5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */,
