@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89BC0EF117C4B498CA04172 /* libPods.a */; };
-		5F7FF04B1948035C00A48C86 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
+		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
+		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
+		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
+		5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */; };
+		5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */; };
 		5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */; };
 		5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0091948035C00A48C86 /* babyq_menu_arrow_right.png */; };
 		5F7FF04E1948035C00A48C86 /* babyq_orange_arrow_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF00A1948035C00A48C86 /* babyq_orange_arrow_down.png */; };
@@ -69,7 +73,6 @@
 		5F7FF0851948035C00A48C86 /* babyq_popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0491948035C00A48C86 /* babyq_popover.png */; };
 		5F7FF0861948035C00A48C86 /* babyq_progressbar_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */; };
 		5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0871948053600A48C86 /* LandingPage.storyboard */; };
-		5FB84CA61947FCEC00FA862B /* HomePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB84CA51947FCEC00FA862B /* HomePageController.m */; };
 		5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09419479979003D3E94 /* Foundation.framework */; };
 		5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09619479979003D3E94 /* CoreGraphics.framework */; };
 		5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09819479979003D3E94 /* UIKit.framework */; };
@@ -98,6 +101,14 @@
 
 /* Begin PBXFileReference section */
 		1BD59991950F495CB7169FB7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewCell.h; sourceTree = "<group>"; };
+		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
+		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
+		5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewController.m; sourceTree = "<group>"; };
+		5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentScoreViewController.h; sourceTree = "<group>"; };
+		5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentScoreViewController.m; sourceTree = "<group>"; };
+		5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageNavigationController.h; sourceTree = "<group>"; };
+		5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageNavigationController.m; sourceTree = "<group>"; };
 		5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_dropdown_arrow.png; sourceTree = "<group>"; };
 		5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_dropdown_arrow_survey.png; sourceTree = "<group>"; };
 		5F7FF0091948035C00A48C86 /* babyq_menu_arrow_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_menu_arrow_right.png; sourceTree = "<group>"; };
@@ -143,7 +154,7 @@
 		5F7FF0371948035C00A48C86 /* babyq_dailytip_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_dailytip_icon.png; sourceTree = "<group>"; };
 		5F7FF0381948035C00A48C86 /* babyq_edit_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_edit_icon.png; sourceTree = "<group>"; };
 		5F7FF0391948035C00A48C86 /* babyq_facebook_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_facebook_icon.png; sourceTree = "<group>"; };
-		5F7FF03A1948035C00A48C86 /* babyq_menu_currentscore_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_menu_currentscore_icon.png; sourceTree = "<group>"; };
+		5F7FF03A1948035C00A48C86 /* babyq_menu_currentscore_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = babyq_menu_currentscore_icon.png; path = babyQ/Slices/Icons/babyq_menu_currentscore_icon.png; sourceTree = SOURCE_ROOT; };
 		5F7FF03B1948035C00A48C86 /* babyq_menu_how-to_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "babyq_menu_how-to_icon.png"; sourceTree = "<group>"; };
 		5F7FF03C1948035C00A48C86 /* babyq_menu_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_menu_icon.png; sourceTree = "<group>"; };
 		5F7FF03D1948035C00A48C86 /* babyq_menu_my_profile_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_menu_my_profile_icon.png; sourceTree = "<group>"; };
@@ -159,8 +170,6 @@
 		5F7FF0491948035C00A48C86 /* babyq_popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_popover.png; sourceTree = "<group>"; };
 		5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_progressbar_bubble.png; sourceTree = "<group>"; };
 		5F7FF0871948053600A48C86 /* LandingPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
-		5FB84CA41947FCEC00FA862B /* HomePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageController.h; sourceTree = "<group>"; };
-		5FB84CA51947FCEC00FA862B /* HomePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageController.m; sourceTree = "<group>"; };
 		5FC3D09119479979003D3E94 /* babyQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = babyQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC3D09419479979003D3E94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FC3D09619479979003D3E94 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -220,8 +229,9 @@
 				5F7FF0461948035C00A48C86 /* Logo */,
 				5F7FF0481948035C00A48C86 /* Pop Overs */,
 			);
-			path = Slices;
-			sourceTree = "<group>";
+			name = Slices;
+			path = babyQ/Slices;
+			sourceTree = SOURCE_ROOT;
 		};
 		5F7FF0061948035C00A48C86 /* Arrows */ = {
 			isa = PBXGroup;
@@ -384,8 +394,14 @@
 				5F7FF0051948035C00A48C86 /* Slices */,
 				5FC3D0A319479979003D3E94 /* AppDelegate.h */,
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
-				5FB84CA41947FCEC00FA862B /* HomePageController.h */,
-				5FB84CA51947FCEC00FA862B /* HomePageController.m */,
+				5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */,
+				5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */,
+				5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */,
+				5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */,
+				5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */,
+				5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */,
+				5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */,
+				5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */,
 				5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */,
 				5F7FF0871948053600A48C86 /* LandingPage.storyboard */,
 				5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */,
@@ -473,6 +489,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = babyQ;
 				TargetAttributes = {
+					5FC3D09019479979003D3E94 = {
+						DevelopmentTeam = G47S2L5ZRT;
+					};
 					5FC3D0B119479979003D3E94 = {
 						TestTargetID = 5FC3D09019479979003D3E94;
 					};
@@ -529,6 +548,7 @@
 				5F7FF0761948035C00A48C86 /* babyq_edit_icon.png in Resources */,
 				5F7FF0811948035C00A48C86 /* babyq_survey_icon.png in Resources */,
 				5F7FF0571948035C00A48C86 /* babyq_blog_button.png in Resources */,
+				5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */,
 				5F7FF07B1948035C00A48C86 /* babyq_menu_my_profile_icon.png in Resources */,
 				5F7FF0791948035C00A48C86 /* babyq_menu_how-to_icon.png in Resources */,
 				5F7FF0561948035C00A48C86 /* baby_q_signinjoin_button.png in Resources */,
@@ -542,7 +562,6 @@
 				5F7FF07E1948035C00A48C86 /* babyq_menu_to-dos_icon.png in Resources */,
 				5FC3D14C1947B5E5003D3E94 /* Survey.storyboard in Resources */,
 				5F7FF0751948035C00A48C86 /* babyq_dailytip_icon.png in Resources */,
-				5F7FF04B1948035C00A48C86 /* babyq_dropdown_arrow.png in Resources */,
 				5F7FF0801948035C00A48C86 /* babyq_signin_questionmark.png in Resources */,
 				5F7FF0721948035C00A48C86 /* babyq_camera_icon.png in Resources */,
 				5F7FF0771948035C00A48C86 /* babyq_facebook_icon.png in Resources */,
@@ -619,8 +638,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC3D0A519479979003D3E94 /* AppDelegate.m in Sources */,
-				5FB84CA61947FCEC00FA862B /* HomePageController.m in Sources */,
+				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
+				5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */,
+				5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */,
+				5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,10 +762,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -754,10 +779,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
