@@ -1,27 +1,29 @@
 //
-//  MyProfileViewController.m
+//  UserSettingsViewController.m
 //  babyQ
 //
-//  Created by Chris Wood on 6/12/14.
+//  Created by Chris Wood on 6/13/14.
 //  Copyright (c) 2014 babyQ. All rights reserved.
 //
 
-#import "MyProfileViewController.h"
+#import "UserSettingsViewController.h"
 
-@interface MyProfileViewController ()
+@interface UserSettingsViewController ()
 
 @end
 
-@implementation MyProfileViewController
+@implementation UserSettingsViewController
 
 @synthesize scrollView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 1136)];
+    [self.scrollView setContentSize:CGSizeMake(320, 720)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    // Do any additional setup after loading the view.
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backItem.title = @"";
+    self.navigationController.navigationBar.topItem.title = @"Settings";
 }
 
 - (void)didReceiveMemoryWarning

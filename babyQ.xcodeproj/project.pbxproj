@@ -80,6 +80,12 @@
 		5F7FF0851948035C00A48C86 /* babyq_popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0491948035C00A48C86 /* babyq_popover.png */; };
 		5F7FF0861948035C00A48C86 /* babyq_progressbar_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */; };
 		5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0871948053600A48C86 /* LandingPage.storyboard */; };
+		5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF0194B67F50077FD1D /* SettingsViewController.m */; };
+		5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF3194B6E810077FD1D /* UserSettingsViewController.m */; };
+		5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF6194B77C40077FD1D /* AboutUsViewController.m */; };
+		5F94EAFA194B78130077FD1D /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF9194B78130077FD1D /* LeaveFeedbackViewController.m */; };
+		5F94EAFD194B78580077FD1D /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAFC194B78580077FD1D /* PrivacyPolicyViewController.m */; };
+		5F94EB00194B78770077FD1D /* TermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAFF194B78770077FD1D /* TermsOfUseViewController.m */; };
 		5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09419479979003D3E94 /* Foundation.framework */; };
 		5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09619479979003D3E94 /* CoreGraphics.framework */; };
 		5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09819479979003D3E94 /* UIKit.framework */; };
@@ -186,6 +192,18 @@
 		5F7FF0491948035C00A48C86 /* babyq_popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_popover.png; sourceTree = "<group>"; };
 		5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_progressbar_bubble.png; sourceTree = "<group>"; };
 		5F7FF0871948053600A48C86 /* LandingPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
+		5F94EAEF194B67F50077FD1D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		5F94EAF0194B67F50077FD1D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		5F94EAF2194B6E810077FD1D /* UserSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingsViewController.h; sourceTree = "<group>"; };
+		5F94EAF3194B6E810077FD1D /* UserSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingsViewController.m; sourceTree = "<group>"; };
+		5F94EAF5194B77C40077FD1D /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		5F94EAF6194B77C40077FD1D /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		5F94EAF8194B78130077FD1D /* LeaveFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveFeedbackViewController.h; sourceTree = "<group>"; };
+		5F94EAF9194B78130077FD1D /* LeaveFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveFeedbackViewController.m; sourceTree = "<group>"; };
+		5F94EAFB194B78580077FD1D /* PrivacyPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyPolicyViewController.h; sourceTree = "<group>"; };
+		5F94EAFC194B78580077FD1D /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
+		5F94EAFE194B78770077FD1D /* TermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseViewController.h; sourceTree = "<group>"; };
+		5F94EAFF194B78770077FD1D /* TermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfUseViewController.m; sourceTree = "<group>"; };
 		5FC3D09119479979003D3E94 /* babyQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = babyQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC3D09419479979003D3E94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FC3D09619479979003D3E94 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -436,6 +454,18 @@
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
 				5FD84C7C194A4F16003A711E /* MyProfileViewController.m */,
+				5F94EAEF194B67F50077FD1D /* SettingsViewController.h */,
+				5F94EAF0194B67F50077FD1D /* SettingsViewController.m */,
+				5F94EAF2194B6E810077FD1D /* UserSettingsViewController.h */,
+				5F94EAF3194B6E810077FD1D /* UserSettingsViewController.m */,
+				5F94EAF5194B77C40077FD1D /* AboutUsViewController.h */,
+				5F94EAF6194B77C40077FD1D /* AboutUsViewController.m */,
+				5F94EAF8194B78130077FD1D /* LeaveFeedbackViewController.h */,
+				5F94EAF9194B78130077FD1D /* LeaveFeedbackViewController.m */,
+				5F94EAFB194B78580077FD1D /* PrivacyPolicyViewController.h */,
+				5F94EAFC194B78580077FD1D /* PrivacyPolicyViewController.m */,
+				5F94EAFE194B78770077FD1D /* TermsOfUseViewController.h */,
+				5F94EAFF194B78770077FD1D /* TermsOfUseViewController.m */,
 				5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */,
 				5F7FF0871948053600A48C86 /* LandingPage.storyboard */,
 				5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */,
@@ -465,7 +495,7 @@
 				5FC3D0BA19479979003D3E94 /* Supporting Files */,
 			);
 			path = babyQTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		5FC3D0BA19479979003D3E94 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -682,9 +712,15 @@
 				5FC3D0A519479979003D3E94 /* AppDelegate.m in Sources */,
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
+				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
+				5F94EAFD194B78580077FD1D /* PrivacyPolicyViewController.m in Sources */,
+				5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */,
+				5F94EAFA194B78130077FD1D /* LeaveFeedbackViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
+				5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */,
 				5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */,
+				5F94EB00194B78770077FD1D /* TermsOfUseViewController.m in Sources */,
 				5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */,
 				5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */,
 			);
