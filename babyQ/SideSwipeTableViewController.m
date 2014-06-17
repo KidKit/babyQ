@@ -104,6 +104,23 @@
         }
             break;
         case 2: // To-Dos
+        {
+            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+            
+            UIStoryboard * howItWorksScreens = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
+            HowItWorksPageViewController* howItWorksPageViewController = [howItWorksScreens instantiateInitialViewController];
+            
+            MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                    initWithCenterViewController:howItWorksPageViewController
+                                                    
+                                                    leftDrawerViewController:sideSwipeTableView
+                                                    rightDrawerViewController:nil];
+            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            
+            [self.navigationController pushViewController:swipeController animated:YES];
+        }
             break;
         case 3: // How it works
         {

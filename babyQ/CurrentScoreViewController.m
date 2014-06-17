@@ -14,13 +14,14 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView;
+@synthesize scrollView,todosView,dailyTipView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	[self.scrollView setContentSize:CGSizeMake(320, 1500)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    dailyTipView.hidden = YES;
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -33,6 +34,36 @@
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
     SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
     [self.navigationController pushViewController:surveyController animated:YES];
+}
+
+-(IBAction) getCompletedTodos
+{
+    UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
+    UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"CompletedTodosView"];
+    [self.navigationController pushViewController:completedTodos animated:YES];
+}
+
+-(IBAction) getTipHistory
+{
+    UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
+    UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"TipHistoryView"];
+    [self.navigationController pushViewController:completedTodos animated:YES];
+}
+
+- (IBAction)toggleTodosAndDaily:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0) {
+        //toggle the correct view to be visible
+        [todosView setHidden:NO];
+        [dailyTipView setHidden:YES];
+    }
+    else{
+        //toggle the correct view to be visible
+        [todosView setHidden:YES];
+        [dailyTipView setHidden:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning

@@ -13,5 +13,11 @@
 
 @property (nonatomic, retain) IBOutlet UILabel* scoreLabel;
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) IBOutlet UIView* todosView;
+@property (nonatomic, retain) IBOutlet UIView* dailyTipView;
+
+-(IBAction) getCompletedTodos;
+- (IBAction)getTipHistory;
+- (IBAction)toggleTodosAndDaily:(id)sender;
 
 @end

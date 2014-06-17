@@ -14,7 +14,7 @@
 
 @implementation ScoreProgressViewController
 
-@synthesize scrollView,scoreLabel;
+@synthesize scrollView,scoreLabel,todosView,dailyTipView;
 
 - (void)viewDidLoad
 {
@@ -29,7 +29,37 @@
     graphView.yValues = @[@0,@10,@20,@10,@20,@50,@75,@40];
     [self.scrollView addSubview:graphView];
     
+    dailyTipView.hidden = YES;
+}
+
+- (IBAction)toggleTodosAndDaily:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
     
+    if (selectedSegment == 0) {
+        //toggle the correct view to be visible
+        [todosView setHidden:NO];
+        [dailyTipView setHidden:YES];
+    }
+    else{
+        //toggle the correct view to be visible
+        [todosView setHidden:YES];
+        [dailyTipView setHidden:NO];
+    }
+}
+
+-(IBAction) getTipHistory
+{
+    UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
+    UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"TipHistoryView"];
+    [self.navigationController pushViewController:completedTodos animated:YES];
+}
+
+-(IBAction) getCompletedTodos
+{
+    UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
+    UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"CompletedTodosView"];
+    [self.navigationController pushViewController:completedTodos animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

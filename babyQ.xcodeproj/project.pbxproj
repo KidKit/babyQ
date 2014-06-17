@@ -111,6 +111,10 @@
 		5FC3D14C1947B5E5003D3E94 /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */; };
 		5FC3D14E1947CBA3003D3E94 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */; };
 		5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD84C7C194A4F16003A711E /* MyProfileViewController.m */; };
+		5FDE03E41950EA1C0009A993 /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDE03E31950EA1C0009A993 /* Todos.storyboard */; };
+		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
+		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
+		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +255,14 @@
 		5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 		5FD84C7B194A4F16003A711E /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		5FD84C7C194A4F16003A711E /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		5FDE03E21950E4AC0009A993 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		5FDE03E31950EA1C0009A993 /* Todos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
+		5FDE03E51950EF670009A993 /* TodosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodosViewController.h; sourceTree = "<group>"; };
+		5FDE03E61950EF670009A993 /* TodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodosViewController.m; sourceTree = "<group>"; };
+		5FDE03E81950F0E00009A993 /* CompletedTodosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedTodosViewController.h; sourceTree = "<group>"; };
+		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
+		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
+		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -492,6 +504,12 @@
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
 				5FD84C7C194A4F16003A711E /* MyProfileViewController.m */,
+				5FDE03E51950EF670009A993 /* TodosViewController.h */,
+				5FDE03E61950EF670009A993 /* TodosViewController.m */,
+				5FDE03E81950F0E00009A993 /* CompletedTodosViewController.h */,
+				5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */,
+				5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */,
+				5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */,
 				5F3AF705194FD1F500BD04CE /* HowItWorksPageViewController.h */,
 				5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */,
 				5F3AF708194FD38500BD04CE /* HowItWorksContentViewController.h */,
@@ -514,9 +532,11 @@
 				5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */,
 				5F3FBD8B194A395A00FB0548 /* Settings.storyboard */,
 				5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */,
+				5FDE03E31950EA1C0009A993 /* Todos.storyboard */,
 				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
+				5FDE03E21950E4AC0009A993 /* Constants.h */,
 			);
 			path = babyQ;
 			sourceTree = "<group>";
@@ -699,6 +719,7 @@
 				5F7FF0541948035C00A48C86 /* babyq_green_background.png in Resources */,
 				5F7FF0621948035C00A48C86 /* babyq_update_your_score_button.png in Resources */,
 				5F7FF04E1948035C00A48C86 /* babyq_orange_arrow_down.png in Resources */,
+				5FDE03E41950EA1C0009A993 /* Todos.storyboard in Resources */,
 				5F7FF07C1948035C00A48C86 /* babyq_menu_score_progress_icon.png in Resources */,
 				5F7FF0781948035C00A48C86 /* babyq_menu_currentscore_icon.png in Resources */,
 				5F7FF0641948035C00A48C86 /* babyq_website_button.png in Resources */,
@@ -759,9 +780,11 @@
 				5FC3D0A519479979003D3E94 /* AppDelegate.m in Sources */,
 				5F95E48F194B9A68000E9F83 /* LandingPageViewController.m in Sources */,
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
+				5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
 				5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */,
+				5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */,
 				5F3AF70A194FD38500BD04CE /* HowItWorksContentViewController.m in Sources */,
 				5F94EAFD194B78580077FD1D /* PrivacyPolicyViewController.m in Sources */,
 				5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */,
@@ -772,6 +795,7 @@
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
 				5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */,
+				5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */,
 				5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */,
 				5F94EB00194B78770077FD1D /* TermsOfUseViewController.m in Sources */,
 				5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */,
