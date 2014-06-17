@@ -24,6 +24,13 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)startSurvey:(id)sender
+{
+    UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
+    SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
+    [self.navigationController pushViewController:surveyController animated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

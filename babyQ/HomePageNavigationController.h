@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CurrentScoreViewController.h"
 #import "SideSwipeTableViewController.h"
+#import "LandingPageViewController.h"
 #import "MMDrawerController.h"
 
 @interface HomePageNavigationController : UINavigationController

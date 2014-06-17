@@ -18,19 +18,30 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-    SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
     
-    CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
-    
-    MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                             initWithCenterViewController:currentScoreView
-                                             leftDrawerViewController:sideSwipeTableView
-                                             rightDrawerViewController:nil];
-    [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-    [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-    
-    [self pushViewController:swipeController animated:NO];
+    if (true) //is user logged in?
+    {
+        UIStoryboard* homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+        
+        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+        
+        MMDrawerController* swipeController = [[MMDrawerController alloc]
+                                                 initWithCenterViewController:currentScoreView
+                                                 leftDrawerViewController:sideSwipeTableView
+                                                 rightDrawerViewController:nil];
+        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+        
+        [self pushViewController:swipeController animated:NO];
+    }
+    else
+    {
+        UIStoryboard* loginScreens = [UIStoryboard storyboardWithName:@"LandingPage" bundle:nil];
+        LandingPageViewController* landingPageViewController = [loginScreens instantiateInitialViewController];
+        [self pushViewController:landingPageViewController animated:NO];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning

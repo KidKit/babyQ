@@ -1,18 +1,18 @@
 //
-//  LeaveFeedbackViewController.m
+//  SignInViewController.m
 //  babyQ
 //
 //  Created by Chris Wood on 6/13/14.
 //  Copyright (c) 2014 babyQ. All rights reserved.
 //
 
-#import "LeaveFeedbackViewController.h"
+#import "SignInViewController.h"
 
-@interface LeaveFeedbackViewController ()
+@interface SignInViewController ()
 
 @end
 
-@implementation LeaveFeedbackViewController
+@implementation SignInViewController
 
 - (void)viewDidLoad
 {
@@ -20,7 +20,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"Leave Feedback";
+    self.navigationController.navigationBar.topItem.title = @"Sign In";
 }
 
 - (void)didReceiveMemoryWarning

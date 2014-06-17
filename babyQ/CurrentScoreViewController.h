@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SurveyViewController.h"
 
 @interface CurrentScoreViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+
+-(IBAction)startSurvey:(id)sender;
 
 @end

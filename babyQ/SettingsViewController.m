@@ -19,23 +19,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont
-                                                                           fontWithName:@"Bebas" size:14], NSFontAttributeName,
-                                [UIColor blackColor], NSForegroundColorAttributeName, nil];
-    [[UINavigationBar appearance] setTitleTextAttributes:attributes];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)startSurvey:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
+    SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
+    [self.navigationController pushViewController:surveyController animated:YES];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -84,12 +79,13 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
             break;
-            
         default:
             break;
     }
     
     // Configure the cell...
+    [cell.textLabel setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15]];
+    [cell.textLabel setTextColor:[UIColor darkGrayColor]];
     
     return cell;
 }
@@ -100,7 +96,6 @@
         case 0: // Settings
         {
             UIViewController* settings = [self.storyboard instantiateViewControllerWithIdentifier:@"UserSettings"];
-            self.navigationItem.backBarButtonItem=[[UIBarButtonItem alloc] initWithTitle:@"NEW TITLE" style:UIBarButtonItemStylePlain target:nil action:nil];
             [self.navigationController pushViewController:settings animated:YES];
             break;
         }
@@ -129,5 +124,11 @@
             break;
         }
     }
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 @end

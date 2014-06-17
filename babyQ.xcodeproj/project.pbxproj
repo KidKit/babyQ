@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89BC0EF117C4B498CA04172 /* libPods.a */; };
+		5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */; };
+		5F3AF6FD194F72A000BD04CE /* ScoreProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF6FC194F72A000BD04CE /* ScoreProgressViewController.m */; };
+		5F3AF700194F7C9700BD04CE /* ScoreProgressGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF6FF194F7C9700BD04CE /* ScoreProgressGraphView.m */; };
+		5F3AF702194FCAC200BD04CE /* HowItWorks.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */; };
+		5F3AF704194FD0E200BD04CE /* babyq_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3AF703194FD0E200BD04CE /* babyq_cloud.png */; };
+		5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */; };
+		5F3AF70A194FD38500BD04CE /* HowItWorksContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF709194FD38500BD04CE /* HowItWorksContentViewController.m */; };
 		5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */; };
 		5F3FBD82194A1E5500FB0548 /* babyq_circle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */; };
 		5F3FBD83194A1E5500FB0548 /* babyq_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD81194A1E5500FB0548 /* babyq_circle.png */; };
@@ -86,6 +93,9 @@
 		5F94EAFA194B78130077FD1D /* LeaveFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF9194B78130077FD1D /* LeaveFeedbackViewController.m */; };
 		5F94EAFD194B78580077FD1D /* PrivacyPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAFC194B78580077FD1D /* PrivacyPolicyViewController.m */; };
 		5F94EB00194B78770077FD1D /* TermsOfUseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAFF194B78770077FD1D /* TermsOfUseViewController.m */; };
+		5F95E48F194B9A68000E9F83 /* LandingPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */; };
+		5F95E492194B9ADD000E9F83 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95E491194B9ADD000E9F83 /* SignInViewController.m */; };
+		5F95E495194B9AFC000E9F83 /* JoinViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F95E494194B9AFC000E9F83 /* JoinViewController.m */; };
 		5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09419479979003D3E94 /* Foundation.framework */; };
 		5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09619479979003D3E94 /* CoreGraphics.framework */; };
 		5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FC3D09819479979003D3E94 /* UIKit.framework */; };
@@ -115,6 +125,17 @@
 
 /* Begin PBXFileReference section */
 		1BD59991950F495CB7169FB7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScoreProgress.storyboard; sourceTree = "<group>"; };
+		5F3AF6FB194F72A000BD04CE /* ScoreProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProgressViewController.h; sourceTree = "<group>"; };
+		5F3AF6FC194F72A000BD04CE /* ScoreProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProgressViewController.m; sourceTree = "<group>"; };
+		5F3AF6FE194F7C9700BD04CE /* ScoreProgressGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProgressGraphView.h; sourceTree = "<group>"; };
+		5F3AF6FF194F7C9700BD04CE /* ScoreProgressGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProgressGraphView.m; sourceTree = "<group>"; };
+		5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HowItWorks.storyboard; sourceTree = "<group>"; };
+		5F3AF703194FD0E200BD04CE /* babyq_cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_cloud.png; sourceTree = "<group>"; };
+		5F3AF705194FD1F500BD04CE /* HowItWorksPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowItWorksPageViewController.h; sourceTree = "<group>"; };
+		5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowItWorksPageViewController.m; sourceTree = "<group>"; };
+		5F3AF708194FD38500BD04CE /* HowItWorksContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowItWorksContentViewController.h; sourceTree = "<group>"; };
+		5F3AF709194FD38500BD04CE /* HowItWorksContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowItWorksContentViewController.m; sourceTree = "<group>"; };
 		5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyViewController.h; sourceTree = "<group>"; };
 		5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
 		5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange.png; sourceTree = "<group>"; };
@@ -204,6 +225,12 @@
 		5F94EAFC194B78580077FD1D /* PrivacyPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyPolicyViewController.m; sourceTree = "<group>"; };
 		5F94EAFE194B78770077FD1D /* TermsOfUseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsOfUseViewController.h; sourceTree = "<group>"; };
 		5F94EAFF194B78770077FD1D /* TermsOfUseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsOfUseViewController.m; sourceTree = "<group>"; };
+		5F95E48D194B9A68000E9F83 /* LandingPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LandingPageViewController.h; sourceTree = "<group>"; };
+		5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LandingPageViewController.m; sourceTree = "<group>"; };
+		5F95E490194B9ADD000E9F83 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		5F95E491194B9ADD000E9F83 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		5F95E493194B9AFC000E9F83 /* JoinViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinViewController.h; sourceTree = "<group>"; };
+		5F95E494194B9AFC000E9F83 /* JoinViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinViewController.m; sourceTree = "<group>"; };
 		5FC3D09119479979003D3E94 /* babyQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = babyQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FC3D09419479979003D3E94 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FC3D09619479979003D3E94 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -294,6 +321,7 @@
 		5F7FF00D1948035C00A48C86 /* Avatars */ = {
 			isa = PBXGroup;
 			children = (
+				5F3AF703194FD0E200BD04CE /* babyq_cloud.png */,
 				5F7FF00E1948035C00A48C86 /* babyq_feedback_avatar.png */,
 				5F7FF00F1948035C00A48C86 /* babyq_join_avatar.png */,
 			);
@@ -442,10 +470,20 @@
 				5F7FF0051948035C00A48C86 /* Slices */,
 				5FC3D0A319479979003D3E94 /* AppDelegate.h */,
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
+				5F95E48D194B9A68000E9F83 /* LandingPageViewController.h */,
+				5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */,
+				5F95E490194B9ADD000E9F83 /* SignInViewController.h */,
+				5F95E491194B9ADD000E9F83 /* SignInViewController.m */,
+				5F95E493194B9AFC000E9F83 /* JoinViewController.h */,
+				5F95E494194B9AFC000E9F83 /* JoinViewController.m */,
 				5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */,
 				5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */,
 				5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */,
 				5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */,
+				5F3AF6FB194F72A000BD04CE /* ScoreProgressViewController.h */,
+				5F3AF6FC194F72A000BD04CE /* ScoreProgressViewController.m */,
+				5F3AF6FE194F7C9700BD04CE /* ScoreProgressGraphView.h */,
+				5F3AF6FF194F7C9700BD04CE /* ScoreProgressGraphView.m */,
 				5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */,
 				5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */,
 				5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */,
@@ -454,6 +492,10 @@
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
 				5FD84C7C194A4F16003A711E /* MyProfileViewController.m */,
+				5F3AF705194FD1F500BD04CE /* HowItWorksPageViewController.h */,
+				5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */,
+				5F3AF708194FD38500BD04CE /* HowItWorksContentViewController.h */,
+				5F3AF709194FD38500BD04CE /* HowItWorksContentViewController.m */,
 				5F94EAEF194B67F50077FD1D /* SettingsViewController.h */,
 				5F94EAF0194B67F50077FD1D /* SettingsViewController.m */,
 				5F94EAF2194B6E810077FD1D /* UserSettingsViewController.h */,
@@ -471,6 +513,8 @@
 				5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */,
 				5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */,
 				5F3FBD8B194A395A00FB0548 /* Settings.storyboard */,
+				5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */,
+				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
 			);
@@ -590,6 +634,7 @@
 				5F7FF05D1948035C00A48C86 /* babyq_next_button.png in Resources */,
 				5F7FF06A1948035C00A48C86 /* babyq_get_your_babyq_score_header.png in Resources */,
 				5F7FF05F1948035C00A48C86 /* babyq_signin_button.png in Resources */,
+				5F3AF702194FCAC200BD04CE /* HowItWorks.storyboard in Resources */,
 				5F7FF0841948035C00A48C86 /* babyq_logo.png in Resources */,
 				5F7FF0601948035C00A48C86 /* babyq_signin_orange_button.png in Resources */,
 				5F7FF0631948035C00A48C86 /* babyq_view_progress_button.png in Resources */,
@@ -599,6 +644,7 @@
 				5F7FF05C1948035C00A48C86 /* babyq_login_facebook_button.png in Resources */,
 				5F3FBD86194A1F5F00FB0548 /* Bebas.ttf in Resources */,
 				5F7FF05B1948035C00A48C86 /* babyq_join_button.png in Resources */,
+				5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */,
 				5F7FF0501948035C00A48C86 /* babyq_orange_arrow_thin_right.png in Resources */,
 				5F7FF0611948035C00A48C86 /* babyq_signout_button.png in Resources */,
 				5F7FF0711948035C00A48C86 /* babyq_update_babyq_score_header.png in Resources */,
@@ -646,6 +692,7 @@
 				5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */,
 				5FC3D09F19479979003D3E94 /* InfoPlist.strings in Resources */,
 				5F7FF0551948035C00A48C86 /* babyq_light_grid_background.png in Resources */,
+				5F3AF704194FD0E200BD04CE /* babyq_cloud.png in Resources */,
 				5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */,
 				5F7FF0671948035C00A48C86 /* babyq_completed_to-do_header in Resources */,
 				5F7FF07A1948035C00A48C86 /* babyq_menu_icon.png in Resources */,
@@ -710,18 +757,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC3D0A519479979003D3E94 /* AppDelegate.m in Sources */,
+				5F95E48F194B9A68000E9F83 /* LandingPageViewController.m in Sources */,
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
+				5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */,
+				5F3AF70A194FD38500BD04CE /* HowItWorksContentViewController.m in Sources */,
 				5F94EAFD194B78580077FD1D /* PrivacyPolicyViewController.m in Sources */,
 				5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */,
 				5F94EAFA194B78130077FD1D /* LeaveFeedbackViewController.m in Sources */,
+				5F3AF700194F7C9700BD04CE /* ScoreProgressGraphView.m in Sources */,
+				5F95E492194B9ADD000E9F83 /* SignInViewController.m in Sources */,
+				5F95E495194B9AFC000E9F83 /* JoinViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
 				5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */,
 				5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */,
 				5F94EB00194B78770077FD1D /* TermsOfUseViewController.m in Sources */,
 				5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */,
+				5F3AF6FD194F72A000BD04CE /* ScoreProgressViewController.m in Sources */,
 				5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

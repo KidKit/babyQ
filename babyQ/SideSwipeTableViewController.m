@@ -86,11 +86,44 @@
             break;
         }
         case 1: // Score progress
+        {
+            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+            
+            UIStoryboard * scoreProgressScreens = [UIStoryboard storyboardWithName:@"ScoreProgress" bundle:nil];
+            CurrentScoreViewController* scoreProgressView = [scoreProgressScreens instantiateViewControllerWithIdentifier:@"ScoreProgressView"];
+            
+            MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                    initWithCenterViewController:scoreProgressView
+                                                    leftDrawerViewController:sideSwipeTableView
+                                                    rightDrawerViewController:nil];
+            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            
+            [self.navigationController pushViewController:swipeController animated:YES];
+        }
             break;
         case 2: // To-Dos
             break;
         case 3: // How it works
+        {
+            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+            
+            UIStoryboard * howItWorksScreens = [UIStoryboard storyboardWithName:@"HowItWorks" bundle:nil];
+            HowItWorksPageViewController* howItWorksPageViewController = [howItWorksScreens instantiateInitialViewController];
+            
+            MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                    initWithCenterViewController:howItWorksPageViewController
+                                                    
+                                                    leftDrawerViewController:sideSwipeTableView
+                                                    rightDrawerViewController:nil];
+            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            
+            [self.navigationController pushViewController:swipeController animated:YES];
             break;
+        }
         case 4: // My Profile
         {
             UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];

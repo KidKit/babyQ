@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SurveyViewController.h"
 
 @interface SettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UITableView* settingsTableView;
+
+-(IBAction)startSurvey:(id)sender;
 
 @end

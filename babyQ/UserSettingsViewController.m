@@ -19,12 +19,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 720)];
+    [self.scrollView setContentSize:CGSizeMake(320, 651)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"Settings";
 }
+
 
 - (void)didReceiveMemoryWarning
 {

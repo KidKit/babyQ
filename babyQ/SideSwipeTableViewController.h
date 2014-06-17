@@ -11,6 +11,7 @@
 #import "SideSwipeTableViewCell.h"
 #import "MMDrawerController.h"
 #import "CurrentScoreViewController.h"
+#import "HowItWorksPageViewController.h"
 
 @interface SideSwipeTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
