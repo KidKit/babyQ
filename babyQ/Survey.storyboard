@@ -150,7 +150,7 @@
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_progressbar_bubble.png" id="nyB-7F-ukF">
-                                <rect key="frame" x="156" y="59" width="25" height="19"/>
+                                <rect key="frame" x="15" y="59" width="25" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F2N-l1-RhZ">
@@ -226,6 +226,7 @@
                         <outlet property="answerNumber" destination="ZXc-eP-c7u" id="Wos-j2-geY"/>
                         <outlet property="answerOne" destination="MPa-0f-UE6" id="GmA-p8-iJP"/>
                         <outlet property="bottomDivider" destination="sYj-ul-93y" id="Gza-fz-cpc"/>
+                        <outlet property="checkBoxOne" destination="LT2-nO-kzX" id="Zbf-nf-reU"/>
                         <outlet property="nextButton" destination="r9T-Fp-MV6" id="DVy-af-fkj"/>
                         <outlet property="progressBubble" destination="nyB-7F-ukF" id="idI-QP-IA7"/>
                         <outlet property="progressView" destination="fo3-Om-FVH" id="7Hw-yo-1hd"/>
