@@ -24,10 +24,11 @@
     // Do any additional setup after loading the view.
 }
 
-- (IBAction)startSurvey:(id)sender
+- (IBAction)startSurvey
 {
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
     SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
+    surveyController.question_number = @"1";
     [self.navigationController pushViewController:surveyController animated:YES];
 }
 

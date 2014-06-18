@@ -16,7 +16,7 @@
 @property (nonatomic, retain) IBOutlet UIView* todosView;
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
 
--(IBAction)startSurvey:(id)sender;
+-(IBAction)startSurvey;
 -(IBAction) getCompletedTodos;
 -(IBAction)getTipHistory;
 - (IBAction)toggleTodosAndDaily:(id)sender;

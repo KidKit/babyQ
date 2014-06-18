@@ -13,6 +13,6 @@
 
 @property (nonatomic, retain) IBOutlet UITableView* settingsTableView;
 
--(IBAction)startSurvey:(id)sender;
+-(IBAction)startSurvey;
 
 @end

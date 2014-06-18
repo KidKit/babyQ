@@ -20,7 +20,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="startSurvey:" destination="SLr-Ro-QbO" eventType="touchUpInside" id="oLZ-Bt-8X1"/>
+                                    <action selector="startSurvey" destination="SLr-Ro-QbO" eventType="touchUpInside" id="mfF-k1-SXp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aW0-Pv-Ipo">

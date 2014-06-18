@@ -13,6 +13,6 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
--(IBAction)startSurvey:(id)sender;
+-(IBAction)startSurvey;
 
 @end

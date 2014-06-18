@@ -62,6 +62,14 @@
     [self.navigationController pushViewController:completedTodos animated:YES];
 }
 
+- (IBAction)startSurvey
+{
+    UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
+    SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
+    surveyController.question_number = @"1";
+    [self.navigationController pushViewController:surveyController animated:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

@@ -19,6 +19,9 @@
                                 <state key="normal" image="babyq_survey_icon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="startSurvey" destination="W68-iS-Tv3" eventType="touchUpInside" id="lio-iL-NZ2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oz4-Jx-5Ro">
                                 <rect key="frame" x="20" y="30" width="24" height="24"/>

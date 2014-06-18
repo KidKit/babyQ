@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SurveyViewController.h"
 
 @interface HowItWorksPageViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
@@ -14,5 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
 @property (strong, nonatomic) NSArray* pageTitles;
 @property (strong, nonatomic) NSArray* pageImages;
+
+-(IBAction)startSurvey;
 
 @end

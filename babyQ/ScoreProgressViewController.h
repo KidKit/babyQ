@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ScoreProgressGraphView.h"
+#import "SurveyViewController.h"
 
 @interface ScoreProgressViewController : UIViewController
 
@@ -19,5 +20,6 @@
 -(IBAction) getCompletedTodos;
 - (IBAction)getTipHistory;
 - (IBAction)toggleTodosAndDaily:(id)sender;
+-(IBAction)startSurvey;
 
 @end

@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SurveyViewController.h"
 
 @interface TodosViewController : UIViewController
 
 -(IBAction) getCompletedTodos;
+-(IBAction)startSurvey;
 
 @end
