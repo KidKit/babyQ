@@ -7,6 +7,7 @@
 //
 
 #import "CurrentScoreViewController.h"
+#import "Constants.h"
 
 @interface CurrentScoreViewController ()
 

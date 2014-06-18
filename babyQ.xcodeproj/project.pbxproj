@@ -115,6 +115,7 @@
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
+		5FDE03F619510E920009A993 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FDE03F519510E920009A993 /* Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,7 +256,6 @@
 		5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
 		5FD84C7B194A4F16003A711E /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		5FD84C7C194A4F16003A711E /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
-		5FDE03E21950E4AC0009A993 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		5FDE03E31950EA1C0009A993 /* Todos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
 		5FDE03E51950EF670009A993 /* TodosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodosViewController.h; sourceTree = "<group>"; };
 		5FDE03E61950EF670009A993 /* TodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodosViewController.m; sourceTree = "<group>"; };
@@ -263,6 +263,7 @@
 		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
+		5FDE03F519510E920009A993 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -482,6 +483,7 @@
 				5F7FF0051948035C00A48C86 /* Slices */,
 				5FC3D0A319479979003D3E94 /* AppDelegate.h */,
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
+				5FDE03F519510E920009A993 /* Constants.h */,
 				5F95E48D194B9A68000E9F83 /* LandingPageViewController.h */,
 				5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */,
 				5F95E490194B9ADD000E9F83 /* SignInViewController.h */,
@@ -536,7 +538,6 @@
 				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
-				5FDE03E21950E4AC0009A993 /* Constants.h */,
 			);
 			path = babyQ;
 			sourceTree = "<group>";
@@ -572,6 +573,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		5FDE03EF19510B760009A993 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FDE03F619510E920009A993 /* Constants.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		5FC3D09019479979003D3E94 /* babyQ */ = {
 			isa = PBXNativeTarget;
@@ -582,6 +594,7 @@
 				5FC3D08E19479979003D3E94 /* Frameworks */,
 				5FC3D08F19479979003D3E94 /* Resources */,
 				EDBC3BAC115C4165B2E3B714 /* Copy Pods Resources */,
+				5FDE03EF19510B760009A993 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -924,6 +937,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/MMDrawerController\"",
+				);
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -941,6 +958,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers\"",
+					"\"${PODS_ROOT}/Headers/MMDrawerController\"",
+				);
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

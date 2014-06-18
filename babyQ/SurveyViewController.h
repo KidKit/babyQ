@@ -17,9 +17,10 @@
 @property (nonatomic, retain) IBOutlet UILabel* answerNumber;
 @property (nonatomic, retain) IBOutlet UITextView* question;
 @property (nonatomic, retain) IBOutlet UITextView* answerOne;
-@property (nonatomic, retain) IBOutlet UITextView* answerTwo;
-@property (nonatomic, retain) IBOutlet UITextView* answerThree;
-@property (nonatomic, retain) IBOutlet UITextView* answerFour;
+@property (nonatomic, retain) IBOutlet UIButton* nextButton;
+@property (nonatomic, retain) IBOutlet UIImageView* bottomDivider;
+
+@property (nonatomic,retain) NSString* question_number;
 
 
 @end
