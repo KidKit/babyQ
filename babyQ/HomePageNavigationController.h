@@ -11,6 +11,7 @@
 #import "SideSwipeTableViewController.h"
 #import "LandingPageViewController.h"
 #import "MMDrawerController.h"
+#import "AppDelegate.h"
 
 @interface HomePageNavigationController : UINavigationController
 

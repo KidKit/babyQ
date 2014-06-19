@@ -29,6 +29,9 @@
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"Take Survey";
     
+    if (selected_answers == nil)
+        selected_answers = [[NSMutableDictionary alloc] init];
+    answer_ids = [[NSMutableArray alloc] init];
     if (survey_json == nil)
     {
         
@@ -125,7 +128,7 @@
     question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
     
     answerOne.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"Answer"];
-    checkBoxOne.tag = [question_number intValue]-1;
+    checkBoxOne.tag = 0;
     [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
 
     [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
@@ -141,13 +144,11 @@
         [self.scrollView addSubview:nextAnswer];
         
         UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-        checkBox.tag = [question_number intValue]-1;
+        checkBox.tag = i-1;
         [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
         [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
         [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:checkBox];
-        
-        
         
         [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
     }
@@ -166,6 +167,14 @@
 
 - (void) clickedAnswer:(UIButton*)sender
 {
+    for (UIView *subview in self.scrollView.subviews) {
+        if ([subview isKindOfClass:[UIButton class]])
+        {
+            UIButton* button = (UIButton*) subview;
+            if (button.tag >= 0)
+                [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        }
+    }
     [selected_answers setObject:answer_ids[sender.tag] forKey:question_number];
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
@@ -178,6 +187,7 @@
     if (question_int < numberOfQuestions)
     {
         surveyController.question_number = [NSString stringWithFormat:@"%li",question_int + 1];
+        surveyController.selected_answers = self.selected_answers;
         surveyController.survey_json = self.survey_json;
         [self.navigationController pushViewController:surveyController animated:YES];
         self.navigationController.navigationBarHidden = YES;

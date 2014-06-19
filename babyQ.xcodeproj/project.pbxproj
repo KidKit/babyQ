@@ -22,6 +22,8 @@
 		5F3FBD88194A311100FB0548 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD87194A260200FB0548 /* MyriadPro-Regular.otf */; };
 		5F3FBD8A194A32FB00FB0548 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */; };
 		5F3FBD8C194A395A00FB0548 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD8B194A395A00FB0548 /* Settings.storyboard */; };
+		5F49D12819526ACF0073BD85 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F49D12619526ACF0073BD85 /* Constants.h */; };
+		5F49D12919526ACF0073BD85 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49D12719526ACF0073BD85 /* Constants.m */; };
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
 		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
 		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
@@ -115,7 +117,6 @@
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
-		5FDE03F619510E920009A993 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FDE03F519510E920009A993 /* Constants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,8 @@
 		5F3FBD87194A260200FB0548 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
 		5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		5F3FBD8B194A395A00FB0548 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		5F49D12619526ACF0073BD85 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
+		5F49D12719526ACF0073BD85 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = ../Constants.m; sourceTree = "<group>"; };
 		5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewCell.h; sourceTree = "<group>"; };
 		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
 		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
@@ -263,7 +266,6 @@
 		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
-		5FDE03F519510E920009A993 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -483,7 +485,8 @@
 				5F7FF0051948035C00A48C86 /* Slices */,
 				5FC3D0A319479979003D3E94 /* AppDelegate.h */,
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
-				5FDE03F519510E920009A993 /* Constants.h */,
+				5F49D12619526ACF0073BD85 /* Constants.h */,
+				5F49D12719526ACF0073BD85 /* Constants.m */,
 				5F95E48D194B9A68000E9F83 /* LandingPageViewController.h */,
 				5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */,
 				5F95E490194B9ADD000E9F83 /* SignInViewController.h */,
@@ -578,7 +581,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FDE03F619510E920009A993 /* Constants.h in Headers */,
+				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +798,7 @@
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
 				5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
+				5F49D12919526ACF0073BD85 /* Constants.m in Sources */,
 				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
 				5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */,
 				5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */,

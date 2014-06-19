@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SideSwipeTableViewController.h"
+#import "AppDelegate.h"
+#import "Constants.h"
 
-@interface SignInViewController : UIViewController
+@interface SignInViewController : UIViewController <UITextFieldDelegate>
+
+@property (nonatomic,retain) IBOutlet UITextField* email;
+@property (nonatomic,retain) IBOutlet UITextField* password;
+
+- (IBAction) signIn;
 
 @end

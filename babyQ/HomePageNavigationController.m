@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     
-    if (true) //is user logged in?
+    if ([(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token]) //is user logged in?
     {
         UIStoryboard* homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
         SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];

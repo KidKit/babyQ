@@ -10,6 +10,8 @@
 
 @implementation AppDelegate
 
+@synthesize api_token;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont
