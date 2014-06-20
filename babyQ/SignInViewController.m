@@ -33,7 +33,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data");
+    NSLog(@"received data sign in");
     NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -43,7 +43,7 @@
     {
         AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.api_token = json_dictionary[@"API TOKEN"];
-        
+        appDelegate.user_email = self.email.text;
         UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
         SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
         
@@ -67,7 +67,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading");
+    NSLog(@"finished loading sign in");
 }
 
 - (IBAction) signIn
@@ -81,6 +81,10 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn)
+    {
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning

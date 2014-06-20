@@ -14,7 +14,10 @@
 
 @implementation SurveyViewController
 
-@synthesize scrollView,progressView,progressBubble,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,bottomDivider,question_number,survey_json,answer_ids,selected_answers;
+@synthesize scrollView,progressView,progressBubble,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,bottomDivider,question_number,survey_data,survey_json,answer_ids,selected_answers;
+
+NSURLConnection* getSurveyConnection;
+NSURLConnection* submitSurveyConnection;
 
 - (void)viewDidLoad
 {
@@ -32,93 +35,21 @@
     if (selected_answers == nil)
         selected_answers = [[NSMutableDictionary alloc] init];
     answer_ids = [[NSMutableArray alloc] init];
+    questionNumber.text = [NSString stringWithFormat:@"Q%@", question_number];
+    answerNumber.text = [NSString stringWithFormat:@"A%@", question_number];
     if (survey_json == nil)
-    {
-        
-        NSString* SAMPLE_SURVEY_JSON = @"{ \
-        \"SurveyId\":\"84410A2F-0241-F222-AF7D-7E17CAAF4600\",\
-        \"ScoringQuestions\":{\
-        \"1\":{\
-        \"QuestionId\":\"391e85ea-f17f-11e3-949c-79c05a7f6da7\",\
-        \"Question\":\"Each day I exercise on a regular basis for at least 30 minutes (walking, jogging, yoga, spin, weights, etc.)\r\n\",\
-        \"QuestionOrdinal\":\"1\",\
-        \"QuestionType\":\"1\",\
-        \"QuestionTypeDescription\":\"Multiple Choice\",\
-        \"PossibleAnswers\":{\
-        \"1\":{\
-        \"PossibleAnswerId\":\"de640a24-f185-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"rarely\r\n\",\
-        \"Ordinal\":\"1\"\
-        },\
-        \"2\":{\
-        \"PossibleAnswerId\":\"a15edd7e-f186-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"1 to 2 days per week\r\n\",\
-        \"Ordinal\":\"2\"\
-        },\
-        \"3\":{\
-        \"PossibleAnswerId\":\"a15ef188-f186-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"3 to 4 days per week\r\n\",\
-        \"Ordinal\":\"3\"\
-        },\
-        \"4\":{\
-        \"PossibleAnswerId\":\"a15f02b8-f186-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"5 to 6 days per week\r\n\",\
-        \"Ordinal\":\"4\"\
-        },\
-        \"5\":{\
-        \"PossibleAnswerId\":\"a15f13ac-f186-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"every day\r\n\",\
-        \"Ordinal\":\"5\"\
-        },\
-        \"6\":{\
-        \"PossibleAnswerId\":\"a15f24be-f186-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"doctor's restriction - no exercise\r\n\",\
-        \"Ordinal\":\"6\"\
-        }\
-        }\
-        },\
-        \"2\":{\
-        \"QuestionId\":\"686d1170-f181-11e3-949c-79c05a7f6da7\",\
-        \"Question\":\"I have had a restful night's sleep of at least 7 hours\r\n\",\
-        \"QuestionOrdinal\":\"2\",\
-        \"QuestionType\":\"1\",\
-        \"QuestionTypeDescription\":\"Multiple Choice\",\
-        \"PossibleAnswers\":{\
-        \"1\":{\
-        \"PossibleAnswerId\":\"8a19bfca-f187-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"rarely\r\n\",\
-        \"Ordinal\":\"1\"\
-        },\
-        \"2\":{\
-        \"PossibleAnswerId\":\"8a19d47e-f187-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"1 to 2 nights per week\r\n\",\
-        \"Ordinal\":\"2\"\
-        },\
-        \"3\":{\
-        \"PossibleAnswerId\":\"8a19e5e0-f187-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"3 to 4 nights per week\r\n\",\
-        \"Ordinal\":\"3\"\
-        },\
-        \"4\":{\
-        \"PossibleAnswerId\":\"8a19f88c-f187-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"5 to 6 nights per week\r\n\",\
-        \"Ordinal\":\"4\"\
-        },\
-        \"5\":{\
-        \"PossibleAnswerId\":\"8a1a0a34-f187-11e3-949c-79c05a7f6da7\",\
-        \"Answer\":\"every night\r\n\",\
-        \"Ordinal\":\"5\"\
-        }}}}}";
-        
-        SAMPLE_SURVEY_JSON = [SAMPLE_SURVEY_JSON stringByReplacingOccurrencesOfString:@"\n" withString:@"\\n"];
-        SAMPLE_SURVEY_JSON = [SAMPLE_SURVEY_JSON stringByReplacingOccurrencesOfString:@"\r" withString:@"\\r"];
-        
-        NSData* surveyData = [SAMPLE_SURVEY_JSON dataUsingEncoding:NSUTF8StringEncoding];
-        survey_json =
-        [NSJSONSerialization JSONObjectWithData: surveyData
-                                        options: NSJSONReadingMutableContainers
-                                          error: nil];
-        
+    {   survey_data = [[NSMutableData alloc] init];
+        NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+        NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+        Constants* constants = [[Constants alloc] init];
+        NSString* getSurveyURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_SURVEY_PATH];
+        NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getSurveyURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        getSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+        return;
     }
     
     float progress = ([question_number floatValue] - 1) / [survey_json[@"ScoringQuestions"] count];
@@ -143,6 +74,11 @@
         nextAnswer.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"Answer"];
         [self.scrollView addSubview:nextAnswer];
         
+        UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
+        answerChoice.text = [NSString stringWithFormat:@"%d.", i];
+        answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+        [self.scrollView addSubview:answerChoice];
+        
         UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
         checkBox.tag = i-1;
         [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
@@ -157,6 +93,95 @@
         [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
         [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSLog(@"received data survey");
+    if (connection == getSurveyConnection)
+        [survey_data appendData:data];
+    else
+    {
+        //NSLog(@"submit survey response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+        
+        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+        
+        MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                initWithCenterViewController:currentScoreView
+                                                leftDrawerViewController:sideSwipeTableView
+                                                rightDrawerViewController:nil];
+        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+        
+        [self.navigationController pushViewController:swipeController animated:YES];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR survey");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == getSurveyConnection)
+    {
+        NSLog(@"finished loading survey");
+        NSString* json_response = [[NSString alloc] initWithData:survey_data encoding:NSUTF8StringEncoding];
+        NSLog(@"json_response: %@", json_response);
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        
+        survey_json = [NSJSONSerialization JSONObjectWithData: json_data
+                                                      options: NSJSONReadingMutableContainers
+                                                        error: nil];
+        if (true /*[json_dictionary[@"VALID"] isEqualToString:@"Success"]*/)
+        {
+            int progress = ([question_number intValue] - 1) / [survey_json[@"ScoringQuestions"] count];
+            progressView.progress = progress;
+            [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
+            
+            question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
+            
+            answerOne.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"Answer"];
+            checkBoxOne.tag = 0;
+            [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
+            NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count];
+            for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count]; i++)
+            {
+                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
+                nextAnswer.backgroundColor = [UIColor clearColor];
+                nextAnswer.editable = NO;
+                nextAnswer.userInteractionEnabled = NO;
+                NSString* i_string = [NSString stringWithFormat:@"%i", i];
+                nextAnswer.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"Answer"];
+                [self.scrollView addSubview:nextAnswer];
+                
+                UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
+                answerChoice.text = [NSString stringWithFormat:@"%d.", i];
+                answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+                [self.scrollView addSubview:answerChoice];
+                
+                UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
+                checkBox.tag = i-1;
+                [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
+                [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
+                [self.scrollView addSubview:checkBox];
+                
+                [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
+            }
+            if (numberOfAnswers > 1)
+            {
+                [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
+                [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
+                [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
+            }
+        }
     }
 }
 
@@ -204,19 +229,34 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-    SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+    NSMutableDictionary* submit_survey_json = [[NSMutableDictionary alloc] init];
+    submit_survey_json[@"SurveyId"] = survey_json[@"SurveyId"];
+    submit_survey_json[@"ScoringQuestions"] = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < [[survey_json[@"ScoringQuestions"] allKeys] count]; i++)
+    {
+        NSString* question_number_string = [NSString stringWithFormat:@"%d", i + 1];
+        submit_survey_json[@"ScoringQuestions"][question_number_string] = [[NSMutableDictionary alloc] init];
+        submit_survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"] = survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"];
+        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
+        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
+        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
+    }
+    NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:nil];
     
-    CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+    NSString* submit_survey_string = [[NSString alloc] initWithData:jsonSurveyData encoding:NSUTF8StringEncoding];
     
-    MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                            initWithCenterViewController:currentScoreView
-                                            leftDrawerViewController:sideSwipeTableView
-                                            rightDrawerViewController:nil];
-    [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-    [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-    
-    [self.navigationController pushViewController:swipeController animated:YES];
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* getSurveyURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SUBMIT_SURVEY_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&Survey="] stringByAppendingString:submit_survey_string];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getSurveyURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    submitSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,11 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import "SurveyViewController.h"
+#import "Constants.h"
+#import "AppDelegate.h"
 
 
 @interface CurrentScoreViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) IBOutlet UILabel* todaysDate;
+@property (nonatomic, retain) IBOutlet UILabel* totalScoreBig;
+@property (nonatomic, retain) IBOutlet UILabel* totalScoreSmall;
+@property (nonatomic, retain) IBOutlet UILabel* lifestyleScore;
+@property (nonatomic, retain) IBOutlet UILabel* nutritionScore;
+@property (nonatomic, retain) IBOutlet UILabel* exerciseScore;
+@property (nonatomic, retain) IBOutlet UILabel* stressScore;
+@property (nonatomic, retain) IBOutlet UITextView* workBlurb;
+@property (nonatomic, retain) IBOutlet UILabel* delta;
+@property (nonatomic, retain) IBOutlet UITextView* deltaBlurb;
 @property (nonatomic, retain) IBOutlet UIView* todosView;
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
 

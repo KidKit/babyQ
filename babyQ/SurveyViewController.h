@@ -22,6 +22,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* nextButton;
 @property (nonatomic, retain) IBOutlet UIImageView* bottomDivider;
 
+@property (nonatomic, retain) NSMutableData* survey_data;
 @property (nonatomic,retain) NSDictionary* survey_json;
 @property (nonatomic,retain) NSString* question_number;
 @property (nonatomic, retain) NSMutableArray* answer_ids;

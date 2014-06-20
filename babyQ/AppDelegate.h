@@ -12,4 +12,5 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) NSString* api_token;
+@property (nonatomic,retain) NSString* user_email;
 @end

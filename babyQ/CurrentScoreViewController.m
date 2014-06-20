@@ -22,6 +22,60 @@
 	[self.scrollView setContentSize:CGSizeMake(320, 1500)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     dailyTipView.hidden = YES;
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_SCORE_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if (conn)
+    {
+        
+    }
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE, MMM dd"];
+    self.todaysDate.text = [dateFormatter stringFromDate:now];
+    
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSLog(@"received data current score");
+    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                    options: NSJSONReadingMutableContainers
+                                                                      error: nil];
+    if (true /*[json_dictionary[@"VALID"] isEqualToString:@"Success"]*/)
+    {
+        self.totalScoreBig.text = json_dictionary[@"OverallScore"];
+        self.totalScoreSmall.text = json_dictionary[@"OverallScore"];
+        self.lifestyleScore.text = json_dictionary[@"LifestyleScore"];
+        self.exerciseScore.text = json_dictionary[@"ExerciseScore"];
+        self.nutritionScore.text = json_dictionary[@"StressScore"];
+        self.stressScore.text = json_dictionary[@"StressScore"];
+        self.workBlurb.text = json_dictionary[@"OverallMessage"];
+        int delta = [json_dictionary[@"OverallDelta"] intValue];
+        if (delta >= 0)
+            self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", json_dictionary[@"OverallDelta"]]];
+        else
+            self.delta.text = [NSString stringWithFormat:@"%d",delta];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR current");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finished loading current score");
 }
 
 - (void) viewWillAppear:(BOOL)animated

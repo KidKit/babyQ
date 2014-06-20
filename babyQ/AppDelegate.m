@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize api_token;
+@synthesize api_token,user_email;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
