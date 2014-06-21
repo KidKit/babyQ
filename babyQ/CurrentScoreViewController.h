@@ -26,6 +26,8 @@
 @property (nonatomic, retain) IBOutlet UILabel* delta;
 @property (nonatomic, retain) IBOutlet UITextView* deltaBlurb;
 @property (nonatomic, retain) IBOutlet UIView* todosView;
+@property (nonatomic, retain) IBOutlet UITextView* dailyTip;
+
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
 
 -(IBAction)startSurvey;
