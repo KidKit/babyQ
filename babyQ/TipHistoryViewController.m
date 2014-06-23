@@ -60,44 +60,52 @@
 {
     NSString* json_response = [[NSString alloc] initWithData:tipsData encoding:NSUTF8StringEncoding];
     NSLog(@"tip history response: %@", json_response);
-    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    tipsArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                options: NSJSONReadingMutableContainers
-                                                  error: nil];
-    [self.scrollView setContentSize:CGSizeMake(320, 568 + 205*([tipsArray count]-1))];
-    [self.background setFrame:CGRectMake(0, 0, 320, 568 + 205*([tipsArray count]-1))];
-    for (int i = 0; i < [tipsArray count]; i++)
+    if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
     {
-        UIImageView* tipImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+200*i, 32, 32)];
-        tipImage.image = [UIImage imageNamed:@"babyq_dailytip_icon.png"];
-        [self.scrollView addSubview:tipImage];
-        
-        [UIImage imageNamed:@"babyq_dailytip_icon.png"];
-        UITextView* nextTip = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 200*i, 280, 160)];
-        nextTip.backgroundColor = [UIColor clearColor];
-        nextTip.editable = NO;
-        nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-        nextTip.textAlignment = NSTextAlignmentCenter;
-        nextTip.userInteractionEnabled = NO;
-        nextTip.text = tipsArray[i][@"Body"];
-        [self.scrollView addSubview:nextTip];
-        
-        UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200*i, 114, 21)];
-        tipLabel.text = @"DAILY TIP";
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        tipsArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                    options: NSJSONReadingMutableContainers
+                                                      error: nil];
+        [self.scrollView setContentSize:CGSizeMake(320, 568 + 205*([tipsArray count]-1))];
+        [self.background setFrame:CGRectMake(0, 0, 320, 568 + 205*([tipsArray count]-1))];
+        for (int i = 0; i < [tipsArray count]; i++)
+        {
+            UIImageView* tipImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+200*i, 32, 32)];
+            tipImage.image = [UIImage imageNamed:@"babyq_dailytip_icon.png"];
+            [self.scrollView addSubview:tipImage];
+            
+            [UIImage imageNamed:@"babyq_dailytip_icon.png"];
+            UITextView* nextTip = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 200*i, 280, 160)];
+            nextTip.backgroundColor = [UIColor clearColor];
+            nextTip.editable = NO;
+            nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextTip.textAlignment = NSTextAlignmentCenter;
+            nextTip.userInteractionEnabled = NO;
+            nextTip.text = tipsArray[i][@"Body"];
+            [self.scrollView addSubview:nextTip];
+            
+            UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200*i, 114, 21)];
+            tipLabel.text = @"DAILY TIP";
+            tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            [self.scrollView addSubview:tipLabel];
+            
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSDate* tipDate = [dateFormatter dateFromString:tipsArray[i][@"ReceivedDate"]];
+            [dateFormatter setDateFormat:@"MM.dd.yyyy"];
+            UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 200*i, 112, 21)];
+            dateLabel.text = [dateFormatter stringFromDate:tipDate];
+            dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            dateLabel.highlighted = NO;
+            dateLabel.enabled = NO;
+            dateLabel.textColor = [UIColor colorWithRed:227.0f/255.0f green:95.0f/255.0f blue:62.0f/255.0f alpha:1.0f];
+            [self.scrollView addSubview:dateLabel];
+        }
+    } else {
+        UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200, 114, 21)];
+        tipLabel.text = @"No tip history.";
         tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
         [self.scrollView addSubview:tipLabel];
-        
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-        NSDate* tipDate = [dateFormatter dateFromString:tipsArray[i][@"ReceivedDate"]];
-        [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-        UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 200*i, 112, 21)];
-        dateLabel.text = [dateFormatter stringFromDate:tipDate];
-        dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
-        dateLabel.highlighted = NO;
-        dateLabel.enabled = NO;
-        dateLabel.textColor = [UIColor colorWithRed:227.0f/255.0f green:95.0f/255.0f blue:62.0f/255.0f alpha:1.0f];
-        [self.scrollView addSubview:dateLabel];
     }
     NSLog(@"finished loading tip history");
 }

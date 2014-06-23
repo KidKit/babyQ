@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+#import "Constants.h"
 
 @interface CompletedTodosViewController : UIViewController
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) IBOutlet UIImageView* background;
+@property (nonatomic, retain) NSArray* completedTodosArray;
+@property (nonatomic, retain) NSMutableData* completedTodosData;
 
 @end

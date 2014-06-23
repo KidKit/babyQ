@@ -14,10 +14,11 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,todosView,dailyTipView,dailyTip;
+@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
+NSURLConnection* toDosConnection;
 
 - (void)viewDidLoad
 {
@@ -25,6 +26,12 @@ NSURLConnection* dailyTipConnection;
 	[self.scrollView setContentSize:CGSizeMake(320, 1500)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     dailyTipView.hidden = YES;
+    
+    NSDate *now = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"EEEE, MMM dd"];
+    self.todaysDate.text = [dateFormatter stringFromDate:now];
+    
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
@@ -41,11 +48,11 @@ NSURLConnection* dailyTipConnection;
     [dailyTipRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     dailyTipConnection = [[NSURLConnection alloc] initWithRequest:dailyTipRequest delegate:self];
     
-    NSDate *now = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"EEEE, MMM dd"];
-    self.todaysDate.text = [dateFormatter stringFromDate:now];
-    
+    NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+    NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+    [toDosRequest setHTTPMethod:@"POST"];
+    [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
     
 }
 
@@ -83,7 +90,57 @@ NSURLConnection* dailyTipConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         dailyTip.text = json_dictionary[@"Body"];
+    } else if (connection == toDosConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSArray* todosArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                     options: NSJSONReadingMutableContainers
+                                                       error: nil];
+        for (int i = 0; i < [todosArray count]; i++)
+        {
+            UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 39 + 65*(i), 189, 54)];
+            nextTodo.backgroundColor = [UIColor clearColor];
+            nextTodo.editable = NO;
+            nextTodo.userInteractionEnabled = NO;
+            nextTodo.text = todosArray[i][@"Body"];
+            [self.todosView addSubview:nextTodo];
+            
+            UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
+            answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
+            answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+            [self.todosView addSubview:answerChoice];
+            
+            UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
+            checkBox.tag = i;
+            [checkBox setFrame:CGRectMake(247, 50+65*(i), 16, 16)];
+            [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+            [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
+            [self.todosView addSubview:checkBox];
+            
+        }
+        NSUInteger numberOfTodos = [todosArray count];
+        if (numberOfTodos > 4)
+        {
+            [self.scrollView setContentSize:CGSizeMake(320, 1500+(numberOfTodos-4))];
+            [self.todosView setFrame:CGRectMake(todosView.frame.origin.x, todosView.frame.origin.y, todosView.frame.size.width, todosView.frame.size.height+65*(numberOfTodos-4))];
+            [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-4), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+        }
     }
+}
+
+- (void) markTodoCompleted:(UIButton*)sender
+{
+    for (UIView *subview in self.scrollView.subviews) {
+        if ([subview isKindOfClass:[UIButton class]])
+        {
+            UIButton* button = (UIButton*) subview;
+            if (button.tag >= 0)
+                [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        }
+    }
+    [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

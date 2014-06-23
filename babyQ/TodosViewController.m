@@ -26,9 +26,9 @@
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
-    NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+    NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -67,13 +67,13 @@
         nextTodo.text = todosArray[i][@"Body"];
         [self.view addSubview:nextTodo];
         
-        UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 118 + 65*(i), 18, 18)];
-        answerChoice.text = [NSString stringWithFormat:@"%d.", i];
+        UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
+        answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
         answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
         [self.view addSubview:answerChoice];
         
         UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-        checkBox.tag = i-1;
+        checkBox.tag = i;
         [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
         [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
         [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
