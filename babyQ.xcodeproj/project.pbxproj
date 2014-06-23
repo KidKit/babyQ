@@ -89,6 +89,7 @@
 		5F7FF0851948035C00A48C86 /* babyq_popover.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0491948035C00A48C86 /* babyq_popover.png */; };
 		5F7FF0861948035C00A48C86 /* babyq_progressbar_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */; };
 		5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0871948053600A48C86 /* LandingPage.storyboard */; };
+		5F82CAB81957C2FF00B4A33A /* babyq_y_axis.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82CAB71957C2FF00B4A33A /* babyq_y_axis.png */; };
 		5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF0194B67F50077FD1D /* SettingsViewController.m */; };
 		5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF3194B6E810077FD1D /* UserSettingsViewController.m */; };
 		5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F94EAF6194B77C40077FD1D /* AboutUsViewController.m */; };
@@ -221,6 +222,7 @@
 		5F7FF0491948035C00A48C86 /* babyq_popover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_popover.png; sourceTree = "<group>"; };
 		5F7FF04A1948035C00A48C86 /* babyq_progressbar_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_progressbar_bubble.png; sourceTree = "<group>"; };
 		5F7FF0871948053600A48C86 /* LandingPage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LandingPage.storyboard; sourceTree = "<group>"; };
+		5F82CAB71957C2FF00B4A33A /* babyq_y_axis.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_y_axis.png; sourceTree = "<group>"; };
 		5F94EAEF194B67F50077FD1D /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		5F94EAF0194B67F50077FD1D /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		5F94EAF2194B6E810077FD1D /* UserSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingsViewController.h; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 		5F7FF0101948035C00A48C86 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				5F82CAB71957C2FF00B4A33A /* babyq_y_axis.png */,
 				5F7FF0111948035C00A48C86 /* babyq_currentscore_total_background.png */,
 				5F7FF0121948035C00A48C86 /* babyq_green_background.png */,
 				5F7FF0131948035C00A48C86 /* babyq_light_grid_background.png */,
@@ -679,6 +682,7 @@
 				5F7FF0511948035C00A48C86 /* babyq_feedback_avatar.png in Resources */,
 				5F7FF05C1948035C00A48C86 /* babyq_login_facebook_button.png in Resources */,
 				5F3FBD86194A1F5F00FB0548 /* Bebas.ttf in Resources */,
+				5F82CAB81957C2FF00B4A33A /* babyq_y_axis.png in Resources */,
 				5F7FF05B1948035C00A48C86 /* babyq_join_button.png in Resources */,
 				5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */,
 				5F7FF0501948035C00A48C86 /* babyq_orange_arrow_thin_right.png in Resources */,

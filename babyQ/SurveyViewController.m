@@ -14,7 +14,7 @@
 
 @implementation SurveyViewController
 
-@synthesize scrollView,progressView,progressBubble,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,bottomDivider,question_number,survey_data,survey_json,answer_ids,selected_answers;
+@synthesize scrollView,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,bottomDivider,question_number,survey_data,survey_json,answer_ids,selected_answers;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -55,6 +55,8 @@ NSURLConnection* submitSurveyConnection;
     float progress = ([question_number floatValue] - 1) / [survey_json[@"ScoringQuestions"] count];
     progressView.progress = progress;
     [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
+    progressPercentage.text = [NSString stringWithFormat:@"%.0f", progress];
+    [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
     
     question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
     

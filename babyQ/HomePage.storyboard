@@ -57,7 +57,7 @@
                                 </state>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_menu_currentscore_icon.png" id="e9b-O7-jO5">
-                                <rect key="frame" x="49" y="100" width="24" height="24"/>
+                                <rect key="frame" x="65" y="100" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_orange_arrow_down.png" id="oOM-vf-62A">
@@ -94,6 +94,7 @@
                                 <rect key="frame" x="97" y="646" width="126" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXERCISE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ecp-MQ-0zv">
@@ -106,6 +107,7 @@
                                 <rect key="frame" x="81" y="718" width="159" height="78"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="61"/>
+                                <color key="textColor" red="0.48627450980392156" green="0.77254901960784317" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="lRF-7G-8Tg">
@@ -134,18 +136,21 @@
                                 <rect key="frame" x="128" y="230" width="68" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0OF-7F-k3Z">
                                 <rect key="frame" x="114" y="154" width="102" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="61"/>
+                                <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Date" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sGu-28-hgm">
-                                <rect key="frame" x="75" y="103" width="199" height="21"/>
+                                <rect key="frame" x="97" y="103" width="177" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NUTRITION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pF2-M1-W9h">
@@ -155,9 +160,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU IMPROVED FROM LAST TIME!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eDJ-w9-yjs">
-                                <rect key="frame" x="58" y="815" width="204" height="21"/>
+                                <rect key="frame" x="49" y="815" width="213" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Im-1a-ScJ">
@@ -192,7 +197,7 @@
                                     <segment title="To-Do's"/>
                                     <segment title="Daily Tip"/>
                                 </segments>
-                                <color key="tintColor" red="0.78999660329999999" green="0.25546232590000001" blue="0.1606983988" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="toggleTodosAndDaily:" destination="YUz-wV-fL8" eventType="valueChanged" id="1pc-Hq-99T"/>
                                 </connections>
@@ -211,6 +216,7 @@
                                         <rect key="frame" x="118" y="49" width="93" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_dailytip_icon.png" id="mMB-i1-W7E">
@@ -229,7 +235,7 @@
                                         <rect key="frame" x="82" y="283" width="119" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="TIP HISTORY >">
-                                            <color key="titleColor" red="0.78899881110000003" green="0.39456411489999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -296,6 +302,7 @@
                                         <rect key="frame" x="169" y="8" width="114" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pj1-3b-o8V">

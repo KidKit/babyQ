@@ -14,6 +14,8 @@
 
 @implementation TermsOfUseViewController
 
+@synthesize termsOfUse;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -21,6 +23,9 @@
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"Terms Of Use";
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://tutorial.babyq.com/terms-of-use/"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 1000];
+    [self.termsOfUse loadRequest: request];
 }
 
 - (void)didReceiveMemoryWarning

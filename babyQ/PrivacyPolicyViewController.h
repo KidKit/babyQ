@@ -10,4 +10,6 @@
 
 @interface PrivacyPolicyViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIWebView* privacyPolicy;
+
 @end

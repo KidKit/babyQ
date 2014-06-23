@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface LeaveFeedbackViewController : UIViewController
+@interface LeaveFeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate>
+
+@property (nonatomic,retain) IBOutlet UITextView* feedbackTextView;
+@property (nonatomic,retain) IBOutlet UIButton* sendFeedbackButton;
+@property (nonatomic,retain) IBOutlet UITabBar* tabBar;
+
+- (IBAction)sendFeedback;
 
 @end

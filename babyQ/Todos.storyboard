@@ -45,6 +45,7 @@
                                 <rect key="frame" x="103" y="79" width="114" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_popup_divider.png" id="uHA-EZ-kSy">
@@ -208,7 +209,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="Bwd-Te-Qgc">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_cloud.png" id="Evq-9H-SXB">
@@ -219,6 +220,7 @@
                     </scrollView>
                     <size key="freeformSize" width="320" height="1200"/>
                     <connections>
+                        <outlet property="background" destination="Bwd-Te-Qgc" id="rlT-0O-Kpd"/>
                         <outlet property="scrollView" destination="wjc-qu-FaT" id="Ngz-sV-LSz"/>
                     </connections>
                 </viewController>

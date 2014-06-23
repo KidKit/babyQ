@@ -114,6 +114,7 @@ NSURLConnection* dailyTipConnection;
     UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
     UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"CompletedTodosView"];
     [self.navigationController pushViewController:completedTodos animated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 -(IBAction) getTipHistory
@@ -121,6 +122,7 @@ NSURLConnection* dailyTipConnection;
     UIStoryboard* todosStoryboard = [UIStoryboard storyboardWithName:@"Todos" bundle:nil];
     UIViewController* completedTodos = [todosStoryboard instantiateViewControllerWithIdentifier:@"TipHistoryView"];
     [self.navigationController pushViewController:completedTodos animated:YES];
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (IBAction)toggleTodosAndDaily:(id)sender {

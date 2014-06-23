@@ -14,7 +14,7 @@
 
 @implementation TipHistoryViewController
 
-@synthesize scrollView;
+@synthesize scrollView,background,tipsArray,tipsData;
 
 - (void)viewDidLoad
 {
@@ -26,6 +26,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"TIP HISTORY";
     
+    tipsData = [[NSMutableData alloc] init];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
@@ -41,15 +42,30 @@
     }
 }
 
+-(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSLog(@"received data tip history");
-    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    [tipsData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR tip history");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString* json_response = [[NSString alloc] initWithData:tipsData encoding:NSUTF8StringEncoding];
     NSLog(@"tip history response: %@", json_response);
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    NSArray* tipsArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                        options: NSJSONReadingMutableContainers
-                                                                          error: nil];
+    tipsArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                options: NSJSONReadingMutableContainers
+                                                  error: nil];
+    [self.scrollView setContentSize:CGSizeMake(320, 568 + 205*([tipsArray count]-1))];
+    [self.background setFrame:CGRectMake(0, 0, 320, 568 + 205*([tipsArray count]-1))];
     for (int i = 0; i < [tipsArray count]; i++)
     {
         UIImageView* tipImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+200*i, 32, 32)];
@@ -78,19 +94,11 @@
         UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 200*i, 112, 21)];
         dateLabel.text = [dateFormatter stringFromDate:tipDate];
         dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+        dateLabel.highlighted = NO;
+        dateLabel.enabled = NO;
+        dateLabel.textColor = [UIColor colorWithRed:227.0f/255.0f green:95.0f/255.0f blue:62.0f/255.0f alpha:1.0f];
         [self.scrollView addSubview:dateLabel];
     }
-    
-    [self.scrollView setContentSize:CGSizeMake(320, 568 + 205*([tipsArray count]-1))];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"ERROR tip history");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
     NSLog(@"finished loading tip history");
 }
 

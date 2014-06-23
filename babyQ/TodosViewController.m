@@ -14,11 +14,14 @@
 
 @implementation TodosViewController
 
-@synthesize toDo1,toDo2,toDo3,toDo4,todosArray,completedTodosButton;
+@synthesize todosArray,todosData,completedTodosButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    todosData = [[NSMutableData alloc] init];
+    
     
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -39,13 +42,22 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSLog(@"received data todos");
-    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSLog(@"json_response: %@", json_response);
+    [todosData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR todos");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     
     todosArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                  options: NSJSONReadingMutableContainers
-                                                    error: nil];
+                                                 options: NSJSONReadingMutableContainers
+                                                   error: nil];
     for (int i = 0; i < [todosArray count]; i++)
     {
         UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
@@ -73,6 +85,7 @@
     {
         [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
     }
+    NSLog(@"finished loading todos");
 }
 
 - (void) clickedAnswer:(UIButton*)sender
@@ -86,17 +99,6 @@
         }
     }
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"ERROR todos");
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
-    NSLog(@"finished loading todos");
 }
 
 -(IBAction) getCompletedTodos

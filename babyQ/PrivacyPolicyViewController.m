@@ -14,6 +14,8 @@
 
 @implementation PrivacyPolicyViewController
 
+@synthesize privacyPolicy;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -21,6 +23,10 @@
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"Privacy Policy";
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://tutorial.babyq.com/privacy-policy/"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 1000];
+    [self.privacyPolicy loadRequest: request];
+    
 }
 
 - (void)didReceiveMemoryWarning

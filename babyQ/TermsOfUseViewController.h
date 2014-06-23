@@ -10,4 +10,6 @@
 
 @interface TermsOfUseViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIWebView* termsOfUse;
+
 @end
