@@ -16,6 +16,9 @@
 
 @synthesize todosArray,todosData,completedTodosButton;
 
+NSURLConnection* getTodosConnection;
+NSURLConnection* setTodoCompletedConnection;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -31,18 +34,29 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (conn)
-    {
-        
-    }
+    getTodosConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
     // Do any additional setup after loading the view.
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSLog(@"received data todos");
-    [todosData appendData:data];
+    if (connection == getTodosConnection)
+        [todosData appendData:data];
+    else if (connection == setTodoCompletedConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary* setCompletedResponse = [NSJSONSerialization JSONObjectWithData: json_data
+                                                     options: NSJSONReadingMutableContainers
+                                                       error: nil];
+        if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
+        {
+            
+        }
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -52,44 +66,58 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
-    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    
-    todosArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                 options: NSJSONReadingMutableContainers
-                                                   error: nil];
-    for (int i = 0; i < [todosArray count]; i++)
+    if (connection == getTodosConnection)
     {
-        UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
-        nextTodo.backgroundColor = [UIColor clearColor];
-        nextTodo.editable = NO;
-        nextTodo.userInteractionEnabled = NO;
-        nextTodo.text = todosArray[i][@"Body"];
-        [self.view addSubview:nextTodo];
+        NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         
-        UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
-        answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
-        answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
-        [self.view addSubview:answerChoice];
-        
-        UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-        checkBox.tag = i;
-        [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
-        [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
-        [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
-        [self.view addSubview:checkBox];
-        
-    }
-    NSUInteger numberOfTodos = [todosArray count];
-    if (numberOfTodos > 1)
-    {
-        [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+        todosArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                     options: NSJSONReadingMutableContainers
+                                                       error: nil];
+        for (int i = 0; i < [todosArray count]; i++)
+        {
+            UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
+            nextTodo.backgroundColor = [UIColor clearColor];
+            nextTodo.editable = NO;
+            nextTodo.userInteractionEnabled = NO;
+            nextTodo.text = todosArray[i][@"Body"];
+            [self.view addSubview:nextTodo];
+            
+            UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
+            answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
+            answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+            [self.view addSubview:answerChoice];
+            
+            UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
+            checkBox.tag = i;
+            [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
+            [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+            [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:checkBox];
+            
+        }
+        NSUInteger numberOfTodos = [todosArray count];
+        if (numberOfTodos > 1)
+        {
+            [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+        }
     }
     NSLog(@"finished loading todos");
 }
 
-- (void) clickedAnswer:(UIButton*)sender
+- (void) markTodoCompleted:(UIButton*)sender
 {
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_TODO_COMPLETED_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[sender.tag][@"ToDoId"] ];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
     for (UIView *subview in self.view.subviews) {
         if ([subview isKindOfClass:[UIButton class]])
         {

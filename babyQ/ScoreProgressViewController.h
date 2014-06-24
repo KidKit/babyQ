@@ -16,6 +16,11 @@
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UIView* todosView;
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
+@property (nonatomic, retain) NSMutableData* scoreHistoryData;
+@property (nonatomic, retain) NSArray* scoreHistoryArray;
+@property (nonatomic, retain) IBOutlet UITextView* dailyTip;
+@property (nonatomic, retain) NSArray* todosArray;
+@property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 
 -(IBAction) getCompletedTodos;
 - (IBAction)getTipHistory;
