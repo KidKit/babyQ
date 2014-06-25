@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "SideSwipeTableViewController.h"
 
+extern NSDictionary* survey_json;
+extern NSMutableDictionary* selected_answers;
+
 @interface SurveyViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
@@ -21,14 +24,14 @@
 @property (nonatomic, retain) IBOutlet UITextView* answerOne;
 @property (nonatomic, retain) IBOutlet UIButton* checkBoxOne;
 @property (nonatomic, retain) IBOutlet UIButton* nextButton;
+@property (nonatomic, retain) IBOutlet UIButton* previousButton;
 @property (nonatomic, retain) IBOutlet UIImageView* bottomDivider;
 
 @property (nonatomic, retain) NSMutableData* survey_data;
-@property (nonatomic,retain) NSDictionary* survey_json;
 @property (nonatomic,retain) NSString* question_number;
 @property (nonatomic, retain) NSMutableArray* answer_ids;
-@property (nonatomic, retain) NSMutableDictionary* selected_answers;
 
 - (IBAction)nextQuestion;
+- (IBAction)previousQuestion;
 
 @end

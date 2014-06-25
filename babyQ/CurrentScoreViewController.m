@@ -195,8 +195,13 @@ NSURLConnection* setTodoCompletedConnection;
 {
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
     SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
-    surveyController.question_number = @"1";
+    if (survey_json == nil)
+        surveyController.question_number = @"1";
+    else
+        surveyController.question_number = [NSString stringWithFormat:@"%lu", [selected_answers count] + 1];
+
     [self.navigationController pushViewController:surveyController animated:YES];
+
 }
 
 -(IBAction) getCompletedTodos

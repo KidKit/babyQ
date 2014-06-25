@@ -188,7 +188,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r9T-Fp-MV6">
-                                <rect key="frame" x="58" y="430" width="216" height="48"/>
+                                <rect key="frame" x="173" y="430" width="108" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_next_button.png">
@@ -196,6 +196,17 @@
                                 </state>
                                 <connections>
                                     <action selector="nextQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="HLx-b5-7p3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yTU-cd-EWa">
+                                <rect key="frame" x="45" y="430" width="108" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_next_button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="previousQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="BF6-r2-6QV"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LT2-nO-kzX">
@@ -235,6 +246,7 @@
                         <outlet property="bottomDivider" destination="sYj-ul-93y" id="Gza-fz-cpc"/>
                         <outlet property="checkBoxOne" destination="LT2-nO-kzX" id="Zbf-nf-reU"/>
                         <outlet property="nextButton" destination="r9T-Fp-MV6" id="DVy-af-fkj"/>
+                        <outlet property="previousButton" destination="yTU-cd-EWa" id="O0K-gj-hNm"/>
                         <outlet property="progressBubble" destination="nyB-7F-ukF" id="idI-QP-IA7"/>
                         <outlet property="progressPercentage" destination="eDG-dE-RJN" id="yoi-8b-ZX1"/>
                         <outlet property="progressView" destination="fo3-Om-FVH" id="7Hw-yo-1hd"/>

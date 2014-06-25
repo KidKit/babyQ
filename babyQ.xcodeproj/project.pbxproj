@@ -27,6 +27,7 @@
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
 		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
 		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
+		5F63993C195ABF99004F1531 /* babyq_black_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F63993B195ABF99004F1531 /* babyq_black_x.png */; };
 		5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */; };
 		5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */; };
 		5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */; };
@@ -157,6 +158,7 @@
 		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
 		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
 		5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewController.m; sourceTree = "<group>"; };
+		5F63993B195ABF99004F1531 /* babyq_black_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_black_x.png; sourceTree = "<group>"; };
 		5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentScoreViewController.h; sourceTree = "<group>"; };
 		5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentScoreViewController.m; sourceTree = "<group>"; };
 		5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageNavigationController.h; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */,
+				5F63993B195ABF99004F1531 /* babyq_black_x.png */,
 				5F3FBD81194A1E5500FB0548 /* babyq_circle.png */,
 				5F7FF0341948035C00A48C86 /* babyq_camera_icon.png */,
 				5F7FF0351948035C00A48C86 /* babyq_check_box.png */,
@@ -716,6 +719,7 @@
 				5F3FBD82194A1E5500FB0548 /* babyq_circle_orange.png in Resources */,
 				5F7FF07D1948035C00A48C86 /* babyq_menu_settigns_icon.png in Resources */,
 				5F7FF07E1948035C00A48C86 /* babyq_menu_to-dos_icon.png in Resources */,
+				5F63993C195ABF99004F1531 /* babyq_black_x.png in Resources */,
 				5FC3D14C1947B5E5003D3E94 /* Survey.storyboard in Resources */,
 				5F3FBD8C194A395A00FB0548 /* Settings.storyboard in Resources */,
 				5F7FF0751948035C00A48C86 /* babyq_dailytip_icon.png in Resources */,

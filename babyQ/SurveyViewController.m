@@ -12,9 +12,12 @@
 
 @end
 
+NSDictionary* survey_json;
+NSMutableDictionary* selected_answers;
+
 @implementation SurveyViewController
 
-@synthesize scrollView,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,bottomDivider,question_number,survey_data,survey_json,answer_ids,selected_answers;
+@synthesize scrollView,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,survey_data,answer_ids;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -32,6 +35,13 @@ NSURLConnection* submitSurveyConnection;
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"Take Survey";
     
+    UIButton *backButtonInternal = [[UIButton alloc] initWithFrame:CGRectMake(0,0,24,24)];
+    [backButtonInternal setBackgroundImage:[UIImage imageNamed:@"babyq_black_x.png"] forState:UIControlStateNormal];
+    [backButtonInternal addTarget:self action:@selector(cancelSurvey) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButtonInternal];
+    
+    [[self navigationItem] setLeftBarButtonItem:backBarButton];
+    
     if (selected_answers == nil)
         selected_answers = [[NSMutableDictionary alloc] init];
     answer_ids = [[NSMutableArray alloc] init];
@@ -48,7 +58,7 @@ NSURLConnection* submitSurveyConnection;
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
         getSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-
+        previousButton.hidden = YES;
         return;
     }
     
@@ -95,7 +105,25 @@ NSURLConnection* submitSurveyConnection;
         [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
         [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
+        [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
     }
+}
+
+- (void) goHome
+{
+    UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+    SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+    
+    CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+    
+    MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                            initWithCenterViewController:currentScoreView
+                                            leftDrawerViewController:sideSwipeTableView
+                                            rightDrawerViewController:nil];
+    [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+    [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+    
+    [self.navigationController pushViewController:swipeController animated:YES];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
@@ -105,20 +133,9 @@ NSURLConnection* submitSurveyConnection;
         [survey_data appendData:data];
     else
     {
+        [self goHome];
         //NSLog(@"submit survey response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-        UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
-        
-        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
-        
-        MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                                initWithCenterViewController:currentScoreView
-                                                leftDrawerViewController:sideSwipeTableView
-                                                rightDrawerViewController:nil];
-        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-        
-        [self.navigationController pushViewController:swipeController animated:YES];
+       
     }
 }
 
@@ -182,6 +199,7 @@ NSURLConnection* submitSurveyConnection;
                 [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
                 [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
                 [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
+                [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
             }
         }
     }
@@ -206,6 +224,15 @@ NSURLConnection* submitSurveyConnection;
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
 
+- (IBAction)previousQuestion
+{
+    SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultipleChoice"];
+    NSInteger question_int = [question_number integerValue];
+    surveyController.question_number = [NSString stringWithFormat:@"%li",question_int - 1];
+    [self.navigationController pushViewController:surveyController animated:YES];
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (IBAction)nextQuestion
 {
     SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:@"MultipleChoice"];
@@ -214,8 +241,7 @@ NSURLConnection* submitSurveyConnection;
     if (question_int < numberOfQuestions)
     {
         surveyController.question_number = [NSString stringWithFormat:@"%li",question_int + 1];
-        surveyController.selected_answers = self.selected_answers;
-        surveyController.survey_json = self.survey_json;
+
         [self.navigationController pushViewController:surveyController animated:YES];
         self.navigationController.navigationBarHidden = YES;
     }
@@ -225,40 +251,66 @@ NSURLConnection* submitSurveyConnection;
         NSString* message = @"Thanks for taking the survey! We've calculated your new babyQ score, go check it out!";
         NSString* buttonTitle = @"VIEW BABYQ SCORE";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
+        alert.tag = 0;
         [alert show];
     }
 }
 
+- (void) cancelSurvey
+{
+    NSLog(@"cancel survey pressed");
+    NSString* message = @"Do you want to stop taking this survey? Your progress will be saved for later.";
+    NSString* yesButtonTitle = @"YES";
+    NSString* noButtonTitle = @"NO";
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:message delegate:self cancelButtonTitle:noButtonTitle otherButtonTitles:yesButtonTitle, nil];
+    alert.tag = 1;
+    [alert dismissWithClickedButtonIndex:0 animated:YES];
+    [alert show];
+    
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    NSMutableDictionary* submit_survey_json = [[NSMutableDictionary alloc] init];
-    submit_survey_json[@"SurveyId"] = survey_json[@"SurveyId"];
-    submit_survey_json[@"ScoringQuestions"] = [[NSMutableDictionary alloc] init];
-    for (int i = 0; i < [[survey_json[@"ScoringQuestions"] allKeys] count]; i++)
-    {
-        NSString* question_number_string = [NSString stringWithFormat:@"%d", i + 1];
-        submit_survey_json[@"ScoringQuestions"][question_number_string] = [[NSMutableDictionary alloc] init];
-        submit_survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"] = survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"];
-        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
-        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
-        submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
+    switch (alertView.tag) {
+        case 0:
+        {
+            NSMutableDictionary* submit_survey_json = [[NSMutableDictionary alloc] init];
+            submit_survey_json[@"SurveyId"] = survey_json[@"SurveyId"];
+            submit_survey_json[@"ScoringQuestions"] = [[NSMutableDictionary alloc] init];
+            for (int i = 0; i < [[survey_json[@"ScoringQuestions"] allKeys] count]; i++)
+            {
+                NSString* question_number_string = [NSString stringWithFormat:@"%d", i + 1];
+                submit_survey_json[@"ScoringQuestions"][question_number_string] = [[NSMutableDictionary alloc] init];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"] = survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
+            }
+            NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
+                                                               options:NSJSONWritingPrettyPrinted
+                                                                 error:nil];
+            
+            NSString* submit_survey_string = [[NSString alloc] initWithData:jsonSurveyData encoding:NSUTF8StringEncoding];
+            
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+            Constants* constants = [[Constants alloc] init];
+            NSString* getSurveyURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SUBMIT_SURVEY_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+            postData = [[postData stringByAppendingString:@"&Survey="] stringByAppendingString:submit_survey_string];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getSurveyURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            submitSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            break;
+        }
+        case 1:
+        {
+            if (buttonIndex == 1)
+                [self goHome];
+            break;
+        }
     }
-    NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:nil];
-    
-    NSString* submit_survey_string = [[NSString alloc] initWithData:jsonSurveyData encoding:NSUTF8StringEncoding];
-    
-    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-    Constants* constants = [[Constants alloc] init];
-    NSString* getSurveyURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SUBMIT_SURVEY_PATH];
-    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&Survey="] stringByAppendingString:submit_survey_string];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getSurveyURL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    submitSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (void)didReceiveMemoryWarning
