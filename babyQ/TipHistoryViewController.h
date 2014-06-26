@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView* background;
+@property (nonatomic, retain) UIButton* moreButton;
 @property (nonatomic, retain) NSArray* tipsArray;
 @property (nonatomic, retain) NSMutableData* tipsData;
 
