@@ -126,7 +126,13 @@ NSURLConnection* setTodoCompletedConnection;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            
+            NSString* title = @"TO-DO COMPLETED!";
+            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
+            NSString* buttonTitle = @"OKAY, I GOT IT!";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
+            alert.tag = 0;
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            [alert show];
         }
     }
     
