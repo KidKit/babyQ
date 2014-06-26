@@ -12,8 +12,8 @@
 
 @end
 
-NSDictionary* survey_json;
-NSMutableDictionary* selected_answers;
+NSDictionary* survey_json = nil;
+NSMutableDictionary* selected_answers = nil;
 
 @implementation SurveyViewController
 
@@ -36,11 +36,13 @@ NSURLConnection* submitSurveyConnection;
     self.navigationController.navigationBar.topItem.title = @"Take Survey";
     
     UIButton *backButtonInternal = [[UIButton alloc] initWithFrame:CGRectMake(0,0,24,24)];
-    [backButtonInternal setBackgroundImage:[UIImage imageNamed:@"babyq_black_x.png"] forState:UIControlStateNormal];
+    [backButtonInternal setBackgroundImage:[UIImage imageNamed:@"babyq_survey_x.png"] forState:UIControlStateNormal];
     [backButtonInternal addTarget:self action:@selector(cancelSurvey) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *backBarButton = [[UIBarButtonItem alloc] initWithCustomView:backButtonInternal];
     
     [[self navigationItem] setLeftBarButtonItem:backBarButton];
+    
+    nextButton.enabled = NO;
     
     if (selected_answers == nil)
         selected_answers = [[NSMutableDictionary alloc] init];
@@ -65,7 +67,7 @@ NSURLConnection* submitSurveyConnection;
     float progress = ([question_number floatValue] - 1) / [survey_json[@"ScoringQuestions"] count];
     progressView.progress = progress;
     [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
-    progressPercentage.text = [NSString stringWithFormat:@"%.0f", progress];
+    progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
     [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
     
     question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
@@ -222,6 +224,7 @@ NSURLConnection* submitSurveyConnection;
     }
     [selected_answers setObject:answer_ids[sender.tag] forKey:question_number];
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    nextButton.enabled = YES;
 }
 
 - (IBAction)previousQuestion

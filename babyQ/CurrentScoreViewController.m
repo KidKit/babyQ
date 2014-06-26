@@ -75,7 +75,7 @@ NSURLConnection* setTodoCompletedConnection;
             self.exerciseScore.text = json_dictionary[@"ExerciseScore"];
             self.nutritionScore.text = json_dictionary[@"StressScore"];
             self.stressScore.text = json_dictionary[@"StressScore"];
-            self.workBlurb.text = json_dictionary[@"OverallMessage"];
+            self.deltaBlurb.text = json_dictionary[@"OverallMessage"];
             int delta = [json_dictionary[@"OverallDelta"] intValue];
             if (delta >= 0)
                 self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", json_dictionary[@"OverallDelta"]]];
