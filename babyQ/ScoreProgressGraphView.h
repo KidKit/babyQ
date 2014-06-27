@@ -13,5 +13,7 @@
 }
 
 @property (strong, atomic) NSArray *yValues;
+@property (strong, atomic) NSMutableArray* circles;
 
+-(void) calc_info;
 @end

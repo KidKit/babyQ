@@ -14,6 +14,15 @@
 
 @property (nonatomic, retain) IBOutlet UILabel* scoreLabel;
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) IBOutlet UILabel* scoreDate;
+@property (nonatomic, retain) IBOutlet UILabel* totalScoreBig;
+@property (nonatomic, retain) IBOutlet UILabel* lifestyleScore;
+@property (nonatomic, retain) IBOutlet UILabel* nutritionScore;
+@property (nonatomic, retain) IBOutlet UILabel* exerciseScore;
+@property (nonatomic, retain) IBOutlet UILabel* stressScore;
+
+@property (nonatomic, retain) IBOutlet UILabel* dailyTipDate;
+@property (nonatomic, retain) IBOutlet UILabel* todosDueDate;
 @property (nonatomic, retain) IBOutlet UIView* todosView;
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
 @property (nonatomic, retain) NSMutableData* scoreHistoryData;

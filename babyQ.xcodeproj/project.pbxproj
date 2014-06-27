@@ -119,6 +119,7 @@
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
+		5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,6 +271,7 @@
 		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
+		5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange_no_fill.png; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -413,6 +415,7 @@
 				5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */,
 				5F0296BF195C009F0094F542 /* babyq_survey_x.png */,
 				5F3FBD81194A1E5500FB0548 /* babyq_circle.png */,
+				5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */,
 				5F7FF0341948035C00A48C86 /* babyq_camera_icon.png */,
 				5F7FF0351948035C00A48C86 /* babyq_check_box.png */,
 				5F7FF0361948035C00A48C86 /* babyq_check_mark.png */,
@@ -734,6 +737,7 @@
 				5F7FF0821948035C00A48C86 /* babyq_take_survey_X.png in Resources */,
 				5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */,
 				5FC3D09F19479979003D3E94 /* InfoPlist.strings in Resources */,
+				5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */,
 				5F7FF0551948035C00A48C86 /* babyq_light_grid_background.png in Resources */,
 				5F3AF704194FD0E200BD04CE /* babyq_cloud.png in Resources */,
 				5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */,

@@ -292,6 +292,7 @@
                     <connections>
                         <outlet property="completedTodosButton" destination="8qH-QI-BjJ" id="6Fq-Tq-qRB"/>
                         <outlet property="dailyTip" destination="gwB-pL-gJr" id="QXl-Qc-40q"/>
+                        <outlet property="dailyTipDate" destination="vB6-As-cQe" id="NJ0-f8-nP7"/>
                         <outlet property="dailyTipView" destination="uz5-3K-Xld" id="PCC-EE-yLm"/>
                         <outlet property="delta" destination="O7k-oT-oQW" id="zXs-St-HuX"/>
                         <outlet property="deltaBlurb" destination="lRF-7G-8Tg" id="u3C-Fv-71z"/>
@@ -301,6 +302,7 @@
                         <outlet property="scrollView" destination="Byi-Dh-nJt" id="f9h-oF-Dqd"/>
                         <outlet property="stressScore" destination="bGG-Zh-Wdz" id="gqZ-co-una"/>
                         <outlet property="todaysDate" destination="sGu-28-hgm" id="4Gb-Bp-BpH"/>
+                        <outlet property="todosDueDate" destination="0k6-e2-Qgg" id="1OZ-mA-OvB"/>
                         <outlet property="todosView" destination="zpA-eO-FIy" id="Zuw-aH-uoS"/>
                         <outlet property="totalScoreBig" destination="0OF-7F-k3Z" id="GB5-nR-txm"/>
                         <outlet property="totalScoreSmall" destination="a0N-m9-LSo" id="Bp3-IK-2PK"/>

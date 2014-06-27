@@ -16,6 +16,8 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UILabel* todaysDate;
+@property (nonatomic, retain) IBOutlet UILabel* dailyTipDate;
+@property (nonatomic, retain) IBOutlet UILabel* todosDueDate;
 @property (nonatomic, retain) IBOutlet UILabel* totalScoreBig;
 @property (nonatomic, retain) IBOutlet UILabel* totalScoreSmall;
 @property (nonatomic, retain) IBOutlet UILabel* lifestyleScore;

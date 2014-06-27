@@ -67,6 +67,7 @@
                     </view>
                     <connections>
                         <outlet property="completedTodosButton" destination="JI8-bN-yOa" id="7m4-Re-wCR"/>
+                        <outlet property="todosDueDate" destination="Gpi-QH-c1D" id="DR9-YC-ggt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGT-21-r7c" userLabel="First Responder" sceneMemberID="firstResponder"/>

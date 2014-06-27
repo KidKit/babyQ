@@ -14,6 +14,8 @@
 @property (nonatomic, retain) NSArray* todosArray;
 @property (nonatomic, retain) NSMutableData* todosData;
 
+@property (nonatomic, retain) IBOutlet UILabel* todosDueDate;
+
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 
 -(IBAction) getCompletedTodos;

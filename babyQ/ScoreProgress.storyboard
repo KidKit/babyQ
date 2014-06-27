@@ -129,26 +129,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxP-u3-9UK">
-                                <rect key="frame" x="44" y="583" width="23" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxP-u3-9UK">
+                                <rect key="frame" x="39" y="583" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SC-oy-awF">
-                                <rect key="frame" x="119" y="583" width="23" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SC-oy-awF">
+                                <rect key="frame" x="114" y="583" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCx-FH-Pmz">
-                                <rect key="frame" x="192" y="583" width="23" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCx-FH-Pmz">
+                                <rect key="frame" x="187" y="583" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TRj-nr-gFg">
-                                <rect key="frame" x="262" y="583" width="23" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TRj-nr-gFg">
+                                <rect key="frame" x="257" y="583" width="32" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
@@ -257,7 +257,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_y_axis.png" id="kHu-Z7-U7I">
-                                <rect key="frame" x="44" y="84" width="10" height="193"/>
+                                <rect key="frame" x="42" y="84" width="10" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -267,10 +267,18 @@
                     <connections>
                         <outlet property="completedTodosButton" destination="21E-Rk-xcz" id="acw-gd-zCs"/>
                         <outlet property="dailyTip" destination="97H-Ie-3tj" id="vam-yo-9wC"/>
+                        <outlet property="dailyTipDate" destination="FIJ-Pa-aL6" id="kFA-81-dja"/>
                         <outlet property="dailyTipView" destination="vXy-hd-tPb" id="xtN-3x-lJb"/>
+                        <outlet property="exerciseScore" destination="1SC-oy-awF" id="1MJ-fB-p8z"/>
+                        <outlet property="lifestyleScore" destination="kxP-u3-9UK" id="rA9-47-hLe"/>
+                        <outlet property="nutritionScore" destination="pCx-FH-Pmz" id="96G-O6-OcR"/>
+                        <outlet property="scoreDate" destination="zoW-5N-ed6" id="PXW-Gv-0rj"/>
                         <outlet property="scoreLabel" destination="ZC7-1s-vyx" id="b4q-9A-oUY"/>
                         <outlet property="scrollView" destination="INf-Lp-rFm" id="NAO-Ae-coL"/>
+                        <outlet property="stressScore" destination="TRj-nr-gFg" id="dD2-HM-TrJ"/>
+                        <outlet property="todosDueDate" destination="Ehc-rv-P9f" id="cF4-mu-6VS"/>
                         <outlet property="todosView" destination="h9P-ot-RLX" id="bkZ-HD-wn3"/>
+                        <outlet property="totalScoreBig" destination="e0h-cZ-shO" id="RnR-wJ-yI9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0cF-9k-vnx" userLabel="First Responder" sceneMemberID="firstResponder"/>

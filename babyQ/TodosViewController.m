@@ -14,7 +14,7 @@
 
 @implementation TodosViewController
 
-@synthesize todosArray,todosData,completedTodosButton;
+@synthesize todosArray,todosData,completedTodosButton,todosDueDate;
 
 NSURLConnection* getTodosConnection;
 NSURLConnection* setTodoCompletedConnection;
@@ -75,37 +75,48 @@ NSURLConnection* setTodoCompletedConnection;
     if (connection == getTodosConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
-        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         
-        todosArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                     options: NSJSONReadingMutableContainers
-                                                       error: nil];
-        for (int i = 0; i < [todosArray count]; i++)
+        if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
         {
-            UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
-            nextTodo.backgroundColor = [UIColor clearColor];
-            nextTodo.editable = NO;
-            nextTodo.userInteractionEnabled = NO;
-            nextTodo.text = todosArray[i][@"Body"];
-            [self.view addSubview:nextTodo];
+            NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
             
-            UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
-            answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
-            answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
-            [self.view addSubview:answerChoice];
-            
-            UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
-            checkBox.tag = i;
-            [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
-            [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
-            [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
-            [self.view addSubview:checkBox];
-            
-        }
-        NSUInteger numberOfTodos = [todosArray count];
-        if (numberOfTodos > 1)
-        {
-            [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+            todosArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                         options: NSJSONReadingMutableContainers
+                                                           error: nil];
+            for (int i = 0; i < [todosArray count]; i++)
+            {
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
+                nextTodo.backgroundColor = [UIColor clearColor];
+                nextTodo.editable = NO;
+                nextTodo.userInteractionEnabled = NO;
+                nextTodo.text = todosArray[i][@"Body"];
+                [self.view addSubview:nextTodo];
+                
+                UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
+                answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
+                answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+                [self.view addSubview:answerChoice];
+                
+                UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
+                checkBox.tag = i;
+                [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
+                [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
+                [self.view addSubview:checkBox];
+                
+            }
+            NSUInteger numberOfTodos = [todosArray count];
+            if (numberOfTodos > 1)
+            {
+                [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+            }
+        } else {
+            todosDueDate.hidden = YES;
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 24)];
+            todoLabel.textAlignment = NSTextAlignmentCenter;
+            todoLabel.text = @"All To-Dos Completed.";
+            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            [self.view addSubview:todoLabel];
         }
     }
     NSLog(@"finished loading todos");

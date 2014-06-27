@@ -14,7 +14,7 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray;
+@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,dailyTipDate,todosDueDate;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
@@ -91,6 +91,12 @@ NSURLConnection* setTodoCompletedConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         dailyTip.text = json_dictionary[@"Body"];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        NSString* dateString = json_dictionary[@"ReceivedDate"];
+        NSDate* date = [dateFormatter dateFromString:dateString];
+        [dateFormatter setDateFormat:@"MM.dd.yyyy"];
+        dailyTipDate.text = [dateFormatter stringFromDate:date];
     } else if (connection == toDosConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -131,6 +137,7 @@ NSURLConnection* setTodoCompletedConnection;
                 [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-4), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
             }
         } else {
+            todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
             todoLabel.text = @"All To-Dos Completed.";
