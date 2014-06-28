@@ -128,10 +128,15 @@ NSURLConnection* setDeliveryConnection;
             wasDelivered.on = YES;
         else
             wasDelivered.on = NO;
-        babyLengthField.text = getDeliveryResponse[@"BabyLengthInches"];
-        babyWeightField.text = getDeliveryResponse[@"BabyWeightOunces"];
-        NSArray* deliveryDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
-        deliveryDateField.text = deliveryDateSplit[0];
+        if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
+            babyLengthField.text = getDeliveryResponse[@"BabyLengthInches"];
+        if (getDeliveryResponse[@"BabyWeightOunces"] != (id)[NSNull null])
+            babyWeightField.text = getDeliveryResponse[@"BabyWeightOunces"];
+        if (getDeliveryResponse[@"DeliveryDate"] != (id)[NSNull null])
+        {
+            NSArray* deliveryDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
+            deliveryDateField.text = deliveryDateSplit[0];
+        }
     } else if (connection == setDeliveryConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

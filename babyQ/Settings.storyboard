@@ -193,6 +193,7 @@
                     <navigationItem key="navigationItem" id="2JG-NA-CuW"/>
                     <connections>
                         <outlet property="feedbackTextView" destination="JmO-Jz-3lu" id="C60-lH-nnU"/>
+                        <outlet property="sendFeedbackButton" destination="bmM-Ay-jEv" id="hZR-xN-rFo"/>
                         <outlet property="tabBar" destination="ntN-gn-87R" id="4FB-W1-LAc"/>
                     </connections>
                 </viewController>

@@ -62,7 +62,7 @@ int page;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString* json_response = [[NSString alloc] initWithData:completedTodosData encoding:NSUTF8StringEncoding];
-    NSLog(@"tip history response: %@", json_response);
+    NSLog(@"completed todosa response: %@", json_response);
     if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
     {
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
@@ -75,11 +75,11 @@ int page;
         [self.background setFrame:CGRectMake(0, 0, 320, 568 + 185*([completedTodosArray count]-1))];
         for (int i = 0+7*page; i < [completedTodosArray count]; i++)
         {
-            UIImageView* toDoImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+180*i, 32, 32)];
+            UIImageView* toDoImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+150*i, 32, 32)];
             toDoImage.image = [UIImage imageNamed:@"babyq_circle_orange.png"];
             [self.scrollView addSubview:toDoImage];
             
-            UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 180*i, 280, 160)];
+            UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 150*i, 280, 160)];
             nextTodo.backgroundColor = [UIColor clearColor];
             nextTodo.editable = NO;
             nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
@@ -88,7 +88,7 @@ int page;
             nextTodo.text = completedTodosArray[i][@"Body"];
             [self.scrollView addSubview:nextTodo];
             
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 180*i, 114, 21)];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 150*i, 114, 21)];
             todoLabel.text = completedTodosArray[i][@"ToDoType"];
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.scrollView addSubview:todoLabel];
@@ -100,7 +100,7 @@ int page;
             {
                 NSDate* tipDate = [dateFormatter dateFromString:dateString];
                 [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-                UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 180*i, 112, 21)];
+                UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 150*i, 112, 21)];
                 dateLabel.text = [dateFormatter stringFromDate:tipDate];
                 dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
                 dateLabel.highlighted = NO;
@@ -111,7 +111,7 @@ int page;
         }
         if ([completedTodosArray count] % 7 == 0)
         {
-            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(137, 480+180*([completedTodosArray count]-1), 46, 30)];
+            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(137, 430+150*([completedTodosArray count]-1), 46, 30)];
             [moreButton setTitleColor:[UIColor colorWithRed:124/255.0 green:197/255.0 blue:189/255.0 alpha:1.0] forState:UIControlStateNormal];
             [moreButton setTitle:@"More" forState:UIControlStateNormal];
             [moreButton addTarget:self action:@selector(getMoreCompletedTodos) forControlEvents:UIControlEventTouchUpInside];
@@ -135,9 +135,9 @@ int page;
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
-    NSString* getMoreTipsURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_NEXT_TIP_HISTORY_GROUP_PATH];
+    NSString* getMoreTipsURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_NEXT_COMPLETED_TODOS_GROUP_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&TodoId="] stringByAppendingString:completedTodosArray[6][@"TodoId"]];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:completedTodosArray[6][@"ToDoId"]];
     NSMutableURLRequest *moreTipsRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getMoreTipsURL]];
     [moreTipsRequest setHTTPMethod:@"POST"];
     [moreTipsRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];

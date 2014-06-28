@@ -28,6 +28,7 @@
 @property (nonatomic,retain) NSString *const GET_CURRENT_SCORE_PATH;
 @property (nonatomic,retain) NSString *const GET_SCORE_HISTORY_PATH;
 @property (nonatomic,retain) NSString *const GET_COMPLETED_TODOS_PATH;
+@property (nonatomic,retain) NSString *const GET_NEXT_COMPLETED_TODOS_GROUP_PATH;
 @property (nonatomic,retain) NSString *const GET_CURRENT_TODOS_PATH;
 @property (nonatomic,retain) NSString *const SET_TODO_COMPLETED_PATH;
 @property (nonatomic,retain) NSString *const GET_DAILY_TIP_PATH;

@@ -55,6 +55,11 @@ NSURLConnection* setTodoCompletedConnection;
     dailyTipView.hidden = YES;
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSLog(@"received data current score");
@@ -116,6 +121,12 @@ NSURLConnection* setTodoCompletedConnection;
                 [self.todosView setFrame:CGRectMake(todosView.frame.origin.x, todosView.frame.origin.y, todosView.frame.size.width, todosView.frame.size.height+65*(numberOfTodos-4))];
                 [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-4), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
             }
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString* dateString = todosArray[0][@"DueDate"];
+            NSDate* date = [dateFormatter dateFromString:dateString];
+            [dateFormatter setDateFormat:@"MM.dd.yyyy"];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE %@", [dateFormatter stringFromDate:date]];
         } else {
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
@@ -190,7 +201,7 @@ NSURLConnection* setTodoCompletedConnection;
     totalScoreBig.text = scoreHistoryArray[sender.tag][@"OverallScore"];
     lifestyleScore.text = scoreHistoryArray[sender.tag][@"LifestyleScore"];
     exerciseScore.text = scoreHistoryArray[sender.tag][@"ExerciseScore"];
-    nutritionScore.text = scoreHistoryArray[sender.tag][@"StressScore"];
+    nutritionScore.text = scoreHistoryArray[sender.tag][@"NutritionScore"];
     stressScore.text = scoreHistoryArray[sender.tag][@"StressScore"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

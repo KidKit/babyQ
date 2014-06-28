@@ -69,23 +69,23 @@ NSURLConnection* submitSurveyConnection;
     [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
     progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
     [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
+    NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+    question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
     
-    question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
-    
-    answerOne.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"Answer"];
+    answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
     checkBoxOne.tag = 0;
     [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
 
-    [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
-    NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count];
-    for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count]; i++)
+    [answer_ids addObject:survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
+    NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
+    for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
     {
         UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
         nextAnswer.backgroundColor = [UIColor clearColor];
         nextAnswer.editable = NO;
         nextAnswer.userInteractionEnabled = NO;
         NSString* i_string = [NSString stringWithFormat:@"%i", i];
-        nextAnswer.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"Answer"];
+        nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
         [self.scrollView addSubview:nextAnswer];
         
         UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
@@ -100,7 +100,7 @@ NSURLConnection* submitSurveyConnection;
         [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:checkBox];
         
-        [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
+        [answer_ids addObject:survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
     }
     if (numberOfAnswers > 1)
     {
@@ -152,7 +152,7 @@ NSURLConnection* submitSurveyConnection;
     {
         NSLog(@"finished loading survey");
         NSString* json_response = [[NSString alloc] initWithData:survey_data encoding:NSUTF8StringEncoding];
-        NSLog(@"json_response: %@", json_response);
+        NSLog(@"survey response: %@", json_response);
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         
         survey_json = [NSJSONSerialization JSONObjectWithData: json_data
@@ -163,23 +163,23 @@ NSURLConnection* submitSurveyConnection;
             int progress = ([question_number intValue] - 1) / [survey_json[@"ScoringQuestions"] count];
             progressView.progress = progress;
             [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
+            NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+            question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
             
-            question.text = survey_json[@"ScoringQuestions"][question_number][@"Question"];
-            
-            answerOne.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"Answer"];
+            answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
             checkBoxOne.tag = 0;
             [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             
-            [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
-            NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count];
-            for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"] count]; i++)
+            [answer_ids addObject:survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
+            NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
+            for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
             {
                 UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
                 nextAnswer.backgroundColor = [UIColor clearColor];
                 nextAnswer.editable = NO;
                 nextAnswer.userInteractionEnabled = NO;
                 NSString* i_string = [NSString stringWithFormat:@"%i", i];
-                nextAnswer.text = survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"Answer"];
+                nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
                 [self.scrollView addSubview:nextAnswer];
                 
                 UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
@@ -194,7 +194,7 @@ NSURLConnection* submitSurveyConnection;
                 [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
                 [self.scrollView addSubview:checkBox];
                 
-                [answer_ids addObject:survey_json[@"ScoringQuestions"][question_number][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
+                [answer_ids addObject:survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
             }
             if (numberOfAnswers > 1)
             {
@@ -282,12 +282,12 @@ NSURLConnection* submitSurveyConnection;
             submit_survey_json[@"ScoringQuestions"] = [[NSMutableDictionary alloc] init];
             for (int i = 0; i < [[survey_json[@"ScoringQuestions"] allKeys] count]; i++)
             {
-                NSString* question_number_string = [NSString stringWithFormat:@"%d", i + 1];
+                NSString* question_number_string = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:i];
                 submit_survey_json[@"ScoringQuestions"][question_number_string] = [[NSMutableDictionary alloc] init];
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"] = survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"];
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
-                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number];
             }
             NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
                                                                options:NSJSONWritingPrettyPrinted

@@ -39,6 +39,11 @@ NSURLConnection* setTodoCompletedConnection;
     // Do any additional setup after loading the view.
 }
 
+- (void) viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = YES;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     NSLog(@"received data todos");
@@ -110,6 +115,12 @@ NSURLConnection* setTodoCompletedConnection;
             {
                 [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-1), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
             }
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString* dateString = todosArray[0][@"DueDate"];
+            NSDate* date = [dateFormatter dateFromString:dateString];
+            [dateFormatter setDateFormat:@"MM.dd.yyyy"];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE %@", [dateFormatter stringFromDate:date]];
         } else {
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 24)];

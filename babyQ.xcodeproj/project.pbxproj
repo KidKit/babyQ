@@ -29,6 +29,9 @@
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
 		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
 		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
+		5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */; };
+		5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */; };
+		5F68D801195E3D1D00C799E7 /* babyq_slider_vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */; };
 		5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */; };
 		5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */; };
 		5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */; };
@@ -161,6 +164,9 @@
 		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
 		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
 		5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewController.m; sourceTree = "<group>"; };
+		5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_score_background.png; sourceTree = "<group>"; };
+		5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_horizontal.png; sourceTree = "<group>"; };
+		5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_vertical.png; sourceTree = "<group>"; };
 		5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentScoreViewController.h; sourceTree = "<group>"; };
 		5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentScoreViewController.m; sourceTree = "<group>"; };
 		5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageNavigationController.h; sourceTree = "<group>"; };
@@ -352,6 +358,9 @@
 		5F7FF0101948035C00A48C86 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */,
+				5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */,
+				5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */,
 				5F82CAB71957C2FF00B4A33A /* babyq_y_axis.png */,
 				5F7FF0111948035C00A48C86 /* babyq_currentscore_total_background.png */,
 				5F7FF0121948035C00A48C86 /* babyq_green_background.png */,
@@ -684,11 +693,14 @@
 				5F7FF0601948035C00A48C86 /* babyq_signin_orange_button.png in Resources */,
 				5F7FF0631948035C00A48C86 /* babyq_view_progress_button.png in Resources */,
 				5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */,
+				5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */,
+				5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */,
 				5F7FF0741948035C00A48C86 /* babyq_check_mark.png in Resources */,
 				5F7FF0511948035C00A48C86 /* babyq_feedback_avatar.png in Resources */,
 				5F7FF05C1948035C00A48C86 /* babyq_login_facebook_button.png in Resources */,
 				5F3FBD86194A1F5F00FB0548 /* Bebas.ttf in Resources */,
 				5F82CAB81957C2FF00B4A33A /* babyq_y_axis.png in Resources */,
+				5F68D801195E3D1D00C799E7 /* babyq_slider_vertical.png in Resources */,
 				5F7FF05B1948035C00A48C86 /* babyq_join_button.png in Resources */,
 				5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */,
 				5F7FF0501948035C00A48C86 /* babyq_orange_arrow_thin_right.png in Resources */,

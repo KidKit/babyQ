@@ -30,6 +30,7 @@
         self.GET_CURRENT_SCORE_PATH = @"/GetCurrentScore";
         self.GET_SCORE_HISTORY_PATH = @"/GetSurveyHistory";
         self.GET_COMPLETED_TODOS_PATH = @"/GetCompletedToDos";
+        self.GET_NEXT_COMPLETED_TODOS_GROUP_PATH = @"/GetNextCompletedToDoGroup";
         self.GET_CURRENT_TODOS_PATH = @"/GetCurrentToDos";
         self.SET_TODO_COMPLETED_PATH = @"/SetToDoCompleted";
         self.GET_DAILY_TIP_PATH = @"/GetDailyTip";
