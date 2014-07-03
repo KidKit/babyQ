@@ -8,8 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UserSettingsViewController : UIViewController
+@interface UserSettingsViewController : UIViewController <UITextFieldDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+
+@property (nonatomic,retain) IBOutlet UITextField* email;
+@property (nonatomic,retain) IBOutlet UITextField* password;
+@property (nonatomic, retain) IBOutlet UIButton* saveAccountButton;
+@property (nonatomic, retain) IBOutlet UIButton* cancelAccountButton;
+@property (nonatomic,retain) IBOutlet UIButton* editAccountButton;
+
+-(IBAction)editAccountFields;
+-(IBAction)saveAccountFields;
+-(IBAction)cancelAccountFields;
+
+-(IBAction)signOut;
 
 @end

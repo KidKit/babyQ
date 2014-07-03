@@ -53,6 +53,20 @@ NSURLConnection* setTodoCompletedConnection;
     toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
     
     dailyTipView.hidden = YES;
+    
+    self.totalScoreBig.font = [UIFont fontWithName:@"Bebas" size:61];
+    self.lifestyleScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.exerciseScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.nutritionScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.stressScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.goodWorkLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+
+    self.bigTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
+    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -75,6 +89,7 @@ NSURLConnection* setTodoCompletedConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         dailyTip.text = json_dictionary[@"Body"];
+        dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString* dateString = json_dictionary[@"ReceivedDate"];
@@ -98,13 +113,14 @@ NSURLConnection* setTodoCompletedConnection;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
                 
-                UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
-                answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
-                answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
-                [self.todosView addSubview:answerChoice];
+                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
+                todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;
@@ -209,6 +225,7 @@ NSURLConnection* setTodoCompletedConnection;
     NSString* dateString = scoreHistoryArray[sender.tag][@"SurveyFinished"];
     NSDate* date = [dateFormatter dateFromString:dateString];
     [dateFormatter setDateFormat:@"MM.dd.yyyy"];
+    scoreDate.font = [UIFont fontWithName:@"Bebas" size:18];
     scoreDate.text = [dateFormatter stringFromDate:date];
 }
 

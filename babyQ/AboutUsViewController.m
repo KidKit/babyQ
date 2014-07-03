@@ -20,7 +20,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"About Us";
+    self.navigationController.navigationBar.topItem.title = @"ABOUT US";
 }
 
 - (void)didReceiveMemoryWarning

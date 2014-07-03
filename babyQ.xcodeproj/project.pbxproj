@@ -10,6 +10,11 @@
 		54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E89BC0EF117C4B498CA04172 /* libPods.a */; };
 		5F0296BE195BFE5B0094F542 /* babyq_next_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0296BD195BFE5B0094F542 /* babyq_next_button.png */; };
 		5F0296C0195C009F0094F542 /* babyq_survey_x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F0296BF195C009F0094F542 /* babyq_survey_x.png */; };
+		5F2FD67D1964684B00B41E23 /* MyriadPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F2FD67C1964652600B41E23 /* MyriadPro-Semibold.otf */; };
+		5F2FD67E1964685000B41E23 /* MyriadPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F2FD67B196464D700B41E23 /* MyriadPro-Bold.otf */; };
+		5F2FD6821964CD9200B41E23 /* GetScore.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F2FD6811964CD9200B41E23 /* GetScore.storyboard */; };
+		5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F2FD6831964D47700B41E23 /* GetScoreViewController.h */; };
+		5F2FD6861964D47700B41E23 /* GetScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F2FD6841964D47700B41E23 /* GetScoreViewController.m */; };
 		5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */; };
 		5F3AF6FD194F72A000BD04CE /* ScoreProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF6FC194F72A000BD04CE /* ScoreProgressViewController.m */; };
 		5F3AF700194F7C9700BD04CE /* ScoreProgressGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF6FF194F7C9700BD04CE /* ScoreProgressGraphView.m */; };
@@ -139,6 +144,11 @@
 		1BD59991950F495CB7169FB7 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		5F0296BD195BFE5B0094F542 /* babyq_next_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_next_button.png; sourceTree = "<group>"; };
 		5F0296BF195C009F0094F542 /* babyq_survey_x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_survey_x.png; sourceTree = "<group>"; };
+		5F2FD67B196464D700B41E23 /* MyriadPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Bold.otf"; sourceTree = "<group>"; };
+		5F2FD67C1964652600B41E23 /* MyriadPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Semibold.otf"; sourceTree = "<group>"; };
+		5F2FD6811964CD9200B41E23 /* GetScore.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GetScore.storyboard; sourceTree = "<group>"; };
+		5F2FD6831964D47700B41E23 /* GetScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetScoreViewController.h; sourceTree = "<group>"; };
+		5F2FD6841964D47700B41E23 /* GetScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetScoreViewController.m; sourceTree = "<group>"; };
 		5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ScoreProgress.storyboard; sourceTree = "<group>"; };
 		5F3AF6FB194F72A000BD04CE /* ScoreProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreProgressViewController.h; sourceTree = "<group>"; };
 		5F3AF6FC194F72A000BD04CE /* ScoreProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreProgressViewController.m; sourceTree = "<group>"; };
@@ -309,6 +319,8 @@
 		5F3FBD84194A1F5000FB0548 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5F2FD67C1964652600B41E23 /* MyriadPro-Semibold.otf */,
+				5F2FD67B196464D700B41E23 /* MyriadPro-Bold.otf */,
 				5F3FBD87194A260200FB0548 /* MyriadPro-Regular.otf */,
 				5F3FBD85194A1F5F00FB0548 /* Bebas.ttf */,
 			);
@@ -523,6 +535,8 @@
 				5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */,
 				5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */,
 				5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */,
+				5F2FD6831964D47700B41E23 /* GetScoreViewController.h */,
+				5F2FD6841964D47700B41E23 /* GetScoreViewController.m */,
 				5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */,
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
@@ -557,6 +571,7 @@
 				5F3AF6F9194F711400BD04CE /* ScoreProgress.storyboard */,
 				5FDE03E31950EA1C0009A993 /* Todos.storyboard */,
 				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
+				5F2FD6811964CD9200B41E23 /* GetScore.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
 			);
@@ -600,6 +615,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
+				5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -686,6 +702,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F7FF06A1948035C00A48C86 /* babyq_get_your_babyq_score_header.png in Resources */,
+				5F2FD6821964CD9200B41E23 /* GetScore.storyboard in Resources */,
 				5F7FF05F1948035C00A48C86 /* babyq_signin_button.png in Resources */,
 				5F0296BE195BFE5B0094F542 /* babyq_next_button.png in Resources */,
 				5F3AF702194FCAC200BD04CE /* HowItWorks.storyboard in Resources */,
@@ -707,6 +724,7 @@
 				5F7FF0611948035C00A48C86 /* babyq_signout_button.png in Resources */,
 				5F7FF0711948035C00A48C86 /* babyq_update_babyq_score_header.png in Resources */,
 				5F7FF04F1948035C00A48C86 /* babyq_orange_arrow_right.png in Resources */,
+				5F2FD67E1964685000B41E23 /* MyriadPro-Bold.otf in Resources */,
 				5F7FF0731948035C00A48C86 /* babyq_check_box.png in Resources */,
 				5F7FF0581948035C00A48C86 /* babyq_completed_to-do_buttons.png in Resources */,
 				5F3FBD8A194A32FB00FB0548 /* MyProfile.storyboard in Resources */,
@@ -749,6 +767,7 @@
 				5F7FF0821948035C00A48C86 /* babyq_take_survey_X.png in Resources */,
 				5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */,
 				5FC3D09F19479979003D3E94 /* InfoPlist.strings in Resources */,
+				5F2FD67D1964684B00B41E23 /* MyriadPro-Semibold.otf in Resources */,
 				5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */,
 				5F7FF0551948035C00A48C86 /* babyq_light_grid_background.png in Resources */,
 				5F3AF704194FD0E200BD04CE /* babyq_cloud.png in Resources */,
@@ -823,6 +842,7 @@
 				5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F49D12919526ACF0073BD85 /* Constants.m in Sources */,
+				5F2FD6861964D47700B41E23 /* GetScoreViewController.m in Sources */,
 				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
 				5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */,
 				5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */,

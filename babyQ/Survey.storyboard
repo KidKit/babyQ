@@ -123,14 +123,14 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mzE-TP-6a5">
-                                <rect key="frame" x="133" y="20" width="67" height="21"/>
+                                <rect key="frame" x="125" y="20" width="82" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
                                     <fragment content="SURVEY">
                                         <attributes>
                                             <color key="NSColor" red="0.78899881114130432" green="0.39456411492448429" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
                                         </attributes>
                                     </fragment>
                                 </attributedString>
@@ -255,6 +255,7 @@
                         <outlet property="question" destination="edb-qB-4St" id="VIg-fb-kaz"/>
                         <outlet property="questionNumber" destination="F2N-l1-RhZ" id="SJu-KW-nrl"/>
                         <outlet property="scrollView" destination="5ez-If-Rcd" id="fGX-Jh-H0O"/>
+                        <outlet property="surveyHeaderLabel" destination="mzE-TP-6a5" id="sF1-hc-0SR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fl3-58-mx6" userLabel="First Responder" sceneMemberID="firstResponder"/>

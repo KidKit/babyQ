@@ -22,7 +22,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"Privacy Policy";
+    self.navigationController.navigationBar.topItem.title = @"PRIVACY POLICY";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://tutorial.babyq.com/privacy-policy/"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 1000];
     [self.privacyPolicy loadRequest: request];

@@ -90,7 +90,7 @@ int page;
             
             UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200*i, 114, 21)];
             tipLabel.text = @"DAILY TIP";
-            tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            tipLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:17];
             [self.scrollView addSubview:tipLabel];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -114,8 +114,9 @@ int page;
             [self.scrollView addSubview:moreButton];
         }
     } else {
-        UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200, 114, 21)];
+        UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 319, 120, 21)];
         tipLabel.text = @"No tip history.";
+        tipLabel.textAlignment = NSTextAlignmentCenter;
         tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
         [self.scrollView addSubview:tipLabel];
     }

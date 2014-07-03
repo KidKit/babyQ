@@ -94,13 +94,14 @@ NSURLConnection* setTodoCompletedConnection;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
                 nextTodo.text = todosArray[i][@"Body"];
                 [self.view addSubview:nextTodo];
                 
-                UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
-                answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
-                answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
-                [self.view addSubview:answerChoice];
+                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
+                todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                [self.view addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;

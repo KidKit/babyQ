@@ -29,9 +29,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE LINE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sf8-Tv-Q87">
-                                <rect key="frame" x="90" y="298" width="141" height="21"/>
+                                <rect key="frame" x="20" y="298" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="iNq-2e-H2Y">
@@ -49,6 +49,7 @@
                     <size key="freeformSize" width="320" height="456"/>
                     <connections>
                         <outlet property="avatarImageView" destination="7VR-yc-R02" id="6gV-zM-08S"/>
+                        <outlet property="pageTextView" destination="iNq-2e-H2Y" id="kr0-53-gnV"/>
                         <outlet property="titleLabel" destination="Sf8-Tv-Q87" id="nKc-PT-ess"/>
                     </connections>
                 </viewController>

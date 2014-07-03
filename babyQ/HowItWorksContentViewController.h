@@ -12,9 +12,11 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView* avatarImageView;
 @property (weak, nonatomic) IBOutlet UILabel* titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView* pageTextView;
 
 @property NSUInteger pageIndex;
 @property NSString *titleText;
+@property NSString *pageText;
 @property NSString *imageFile;
 
 @end

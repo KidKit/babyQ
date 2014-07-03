@@ -14,7 +14,7 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,dailyTipDate,todosDueDate;
+@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,todaysDate,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
@@ -24,14 +24,15 @@ NSURLConnection* setTodoCompletedConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.scrollView setContentSize:CGSizeMake(320, 1500)];
+	[self.scrollView setContentSize:CGSizeMake(320, 1390)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     dailyTipView.hidden = YES;
     
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMM dd"];
-    self.todaysDate.text = [dateFormatter stringFromDate:now];
+    todaysDate.text = [dateFormatter stringFromDate:now];
+    todaysDate.font = [UIFont fontWithName:@"Bebas" size:18];
     
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -55,6 +56,25 @@ NSURLConnection* setTodoCompletedConnection;
     [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
     
+    self.totalScoreBig.font = [UIFont fontWithName:@"Bebas" size:61];
+    self.totalScoreSmall.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.lifestyleScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.exerciseScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.nutritionScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.stressScore.font = [UIFont fontWithName:@"Bebas" size:18];
+    self.deltaBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.delta.font = [UIFont fontWithName:@"Bebas" size:61];
+    self.goodWorkLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.scrollDownLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.youImprovedLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    self.workBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.bigTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
+    self.smallTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
@@ -67,7 +87,7 @@ NSURLConnection* setTodoCompletedConnection;
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
-        if (true /*[json_dictionary[@"VALID"] isEqualToString:@"Success"]*/)
+        if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
         {
             self.totalScoreBig.text = json_dictionary[@"OverallScore"];
             self.totalScoreSmall.text = json_dictionary[@"OverallScore"];
@@ -81,6 +101,17 @@ NSURLConnection* setTodoCompletedConnection;
                 self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", json_dictionary[@"OverallDelta"]]];
             else
                 self.delta.text = [NSString stringWithFormat:@"%d",delta];
+        } else {
+            UIStoryboard* getScoreStoryboard = [UIStoryboard storyboardWithName:@"GetScore" bundle:nil];
+            UIViewController* getScorePopup = [getScoreStoryboard instantiateInitialViewController];
+            getScorePopup.modalPresentationStyle = UIModalPresentationCurrentContext;
+            getScorePopup.view.backgroundColor = [UIColor clearColor];
+            
+            self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+            self.navigationController.view.userInteractionEnabled = NO;
+            [self.navigationController presentViewController:getScorePopup animated:YES completion:^(){
+                [getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
+            }];
         }
     } else if (connection ==  dailyTipConnection)
     {
@@ -91,6 +122,7 @@ NSURLConnection* setTodoCompletedConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         dailyTip.text = json_dictionary[@"Body"];
+        dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString* dateString = json_dictionary[@"ReceivedDate"];
@@ -113,13 +145,14 @@ NSURLConnection* setTodoCompletedConnection;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
                 
-                UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
-                answerChoice.text = [NSString stringWithFormat:@"%d.", i+1];
-                answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
-                [self.todosView addSubview:answerChoice];
+                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
+                todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;

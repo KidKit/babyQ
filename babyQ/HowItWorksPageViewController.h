@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
 @property (strong, nonatomic) NSArray* pageTitles;
 @property (strong, nonatomic) NSArray* pageImages;
+@property (strong, nonatomic) NSArray* pageTexts;
 
 -(IBAction)startSurvey;
 

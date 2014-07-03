@@ -21,6 +21,14 @@
 @property (nonatomic, retain) IBOutlet UILabel* exerciseScore;
 @property (nonatomic, retain) IBOutlet UILabel* stressScore;
 
+@property (nonatomic, retain) IBOutlet UILabel *bigTotalLabel;
+@property (nonatomic, retain) IBOutlet UILabel *lifestyleLabel;
+@property (nonatomic, retain) IBOutlet UILabel *exerciseLabel;
+@property (nonatomic, retain) IBOutlet UILabel *nutritionLabel;
+@property (nonatomic, retain) IBOutlet UILabel *stressLabel;
+
+@property (nonatomic, retain) IBOutlet UILabel *goodWorkLabel;
+
 @property (nonatomic, retain) IBOutlet UILabel* dailyTipDate;
 @property (nonatomic, retain) IBOutlet UILabel* todosDueDate;
 @property (nonatomic, retain) IBOutlet UIView* todosView;
@@ -28,6 +36,7 @@
 @property (nonatomic, retain) NSMutableData* scoreHistoryData;
 @property (nonatomic, retain) NSArray* scoreHistoryArray;
 @property (nonatomic, retain) IBOutlet UITextView* dailyTip;
+@property (nonatomic, retain) IBOutlet UIButton *tipHistoryButton;
 @property (nonatomic, retain) NSArray* todosArray;
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 

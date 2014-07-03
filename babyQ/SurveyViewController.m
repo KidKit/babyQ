@@ -17,7 +17,7 @@ NSMutableDictionary* selected_answers = nil;
 
 @implementation SurveyViewController
 
-@synthesize scrollView,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,survey_data,answer_ids;
+@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,survey_data,answer_ids;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -27,13 +27,16 @@ NSURLConnection* submitSurveyConnection;
     [super viewDidLoad];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
+    surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+    questionNumber.font = [UIFont fontWithName:@"MyriadPro-Bold" size:12];
+    answerNumber.font = [UIFont fontWithName:@"MyriadPro-Bold" size:12];
+    
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     progressView.transform = transform;
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"Take Survey";
     
     UIButton *backButtonInternal = [[UIButton alloc] initWithFrame:CGRectMake(0,0,24,24)];
     [backButtonInternal setBackgroundImage:[UIImage imageNamed:@"babyq_survey_x.png"] forState:UIControlStateNormal];
@@ -67,11 +70,14 @@ NSURLConnection* submitSurveyConnection;
     float progress = ([question_number floatValue] - 1) / [survey_json[@"ScoringQuestions"] count];
     progressView.progress = progress;
     [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
+    progressPercentage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:10];
     progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
     [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
     NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+    question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
     question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
     
+    answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
     answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
     checkBoxOne.tag = 0;
     [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
@@ -85,12 +91,13 @@ NSURLConnection* submitSurveyConnection;
         nextAnswer.editable = NO;
         nextAnswer.userInteractionEnabled = NO;
         NSString* i_string = [NSString stringWithFormat:@"%i", i];
+        nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
         nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
         [self.scrollView addSubview:nextAnswer];
         
         UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
+        answerChoice.font = [UIFont fontWithName:@"MyraidPro-Regular" size:12];
         answerChoice.text = [NSString stringWithFormat:@"%d.", i];
-        answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
         [self.scrollView addSubview:answerChoice];
         
         UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -209,7 +216,7 @@ NSURLConnection* submitSurveyConnection;
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBar.topItem.title = @"Take Survey";
+    self.navigationController.navigationBar.topItem.title = @"TAKE SURVEY";
 }
 
 - (void) clickedAnswer:(UIButton*)sender

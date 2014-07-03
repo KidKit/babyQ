@@ -14,13 +14,16 @@
 
 @implementation HowItWorksContentViewController
 
-@synthesize avatarImageView, titleLabel, pageIndex, titleText, imageFile;
+@synthesize avatarImageView, titleLabel, pageTextView, pageIndex, titleText, pageText, imageFile;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     avatarImageView.image = [UIImage imageNamed:imageFile];
     titleLabel.text = titleText;
+    titleLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+    pageTextView.text = pageText;
+    pageTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
 }
 
 - (void)didReceiveMemoryWarning

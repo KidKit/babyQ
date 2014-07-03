@@ -15,13 +15,14 @@
 
 @implementation HowItWorksPageViewController
 
-@synthesize pageImages, pageTitles, pageControl;
+@synthesize pageImages, pageTitles, pageTexts, pageControl;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
+    pageTexts = @[@"Some page text...",@"Some page text...",@"Some page text...",@"Some page text..."];
     pageImages = @[@"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png"];
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HowItWorksPageViewController"];
@@ -51,6 +52,7 @@
     HowItWorksContentViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Page"];
     pageContentViewController.imageFile = self.pageImages[index];
     pageContentViewController.titleText = self.pageTitles[index];
+    pageContentViewController.pageText = self.pageTexts[index];
     pageContentViewController.pageIndex = index;
     
     return pageContentViewController;

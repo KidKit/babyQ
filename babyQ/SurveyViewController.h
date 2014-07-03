@@ -15,6 +15,7 @@ extern NSMutableDictionary* selected_answers;
 @interface SurveyViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *surveyHeaderLabel;
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UIImageView* progressBubble;
 @property (nonatomic, retain) IBOutlet UILabel* progressPercentage;

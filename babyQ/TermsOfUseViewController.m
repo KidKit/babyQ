@@ -22,7 +22,7 @@
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"Terms Of Use";
+    self.navigationController.navigationBar.topItem.title = @"TERMS OF USE";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://tutorial.babyq.com/terms-of-use/"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 1000];
     [self.termsOfUse loadRequest: request];

@@ -250,9 +250,27 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="Gax-bm-Eh8">
-                                <rect key="frame" x="20" y="78" width="280" height="199"/>
+                                <rect key="frame" x="20" y="78" width="280" height="218"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wYP-HH-cv2">
+                                <rect key="frame" x="163" y="231" width="125" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelAccountFields" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="7PV-Xy-a5X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DR3-2K-Bjw">
+                                <rect key="frame" x="30" y="231" width="125" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="babyq_save_button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveAccountFields" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="Cpb-mU-4Ta"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_popup_divider.png" id="b1D-QK-WAi">
                                 <rect key="frame" x="30" y="161" width="258" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -261,13 +279,13 @@
                                 <rect key="frame" x="32" y="208" width="258" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" id="E3b-tB-EM3">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" id="E3b-tB-EM3">
                                 <rect key="frame" x="30" y="180" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" id="kFn-EQ-9ft">
+                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="center" minimumFontSize="17" id="kFn-EQ-9ft">
                                 <rect key="frame" x="30" y="133" width="253" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -283,10 +301,6 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="0bF-re-8La">
                                 <rect key="frame" x="112" y="29" width="96" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="RIp-M1-dpV">
-                                <rect key="frame" x="112" y="233" width="96" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OdW-Gh-OsZ">
@@ -309,6 +323,9 @@
                                 <state key="normal" image="babyq_edit_icon.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="editAccountFields" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="6qO-FN-Rsl"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retake the Survey every 2 weeks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xjo-9l-n5e">
                                 <rect key="frame" x="32" y="400" width="214" height="21"/>
@@ -364,12 +381,20 @@
                                 <state key="normal" image="babyq_signout_button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="yFn-ss-FIj"/>
+                                </connections>
                             </button>
                         </subviews>
                     </scrollView>
                     <navigationItem key="navigationItem" id="fZf-tT-J7C"/>
                     <size key="freeformSize" width="320" height="720"/>
                     <connections>
+                        <outlet property="cancelAccountButton" destination="wYP-HH-cv2" id="0HW-jy-hlb"/>
+                        <outlet property="editAccountButton" destination="5wI-iB-VQ8" id="lMo-rB-pwV"/>
+                        <outlet property="email" destination="kFn-EQ-9ft" id="ocl-E2-jPs"/>
+                        <outlet property="password" destination="E3b-tB-EM3" id="12r-WA-t1N"/>
+                        <outlet property="saveAccountButton" destination="DR3-2K-Bjw" id="h4Z-2U-AZw"/>
                         <outlet property="scrollView" destination="1Mu-uP-Cc8" id="BZ2-1C-6vi"/>
                     </connections>
                 </viewController>
@@ -386,6 +411,7 @@
         <image name="babyq_light_grid_background.png" width="640" height="4344"/>
         <image name="babyq_menu_icon.png" width="40" height="36"/>
         <image name="babyq_popup_divider.png" width="527" height="2"/>
+        <image name="babyq_save_button.png" width="234" height="96"/>
         <image name="babyq_signout_button.png" width="588" height="105"/>
         <image name="babyq_survey_icon.png" width="45" height="45"/>
     </resources>

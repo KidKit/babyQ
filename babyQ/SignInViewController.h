@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "SideSwipeTableViewController.h"
 #import "AppDelegate.h"
-#import "Constants.h"
 
 @interface SignInViewController : UIViewController <UITextFieldDelegate>
 
