@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "SignInViewController.h"
 #import "JoinViewController.h"
+#import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface LandingPageViewController : UIViewController
 
+- (IBAction)loginWithFacebook:(id)sender;
 - (IBAction)signIn:(id)sender;
 - (IBAction)join:(id)sender;
 

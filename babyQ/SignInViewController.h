@@ -14,6 +14,7 @@
 
 @property (nonatomic,retain) IBOutlet UITextField* email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
+@property (nonatomic,retain) NSString* fb_email;
 
 - (IBAction) signIn;
 

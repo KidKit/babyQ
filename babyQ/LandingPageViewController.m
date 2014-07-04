@@ -17,12 +17,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+        
 }
 
 - (void) viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+}
+
+- (IBAction)loginWithFacebook:(id)sender
+{
+    // Open a session showing the user the login UI
+    // You must ALWAYS ask for public_profile permissions when opening a session
+    [FBSession openActiveSessionWithReadPermissions:@[@"public_profile,user_birthday,email,user_location"]
+                                       allowLoginUI:YES
+                                  completionHandler:
+     ^(FBSession *session, FBSessionState state, NSError *error) {
+         
+         // Retrieve the app delegate
+         AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+         // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
+         [appDelegate sessionStateChanged:session state:state error:error];
+         if ([[(AppDelegate *)[UIApplication sharedApplication].delegate user_email] length] != 0)
+         {
+             SignInViewController* signInViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SignIn"];
+             signInViewController.fb_email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
+             [self.navigationController pushViewController:signInViewController animated:YES];
+         }
+     }];
 }
 
 - (IBAction)signIn:(id)sender

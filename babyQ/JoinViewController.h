@@ -24,6 +24,9 @@
 @property (nonatomic,retain) IBOutlet UILabel* noLabel;
 @property (nonatomic,retain) IBOutlet UIButton* yesButton;
 @property (nonatomic,retain) IBOutlet UIButton* noButton;
+@property (nonatomic,retain) IBOutlet UIButton* termsCheckbox;
+@property (nonatomic,retain) IBOutlet UILabel* termsLabelText;
+@property (nonatomic,retain) IBOutlet UIButton* termsLabelLink;
 
 @property (nonatomic,retain) IBOutlet UILabel* whenDueLabel;
 
@@ -31,6 +34,8 @@
 
 - (IBAction)clickedYes:(id)sender;
 - (IBAction)clickedNo:(id)sender;
+- (IBAction)clickedTermsCheckbox:(id)sender;
+- (IBAction)clickedTermsLink:(id)sender;
 - (IBAction)clickedJoin;
 
 @end

@@ -127,6 +127,7 @@
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
+		5FE591521965F664005C6F2E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE591511965F664005C6F2E /* FacebookSDK.framework */; };
 		5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */; };
 /* End PBXBuildFile section */
 
@@ -287,6 +288,7 @@
 		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
+		5FE591511965F664005C6F2E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange_no_fill.png; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -297,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */,
+				5FE591521965F664005C6F2E /* FacebookSDK.framework in Frameworks */,
 				5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */,
 				5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */,
 				54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */,
@@ -499,6 +502,7 @@
 		5FC3D09319479979003D3E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FE591511965F664005C6F2E /* FacebookSDK.framework */,
 				5FC3D09419479979003D3E94 /* Foundation.framework */,
 				5FC3D09619479979003D3E94 /* CoreGraphics.framework */,
 				5FC3D09819479979003D3E94 /* UIKit.framework */,
@@ -981,6 +985,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/chriswood/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1002,6 +1011,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					/Users/chriswood/Documents/FacebookSDK,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "babyQ/babyQ-Prefix.pch";
 				HEADER_SEARCH_PATHS = (

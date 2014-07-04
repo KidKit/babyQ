@@ -67,7 +67,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="PWR-tc-2dC">
-                                <rect key="frame" x="20" y="358" width="280" height="51"/>
+                                <rect key="frame" x="20" y="427" width="280" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_signin_button.png">
@@ -78,7 +78,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Mv1-ro-IOI">
-                                <rect key="frame" x="20" y="428" width="280" height="51"/>
+                                <rect key="frame" x="20" y="497" width="280" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_join_button.png">
@@ -88,35 +88,17 @@
                                     <action selector="join:" destination="bC9-Br-KdR" eventType="touchUpInside" id="KpP-1l-noB"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rNs-K9-gaZ">
-                                <rect key="frame" x="40" y="499" width="32" height="32"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GHD-8K-j4b">
+                                <rect key="frame" x="20" y="358" width="280" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_check_box.png">
+                                <state key="normal" image="babyq_login_facebook_button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginWithFacebook:" destination="bC9-Br-KdR" eventType="touchUpInside" id="sVz-jq-SWw"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Agree to the " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tuG-zX-9vl">
-                                <rect key="frame" x="89" y="504" width="77" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="78q-2F-L6O">
-                                <rect key="frame" x="168" y="503" width="117" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Terms &amp; Conditions.">
-                                        <attributes>
-                                            <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="12" name="HelveticaNeue"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -134,15 +116,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_green_background.png" id="gBz-zQ-rMZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="882"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="932"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="SGx-gB-ayn">
-                                <rect key="frame" x="20" y="65" width="280" height="507"/>
+                                <rect key="frame" x="20" y="65" width="280" height="555"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FCv-dk-ZBk">
+                                <rect key="frame" x="36" y="573" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_check_mark.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedTermsCheckbox:" destination="YJ4-6v-CzR" eventType="touchUpInside" id="tvU-HT-Wks"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I Agree to the " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8uv-Lw-W6C">
+                                <rect key="frame" x="85" y="578" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dKd-Q5-YxZ">
-                                <rect key="frame" x="20" y="590" width="280" height="51"/>
+                                <rect key="frame" x="20" y="628" width="280" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Button" image="babyq_join_button.png">
@@ -279,6 +279,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </data>
                                 </timeZone>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="C4f-Oa-Yee">
+                                <rect key="frame" x="161" y="582" width="113" height="13"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Terms &amp; Conditions">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedTermsLink:" destination="YJ4-6v-CzR" eventType="touchUpInside" id="2bs-IQ-ZGP"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -293,6 +304,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="noLabel" destination="Wqu-5A-VNQ" id="SkW-T4-xQG"/>
                         <outlet property="password" destination="LF8-47-ysv" id="jrL-r8-HJC"/>
                         <outlet property="scrollView" destination="emk-Yk-jb4" id="4qb-by-4KL"/>
+                        <outlet property="termsCheckbox" destination="FCv-dk-ZBk" id="h3o-Uo-SCK"/>
+                        <outlet property="termsLabelLink" destination="C4f-Oa-Yee" id="d6z-Mr-iN8"/>
+                        <outlet property="termsLabelText" destination="8uv-Lw-W6C" id="SOW-vb-Z5k"/>
                         <outlet property="whenDueLabel" destination="Ad3-qI-dHe" id="mjv-xd-zLp"/>
                         <outlet property="yesButton" destination="D1f-v4-JIo" id="RGb-BH-kpC"/>
                         <outlet property="yesLabel" destination="Khq-mP-G2k" id="tOT-xo-veK"/>
@@ -383,6 +397,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="baby_q_signinjoin_button.png" width="379" height="73"/>
         <image name="babyq_camera_icon.png" width="36" height="29"/>
         <image name="babyq_check_box.png" width="74" height="74"/>
+        <image name="babyq_check_mark.png" width="38" height="24"/>
         <image name="babyq_green_background.png" width="640" height="4500"/>
         <image name="babyq_join_avatar.png" width="168" height="168"/>
         <image name="babyq_join_button.png" width="588" height="105"/>
