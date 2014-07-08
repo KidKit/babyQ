@@ -16,6 +16,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView* background;
 @property (nonatomic,retain) IBOutlet UIButton* joinButton;
 @property (nonatomic,retain) IBOutlet UITextField* email;
+@property (nonatomic,retain) NSString* fb_email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
 @property (nonatomic,retain) IBOutlet UITextField* zipcode;
 

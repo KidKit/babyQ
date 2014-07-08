@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain) NSString* api_token;
-@property (nonatomic,retain) NSString* fb_accessToken;
+@property (nonatomic,retain) NSString* fb_userId;
 @property (nonatomic,retain) NSString* user_email;
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;

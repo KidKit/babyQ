@@ -151,7 +151,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0OF-7F-k3Z">
-                                <rect key="frame" x="112" y="154" width="102" height="68"/>
+                                <rect key="frame" x="97" y="154" width="120" height="68"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="61"/>
                                 <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>

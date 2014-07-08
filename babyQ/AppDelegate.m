@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize api_token,user_email;
+@synthesize api_token,user_email,fb_userId;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -41,13 +41,7 @@
 {
     // If the session was opened successfully
     // customize your code...
-    [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
-        
-            self.user_email = [user objectForKey:@"email"];
-            
-            NSLog(@"FB user birthday:%@",user.birthday);
-            NSLog(@"email id:%@",[user objectForKey:@"email"]);
-    }];
+    
 }
 
 - (BOOL)application:(UIApplication *)application

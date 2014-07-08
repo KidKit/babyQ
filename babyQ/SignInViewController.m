@@ -13,7 +13,7 @@
 
 @implementation SignInViewController
 
-@synthesize email,password,fb_email;
+@synthesize email,password;
 
 - (void)viewDidLoad
 {
@@ -25,10 +25,7 @@
     
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
-    
-    if ([fb_email length] != 0)
-        email.text = fb_email;
-    
+
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
 }

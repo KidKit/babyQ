@@ -14,7 +14,7 @@
 
 @implementation JoinViewController
 
-@synthesize background,datePicker,email,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink;
+@synthesize background,datePicker,email,fb_email,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink;
 
 BOOL isPregnant;
 BOOL agreedToTerms;
@@ -31,6 +31,12 @@ BOOL agreedToTerms;
     email.delegate = self;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
+    if ([fb_email length] != 0)
+    {
+        email.text = fb_email;
+        password.enabled = NO;
+        password.placeholder = @"Facebook login: no password required.";
+    }
     zipcode.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     zipcode.delegate = self;
     currentlyPregnantLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
@@ -113,26 +119,52 @@ BOOL agreedToTerms;
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* date = [dateFormatter stringFromDate: datePicker.date];
     
-    if ([em length] != 0 && [pwd length] != 0 && [zip length] != 0 && agreedToTerms)
+    if (self.password.enabled)
     {
-        Constants* constants = [[Constants alloc] init];
-        NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CREATE_ACCOUNT_PATH];
-        NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
-        postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
-        postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant ? @"1" : @"0"];
-        
-        postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:date];
-        
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
-        [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-        NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-        if (conn)
+        if ([em length] != 0 && [pwd length] != 0 && [zip length] != 0 && agreedToTerms)
         {
+            Constants* constants = [[Constants alloc] init];
+            NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CREATE_ACCOUNT_PATH];
+            NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
+            postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
+            postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant ? @"1" : @"0"];
             
+            postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:date];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (conn)
+            {
+                
+            }
+        } else {
+            //validation code
         }
     } else {
-        
+        if ([em length] != 0 && [zip length] != 0 && agreedToTerms)
+        {
+            Constants* constants = [[Constants alloc] init];
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_FINALIZE_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
+            postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
+            postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant ? @"1" : @"0"];
+            
+            postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:date];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            if (conn)
+            {
+                
+            }
+        } else {
+            //validation code
+        }
     }
 }
 
