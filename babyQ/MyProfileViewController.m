@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,nameField,emailField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
+@synthesize scrollView,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -26,7 +26,7 @@ NSURLConnection* setDeliveryConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 1500)];
+    [self.scrollView setContentSize:CGSizeMake(320, 1230)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
     saveAboutMeButton.hidden = YES;
@@ -74,9 +74,15 @@ NSURLConnection* setDeliveryConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         nameField.text = json_dictionary[@"Name"];
-        emailField.text = json_dictionary[@"Email"];
         NSArray* dobSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
-        dobField.text = dobSplit[0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate* birthdate = [dateFormatter dateFromString:dobSplit[0]];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
+        
+        dobField.text = formatted_birthdate;
+        
         zipCodeField.text = json_dictionary[@"ZipCode"];
     } else if (connection == setAboutMeConnection)
     {
@@ -99,7 +105,14 @@ NSURLConnection* setDeliveryConnection;
                                                                              options: NSJSONReadingMutableContainers
                                                                                error: nil];
         NSArray* dueDateSplit = [getPregnantResponse[@"DueDate"] componentsSeparatedByString:@" "];
-        dueDateField.text = dueDateSplit[0];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate* dueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
+        
+        dueDateField.text = formatted_dueDate;
+        
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
             isPregnant.on = YES;
         else
@@ -175,8 +188,14 @@ NSURLConnection* setDeliveryConnection;
     NSString* setAboutMeURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:nameField.text];
-    postData = [[postData stringByAppendingString:@"&Email="] stringByAppendingString:emailField.text];
-    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:dobField.text];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    NSDate* birthdate = [dateFormatter dateFromString:dobField.text];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
+    
+    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_birthdate];
     postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zipCodeField.text];
     NSMutableURLRequest *setAboutMeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setAboutMeURL]];
     [setAboutMeRequest setHTTPMethod:@"POST"];
@@ -190,7 +209,6 @@ NSURLConnection* setDeliveryConnection;
     saveAboutMeButton.hidden = YES;
     cancelAboutMeButton.hidden = YES;
     nameField.userInteractionEnabled = NO;
-    emailField.userInteractionEnabled = NO;
     dobField.userInteractionEnabled = NO;
     zipCodeField.userInteractionEnabled = NO;
 }
@@ -201,7 +219,6 @@ NSURLConnection* setDeliveryConnection;
     saveAboutMeButton.hidden = NO;
     cancelAboutMeButton.hidden = NO;
     nameField.userInteractionEnabled = YES;
-    emailField.userInteractionEnabled = YES;
     dobField.userInteractionEnabled = YES;
     zipCodeField.userInteractionEnabled = YES;
     
@@ -215,7 +232,14 @@ NSURLConnection* setDeliveryConnection;
     NSString* setPregnantURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_PREGNANCY_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant.on ? @"1" : @"0"];
-    postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:dueDateField.text];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+    NSDate* dueDate = [dateFormatter dateFromString:dueDateField.text];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
+    
+    postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:formatted_dueDate];
     NSMutableURLRequest *setPregnantRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setPregnantURL]];
     [setPregnantRequest setHTTPMethod:@"POST"];
     [setPregnantRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];

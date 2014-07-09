@@ -13,7 +13,6 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
-@property (nonatomic, retain) IBOutlet UITextField* emailField;
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
 @property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;

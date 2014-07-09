@@ -30,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *exerciseLabel;
 @property (nonatomic, retain) IBOutlet UILabel *nutritionLabel;
 @property (nonatomic, retain) IBOutlet UILabel *stressLabel;
+@property (nonatomic, retain) IBOutlet UIImageView* scoreSlider;
 @property (nonatomic, retain) IBOutlet UITextView* workBlurb;
 @property (nonatomic, retain) IBOutlet UILabel* delta;
 @property (nonatomic, retain) IBOutlet UITextView* deltaBlurb;
@@ -40,6 +41,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *scrollDownLabel;
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 @property (nonatomic, retain) IBOutlet UITextView* dailyTip;
+@property (nonatomic, retain) NSDictionary* currentScoreData;
 @property (nonatomic, retain) NSArray* todosArray;
 
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;

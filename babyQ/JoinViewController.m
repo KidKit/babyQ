@@ -145,14 +145,21 @@ BOOL agreedToTerms;
     } else {
         if ([em length] != 0 && [zip length] != 0 && agreedToTerms)
         {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
             Constants* constants = [[Constants alloc] init];
             NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_FINALIZE_PATH];
             NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
             postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
             postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant ? @"1" : @"0"];
-            
             postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:date];
+            postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
+            postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
             [request setHTTPMethod:@"POST"];
@@ -179,7 +186,6 @@ BOOL agreedToTerms;
     if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
     {
         AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appDelegate.api_token = json_dictionary[@"API TOKEN"];
         appDelegate.user_email = self.email.text;
         UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
         SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];

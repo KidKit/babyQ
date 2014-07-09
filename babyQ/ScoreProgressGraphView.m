@@ -33,7 +33,11 @@
 {
     circles = [[NSMutableArray alloc] init];
     CGFloat yRatio = self.frame.size.height/100;
-    CGFloat xRatio = self.frame.size.width/(yValues.count-1);
+    CGFloat xRatio;
+    if (yValues.count > 1)
+        xRatio = self.frame.size.width/(yValues.count-1);
+    else
+        xRatio = 0;
     UIBezierPath *sparkline = [UIBezierPath bezierPath];
     for (int x = 0; x< yValues.count; x++) {
         UIButton* circle = [UIButton buttonWithType:UIButtonTypeCustom];

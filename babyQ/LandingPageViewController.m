@@ -14,7 +14,8 @@
 
 @implementation LandingPageViewController
 
-NSURLConnection *fbLoginConnection;
+NSURLConnection* fbLoginConnection;
+NSURLConnection* fbSaveDataConnection;
 
 - (void)viewDidLoad
 {
@@ -43,6 +44,9 @@ NSURLConnection *fbLoginConnection;
              
              appDelegate.user_email = [user objectForKey:@"email"];
              appDelegate.fb_userId = [user objectForKey:@"id"];
+             appDelegate.fb_birthday = user.birthday;
+             appDelegate.fb_name = user.name;
+             //appDelegate.fb_name =
              NSLog(@"FB user birthday:%@",user.birthday);
              NSLog(@"email id:%@",[user objectForKey:@"email"]);
          
@@ -51,9 +55,9 @@ NSURLConnection *fbLoginConnection;
              NSString* email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
              NSString* fb_id = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_userId];
              Constants* constants = [[Constants alloc] init];
-             NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_LOGIN_PATH];
+             NSString* facebookLoginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_LOGIN_PATH];
              NSString* postData = [[[@"Email=" stringByAppendingString:email] stringByAppendingString:@"&FacebookId="] stringByAppendingString:fb_id];
-             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
+             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:facebookLoginURL]];
              [request setHTTPMethod:@"POST"];
              [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
              fbLoginConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
@@ -75,7 +79,7 @@ NSURLConnection *fbLoginConnection;
         AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.api_token = json_dictionary[@"API TOKEN"];
         
-        if (true /*[json_dictionary[@"IsNewUser"] isEqualToString:@"1"]*/)
+        if ([json_dictionary[@"IsNewUser"] isEqualToString:@"1"])
         {
             JoinViewController* joinViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Join"];
             joinViewController.fb_email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
@@ -84,6 +88,25 @@ NSURLConnection *fbLoginConnection;
         }
         else
         {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+            NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
+            Constants* constants = [[Constants alloc] init];
+            NSString* em = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
+            NSString* pushDataURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
+            postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
+            postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pushDataURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            fbSaveDataConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
             UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
             SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
             

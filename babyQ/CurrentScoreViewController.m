@@ -14,12 +14,14 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,todaysDate,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
+@synthesize scrollView,currentScoreData,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,todaysDate,scoreSlider,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
 NSURLConnection* toDosConnection;
 NSURLConnection* setTodoCompletedConnection;
+
+CGRect scoreSliderFrame;
 
 - (void)viewDidLoad
 {
@@ -75,6 +77,67 @@ NSURLConnection* setTodoCompletedConnection;
     self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
     self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
     self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanScoreSlider:)];
+    [scoreSlider addGestureRecognizer:panGesture];
+    scoreSliderFrame =  CGRectMake(30, 405, 24, 24);
+}
+
+-(void)handlePanScoreSlider:(UIPanGestureRecognizer *)sender
+{
+    CGPoint translate = [sender translationInView:scoreSlider.superview];
+    
+    CGRect newFrame = scoreSliderFrame;
+    newFrame.origin.x += translate.x;
+    if(sender.state == UIGestureRecognizerStateChanged)
+    {
+        if (newFrame.origin.x >= 26 && newFrame.origin.x <= 270)
+            scoreSlider.frame = newFrame;
+        if (newFrame.origin.x < 6)
+        {
+            self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
+            self.delta.text = currentScoreData[@"OverallDelta"];
+            self.bigTotalLabel.text = @"TOTAL";
+            self.totalScoreBig.text = currentScoreData[@"OverallScore"];
+        }
+        else if (newFrame.origin.x < 118)
+        {
+            self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
+            self.delta.text = currentScoreData[@"LifestyleDelta"];
+            self.bigTotalLabel.text = @"LIFESTYLE";
+            self.totalScoreBig.text = currentScoreData[@"LifestyleScore"];
+        }
+        else if (newFrame.origin.x < 178)
+        {
+            self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
+            self.delta.text = currentScoreData[@"ExerciseDelta"];
+            self.bigTotalLabel.text = @"EXERCISE";
+            self.totalScoreBig.text = currentScoreData[@"ExerciseScore"];
+        }
+        else if (newFrame.origin.x < 236)
+        {
+            self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
+            self.delta.text = currentScoreData[@"NutritionDelta"];
+            self.bigTotalLabel.text = @"NURTITION";
+            self.totalScoreBig.text = currentScoreData[@"NutritionScore"];
+        }
+        else if (newFrame.origin.x < 276)
+        {
+            self.deltaBlurb.text = currentScoreData[@"StressMessage"];
+            self.delta.text = currentScoreData[@"StressDelta"];
+            self.bigTotalLabel.text = @"STRESS";
+            self.totalScoreBig.text = currentScoreData[@"StressScore"];
+        }
+    }
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        if (newFrame.origin.x <= 26)
+            scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+        else if (newFrame.origin.x >= 270)
+            scoreSliderFrame =  CGRectMake(266, 405, 24, 24);
+        else
+            scoreSliderFrame = newFrame;
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
@@ -84,21 +147,21 @@ NSURLConnection* setTodoCompletedConnection;
         NSLog(@"received data current score");
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+        currentScoreData = [NSJSONSerialization JSONObjectWithData: json_data
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
         {
-            self.totalScoreBig.text = json_dictionary[@"OverallScore"];
-            self.totalScoreSmall.text = json_dictionary[@"OverallScore"];
-            self.lifestyleScore.text = json_dictionary[@"LifestyleScore"];
-            self.exerciseScore.text = json_dictionary[@"ExerciseScore"];
-            self.nutritionScore.text = json_dictionary[@"StressScore"];
-            self.stressScore.text = json_dictionary[@"StressScore"];
-            self.deltaBlurb.text = json_dictionary[@"OverallMessage"];
-            int delta = [json_dictionary[@"OverallDelta"] intValue];
+            self.totalScoreBig.text = currentScoreData[@"OverallScore"];
+            self.totalScoreSmall.text = currentScoreData[@"OverallScore"];
+            self.lifestyleScore.text = currentScoreData[@"LifestyleScore"];
+            self.exerciseScore.text = currentScoreData[@"ExerciseScore"];
+            self.nutritionScore.text = currentScoreData[@"StressScore"];
+            self.stressScore.text = currentScoreData[@"StressScore"];
+            self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
+            int delta = [currentScoreData[@"OverallDelta"] intValue];
             if (delta >= 0)
-                self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", json_dictionary[@"OverallDelta"]]];
+                self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", currentScoreData[@"OverallDelta"]]];
             else
                 self.delta.text = [NSString stringWithFormat:@"%d",delta];
         } else {
