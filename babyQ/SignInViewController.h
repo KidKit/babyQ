@@ -17,5 +17,6 @@
 
 
 - (IBAction) signIn;
+- (IBAction)forgotPassword;
 
 @end

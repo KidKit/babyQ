@@ -29,6 +29,9 @@
 		5F3FBD88194A311100FB0548 /* MyriadPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD87194A260200FB0548 /* MyriadPro-Regular.otf */; };
 		5F3FBD8A194A32FB00FB0548 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */; };
 		5F3FBD8C194A395A00FB0548 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD8B194A395A00FB0548 /* Settings.storyboard */; };
+		5F46197F196D02970014F5F3 /* ForgotPassword.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F46197E196D02970014F5F3 /* ForgotPassword.storyboard */; };
+		5F461982196D05120014F5F3 /* ForgotPasswordViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F461980196D05120014F5F3 /* ForgotPasswordViewController.h */; };
+		5F461983196D05120014F5F3 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */; };
 		5F49D12819526ACF0073BD85 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F49D12619526ACF0073BD85 /* Constants.h */; };
 		5F49D12919526ACF0073BD85 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49D12719526ACF0073BD85 /* Constants.m */; };
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
@@ -169,6 +172,9 @@
 		5F3FBD87194A260200FB0548 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
 		5F3FBD89194A32FB00FB0548 /* MyProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		5F3FBD8B194A395A00FB0548 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		5F46197E196D02970014F5F3 /* ForgotPassword.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ForgotPassword.storyboard; sourceTree = "<group>"; };
+		5F461980196D05120014F5F3 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		5F49D12619526ACF0073BD85 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		5F49D12719526ACF0073BD85 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = ../Constants.m; sourceTree = "<group>"; };
 		5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewCell.h; sourceTree = "<group>"; };
@@ -541,6 +547,8 @@
 				5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */,
 				5F2FD6831964D47700B41E23 /* GetScoreViewController.h */,
 				5F2FD6841964D47700B41E23 /* GetScoreViewController.m */,
+				5F461980196D05120014F5F3 /* ForgotPasswordViewController.h */,
+				5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */,
 				5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */,
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
@@ -576,6 +584,7 @@
 				5FDE03E31950EA1C0009A993 /* Todos.storyboard */,
 				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
 				5F2FD6811964CD9200B41E23 /* GetScore.storyboard */,
+				5F46197E196D02970014F5F3 /* ForgotPassword.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
 			);
@@ -620,6 +629,7 @@
 			files = (
 				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
 				5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */,
+				5F461982196D05120014F5F3 /* ForgotPasswordViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,6 +727,7 @@
 				5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */,
 				5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */,
 				5F7FF0741948035C00A48C86 /* babyq_check_mark.png in Resources */,
+				5F46197F196D02970014F5F3 /* ForgotPassword.storyboard in Resources */,
 				5F7FF0511948035C00A48C86 /* babyq_feedback_avatar.png in Resources */,
 				5F7FF05C1948035C00A48C86 /* babyq_login_facebook_button.png in Resources */,
 				5F3FBD86194A1F5F00FB0548 /* Bebas.ttf in Resources */,
@@ -855,6 +866,7 @@
 				5F94EAF4194B6E810077FD1D /* UserSettingsViewController.m in Sources */,
 				5F94EAFA194B78130077FD1D /* LeaveFeedbackViewController.m in Sources */,
 				5F3AF700194F7C9700BD04CE /* ScoreProgressGraphView.m in Sources */,
+				5F461983196D05120014F5F3 /* ForgotPasswordViewController.m in Sources */,
 				5F95E492194B9ADD000E9F83 /* SignInViewController.m in Sources */,
 				5F95E495194B9AFC000E9F83 /* JoinViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,

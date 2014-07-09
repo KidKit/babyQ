@@ -87,6 +87,14 @@ NSString* prevPassword;
         
         // If the session state is not any of the two "open" states when the button is clicked
     }
+    AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    appDelegate.api_token = nil;
+    appDelegate.fb_name = nil;
+    appDelegate.fb_userId = nil;
+    appDelegate.fb_name = nil;
+    appDelegate.fb_birthday = nil;
+    appDelegate.user_email = nil;
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

@@ -93,7 +93,7 @@ CGRect scoreSliderFrame;
     {
         if (newFrame.origin.x >= 26 && newFrame.origin.x <= 270)
             scoreSlider.frame = newFrame;
-        if (newFrame.origin.x < 6)
+        if (newFrame.origin.x < 60)
         {
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
             self.delta.text = currentScoreData[@"OverallDelta"];
@@ -168,12 +168,12 @@ CGRect scoreSliderFrame;
             UIStoryboard* getScoreStoryboard = [UIStoryboard storyboardWithName:@"GetScore" bundle:nil];
             UIViewController* getScorePopup = [getScoreStoryboard instantiateInitialViewController];
             getScorePopup.modalPresentationStyle = UIModalPresentationCurrentContext;
-            getScorePopup.view.backgroundColor = [UIColor clearColor];
+            getScorePopup.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4];
             
             self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
             self.navigationController.view.userInteractionEnabled = NO;
             [self.navigationController presentViewController:getScorePopup animated:YES completion:^(){
-                [getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
+                //[getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
             }];
         }
     } else if (connection ==  dailyTipConnection)

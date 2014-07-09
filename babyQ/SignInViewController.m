@@ -91,6 +91,20 @@
     }
 }
 
+- (IBAction)forgotPassword
+{
+    UIStoryboard* forgotPasswordStoryboard = [UIStoryboard storyboardWithName:@"ForgotPassword" bundle:nil];
+    UIViewController* forgotPasswordForm = [forgotPasswordStoryboard instantiateInitialViewController];
+    forgotPasswordForm.modalPresentationStyle = UIModalPresentationFullScreen;
+    forgotPasswordForm.view.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:.4];
+    
+    self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    self.navigationController.view.userInteractionEnabled = NO;
+    [self.navigationController presentViewController:forgotPasswordForm animated:YES completion:^(){
+        //[forgotPasswordForm.view setFrame:CGRectMake(10, 100, 300, 150)];
+    }];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
