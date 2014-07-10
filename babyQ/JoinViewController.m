@@ -187,6 +187,7 @@ BOOL agreedToTerms;
     {
         AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         appDelegate.user_email = self.email.text;
+        appDelegate.api_token = json_dictionary[@"API TOKEN"];
         UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
         SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
         
