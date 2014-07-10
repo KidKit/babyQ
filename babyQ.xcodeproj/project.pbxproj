@@ -22,6 +22,7 @@
 		5F3AF704194FD0E200BD04CE /* babyq_cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3AF703194FD0E200BD04CE /* babyq_cloud.png */; };
 		5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */; };
 		5F3AF70A194FD38500BD04CE /* HowItWorksContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3AF709194FD38500BD04CE /* HowItWorksContentViewController.m */; };
+		5F3D2000196F53DE00248D0A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F3D1FFF196F53DE00248D0A /* FacebookSDK.framework */; };
 		5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */; };
 		5F3FBD82194A1E5500FB0548 /* babyq_circle_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */; };
 		5F3FBD83194A1E5500FB0548 /* babyq_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F3FBD81194A1E5500FB0548 /* babyq_circle.png */; };
@@ -130,7 +131,6 @@
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
-		5FE591521965F664005C6F2E /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FE591511965F664005C6F2E /* FacebookSDK.framework */; };
 		5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +164,7 @@
 		5F3AF706194FD1F500BD04CE /* HowItWorksPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowItWorksPageViewController.m; sourceTree = "<group>"; };
 		5F3AF708194FD38500BD04CE /* HowItWorksContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowItWorksContentViewController.h; sourceTree = "<group>"; };
 		5F3AF709194FD38500BD04CE /* HowItWorksContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowItWorksContentViewController.m; sourceTree = "<group>"; };
+		5F3D1FFF196F53DE00248D0A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyViewController.h; sourceTree = "<group>"; };
 		5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyViewController.m; sourceTree = "<group>"; };
 		5F3FBD80194A1E5500FB0548 /* babyq_circle_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange.png; sourceTree = "<group>"; };
@@ -294,7 +295,6 @@
 		5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedTodosViewController.m; sourceTree = "<group>"; };
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
-		5FE591511965F664005C6F2E /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange_no_fill.png; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -305,7 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */,
-				5FE591521965F664005C6F2E /* FacebookSDK.framework in Frameworks */,
+				5F3D2000196F53DE00248D0A /* FacebookSDK.framework in Frameworks */,
 				5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */,
 				5FC3D09519479979003D3E94 /* Foundation.framework in Frameworks */,
 				54AA2A5E92184F65AEDCA9BF /* libPods.a in Frameworks */,
@@ -508,7 +508,7 @@
 		5FC3D09319479979003D3E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5FE591511965F664005C6F2E /* FacebookSDK.framework */,
+				5F3D1FFF196F53DE00248D0A /* FacebookSDK.framework */,
 				5FC3D09419479979003D3E94 /* Foundation.framework */,
 				5FC3D09619479979003D3E94 /* CoreGraphics.framework */,
 				5FC3D09819479979003D3E94 /* UIKit.framework */,
