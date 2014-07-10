@@ -16,18 +16,30 @@
 
 NSURLConnection* forgotPasswordConnection;
 
-@synthesize forgotPassword,enterEmail,emailField,cancelButton,resetButton;
+@synthesize forgotPassword,enterEmail,emailField,cancelButton,resetButton,confirmSentMessage,okButton;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     forgotPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
     enterEmail.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    confirmSentMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     cancelButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
     resetButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
+    okButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
+    
+    confirmSentMessage.hidden = YES;
+    okButton.hidden = YES;
 }
 
 - (IBAction)clickedCancel
+{
+    HomePageNavigationController* nav = (HomePageNavigationController*) self.presentingViewController;
+    [nav dismissViewControllerAnimated:YES completion:nil];
+    nav.view.userInteractionEnabled = YES;
+}
+
+- (IBAction)clickedOK
 {
     HomePageNavigationController* nav = (HomePageNavigationController*) self.presentingViewController;
     [nav dismissViewControllerAnimated:YES completion:nil];
@@ -56,8 +68,13 @@ NSURLConnection* forgotPasswordConnection;
                                                                       error: nil];
     if ([json_dictionary[@"VALID"] isEqualToString:@"An email has been sent to your account with instructions on how to reset your password!"])
     {
-        enterEmail.text = json_dictionary[@"VALID"];
-        [enterEmail sizeToFit];
+        enterEmail.hidden = YES;
+        forgotPassword.hidden = YES;
+        emailField.hidden = YES;
+        cancelButton.hidden = YES;
+        resetButton.hidden = YES;
+        okButton.hidden = NO;
+        confirmSentMessage.hidden = NO;
     }
 }
 
