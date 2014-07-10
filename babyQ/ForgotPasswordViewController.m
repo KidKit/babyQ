@@ -14,6 +14,8 @@
 
 @implementation ForgotPasswordViewController
 
+NSURLConnection* forgotPasswordConnection;
+
 @synthesize forgotPassword,enterEmail,emailField,cancelButton,resetButton;
 
 - (void)viewDidLoad
@@ -35,6 +37,38 @@
 - (IBAction)clickedReset
 {
     NSString* email = emailField.text;
+    Constants* constants = [[Constants alloc] init];
+    NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FORGOT_PASSWORD_PATH];
+    NSString* postData = [@"Email=" stringByAppendingString:email];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    forgotPasswordConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    NSLog(@"received data forgot password");
+    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                    options: NSJSONReadingMutableContainers
+                                                                      error: nil];
+    if ([json_dictionary[@"VALID"] isEqualToString:@"An email has been sent to your account with instructions on how to reset your password!"])
+    {
+        enterEmail.text = json_dictionary[@"VALID"];
+        [enterEmail sizeToFit];
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"ERROR");
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    NSLog(@"finished loading sign in");
 }
 
 - (void)didReceiveMemoryWarning

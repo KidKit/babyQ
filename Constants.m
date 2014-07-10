@@ -16,6 +16,7 @@
 
         self.CREATE_ACCOUNT_PATH = @"/CreateStandardAccount";
         self.LOGIN_PATH = @"/StandardLogin";
+        self.FORGOT_PASSWORD_PATH = @"/ForgotPassword";
         self.FACEBOOK_LOGIN_PATH = @"/FacebookLogin";
         self.FACEBOOK_FINALIZE_PATH = @"/FacebookFinalize";
         self.SET_DEVICE_PATH = @"/SetDevice";

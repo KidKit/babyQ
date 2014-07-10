@@ -19,7 +19,7 @@
 @property (nonatomic,retain) NSString* fb_email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
 @property (nonatomic,retain) IBOutlet UITextField* zipcode;
-
+@property (nonatomic,retain) IBOutlet UILabel* hiddenNoticeLabel;
 @property (nonatomic,retain) IBOutlet UILabel* currentlyPregnantLabel;
 @property (nonatomic,retain) IBOutlet UILabel* yesLabel;
 @property (nonatomic,retain) IBOutlet UILabel* noLabel;

@@ -14,8 +14,9 @@
 
 @implementation JoinViewController
 
-@synthesize background,datePicker,email,fb_email,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink;
+@synthesize background,datePicker,email,fb_email,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink,hiddenNoticeLabel;
 
+BOOL madePregnantSelection;
 BOOL isPregnant;
 BOOL agreedToTerms;
 
@@ -27,6 +28,7 @@ BOOL agreedToTerms;
     [self.datePicker setFrame:CGRectMake(32, 395, 240, 150)];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
     
+    hiddenNoticeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
@@ -51,6 +53,7 @@ BOOL agreedToTerms;
     [termsLabelText setFrame:CGRectMake(termsLabelText.frame.origin.x, termsLabelText.frame.origin.y-180, termsLabelText.frame.size.width, termsLabelText.frame.size.height)];
     [termsLabelLink setFrame:CGRectMake(termsLabelLink.frame.origin.x, termsLabelLink.frame.origin.y-180, termsLabelLink.frame.size.width, termsLabelLink.frame.size.height)];
     agreedToTerms = YES;
+    madePregnantSelection = NO;
     isPregnant = NO;
 }
 
@@ -61,6 +64,7 @@ BOOL agreedToTerms;
 
 - (IBAction)clickedYes:(id)sender
 {
+    madePregnantSelection = YES;
     if (!isPregnant)
     {
         [self.scrollView setContentSize:CGSizeMake(320, 700)];
@@ -79,6 +83,7 @@ BOOL agreedToTerms;
 
 - (IBAction)clickedNo:(id)sender
 {
+    madePregnantSelection = YES;
     [noButton setImage:[UIImage imageNamed:@"babyq_check_mark.png"] forState:UIControlStateNormal];
     [yesButton setImage:[UIImage imageNamed:@"babyq_check_box.png"] forState:UIControlStateNormal];
     if (isPregnant)
@@ -110,6 +115,50 @@ BOOL agreedToTerms;
     [self.navigationController pushViewController:termsOfUse animated:YES];
 }
 
+- (BOOL) validateEmail: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
+
+- (BOOL) validateZipcode: (NSString*) zipCode {
+    NSString *zipcodeRegex = @"\\d{5}(?:[-\\s]\\d{4})?$";
+    NSPredicate *zipcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", zipcodeRegex];
+    
+    return [zipcodeTest evaluateWithObject:zipCode];
+}
+
+- (BOOL) validateFields
+{
+    if (![self validateEmail:self.email.text])
+    {
+        hiddenNoticeLabel.text = @"Invalid email address";
+        return NO;
+    }
+    else if (self.password.enabled && [self.password.text length] < 6)
+    {
+        hiddenNoticeLabel.text = @"Password too short";
+        return NO;
+    }
+    else if (![self validateZipcode:self.zipcode.text])
+    {
+        hiddenNoticeLabel.text = @"Invalid zipcode";
+        return NO;
+    }
+    else if (!madePregnantSelection)
+    {
+        hiddenNoticeLabel.text = @"Tell us are you currently pregnant";
+        return NO;
+    }
+    else if (!agreedToTerms)
+    {
+        hiddenNoticeLabel.text = @"You must agree to the terms & conditions";
+        return NO;
+    }
+    return YES;
+}
+
 - (IBAction)clickedJoin
 {
     NSString* em = self.email.text;
@@ -121,7 +170,7 @@ BOOL agreedToTerms;
     
     if (self.password.enabled)
     {
-        if ([em length] != 0 && [pwd length] != 0 && [zip length] != 0 && agreedToTerms)
+        if ([self validateFields])
         {
             Constants* constants = [[Constants alloc] init];
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CREATE_ACCOUNT_PATH];
@@ -139,11 +188,9 @@ BOOL agreedToTerms;
             {
                 
             }
-        } else {
-            //validation code
         }
     } else {
-        if ([em length] != 0 && [zip length] != 0 && agreedToTerms)
+        if ([self validateFields])
         {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"MM/dd/yyyy"];
@@ -169,15 +216,13 @@ BOOL agreedToTerms;
             {
                 
             }
-        } else {
-            //validation code
         }
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data sign in");
+    NSLog(@"received data join");
     NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -201,6 +246,9 @@ BOOL agreedToTerms;
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
         
         [self.navigationController pushViewController:swipeController animated:YES];
+    } else if ([json_dictionary[@"ERROR"] isEqualToString:@"Email Address Already In Use"])
+    {
+        hiddenNoticeLabel.text = @"Email Address Already In Use";
     }
 }
 
@@ -219,7 +267,7 @@ BOOL agreedToTerms;
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading sign in");
+    NSLog(@"finished loading join");
 }
 
 - (void)didReceiveMemoryWarning

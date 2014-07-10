@@ -290,6 +290,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <action selector="clickedTermsLink:" destination="YJ4-6v-CzR" eventType="touchUpInside" id="2bs-IQ-ZGP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invalid Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cbC-Lj-ZMo">
+                                <rect key="frame" x="37" y="114" width="246" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -299,6 +306,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="currentlyPregnantLabel" destination="ohr-jw-PgM" id="jPP-h4-Aus"/>
                         <outlet property="datePicker" destination="fEK-JB-5Cz" id="czk-GS-gDf"/>
                         <outlet property="email" destination="C12-Jx-cWC" id="A3E-PB-7ZK"/>
+                        <outlet property="hiddenNoticeLabel" destination="cbC-Lj-ZMo" id="bZi-tw-rTE"/>
                         <outlet property="joinButton" destination="dKd-Q5-YxZ" id="gPZ-3v-NF8"/>
                         <outlet property="noButton" destination="bA2-wO-KYA" id="LwF-II-SYr"/>
                         <outlet property="noLabel" destination="Wqu-5A-VNQ" id="SkW-T4-xQG"/>
