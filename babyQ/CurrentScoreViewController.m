@@ -96,35 +96,66 @@ CGRect scoreSliderFrame;
         if (newFrame.origin.x < 60)
         {
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
-            self.delta.text = currentScoreData[@"OverallDelta"];
+            if (currentScoreData[@"OverallDelta"] >= 0)
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"] ];
+            else
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"OverallDelta"] ];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
             self.bigTotalLabel.text = @"TOTAL";
             self.totalScoreBig.text = currentScoreData[@"OverallScore"];
         }
         else if (newFrame.origin.x < 118)
         {
             self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
-            self.delta.text = currentScoreData[@"LifestyleDelta"];
+            if (currentScoreData[@"LifestyleDelta"] >= 0)
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"LifestyleDelta"]];
+            else
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"LifestyleDelta"]];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
             self.bigTotalLabel.text = @"LIFESTYLE";
             self.totalScoreBig.text = currentScoreData[@"LifestyleScore"];
         }
         else if (newFrame.origin.x < 178)
         {
             self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
-            self.delta.text = currentScoreData[@"ExerciseDelta"];
+            if (currentScoreData[@"ExerciseDelta"] >= 0)
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"ExerciseDelta"]];
+            else
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"ExerciseDelta"]];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
             self.bigTotalLabel.text = @"EXERCISE";
             self.totalScoreBig.text = currentScoreData[@"ExerciseScore"];
         }
         else if (newFrame.origin.x < 236)
         {
             self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
-            self.delta.text = currentScoreData[@"NutritionDelta"];
+            
+            if (currentScoreData[@"NutritionDelta"] >= 0)
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"NutritionDelta"]];
+            else
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"NutritionDelta"]];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
             self.bigTotalLabel.text = @"NURTITION";
             self.totalScoreBig.text = currentScoreData[@"NutritionScore"];
         }
         else if (newFrame.origin.x < 276)
         {
             self.deltaBlurb.text = currentScoreData[@"StressMessage"];
-            self.delta.text = currentScoreData[@"StressDelta"];
+            if (currentScoreData[@"StressDelta"] >= 0)
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"StressDelta"]];
+            else
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"StressDelta"]];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
             self.bigTotalLabel.text = @"STRESS";
             self.totalScoreBig.text = currentScoreData[@"StressScore"];
         }
@@ -161,9 +192,12 @@ CGRect scoreSliderFrame;
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
             int delta = [currentScoreData[@"OverallDelta"] intValue];
             if (delta >= 0)
-                self.delta.text = [@"+" stringByAppendingString:[NSString stringWithFormat:@"%@", currentScoreData[@"OverallDelta"]]];
+                self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"]];
             else
-                self.delta.text = [NSString stringWithFormat:@"%d",delta];
+            {
+                self.delta.text = [NSString stringWithFormat:@"-%d",delta];
+                self.youImprovedLabel.text = @"Your score went down from last time...";
+            }
         } else {
             UIStoryboard* getScoreStoryboard = [UIStoryboard storyboardWithName:@"GetScore" bundle:nil];
             UIViewController* getScorePopup = [getScoreStoryboard instantiateInitialViewController];
