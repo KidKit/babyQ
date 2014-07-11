@@ -35,17 +35,17 @@
     CGFloat yRatio = self.frame.size.height/100;
     CGFloat xRatio;
     if (yValues.count > 1)
-        xRatio = self.frame.size.width/(yValues.count-1);
+        xRatio = 50;
     else
         xRatio = 0;
     UIBezierPath *sparkline = [UIBezierPath bezierPath];
     for (int x = 0; x< yValues.count; x++) {
         UIButton* circle = [UIButton buttonWithType:UIButtonTypeCustom];
-        [circle setFrame:CGRectMake(x*xRatio-5, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue])-8, 16, 16)];
+        [circle setFrame:CGRectMake(x*xRatio, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue])-8, 16, 16)];
         [circle setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange_no_fill.png"] forState:UIControlStateNormal];
         circle.tag = x;
         [circles addObject:circle];
-        CGPoint newPoint = CGPointMake(x*xRatio, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue]));
+        CGPoint newPoint = CGPointMake(x*xRatio+8, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue]));
         if (x == 0) {
             [sparkline moveToPoint:newPoint];
         }

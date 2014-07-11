@@ -312,6 +312,7 @@ NSURLConnection* submitSurveyConnection;
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
             submitSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            survey_json = nil;
             break;
         }
         case 1:

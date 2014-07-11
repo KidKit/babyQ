@@ -209,7 +209,8 @@ CGRect scoreSliderFrame;
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-                nextTodo.text = todosArray[i][@"Body"];
+                if (todosArray[i][@"Body"] != (id)[NSNull null])
+                    nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];

@@ -85,7 +85,8 @@ int page;
             nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
             nextTodo.textAlignment = NSTextAlignmentCenter;
             nextTodo.userInteractionEnabled = NO;
-            nextTodo.text = completedTodosArray[i][@"Body"];
+            if (completedTodosArray[i][@"Body"] != (id)[NSNull null])
+                nextTodo.text = completedTodosArray[i][@"Body"];
             [self.scrollView addSubview:nextTodo];
             
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 150*i, 114, 21)];
