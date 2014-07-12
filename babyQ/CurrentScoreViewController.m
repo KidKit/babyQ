@@ -96,7 +96,7 @@ CGRect scoreSliderFrame;
         if (newFrame.origin.x < 60)
         {
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
-            if ((signed int)currentScoreData[@"OverallDelta"] >= 0)
+            if ([currentScoreData[@"OverallDelta"] integerValue] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"] ];
             else
             {
@@ -109,7 +109,7 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 118)
         {
             self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
-            if ((signed int)currentScoreData[@"LifestyleDelta"] >= 0)
+            if ([currentScoreData[@"LifestyleDelta"] integerValue] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"LifestyleDelta"]];
             else
             {
@@ -122,7 +122,7 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 178)
         {
             self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
-            if ((signed int)currentScoreData[@"ExerciseDelta"] >= 0)
+            if ([currentScoreData[@"ExerciseDelta"] integerValue] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"ExerciseDelta"]];
             else
             {
@@ -136,7 +136,7 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
             
-            if ((signed int)currentScoreData[@"NutritionDelta"] >= 0)
+            if ([currentScoreData[@"NutritionDelta"] integerValue] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"NutritionDelta"]];
             else
             {
@@ -149,7 +149,7 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 276)
         {
             self.deltaBlurb.text = currentScoreData[@"StressMessage"];
-            if ((signed int)currentScoreData[@"StressDelta"] >= 0)
+            if ([currentScoreData[@"StressDelta"] integerValue] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"StressDelta"]];
             else
             {
