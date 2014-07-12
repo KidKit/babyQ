@@ -96,11 +96,11 @@ CGRect scoreSliderFrame;
         if (newFrame.origin.x < 60)
         {
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
-            if (currentScoreData[@"OverallDelta"] >= 0)
+            if ((signed int)currentScoreData[@"OverallDelta"] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"] ];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"OverallDelta"] ];
+                self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"OverallDelta"] ];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
             self.bigTotalLabel.text = @"TOTAL";
@@ -109,11 +109,11 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 118)
         {
             self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
-            if (currentScoreData[@"LifestyleDelta"] >= 0)
+            if ((signed int)currentScoreData[@"LifestyleDelta"] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"LifestyleDelta"]];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"LifestyleDelta"]];
+                self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"LifestyleDelta"]];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
             self.bigTotalLabel.text = @"LIFESTYLE";
@@ -122,11 +122,11 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 178)
         {
             self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
-            if (currentScoreData[@"ExerciseDelta"] >= 0)
+            if ((signed int)currentScoreData[@"ExerciseDelta"] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"ExerciseDelta"]];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"ExerciseDelta"]];
+                self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"ExerciseDelta"]];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
             self.bigTotalLabel.text = @"EXERCISE";
@@ -136,11 +136,11 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
             
-            if (currentScoreData[@"NutritionDelta"] >= 0)
+            if ((signed int)currentScoreData[@"NutritionDelta"] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"NutritionDelta"]];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"NutritionDelta"]];
+                self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"NutritionDelta"]];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
             self.bigTotalLabel.text = @"NURTITION";
@@ -149,11 +149,11 @@ CGRect scoreSliderFrame;
         else if (newFrame.origin.x < 276)
         {
             self.deltaBlurb.text = currentScoreData[@"StressMessage"];
-            if (currentScoreData[@"StressDelta"] >= 0)
+            if ((signed int)currentScoreData[@"StressDelta"] >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"StressDelta"]];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%@", currentScoreData[@"StressDelta"]];
+                self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"StressDelta"]];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
             self.bigTotalLabel.text = @"STRESS";
@@ -163,11 +163,32 @@ CGRect scoreSliderFrame;
     if (sender.state == UIGestureRecognizerStateEnded)
     {
         if (newFrame.origin.x <= 26)
-            scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
         else if (newFrame.origin.x >= 270)
-            scoreSliderFrame =  CGRectMake(266, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 405, 24, 24);
         else
-            scoreSliderFrame = newFrame;
+        {
+            if (newFrame.origin.x < 60)
+            {
+                scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+            }
+            else if (newFrame.origin.x < 118)
+            {
+                scoreSlider.frame = scoreSliderFrame = CGRectMake(87, 405, 24, 24);
+            }
+            else if (newFrame.origin.x < 178)
+            {
+                scoreSlider.frame = scoreSliderFrame = CGRectMake(144, 405, 24, 24);
+            }
+            else if (newFrame.origin.x < 236)
+            {
+                scoreSlider.frame = scoreSliderFrame = CGRectMake(205, 405, 24, 24);
+            }
+            else if (newFrame.origin.x < 276)
+            {
+                scoreSlider.frame = scoreSliderFrame = CGRectMake(264, 405, 24, 24);
+            }
+        }
     }
 }
 
@@ -195,7 +216,7 @@ CGRect scoreSliderFrame;
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"]];
             else
             {
-                self.delta.text = [NSString stringWithFormat:@"-%d",delta];
+                self.delta.text = [NSString stringWithFormat:@"%d",delta];
                 self.youImprovedLabel.text = @"Your score went down from last time...";
             }
         } else {
@@ -243,6 +264,7 @@ CGRect scoreSliderFrame;
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.tag = i;
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
@@ -250,6 +272,7 @@ CGRect scoreSliderFrame;
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
                 todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.tag = i;
                 [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -298,6 +321,23 @@ CGRect scoreSliderFrame;
             alert.tag = 0;
             [alert dismissWithClickedButtonIndex:0 animated:YES];
             [alert show];
+            
+            for (UIView *subview in self.todosView.subviews) {
+                if (subview.tag < 10)
+                {
+                    [subview removeFromSuperview];
+                }
+            }
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+            Constants* constants = [[Constants alloc] init];
+            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+            [toDosRequest setHTTPMethod:@"POST"];
+            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
+            
         }
     }
 }
@@ -315,14 +355,6 @@ CGRect scoreSliderFrame;
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    for (UIView *subview in self.scrollView.subviews) {
-        if ([subview isKindOfClass:[UIButton class]])
-        {
-            UIButton* button = (UIButton*) subview;
-            if (button.tag >= 0)
-                [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
-        }
-    }
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
 

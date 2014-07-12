@@ -169,6 +169,22 @@ NSURLConnection* setTodoCompletedConnection;
             alert.tag = 0;
             [alert dismissWithClickedButtonIndex:0 animated:YES];
             [alert show];
+            
+            for (UIView *subview in self.todosView.subviews) {
+                if (subview.tag < 10)
+                {
+                    [subview removeFromSuperview];
+                }
+            }
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+            Constants* constants = [[Constants alloc] init];
+            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+            [toDosRequest setHTTPMethod:@"POST"];
+            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
         }
     }
     
@@ -243,14 +259,6 @@ NSURLConnection* setTodoCompletedConnection;
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    for (UIView *subview in self.scrollView.subviews) {
-        if ([subview isKindOfClass:[UIButton class]])
-        {
-            UIButton* button = (UIButton*) subview;
-            if (button.tag >= 0)
-                [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
-        }
-    }
     [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
 
