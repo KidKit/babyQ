@@ -97,7 +97,10 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
             if ([currentScoreData[@"OverallDelta"] integerValue] >= 0)
+            {
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"] ];
+                self.youImprovedLabel.text = @"YOU IMPROVED FROM LAST TIME!";
+            }
             else
             {
                 self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"OverallDelta"] ];
@@ -110,7 +113,10 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
             if ([currentScoreData[@"LifestyleDelta"] integerValue] >= 0)
+            {
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"LifestyleDelta"]];
+                self.youImprovedLabel.text = @"YOU IMPROVED FROM LAST TIME!";
+            }
             else
             {
                 self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"LifestyleDelta"]];
@@ -123,7 +129,10 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
             if ([currentScoreData[@"ExerciseDelta"] integerValue] >= 0)
+            {
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"ExerciseDelta"]];
+                self.youImprovedLabel.text = @"YOU IMPROVED FROM LAST TIME!";
+            }
             else
             {
                 self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"ExerciseDelta"]];
@@ -137,7 +146,10 @@ CGRect scoreSliderFrame;
             self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
             
             if ([currentScoreData[@"NutritionDelta"] integerValue] >= 0)
+            {
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"NutritionDelta"]];
+                self.youImprovedLabel.text = @"YOU IMPROVED FROM LAST TIME!";
+            }
             else
             {
                 self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"NutritionDelta"]];
@@ -150,7 +162,10 @@ CGRect scoreSliderFrame;
         {
             self.deltaBlurb.text = currentScoreData[@"StressMessage"];
             if ([currentScoreData[@"StressDelta"] integerValue] >= 0)
+            {
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"StressDelta"]];
+                self.youImprovedLabel.text = @"YOU IMPROVED FROM LAST TIME!";
+            }
             else
             {
                 self.delta.text = [NSString stringWithFormat:@"%@", currentScoreData[@"StressDelta"]];
