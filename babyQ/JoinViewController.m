@@ -74,7 +74,7 @@ BOOL agreedToTerms;
     return NO;
 }
 
-- (IBAction)getPhoto:(id)sender
+- (IBAction)getPhoto
 {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
 	picker.delegate = self;
@@ -89,7 +89,7 @@ BOOL agreedToTerms;
     profilePicture.imageView.layer.cornerRadius = 50.0;
     profilePicture.imageView.layer.masksToBounds = YES;
     profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
-	profilePicture.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+	[profilePicture setImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
     cameraImage.hidden = YES;
     //obtaining saving path
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

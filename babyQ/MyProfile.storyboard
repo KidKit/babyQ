@@ -335,7 +335,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="getPhoto:" destination="cZF-II-pYe" eventType="touchUpInside" id="xu3-Zi-oBK"/>
+                                    <action selector="getPhoto" destination="cZF-II-pYe" eventType="touchUpInside" id="i6O-iw-jwM"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_camera_icon.png" id="nlE-8P-YOm">

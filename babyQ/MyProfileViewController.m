@@ -55,7 +55,7 @@ NSURLConnection* setDeliveryConnection;
             profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
             cameraImage.hidden = YES;
             UIImage* picImage = [UIImage imageWithData:picData];
-            profilePicture.imageView.image = picImage;
+            [profilePicture setImage:picImage forState:UIControlStateNormal];
         }
     }
     saveAboutMeButton.hidden = YES;
@@ -91,7 +91,7 @@ NSURLConnection* setDeliveryConnection;
     getDeliveryConnection = [[NSURLConnection alloc] initWithRequest:getDeliveryRequest delegate:self];
 }
 
-- (IBAction)getPhoto:(id)sender
+- (IBAction)getPhoto
 {
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
 	picker.delegate = self;
@@ -108,7 +108,7 @@ NSURLConnection* setDeliveryConnection;
         profilePicture.imageView.layer.cornerRadius = 50.0;
         profilePicture.imageView.layer.masksToBounds = YES;
         profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
-        profilePicture.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        [profilePicture setImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
         cameraImage.hidden = YES;
         //obtaining saving path
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

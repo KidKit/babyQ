@@ -36,7 +36,7 @@
 
 @property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
 
-- (IBAction)getPhoto:(id)sender;
+- (IBAction)getPhoto;
 - (IBAction)clickedYes:(id)sender;
 - (IBAction)clickedNo:(id)sender;
 - (IBAction)clickedTermsCheckbox:(id)sender;

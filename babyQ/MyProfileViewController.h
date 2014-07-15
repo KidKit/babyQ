@@ -38,6 +38,7 @@
 
 -(IBAction)startSurvey;
 
+-(IBAction)getPhoto;
 -(IBAction)editAboutMeFields;
 -(IBAction)saveAboutMeFields;
 -(IBAction)cancelEditingAboutMeFields;
