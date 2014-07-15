@@ -10,13 +10,16 @@
 #import "SideSwipeTableViewController.h"
 #import "AppDelegate.h"
 
-@interface JoinViewController : UIViewController <UITextFieldDelegate>
+@interface JoinViewController : UIViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UIImageView* background;
 @property (nonatomic,retain) IBOutlet UIButton* joinButton;
+@property (nonatomic,retain) IBOutlet UIButton* profilePicture;
+@property (nonatomic, retain) IBOutlet UIImageView* cameraImage;
 @property (nonatomic,retain) IBOutlet UITextField* email;
 @property (nonatomic,retain) NSString* fb_email;
+@property (nonatomic,retain) NSString* fb_profilePicture;
 @property (nonatomic,retain) IBOutlet UITextField* password;
 @property (nonatomic,retain) IBOutlet UITextField* zipcode;
 @property (nonatomic,retain) IBOutlet UILabel* hiddenNoticeLabel;
@@ -33,6 +36,7 @@
 
 @property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
 
+- (IBAction)getPhoto:(id)sender;
 - (IBAction)clickedYes:(id)sender;
 - (IBAction)clickedNo:(id)sender;
 - (IBAction)clickedTermsCheckbox:(id)sender;

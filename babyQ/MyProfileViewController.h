@@ -9,13 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "SurveyViewController.h"
 
-@interface MyProfileViewController : UIViewController <UITextFieldDelegate>
+@interface MyProfileViewController : UIViewController <UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
 @property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;
+@property (nonatomic, retain) IBOutlet UIButton* profilePicture;
+@property (nonatomic, retain) IBOutlet UIImageView* cameraImage;
 @property (nonatomic, retain) IBOutlet UIButton* editAboutMeButton;
 @property (nonatomic, retain) IBOutlet UIButton* saveAboutMeButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelAboutMeButton;

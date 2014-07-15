@@ -137,29 +137,24 @@ NSURLConnection* submitSurveyConnection;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data survey");
     if (connection == getSurveyConnection)
         [survey_data appendData:data];
     else
     {
         [self goHome];
-        //NSLog(@"submit survey response: %@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-       
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR survey");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     if (connection == getSurveyConnection)
     {
-        NSLog(@"finished loading survey");
         NSString* json_response = [[NSString alloc] initWithData:survey_data encoding:NSUTF8StringEncoding];
-        NSLog(@"survey response: %@", json_response);
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         
         survey_json = [NSJSONSerialization JSONObjectWithData: json_data
@@ -268,7 +263,6 @@ NSURLConnection* submitSurveyConnection;
 
 - (void) cancelSurvey
 {
-    NSLog(@"cancel survey pressed");
     NSString* message = @"Do you want to stop taking this survey? Your progress will be saved for later.";
     NSString* yesButtonTitle = @"YES";
     NSString* noButtonTitle = @"NO";

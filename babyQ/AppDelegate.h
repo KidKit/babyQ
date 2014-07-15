@@ -17,6 +17,7 @@
 @property (nonatomic,retain) NSString* fb_userId;
 @property (nonatomic,retain) NSString* fb_name;
 @property (nonatomic,retain) NSString* fb_birthday;
+@property (nonatomic,retain) NSString* fb_profilePicture;
 @property (nonatomic,retain) NSString* user_email;
 
 - (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;

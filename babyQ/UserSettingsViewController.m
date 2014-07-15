@@ -14,7 +14,7 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,email,password,saveAccountButton,cancelAccountButton,editAccountButton;
+@synthesize scrollView,profilePicture,email,password,saveAccountButton,cancelAccountButton,editAccountButton;
 
 NSString* prevEmail;
 NSString* prevPassword;
@@ -28,6 +28,33 @@ NSString* prevPassword;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationController.navigationBar.topItem.title = @"SETTINGS";
+    
+    NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
+    if ([fb_pic length] > 0)
+    {
+        profilePicture.layer.cornerRadius = 50.0;
+        profilePicture.layer.masksToBounds = YES;
+        profilePicture.contentMode = UIViewContentModeScaleAspectFill;
+        NSURL *imageURL = [NSURL URLWithString:fb_pic];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        profilePicture.image = image;
+        profilePicture.userInteractionEnabled = NO;
+    } else {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        
+        NSData* picData = [NSData dataWithContentsOfFile:imagePath];
+        if (picData != nil)
+        {
+            profilePicture.layer.cornerRadius = 50.0;
+            profilePicture.layer.masksToBounds = YES;
+            profilePicture.contentMode = UIViewContentModeScaleAspectFill;
+            UIImage* picImage = [UIImage imageWithData:picData];
+            profilePicture.image = picImage;
+        }
+    }
     
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
@@ -94,6 +121,7 @@ NSString* prevPassword;
     appDelegate.fb_name = nil;
     appDelegate.fb_birthday = nil;
     appDelegate.user_email = nil;
+    appDelegate.fb_profilePicture = nil;
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

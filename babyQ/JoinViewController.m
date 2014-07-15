@@ -14,7 +14,7 @@
 
 @implementation JoinViewController
 
-@synthesize background,datePicker,email,fb_email,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink,hiddenNoticeLabel;
+@synthesize background,datePicker,email,fb_email,profilePicture,fb_profilePicture,cameraImage,password,zipcode,currentlyPregnantLabel,yesButton,noButton,yesLabel,noLabel,whenDueLabel,joinButton,termsCheckbox,termsLabelText,termsLabelLink,hiddenNoticeLabel;
 
 BOOL madePregnantSelection;
 BOOL isPregnant;
@@ -33,11 +33,23 @@ BOOL agreedToTerms;
     email.delegate = self;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
-    if ([fb_email length] != 0)
+    if ([fb_email length] > 0)
     {
         email.text = fb_email;
         password.enabled = NO;
         password.placeholder = @"Facebook login: no password required.";
+        
+        cameraImage.hidden = YES;
+        profilePicture.userInteractionEnabled = NO;
+        
+        NSURL *imageURL = [NSURL URLWithString:fb_profilePicture];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        profilePicture.imageView.image = image;
+        
+        profilePicture.imageView.layer.cornerRadius = 50.0;
+        profilePicture.imageView.layer.masksToBounds = YES;
+        profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
     zipcode.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     zipcode.delegate = self;
@@ -60,6 +72,37 @@ BOOL agreedToTerms;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
+}
+
+- (IBAction)getPhoto:(id)sender
+{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+	[self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+	[picker dismissViewControllerAnimated:YES completion:nil];
+    profilePicture.imageView.layer.cornerRadius = 50.0;
+    profilePicture.imageView.layer.masksToBounds = YES;
+    profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
+	profilePicture.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    cameraImage.hidden = YES;
+    //obtaining saving path
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+    
+    //extracting image from the picker and saving it
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if ([mediaType isEqualToString:@"public.image"]){
+        UIImage *editedImage =  [info objectForKey:UIImagePickerControllerOriginalImage]; ;
+        NSData *webData = UIImagePNGRepresentation(editedImage);
+        [webData writeToFile:imagePath atomically:YES];
+    }
 }
 
 - (IBAction)clickedYes:(id)sender
@@ -222,7 +265,6 @@ BOOL agreedToTerms;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data join");
     NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -263,12 +305,12 @@ BOOL agreedToTerms;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading join");
+    
 }
 
 - (void)didReceiveMemoryWarning

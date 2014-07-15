@@ -49,19 +49,17 @@ int page;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data tip history");
     [tipsData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR tip history");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString* json_response = [[NSString alloc] initWithData:tipsData encoding:NSUTF8StringEncoding];
-    NSLog(@"tip history response: %@", json_response);
     if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
     {
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
@@ -120,7 +118,6 @@ int page;
         tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
         [self.scrollView addSubview:tipLabel];
     }
-    NSLog(@"finished loading tip history");
 }
 
 -(void) getMoreTips

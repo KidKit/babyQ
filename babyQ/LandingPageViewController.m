@@ -42,33 +42,33 @@ NSURLConnection* fbSaveDataConnection;
          // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
          [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
              
-             appDelegate.user_email = [user objectForKey:@"email"];
-             appDelegate.fb_userId = [user objectForKey:@"id"];
-             appDelegate.fb_birthday = user.birthday;
-             appDelegate.fb_name = user.name;
-             //appDelegate.fb_name =
-             NSLog(@"FB user birthday:%@",user.birthday);
-             NSLog(@"email id:%@",[user objectForKey:@"email"]);
-         
-         if ([[(AppDelegate *)[UIApplication sharedApplication].delegate user_email] length] != 0)
-         {
-             NSString* email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
-             NSString* fb_id = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_userId];
-             Constants* constants = [[Constants alloc] init];
-             NSString* facebookLoginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_LOGIN_PATH];
-             NSString* postData = [[[@"Email=" stringByAppendingString:email] stringByAppendingString:@"&FacebookId="] stringByAppendingString:fb_id];
-             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:facebookLoginURL]];
-             [request setHTTPMethod:@"POST"];
-             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-             fbLoginConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-         }
+             if (user)
+             {
+                 appDelegate.user_email = [user objectForKey:@"email"];
+                 appDelegate.fb_userId = [user objectForKey:@"id"];
+                 appDelegate.fb_birthday = user.birthday;
+                 appDelegate.fb_name = user.name;
+                 appDelegate.fb_profilePicture = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [user objectID]];
+             
+                 if ([[(AppDelegate *)[UIApplication sharedApplication].delegate user_email] length] != 0)
+                 {
+                     NSString* email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
+                     NSString* fb_id = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_userId];
+                     Constants* constants = [[Constants alloc] init];
+                     NSString* facebookLoginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_LOGIN_PATH];
+                     NSString* postData = [[[@"Email=" stringByAppendingString:email] stringByAppendingString:@"&FacebookId="] stringByAppendingString:fb_id];
+                     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:facebookLoginURL]];
+                     [request setHTTPMethod:@"POST"];
+                     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+                     fbLoginConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+                 }
+             }
         }];
     }];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data facebook sign in");
     NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -83,7 +83,7 @@ NSURLConnection* fbSaveDataConnection;
         {
             JoinViewController* joinViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Join"];
             joinViewController.fb_email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
-            
+            joinViewController.fb_profilePicture = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
             [self.navigationController pushViewController:joinViewController animated:YES];
         }
         else
@@ -126,12 +126,12 @@ NSURLConnection* fbSaveDataConnection;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading facebook sign in");
+    
 }
 
 - (IBAction)signIn:(id)sender

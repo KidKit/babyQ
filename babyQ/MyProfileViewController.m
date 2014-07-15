@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
+@synthesize scrollView,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -29,6 +29,35 @@ NSURLConnection* setDeliveryConnection;
     [self.scrollView setContentSize:CGSizeMake(320, 1230)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
+    NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
+    
+    if ([fb_pic length] > 0)
+    {
+        cameraImage.hidden = YES;
+        profilePicture.imageView.layer.cornerRadius = 50.0;
+        profilePicture.imageView.layer.masksToBounds = YES;
+        profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        NSURL *imageURL = [NSURL URLWithString:fb_pic];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
+        UIImage *image = [UIImage imageWithData:imageData];
+        profilePicture.imageView.image = image;
+        profilePicture.userInteractionEnabled = NO;
+    } else {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        
+        NSData* picData = [NSData dataWithContentsOfFile:imagePath];
+        if (picData != nil)
+        {
+            profilePicture.imageView.layer.cornerRadius = 50.0;
+            profilePicture.imageView.layer.masksToBounds = YES;
+            profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
+            cameraImage.hidden = YES;
+            UIImage* picImage = [UIImage imageWithData:picData];
+            profilePicture.imageView.image = picImage;
+        }
+    }
     saveAboutMeButton.hidden = YES;
     cancelAboutMeButton.hidden = YES;
     savePregnantButton.hidden = YES;
@@ -62,13 +91,45 @@ NSURLConnection* setDeliveryConnection;
     getDeliveryConnection = [[NSURLConnection alloc] initWithRequest:getDeliveryRequest delegate:self];
 }
 
+- (IBAction)getPhoto:(id)sender
+{
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+	picker.delegate = self;
+    
+    picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+    
+	[self presentViewController:picker animated:YES completion:nil];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    if ([info objectForKey:@"UIImagePickerControllerOriginalImage"])
+    {
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        profilePicture.imageView.layer.cornerRadius = 50.0;
+        profilePicture.imageView.layer.masksToBounds = YES;
+        profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
+        profilePicture.imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        cameraImage.hidden = YES;
+        //obtaining saving path
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        
+        //extracting image from the picker and saving it
+        NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+        if ([mediaType isEqualToString:@"public.image"]){
+            UIImage *profileImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+            NSData *webData = UIImagePNGRepresentation(profileImage);
+            [webData writeToFile:imagePath atomically:YES];
+        }
+    }
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     if (connection == getAboutMeConnection)
     {
-        NSLog(@"received data about me");
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"about me response: %@", json_response);
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
                                                                         options: NSJSONReadingMutableContainers
@@ -167,12 +228,12 @@ NSURLConnection* setDeliveryConnection;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR my profile");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading my profile");
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

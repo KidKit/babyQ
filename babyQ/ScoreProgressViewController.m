@@ -76,13 +76,11 @@ NSURLConnection* setTodoCompletedConnection;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data current score");
     if (connection == getScoreHistoryConnection)
     {
         [scoreHistoryData appendData:data];
     } else if (connection == dailyTipConnection)
     {
-        NSLog(@"received data daily tip");
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -192,7 +190,7 @@ NSURLConnection* setTodoCompletedConnection;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR current");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -226,7 +224,6 @@ NSURLConnection* setTodoCompletedConnection;
         [self.scrollView addSubview:graphView];
         
     }
-    NSLog(@"finished loading current score");
 }
 
 - (void) clickedPastScore:(UIButton*)sender

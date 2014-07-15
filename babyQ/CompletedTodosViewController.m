@@ -50,19 +50,18 @@ int page;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data completed todos");
     [completedTodosData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR completed todos");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     NSString* json_response = [[NSString alloc] initWithData:completedTodosData encoding:NSUTF8StringEncoding];
-    NSLog(@"completed todosa response: %@", json_response);
+   
     if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
     {
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
@@ -125,7 +124,6 @@ int page;
         todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
         [self.scrollView addSubview:todoLabel];
     }
-    NSLog(@"finished loading tip history");
 }
 
 -(void) getMoreCompletedTodos

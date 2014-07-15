@@ -46,7 +46,6 @@ NSURLConnection* setTodoCompletedConnection;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data todos");
     if (connection == getTodosConnection)
         [todosData appendData:data];
     else if (connection == setTodoCompletedConnection)
@@ -72,7 +71,7 @@ NSURLConnection* setTodoCompletedConnection;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR todos");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -132,7 +131,6 @@ NSURLConnection* setTodoCompletedConnection;
             [self.view addSubview:todoLabel];
         }
     }
-    NSLog(@"finished loading todos");
 }
 
 - (void) markTodoCompleted:(UIButton*)sender

@@ -211,7 +211,6 @@ CGRect scoreSliderFrame;
 {
     if (connection == currentScoreConnection)
     {
-        NSLog(@"received data current score");
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         currentScoreData = [NSJSONSerialization JSONObjectWithData: json_data
@@ -248,7 +247,6 @@ CGRect scoreSliderFrame;
         }
     } else if (connection ==  dailyTipConnection)
     {
-        NSLog(@"received data daily tip");
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -375,12 +373,12 @@ CGRect scoreSliderFrame;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR current");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading current score");
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated

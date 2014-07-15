@@ -38,10 +38,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="eBC-eS-0xB">
-                                <rect key="frame" x="112" y="89" width="96" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O5n-MR-erk">
                                 <rect key="frame" x="247" y="146" width="42" height="12"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -331,6 +327,21 @@
                                     <outlet property="delegate" destination="cZF-II-pYe" id="oL2-KT-JaL"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="D1w-YP-TJU">
+                                <rect key="frame" x="112" y="79" width="96" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_join_avatar.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="getPhoto:" destination="cZF-II-pYe" eventType="touchUpInside" id="xu3-Zi-oBK"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_camera_icon.png" id="nlE-8P-YOm">
+                                <rect key="frame" x="148" y="149" width="24" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -338,6 +349,7 @@
                     <connections>
                         <outlet property="babyLengthField" destination="3xd-4K-X0R" id="qCr-BT-7rq"/>
                         <outlet property="babyWeightField" destination="1oE-0j-kte" id="ieL-qf-7cf"/>
+                        <outlet property="cameraImage" destination="nlE-8P-YOm" id="JTJ-zU-7u1"/>
                         <outlet property="cancelAboutMeButton" destination="NnD-5Y-Nq0" id="edP-rS-xtv"/>
                         <outlet property="cancelDeliveryButton" destination="V1s-Yp-Gs6" id="0pz-c5-q3o"/>
                         <outlet property="cancelPregnantButton" destination="qXA-Ai-YEp" id="cPj-K1-xlY"/>
@@ -349,6 +361,7 @@
                         <outlet property="editPregnantButton" destination="sBf-OF-t7t" id="wT2-ck-mgd"/>
                         <outlet property="isPregnant" destination="i05-4C-orx" id="9us-3y-Pmy"/>
                         <outlet property="nameField" destination="OeZ-0w-YYs" id="5Jb-D2-E1S"/>
+                        <outlet property="profilePicture" destination="D1w-YP-TJU" id="2EA-uw-IDn"/>
                         <outlet property="saveAboutMeButton" destination="VqH-BG-EiM" id="sUg-58-3Pd"/>
                         <outlet property="saveDeliveryButton" destination="JH9-Px-NVd" id="Tri-GY-JaL"/>
                         <outlet property="savePregnantButton" destination="yVP-OL-D4H" id="G9m-uN-aMK"/>
@@ -363,6 +376,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="babyq_camera_icon.png" width="36" height="29"/>
         <image name="babyq_edit_icon.png" width="81" height="22"/>
         <image name="babyq_green_background.png" width="640" height="4500"/>
         <image name="babyq_join_avatar.png" width="168" height="168"/>

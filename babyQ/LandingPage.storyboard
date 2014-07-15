@@ -159,6 +159,9 @@
                                 <state key="normal" image="babyq_join_avatar.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getPhoto:" destination="YJ4-6v-CzR" eventType="touchUpInside" id="TPL-ps-XFv"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_camera_icon.png" id="E1R-Vt-K8Q">
                                 <rect key="frame" x="148" y="90" width="24" height="16"/>
@@ -303,6 +306,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <size key="freeformSize" width="320" height="800"/>
                     <connections>
                         <outlet property="background" destination="SGx-gB-ayn" id="nDd-aE-gYM"/>
+                        <outlet property="cameraImage" destination="E1R-Vt-K8Q" id="ggP-pE-PXo"/>
                         <outlet property="currentlyPregnantLabel" destination="ohr-jw-PgM" id="jPP-h4-Aus"/>
                         <outlet property="datePicker" destination="fEK-JB-5Cz" id="czk-GS-gDf"/>
                         <outlet property="email" destination="C12-Jx-cWC" id="A3E-PB-7ZK"/>
@@ -311,6 +315,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="noButton" destination="bA2-wO-KYA" id="LwF-II-SYr"/>
                         <outlet property="noLabel" destination="Wqu-5A-VNQ" id="SkW-T4-xQG"/>
                         <outlet property="password" destination="LF8-47-ysv" id="jrL-r8-HJC"/>
+                        <outlet property="profilePicture" destination="0Ew-0r-3bb" id="JA1-D8-lux"/>
                         <outlet property="scrollView" destination="emk-Yk-jb4" id="4qb-by-4KL"/>
                         <outlet property="termsCheckbox" destination="FCv-dk-ZBk" id="h3o-Uo-SCK"/>
                         <outlet property="termsLabelLink" destination="C4f-Oa-Yee" id="d6z-Mr-iN8"/>

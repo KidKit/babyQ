@@ -60,7 +60,6 @@ NSURLConnection* forgotPasswordConnection;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSLog(@"received data forgot password");
     NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
@@ -80,12 +79,12 @@ NSURLConnection* forgotPasswordConnection;
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    NSLog(@"ERROR");
+    
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    NSLog(@"finished loading sign in");
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -369,7 +369,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="0bF-re-8La">
-                                <rect key="frame" x="112" y="29" width="96" height="96"/>
+                                <rect key="frame" x="112" y="21" width="96" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ACCOUNT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OdW-Gh-OsZ">
@@ -463,6 +463,7 @@
                         <outlet property="editAccountButton" destination="5wI-iB-VQ8" id="lMo-rB-pwV"/>
                         <outlet property="email" destination="kFn-EQ-9ft" id="ocl-E2-jPs"/>
                         <outlet property="password" destination="E3b-tB-EM3" id="12r-WA-t1N"/>
+                        <outlet property="profilePicture" destination="0bF-re-8La" id="uaF-Ob-uT7"/>
                         <outlet property="saveAccountButton" destination="DR3-2K-Bjw" id="h4Z-2U-AZw"/>
                         <outlet property="scrollView" destination="1Mu-uP-Cc8" id="BZ2-1C-6vi"/>
                     </connections>
