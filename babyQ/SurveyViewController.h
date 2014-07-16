@@ -21,6 +21,7 @@ extern BOOL extraQuestionsReached;
 @property (nonatomic, retain) IBOutlet UIProgressView* progressView;
 @property (nonatomic, retain) IBOutlet UIImageView* progressBubble;
 @property (nonatomic, retain) IBOutlet UILabel* progressPercentage;
+@property (nonatomic, retain) IBOutlet UILabel* selectAllLabel;
 @property (nonatomic, retain) IBOutlet UILabel* questionNumber;
 @property (nonatomic, retain) IBOutlet UILabel* answerNumber;
 @property (nonatomic, retain) IBOutlet UITextView* question;

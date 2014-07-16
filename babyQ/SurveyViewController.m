@@ -19,7 +19,7 @@ BOOL extraQuestionsReached = NO;
 
 @implementation SurveyViewController
 
-@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,question_type,survey_data,answer_ids;
+@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionNumber,answerNumber,question,selectAllLabel,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,question_type,survey_data,answer_ids;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -70,7 +70,7 @@ NSURLConnection* submitSurveyConnection;
         
         nextButton.enabled = NO;
     
-        float progress = ([question_number floatValue] - 1) / [survey_json[@"ScoringQuestions"] count];
+        float progress = ([question_number floatValue] - 1) / ([survey_json[@"ScoringQuestions"] count] + [survey_json[@"ExtraQuestions"] count]);
         progressView.progress = progress;
         [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
         progressPercentage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:10];
@@ -127,70 +127,64 @@ NSURLConnection* submitSurveyConnection;
         answer_ids = [[NSMutableArray alloc] init];
         questionNumber.text = [NSString stringWithFormat:@"Extra Q%@", question_number];
         answerNumber.text = [NSString stringWithFormat:@"Extra A%@", question_number];
-        nextButton.enabled = NO;
         
-        float progress = ([question_number floatValue] - 1) / [survey_json[@"ExtraQuestions"] count];
+        nextButton.enabled = NO;
+        if ([question_number isEqualToString:@"1"])
+            previousButton.hidden = YES;
+        
+        float progress = (([question_number floatValue] - 1) + [survey_json[@"ScoringQuestions"] count]) / ([survey_json[@"ScoringQuestions"] count] + [survey_json[@"ExtraQuestions"] count]);
         progressView.progress = progress;
         [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
         progressPercentage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:10];
         progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
-        NSString* question_index = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+        NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-        question.text = survey_json[@"ExtraQuestions"][question_index][@"Question"];
+        question.text = survey_json[@"ExtraQuestions"][question_key][@"Question"];
         
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
-            UILabel* selectAllLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 330, 230, 21)];
             selectAllLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13];
-            selectAllLabel.textAlignment = NSTextAlignmentCenter;
-            selectAllLabel.text = @"SELECT ALL THAT APPLY";
-            selectAllLabel.textColor = [UIColor colorWithRed:227.0/255.0f green:95.0/255.0f blue:62.0/255.0f alpha:1.0];
-            [self.scrollView addSubview:selectAllLabel];
-            [self.scrollView bringSubviewToFront:selectAllLabel];
-            [self.scrollView setContentSize:CGSizeMake(320, 500 + 45 )];
-            [self.answerOne setFrame:CGRectMake(answerOne.frame.origin.x, answerOne.frame.origin.y+45, answerOne.frame.size.width, answerOne.frame.size.height)];
-            [self.checkBoxOne setFrame:CGRectMake(checkBoxOne.frame.origin.x, checkBoxOne.frame.origin.y+45, checkBoxOne.frame.size.width, checkBoxOne.frame.size.height)];
-            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+45, bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
-            [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +45, nextButton.frame.size.width, nextButton.frame.size.height)];
-            [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +45, previousButton.frame.size.width, previousButton.frame.size.height)];
+            if (selected_extra_answers[question_key] == nil)
+                selected_extra_answers[question_key] = [[NSMutableArray alloc] init];
+            nextButton.enabled = YES;
         }
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-        answerOne.text = survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
+        answerOne.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"];
         checkBoxOne.tag = 0;
         [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
         
-        [answer_ids addObject:survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
-        NSUInteger numberOfAnswers = [survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"] count];
-        for (int i = 2; i <= [survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"] count]; i++)
+        [answer_ids addObject:survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"]];
+        NSUInteger numberOfAnswers = [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"] count];
+        for (int i = 2; i <= [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"] count]; i++)
         {
-            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
+            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(39, 356 + 65*(i-1), 189, 54)];
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = NO;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
             nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-            nextAnswer.text = survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
+            nextAnswer.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"];
             [self.scrollView addSubview:nextAnswer];
             
-            UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
+            UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(20, 360 + 65*(i-1), 18, 18)];
             answerChoice.font = [UIFont fontWithName:@"MyraidPro-Regular" size:12];
             answerChoice.text = [NSString stringWithFormat:@"%d.", i];
             [self.scrollView addSubview:answerChoice];
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
             checkBox.tag = i-1;
-            [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
+            [checkBox setFrame:CGRectMake(269, 362+65*(i-1), 16, 16)];
             [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:checkBox];
             
-            [answer_ids addObject:survey_json[@"ExtraQuestions"][question_index][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
+            [answer_ids addObject:survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"PossibleAnswerId"]];
         }
         if (numberOfAnswers > 1)
         {
-            [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
+            [self.scrollView setContentSize:CGSizeMake(320, 530 + 65 * (numberOfAnswers-1) )];
             [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
             [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
             [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
@@ -298,6 +292,7 @@ NSURLConnection* submitSurveyConnection;
 {
     if (extraQuestionsReached)
     {
+        NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         if ([question_type isEqualToString:@"Multiple Choice"])
         {
             for (UIView *subview in self.scrollView.subviews) {
@@ -311,17 +306,27 @@ NSURLConnection* submitSurveyConnection;
         }
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
-            if (selected_extra_answers[question_number] == nil)
-                selected_extra_answers[question_number] = [[NSMutableArray alloc] init];
-            [selected_extra_answers[question_number] addObject:answer_ids[sender.tag]];
+            if ([selected_extra_answers[question_key] containsObject:answer_ids[sender.tag]])
+            {
+                [selected_extra_answers[question_key] removeObject:answer_ids[sender.tag]];
+                [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+            }
+            else
+            {
+                [selected_extra_answers[question_key] addObject:answer_ids[sender.tag]];
+                [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            }
         }
         else
-            [selected_extra_answers setObject:answer_ids[sender.tag] forKey:question_number];
-        [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        {
+            selected_extra_answers[question_key] = answer_ids[sender.tag];
+            [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        }
         nextButton.enabled = YES;
     }
     else
     {
+        NSString* question_key = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         for (UIView *subview in self.scrollView.subviews) {
             if ([subview isKindOfClass:[UIButton class]])
             {
@@ -330,7 +335,7 @@ NSURLConnection* submitSurveyConnection;
                     [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             }
         }
-        [selected_answers setObject:answer_ids[sender.tag] forKey:question_number];
+        selected_answers[question_key] = answer_ids[sender.tag];
         [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
         nextButton.enabled = YES;
     }
@@ -358,7 +363,7 @@ NSURLConnection* submitSurveyConnection;
         {
             NSString* question_index = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue])];
             NSString* type = survey_json[@"ExtraQuestions"][question_index][@"QuestionTypeDescription"];
-            SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:@"Multiple Choice"];
+            SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:type];
             surveyController.question_number = [NSString stringWithFormat:@"%li",question_int + 1];
             surveyController.question_type = type;
             
@@ -390,7 +395,7 @@ NSURLConnection* submitSurveyConnection;
         {
             extraQuestionsReached = YES;
             NSString* type = survey_json[@"ExtraQuestions"][@"1"][@"QuestionTypeDescription"];
-            SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:@"Multiple Choice"];
+            SurveyViewController* surveyController = [self.storyboard instantiateViewControllerWithIdentifier:type];
             surveyController.question_type = type;
             surveyController.question_number = @"1";
             [self.navigationController pushViewController:surveyController animated:YES];
@@ -435,7 +440,7 @@ NSURLConnection* submitSurveyConnection;
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"] = survey_json[@"ScoringQuestions"][question_number_string][@"QuestionId"];
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
                 submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
-                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number];
+                submit_survey_json[@"ScoringQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
             }
             
             submit_survey_json[@"ExtraQuestions"] = [[NSMutableDictionary alloc] init];
@@ -448,17 +453,17 @@ NSURLConnection* submitSurveyConnection;
                 
                 if ([selected_extra_answers[question_number] isKindOfClass:[NSArray class]])
                 {
-                    for (int y = 0; y < [selected_extra_answers[question_number] count]; y++)
+                    for (int y = 0; y < [selected_extra_answers[question_number_string] count]; y++)
                     {
                         NSString* answer_key = [NSString stringWithFormat:@"%d", y+1];
                         submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][answer_key] = [[NSMutableDictionary alloc] init];
-                        submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][answer_key][@"PossibleAnswerId"] = selected_extra_answers[question_number][y];
+                        submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][answer_key][@"PossibleAnswerId"] = selected_extra_answers[question_number_string][y];
                     }
                 }
                 else
                 {
                     submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
-                    submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_extra_answers[question_number];
+                    submit_survey_json[@"ExtraQuestions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_extra_answers[question_number_string];
                 }
             }
             NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
@@ -477,13 +482,30 @@ NSURLConnection* submitSurveyConnection;
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
             submitSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
             survey_json = nil;
+            selected_answers = nil;
+            selected_extra_answers = nil;
+            extraQuestionsReached = NO;
             break;
         }
         case 1:
         {
             if (buttonIndex == 1)
+            {
+                if (extraQuestionsReached)
+                {
+                    NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+                    [selected_extra_answers removeObjectForKey:question_key];
+                }
+                else
+                {
+                    NSString* question_key = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+                    [selected_answers removeObjectForKey:question_key];
+                }
+                    
                 [self goHome];
+            }
             break;
         }
     }
