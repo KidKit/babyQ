@@ -11,6 +11,8 @@
 
 extern NSDictionary* survey_json;
 extern NSMutableDictionary* selected_answers;
+extern NSMutableDictionary* selected_extra_answers;
+extern BOOL extraQuestionsReached;
 
 @interface SurveyViewController : UIViewController <UIAlertViewDelegate>
 
@@ -30,6 +32,7 @@ extern NSMutableDictionary* selected_answers;
 
 @property (nonatomic, retain) NSMutableData* survey_data;
 @property (nonatomic,retain) NSString* question_number;
+@property (nonatomic,retain) NSString* question_type;
 @property (nonatomic, retain) NSMutableArray* answer_ids;
 
 - (IBAction)nextQuestion;
