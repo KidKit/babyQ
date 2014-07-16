@@ -17,7 +17,9 @@
 @property (nonatomic,retain) NSString *const FORGOT_PASSWORD_PATH;
 @property (nonatomic,retain) NSString *const FACEBOOK_LOGIN_PATH;
 @property (nonatomic,retain) NSString *const FACEBOOK_FINALIZE_PATH;
-@property (nonatomic,retain) NSString *const SET_DEVICE_PATH;
+@property (nonatomic,retain) NSString *const REGISTER_DEVICE_PATH;
+@property (nonatomic,retain) NSString *const SET_DEVICE_SETTINGS_PATH;
+@property (nonatomic,retain) NSString *const GET_DEVICE_SETTINGS_PATH;
 @property (nonatomic,retain) NSString *const GET_ABOUT_ME_PATH;
 @property (nonatomic,retain) NSString *const SET_ABOUT_ME_PATH;
 @property (nonatomic,retain) NSString *const GET_PREGNANCY_PATH;

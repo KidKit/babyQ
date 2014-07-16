@@ -30,6 +30,8 @@ NSURLConnection* setDeliveryConnection;
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     
     if ([fb_pic length] > 0)
     {
@@ -45,7 +47,7 @@ NSURLConnection* setDeliveryConnection;
     } else {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[user_email stringByAppendingString:@"_latest_photo.png"]];
         
         NSData* picData = [NSData dataWithContentsOfFile:imagePath];
         if (picData != nil)
@@ -65,8 +67,6 @@ NSURLConnection* setDeliveryConnection;
     saveDeliveryButton.hidden = YES;
     cancelDeliveryButton.hidden = YES;
     
-    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
     
     NSString* getAboutMeURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_ABOUT_ME_PATH];
@@ -104,6 +104,7 @@ NSURLConnection* setDeliveryConnection;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if ([info objectForKey:@"UIImagePickerControllerOriginalImage"])
     {
+        NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
         [picker dismissViewControllerAnimated:YES completion:nil];
         profilePicture.imageView.layer.cornerRadius = 50.0;
         profilePicture.imageView.layer.masksToBounds = YES;
@@ -113,7 +114,7 @@ NSURLConnection* setDeliveryConnection;
         //obtaining saving path
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[user_email stringByAppendingString:@"_latest_photo.png"]];
         
         //extracting image from the picker and saving it
         NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];

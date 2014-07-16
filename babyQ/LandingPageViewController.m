@@ -16,6 +16,7 @@
 
 NSURLConnection* fbLoginConnection;
 NSURLConnection* fbSaveDataConnection;
+NSURLConnection* registerDeviceConnection;
 
 - (void)viewDidLoad
 {
@@ -69,57 +70,82 @@ NSURLConnection* fbSaveDataConnection;
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                    options: NSJSONReadingMutableContainers
-                                                                      error: nil];
-    if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+    if (connection == fbLoginConnection)
     {
-        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appDelegate.api_token = json_dictionary[@"API TOKEN"];
-        
-        if ([json_dictionary[@"IsNewUser"] isEqualToString:@"1"])
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
-            JoinViewController* joinViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Join"];
-            joinViewController.fb_email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
-            joinViewController.fb_profilePicture = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
-            [self.navigationController pushViewController:joinViewController animated:YES];
+            AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            appDelegate.api_token = json_dictionary[@"API TOKEN"];
+            
+            if ([json_dictionary[@"IsNewUser"] isEqualToString:@"1"])
+            {
+                JoinViewController* joinViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Join"];
+                joinViewController.fb_email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
+                joinViewController.fb_profilePicture = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
+                [self.navigationController pushViewController:joinViewController animated:YES];
+            }
+            else
+            {
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
+                Constants* constants = [[Constants alloc] init];
+                NSString* em = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
+                NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+                NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
+                NSString* pushDataURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
+                NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
+                postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
+                postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
+                
+                NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pushDataURL]];
+                [request setHTTPMethod:@"POST"];
+                [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+                fbSaveDataConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+                
+                NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
+                postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:appDelegate.user_email];
+                NSString* deviceUUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+                postData = [[postData stringByAppendingString:@"&IsActive=1&DeviceId="] stringByAppendingString:deviceUUID];
+                postData = [postData stringByAppendingString:@"&DeviceToken="];
+                
+                request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
+                [request setHTTPMethod:@"POST"];
+                [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+                registerDeviceConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+                
+                UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+                SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+                
+                CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+                
+                MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                        initWithCenterViewController:currentScoreView
+                                                        leftDrawerViewController:sideSwipeTableView
+                                                        rightDrawerViewController:nil];
+                [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+                [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+                
+                [self.navigationController pushViewController:swipeController animated:YES];
+            }
         }
-        else
+    } else if (connection == registerDeviceConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-            NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
-            [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
-            Constants* constants = [[Constants alloc] init];
-            NSString* em = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
-            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-            NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
-            NSString* pushDataURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
-            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
-            postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
-            postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
-            
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pushDataURL]];
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            fbSaveDataConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            
-            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
-            
-            CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
-            
-            MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                                    initWithCenterViewController:currentScoreView
-                                                    leftDrawerViewController:sideSwipeTableView
-                                                    rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-            
-            [self.navigationController pushViewController:swipeController animated:YES];
+            NSLog(@"Registered device");
         }
     }
 }

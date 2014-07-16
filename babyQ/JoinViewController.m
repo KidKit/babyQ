@@ -19,6 +19,10 @@
 BOOL madePregnantSelection;
 BOOL isPregnant;
 BOOL agreedToTerms;
+UIImage* profileImage;
+NSURLConnection* createAccountConnection;
+NSURLConnection* facebookFinalizeConnection;
+NSURLConnection* registerDeviceConnection;
 
 - (void)viewDidLoad
 {
@@ -92,16 +96,11 @@ BOOL agreedToTerms;
 	[profilePicture setImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
     cameraImage.hidden = YES;
     //obtaining saving path
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
     
     //extracting image from the picker and saving it
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if ([mediaType isEqualToString:@"public.image"]){
-        UIImage *editedImage =  [info objectForKey:UIImagePickerControllerOriginalImage]; ;
-        NSData *webData = UIImagePNGRepresentation(editedImage);
-        [webData writeToFile:imagePath atomically:YES];
+        profileImage =  [info objectForKey:UIImagePickerControllerOriginalImage]; ;
     }
 }
 
@@ -210,12 +209,11 @@ BOOL agreedToTerms;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString* date = [dateFormatter stringFromDate: datePicker.date];
-    
+    Constants* constants = [[Constants alloc] init];
     if (self.password.enabled)
     {
         if ([self validateFields])
         {
-            Constants* constants = [[Constants alloc] init];
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CREATE_ACCOUNT_PATH];
             NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
             postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
@@ -226,11 +224,13 @@ BOOL agreedToTerms;
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            if (conn)
-            {
-                
-            }
+            createAccountConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[email.text stringByAppendingString:@"_latest_photo.png"]];
+            NSData *webData = UIImagePNGRepresentation(profileImage);
+            [webData writeToFile:imagePath atomically:YES];
         }
     } else {
         if ([self validateFields])
@@ -240,7 +240,6 @@ BOOL agreedToTerms;
             NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
-            Constants* constants = [[Constants alloc] init];
             NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
             NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_FINALIZE_PATH];
@@ -254,44 +253,67 @@ BOOL agreedToTerms;
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:joinURL]];
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            if (conn)
-            {
-                
-            }
+            facebookFinalizeConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
         }
     }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                    options: NSJSONReadingMutableContainers
-                                                                      error: nil];
-    if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+    if (connection == createAccountConnection || connection == facebookFinalizeConnection)
     {
-        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appDelegate.user_email = self.email.text;
-        if ([json_dictionary[@"API TOKEN"] length] != 0)
-            appDelegate.api_token = json_dictionary[@"API TOKEN"];
-        UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
-        
-        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
-        
-        MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                                initWithCenterViewController:currentScoreView
-                                                leftDrawerViewController:sideSwipeTableView
-                                                rightDrawerViewController:nil];
-        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-        
-        [self.navigationController pushViewController:swipeController animated:YES];
-    } else if ([json_dictionary[@"ERROR"] isEqualToString:@"Email Address Already In Use"])
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            appDelegate.user_email = self.email.text;
+            if ([json_dictionary[@"API TOKEN"] length] != 0)
+                appDelegate.api_token = json_dictionary[@"API TOKEN"];
+            
+            NSString* em = self.email.text;
+            Constants* constants = [[Constants alloc] init];
+            NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
+            postData = [[postData stringByAppendingString:@"&IsActive=1&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+            postData = [postData stringByAppendingString:@"&DeviceToken="];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            registerDeviceConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
+            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+            
+            CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+            
+            MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                    initWithCenterViewController:currentScoreView
+                                                    leftDrawerViewController:sideSwipeTableView
+                                                    rightDrawerViewController:nil];
+            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            
+            [self.navigationController pushViewController:swipeController animated:YES];
+        } else if ([json_dictionary[@"ERROR"] isEqualToString:@"Email Address Already In Use"])
+        {
+            hiddenNoticeLabel.text = @"Email Address Already In Use";
+        }
+    } else if (connection == registerDeviceConnection)
     {
-        hiddenNoticeLabel.text = @"Email Address Already In Use";
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"Device registered");
+        }
     }
 }
 

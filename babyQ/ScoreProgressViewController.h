@@ -37,6 +37,7 @@
 @property (nonatomic, retain) NSArray* scoreHistoryArray;
 @property (nonatomic, retain) IBOutlet UITextView* dailyTip;
 @property (nonatomic, retain) IBOutlet UIButton *tipHistoryButton;
+@property (nonatomic, retain) NSMutableData* todosData;
 @property (nonatomic, retain) NSArray* todosArray;
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 

@@ -14,10 +14,13 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,email,password,saveAccountButton,cancelAccountButton,editAccountButton;
+@synthesize scrollView,profilePicture,email,password,saveAccountButton,cancelAccountButton,editAccountButton,surveyAlerts,dailyTipAlerts,rateAppLink;
 
 NSString* prevEmail;
 NSString* prevPassword;
+NSURLConnection* setDeviceSettingsConnection;
+NSURLConnection* getDeviceSettingsConnection;
+NSURLConnection* setDeviceInactiveConnection;
 
 - (void)viewDidLoad
 {
@@ -41,9 +44,10 @@ NSString* prevPassword;
         profilePicture.image = image;
         profilePicture.userInteractionEnabled = NO;
     } else {
+        NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:@"latest_photo.png"];
+        NSString *imagePath = [documentsDirectory stringByAppendingPathComponent:[user_email stringByAppendingString:@"_latest_photo.png"]];
         
         NSData* picData = [NSData dataWithContentsOfFile:imagePath];
         if (picData != nil)
@@ -56,11 +60,23 @@ NSString* prevPassword;
         }
     }
     
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* getCurrentScoreURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_DEVICE_SETTINGS_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    
+    NSMutableURLRequest *currentScoreRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getCurrentScoreURL]];
+    [currentScoreRequest setHTTPMethod:@"POST"];
+    [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    getDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+    
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
-    
+    rateAppLink.titleLabel.font = [UIFont fontWithName:@"Bebas" size:13];
     saveAccountButton.hidden = YES;
     cancelAccountButton.hidden = YES;
     
@@ -102,6 +118,104 @@ NSString* prevPassword;
     cancelAccountButton.hidden = YES;
 }
 
+-(IBAction)openAppStore
+{
+    NSString* appID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+    NSString* url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID];
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+}
+
+-(IBAction)toggleSurveyAlerts:(id)sender
+{
+    
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* getCurrentScoreURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DEVICE_SETTINGS_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    postData = [[postData stringByAppendingString:@"&IsActive=1&SurveyReminder="] stringByAppendingString:surveyAlerts.on ? @"1" : @"0"];
+    postData = [[postData stringByAppendingString:@"&DailyTipNotification="] stringByAppendingString:dailyTipAlerts.on ? @"1" : @"0"];
+    
+    NSMutableURLRequest *currentScoreRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getCurrentScoreURL]];
+    [currentScoreRequest setHTTPMethod:@"POST"];
+    [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    setDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+}
+
+-(IBAction)toggleDailyTipAlerts:(id)sender
+{
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* getCurrentScoreURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DEVICE_SETTINGS_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    postData = [[postData stringByAppendingString:@"&IsActive=1&SurveyReminder="] stringByAppendingString:surveyAlerts.on ? @"1" : @"0"];
+    postData = [[postData stringByAppendingString:@"&DailyTipNotification="] stringByAppendingString:dailyTipAlerts.on ? @"1" : @"0"];
+    
+    NSMutableURLRequest *currentScoreRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getCurrentScoreURL]];
+    [currentScoreRequest setHTTPMethod:@"POST"];
+    [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    setDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
+{
+    if (connection == getDeviceSettingsConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"DailyTipNotification"] isEqualToString:@"1"])
+            dailyTipAlerts.on = YES;
+        else
+            dailyTipAlerts.on = NO;
+        
+        
+        if ([json_dictionary[@"SurveyReminder"] isEqualToString:@"1"])
+            surveyAlerts.on = YES;
+        else
+            surveyAlerts.on = NO;
+            
+    }
+    else if (connection == setDeviceSettingsConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"device settings set successfully");
+        }
+    } else if (connection == setDeviceInactiveConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"device successfully set inactive");
+        }
+    }
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    
+}
+
 -(IBAction)signOut
 {
     // If the session state is any of the two "open" states when the button is clicked
@@ -114,7 +228,23 @@ NSString* prevPassword;
         
         // If the session state is not any of the two "open" states when the button is clicked
     }
+    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    
     AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+    
+    Constants* constants = [[Constants alloc] init];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&IsActive=0&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+    postData = [postData stringByAppendingString:@"&DeviceToken="];
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    setDeviceInactiveConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
     appDelegate.api_token = nil;
     appDelegate.fb_name = nil;
     appDelegate.fb_userId = nil;
@@ -122,7 +252,6 @@ NSString* prevPassword;
     appDelegate.fb_birthday = nil;
     appDelegate.user_email = nil;
     appDelegate.fb_profilePicture = nil;
-    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

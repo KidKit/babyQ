@@ -19,7 +19,9 @@
         self.FORGOT_PASSWORD_PATH = @"/ForgotPassword";
         self.FACEBOOK_LOGIN_PATH = @"/FacebookLogin";
         self.FACEBOOK_FINALIZE_PATH = @"/FacebookFinalize";
-        self.SET_DEVICE_PATH = @"/SetDevice";
+        self.REGISTER_DEVICE_PATH = @"/RegisterDevice";
+        self.SET_DEVICE_SETTINGS_PATH = @"/SetDeviceSettings";
+        self.GET_DEVICE_SETTINGS_PATH = @"/GetDeviceSettings";
         self.GET_ABOUT_ME_PATH = @"/GetAboutMe";
         self.SET_ABOUT_ME_PATH = @"/SetAboutMe";
         self.GET_PREGNANCY_PATH = @"/GetPregnancy";

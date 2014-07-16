@@ -118,11 +118,14 @@ int page;
             [self.scrollView addSubview:moreButton];
         }
     } else {
-        UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 319, 240, 24)];
-        todoLabel.textAlignment = NSTextAlignmentCenter;
-        todoLabel.text = @"No completed To-Dos.";
-        todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
-        [self.scrollView addSubview:todoLabel];
+        if (page == 0)
+        {
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 319, 240, 24)];
+            todoLabel.textAlignment = NSTextAlignmentCenter;
+            todoLabel.text = @"No completed To-Dos.";
+            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            [self.scrollView addSubview:todoLabel];
+        }
     }
 }
 

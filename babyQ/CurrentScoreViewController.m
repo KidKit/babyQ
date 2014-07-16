@@ -14,7 +14,7 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,currentScoreData,todosView,dailyTipView,dailyTip,completedTodosButton,todosArray,todaysDate,scoreSlider,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
+@synthesize scrollView,currentScoreData,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
@@ -52,6 +52,7 @@ CGRect scoreSliderFrame;
     [dailyTipRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     dailyTipConnection = [[NSURLConnection alloc] initWithRequest:dailyTipRequest delegate:self];
     
+    todosData = [[NSMutableData alloc] init];
     NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
     NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
     [toDosRequest setHTTPMethod:@"POST"];
@@ -262,7 +263,73 @@ CGRect scoreSliderFrame;
         dailyTipDate.text = [dateFormatter stringFromDate:date];
     } else if (connection == toDosConnection)
     {
+        [todosData appendData:data];
+        
+    } else if (connection == setTodoCompletedConnection)
+    {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary* setCompletedResponse = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                             options: NSJSONReadingMutableContainers
+                                                                               error: nil];
+        if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSString* title = @"TO-DO COMPLETED!";
+            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
+            NSString* buttonTitle = @"OKAY, I GOT IT!";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
+            alert.tag = 0;
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            [alert show];
+            
+            for (UIView *subview in self.todosView.subviews) {
+                if (subview.tag < 10)
+                {
+                    [subview removeFromSuperview];
+                }
+            }
+            todosData = [[NSMutableData alloc] init];
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+            Constants* constants = [[Constants alloc] init];
+            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+            [toDosRequest setHTTPMethod:@"POST"];
+            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
+            
+        }
+    }
+}
+
+- (void) markTodoCompleted:(UIButton*)sender
+{
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_TODO_COMPLETED_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[sender.tag][@"ToDoId"] ];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    
+    [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == toDosConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
         if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
         {
             NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
@@ -317,68 +384,7 @@ CGRect scoreSliderFrame;
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.todosView addSubview:todoLabel];
         }
-    } else if (connection == setTodoCompletedConnection)
-    {
-        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSDictionary* setCompletedResponse = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                             options: NSJSONReadingMutableContainers
-                                                                               error: nil];
-        if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
-        {
-            NSString* title = @"TO-DO COMPLETED!";
-            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
-            NSString* buttonTitle = @"OKAY, I GOT IT!";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
-            alert.tag = 0;
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-            [alert show];
-            
-            for (UIView *subview in self.todosView.subviews) {
-                if (subview.tag < 10)
-                {
-                    [subview removeFromSuperview];
-                }
-            }
-            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-            Constants* constants = [[Constants alloc] init];
-            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
-            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
-            [toDosRequest setHTTPMethod:@"POST"];
-            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
-            
-        }
     }
-}
-
-- (void) markTodoCompleted:(UIButton*)sender
-{
-    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-    Constants* constants = [[Constants alloc] init];
-    NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_TODO_COMPLETED_PATH];
-    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[sender.tag][@"ToDoId"] ];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated

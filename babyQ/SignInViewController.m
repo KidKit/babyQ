@@ -15,6 +15,9 @@
 
 @synthesize email,password;
 
+NSURLConnection* registerDeviceConnection;
+NSURLConnection* signInConnection;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,29 +40,55 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
-    NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-    NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                    options: NSJSONReadingMutableContainers
-                                                                      error: nil];
-    if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+    if (connection == signInConnection)
     {
-        AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        appDelegate.api_token = json_dictionary[@"API TOKEN"];
-        appDelegate.user_email = self.email.text;
-        UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
-        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
-        
-        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
-        
-        MMDrawerController * swipeController = [[MMDrawerController alloc]
-                                                initWithCenterViewController:currentScoreView
-                                                leftDrawerViewController:sideSwipeTableView
-                                                rightDrawerViewController:nil];
-        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
-        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-        
-        [self.navigationController pushViewController:swipeController animated:YES];
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            appDelegate.api_token = json_dictionary[@"API TOKEN"];
+            appDelegate.user_email = self.email.text;
+            
+            Constants* constants = [[Constants alloc] init];
+            NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:appDelegate.user_email];
+            postData = [[postData stringByAppendingString:@"&IsActive=1&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
+            postData = [postData stringByAppendingString:@"&DeviceToken="];
+            
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
+            [request setHTTPMethod:@"POST"];
+            [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            registerDeviceConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+            
+            UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+            SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+            
+            CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+            
+            MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                    initWithCenterViewController:currentScoreView
+                                                    leftDrawerViewController:sideSwipeTableView
+                                                    rightDrawerViewController:nil];
+            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+            [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            
+            [self.navigationController pushViewController:swipeController animated:YES];
+        }
+    } else if (connection == registerDeviceConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"Registered device");
+        }
     }
 }
 
@@ -83,11 +112,7 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    if (conn)
-    {
-        
-    }
+    signInConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
 - (IBAction)forgotPassword

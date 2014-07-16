@@ -21,9 +21,18 @@
 @property (nonatomic, retain) IBOutlet UIButton* cancelAccountButton;
 @property (nonatomic,retain) IBOutlet UIButton* editAccountButton;
 
+@property (nonatomic,retain) IBOutlet UISwitch* surveyAlerts;
+@property (nonatomic,retain) IBOutlet UISwitch* dailyTipAlerts;
+@property (nonatomic,retain) IBOutlet UIButton* rateAppLink;
+
 -(IBAction)editAccountFields;
 -(IBAction)saveAccountFields;
 -(IBAction)cancelAccountFields;
+
+-(IBAction)toggleSurveyAlerts:(id)sender;
+-(IBAction)toggleDailyTipAlerts:(id)sender;
+
+-(IBAction)openAppStore;
 
 -(IBAction)signOut;
 

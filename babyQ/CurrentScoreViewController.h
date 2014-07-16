@@ -42,6 +42,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 @property (nonatomic, retain) IBOutlet UITextView* dailyTip;
 @property (nonatomic, retain) NSDictionary* currentScoreData;
+@property (nonatomic, retain) NSMutableData* todosData;
 @property (nonatomic, retain) NSArray* todosArray;
 
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;

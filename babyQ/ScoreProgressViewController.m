@@ -14,7 +14,7 @@
 
 @implementation ScoreProgressViewController
 
-@synthesize scrollView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosArray,completedTodosButton,dailyTip,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,todosDueDate;
+@synthesize scrollView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,todosDueDate;
 
 NSURLConnection* getScoreHistoryConnection;
 NSURLConnection* toDosConnection;
@@ -46,6 +46,7 @@ NSURLConnection* setTodoCompletedConnection;
     [dailyTipRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     dailyTipConnection = [[NSURLConnection alloc] initWithRequest:dailyTipRequest delegate:self];
     
+    todosData = [[NSMutableData alloc] init];
     NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
     NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
     [toDosRequest setHTTPMethod:@"POST"];
@@ -97,7 +98,85 @@ NSURLConnection* setTodoCompletedConnection;
         
     } else if (connection == toDosConnection)
     {
+        [todosData appendData:data];
+        
+    } else if (connection == setTodoCompletedConnection)
+    {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        
+        NSDictionary* setCompletedResponse = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                             options: NSJSONReadingMutableContainers
+                                                                               error: nil];
+        if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSString* title = @"TO-DO COMPLETED!";
+            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
+            NSString* buttonTitle = @"OKAY, I GOT IT!";
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
+            alert.tag = 0;
+            [alert dismissWithClickedButtonIndex:0 animated:YES];
+            [alert show];
+            
+            for (UIView *subview in self.todosView.subviews) {
+                if (subview.tag < 10)
+                {
+                    [subview removeFromSuperview];
+                }
+            }
+            todosData = [[NSMutableData alloc] init];
+            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+            Constants* constants = [[Constants alloc] init];
+            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+            [toDosRequest setHTTPMethod:@"POST"];
+            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
+        }
+    }
+    
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    if (connection == getScoreHistoryConnection)
+    {
+        NSMutableArray* pastScores = [[NSMutableArray alloc] init];
+        NSString* json_response = [[NSString alloc] initWithData:scoreHistoryData encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        scoreHistoryArray = [NSJSONSerialization JSONObjectWithData: json_data
+                                                              options: NSJSONReadingMutableContainers
+                                                                error: nil];
+        
+        for (int i = 0; i < [scoreHistoryArray count]; i++)
+        {
+            [pastScores addObject:scoreHistoryArray[i][@"OverallScore"]];
+        }
+        
+        ScoreProgressGraphView* graphView = [[ScoreProgressGraphView alloc] initWithFrame:CGRectMake(52, 84, 248, 184)];
+        [graphView setContentSize:CGSizeMake(1200, 184)];
+        graphView.scrollEnabled = YES;
+        graphView.yValues = pastScores;
+        [graphView calc_info];
+        for (int i = 0; i < [graphView.circles count]; i++)
+        {
+            UIButton* pastScore = graphView.circles[i];
+            [pastScore addTarget:self action:@selector(clickedPastScore:) forControlEvents:UIControlEventTouchUpInside];
+            [graphView addSubview:pastScore];
+        }
+        [self clickedPastScore:graphView.circles[[graphView.circles count] -1]];
+        [self.scrollView addSubview:graphView];
+        
+    } else if (connection == toDosConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
         if ([json_response rangeOfString:@"ERROR"].location == NSNotFound)
         {
             NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
@@ -150,79 +229,6 @@ NSURLConnection* setTodoCompletedConnection;
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.todosView addSubview:todoLabel];
         }
-    } else if (connection == setTodoCompletedConnection)
-    {
-        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-        
-        NSDictionary* setCompletedResponse = [NSJSONSerialization JSONObjectWithData: json_data
-                                                                             options: NSJSONReadingMutableContainers
-                                                                               error: nil];
-        if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
-        {
-            NSString* title = @"TO-DO COMPLETED!";
-            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
-            NSString* buttonTitle = @"OKAY, I GOT IT!";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
-            alert.tag = 0;
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-            [alert show];
-            
-            for (UIView *subview in self.todosView.subviews) {
-                if (subview.tag < 10)
-                {
-                    [subview removeFromSuperview];
-                }
-            }
-            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-            Constants* constants = [[Constants alloc] init];
-            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
-            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
-            [toDosRequest setHTTPMethod:@"POST"];
-            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
-        }
-    }
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-    if (connection == getScoreHistoryConnection)
-    {
-        NSMutableArray* pastScores = [[NSMutableArray alloc] init];
-        NSString* json_response = [[NSString alloc] initWithData:scoreHistoryData encoding:NSUTF8StringEncoding];
-        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
-        scoreHistoryArray = [NSJSONSerialization JSONObjectWithData: json_data
-                                                              options: NSJSONReadingMutableContainers
-                                                                error: nil];
-        
-        for (int i = 0; i < [scoreHistoryArray count]; i++)
-        {
-            [pastScores addObject:scoreHistoryArray[i][@"OverallScore"]];
-        }
-        
-        ScoreProgressGraphView* graphView = [[ScoreProgressGraphView alloc] initWithFrame:CGRectMake(52, 84, 248, 184)];
-        [graphView setContentSize:CGSizeMake(1200, 184)];
-        graphView.scrollEnabled = YES;
-        graphView.yValues = pastScores;
-        [graphView calc_info];
-        for (int i = 0; i < [graphView.circles count]; i++)
-        {
-            UIButton* pastScore = graphView.circles[i];
-            [pastScore addTarget:self action:@selector(clickedPastScore:) forControlEvents:UIControlEventTouchUpInside];
-            [graphView addSubview:pastScore];
-        }
-        [self clickedPastScore:graphView.circles[[graphView.circles count] -1]];
-        [self.scrollView addSubview:graphView];
-        
     }
 }
 
