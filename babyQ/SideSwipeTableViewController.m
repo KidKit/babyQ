@@ -81,6 +81,7 @@
                                                     rightDrawerViewController:nil];
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
             break;
@@ -99,6 +100,7 @@
                                                     rightDrawerViewController:nil];
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
         }
@@ -118,6 +120,7 @@
                                                     rightDrawerViewController:nil];
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
         }
@@ -137,6 +140,7 @@
                                                     rightDrawerViewController:nil];
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
             break;
@@ -160,6 +164,7 @@
             
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
             
@@ -184,6 +189,7 @@
             
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
         }

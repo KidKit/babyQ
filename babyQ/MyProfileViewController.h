@@ -37,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UITextField* babyLengthField;
 
 -(IBAction)startSurvey;
+- (IBAction)openSideSwipeView;
 
 -(IBAction)getPhoto;
 -(IBAction)editAboutMeFields;

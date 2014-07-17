@@ -20,5 +20,6 @@
 
 -(IBAction) getCompletedTodos;
 -(IBAction)startSurvey;
+- (IBAction)openSideSwipeView;
 
 @end

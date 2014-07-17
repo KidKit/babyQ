@@ -99,6 +99,11 @@
     return [self viewControllerAtIndex:index];
 }
 
+- (IBAction)openSideSwipeView
+{
+    [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 - (IBAction)startSurvey
 {
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];

@@ -64,10 +64,11 @@ NSURLConnection* submitSurveyConnection;
             [request setHTTPMethod:@"POST"];
             [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
             getSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-            previousButton.hidden = YES;
             return;
         }
         
+        if ([question_number isEqualToString:@"1"])
+            previousButton.hidden = YES;
         nextButton.enabled = NO;
     
         float progress = ([question_number floatValue] - 1) / ([survey_json[@"ScoringQuestions"] count] + [survey_json[@"ExtraQuestions"] count]);
@@ -79,9 +80,10 @@ NSURLConnection* submitSurveyConnection;
         NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
         question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
-        
+        question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
         answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
+        answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         checkBoxOne.tag = 0;
         [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -96,17 +98,20 @@ NSURLConnection* submitSurveyConnection;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
             nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
             nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
+            nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:nextAnswer];
             
             UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
             answerChoice.font = [UIFont fontWithName:@"MyraidPro-Regular" size:12];
             answerChoice.text = [NSString stringWithFormat:@"%d.", i];
+            answerChoice.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            
             [self.scrollView addSubview:answerChoice];
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
             checkBox.tag = i-1;
-            [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
-            [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+            [checkBox setFrame:CGRectMake(265, 328+65*(i-1), 32, 32)];
+            [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:checkBox];
             
@@ -141,6 +146,7 @@ NSURLConnection* submitSurveyConnection;
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
         question.text = survey_json[@"ExtraQuestions"][question_key][@"Question"];
+        question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
@@ -152,6 +158,7 @@ NSURLConnection* submitSurveyConnection;
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
         answerOne.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"];
+        answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         checkBoxOne.tag = 0;
         [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -166,17 +173,19 @@ NSURLConnection* submitSurveyConnection;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
             nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
             nextAnswer.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"];
+            nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:nextAnswer];
             
             UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(20, 360 + 65*(i-1), 18, 18)];
             answerChoice.font = [UIFont fontWithName:@"MyraidPro-Regular" size:12];
             answerChoice.text = [NSString stringWithFormat:@"%d.", i];
+            answerChoice.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:answerChoice];
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
             checkBox.tag = i-1;
-            [checkBox setFrame:CGRectMake(269, 362+65*(i-1), 16, 16)];
-            [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+            [checkBox setFrame:CGRectMake(269, 358+65*(i-1), 32, 32)];
+            [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:checkBox];
             
@@ -205,6 +214,7 @@ NSURLConnection* submitSurveyConnection;
                                             rightDrawerViewController:nil];
     [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
     [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+    [swipeController setShowsShadow:NO];
     
     [self.navigationController pushViewController:swipeController animated:YES];
 }
@@ -241,8 +251,9 @@ NSURLConnection* submitSurveyConnection;
             [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
             NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
             question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
-            
+            question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
+            answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             checkBoxOne.tag = 0;
             [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -256,17 +267,19 @@ NSURLConnection* submitSurveyConnection;
                 nextAnswer.userInteractionEnabled = NO;
                 NSString* i_string = [NSString stringWithFormat:@"%i", i];
                 nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
+                nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.scrollView addSubview:nextAnswer];
                 
                 UILabel* answerChoice = [[UILabel alloc] initWithFrame:CGRectMake(26, 328 + 65*(i-1), 18, 18)];
                 answerChoice.text = [NSString stringWithFormat:@"%d.", i];
                 answerChoice.font = [UIFont fontWithName:@"Bebas" size:12];
+                answerChoice.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.scrollView addSubview:answerChoice];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i-1;
-                [checkBox setFrame:CGRectMake(265, 332+65*(i-1), 16, 16)];
-                [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                [checkBox setFrame:CGRectMake(265, 328+65*(i-1), 32, 32)];
+                [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
                 [self.scrollView addSubview:checkBox];
                 
@@ -300,7 +313,7 @@ NSURLConnection* submitSurveyConnection;
                 {
                     UIButton* button = (UIButton*) subview;
                     if (button.tag >= 0)
-                        [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                        [button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 }
             }
         }
@@ -309,18 +322,18 @@ NSURLConnection* submitSurveyConnection;
             if ([selected_extra_answers[question_key] containsObject:answer_ids[sender.tag]])
             {
                 [selected_extra_answers[question_key] removeObject:answer_ids[sender.tag]];
-                [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             }
             else
             {
                 [selected_extra_answers[question_key] addObject:answer_ids[sender.tag]];
-                [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
             }
         }
         else
         {
             selected_extra_answers[question_key] = answer_ids[sender.tag];
-            [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
         }
         nextButton.enabled = YES;
     }
@@ -332,11 +345,11 @@ NSURLConnection* submitSurveyConnection;
             {
                 UIButton* button = (UIButton*) subview;
                 if (button.tag >= 0)
-                    [button setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                    [button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             }
         }
         selected_answers[question_key] = answer_ids[sender.tag];
-        [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
         nextButton.enabled = YES;
     }
 }

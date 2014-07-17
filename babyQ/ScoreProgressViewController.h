@@ -41,6 +41,7 @@
 @property (nonatomic, retain) NSArray* todosArray;
 @property (nonatomic, retain) IBOutlet UIButton* completedTodosButton;
 
+- (IBAction)openSideSwipeView;
 -(IBAction) getCompletedTodos;
 - (IBAction)getTipHistory;
 - (IBAction)toggleTodosAndDaily:(id)sender;

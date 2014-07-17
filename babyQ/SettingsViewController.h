@@ -13,7 +13,7 @@
 
 @property (nonatomic, retain) IBOutlet UITableView* settingsTableView;
 
-
+- (IBAction)openSideSwipeView;
 -(IBAction)startSurvey;
 
 @end

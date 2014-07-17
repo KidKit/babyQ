@@ -75,6 +75,7 @@ NSURLConnection* signInConnection;
                                                     rightDrawerViewController:nil];
             [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
         }

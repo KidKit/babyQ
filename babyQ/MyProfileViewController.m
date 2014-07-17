@@ -237,6 +237,11 @@ NSURLConnection* setDeliveryConnection;
     
 }
 
+- (IBAction)openSideSwipeView
+{
+    [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;

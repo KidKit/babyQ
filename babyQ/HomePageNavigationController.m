@@ -32,7 +32,7 @@
                                                  rightDrawerViewController:nil];
         [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
-        
+        [swipeController setShowsShadow:NO];
         [self pushViewController:swipeController animated:NO];
     }
     else

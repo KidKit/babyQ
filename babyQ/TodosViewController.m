@@ -105,11 +105,12 @@ NSURLConnection* setTodoCompletedConnection;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 118 + 65*(i), 189, 59)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 120 + 65*(i), 189, 59)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
                 [self.view addSubview:nextTodo];
@@ -117,11 +118,12 @@ NSURLConnection* setTodoCompletedConnection;
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 65*(i), 18, 18)];
                 todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.view addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;
-                [checkBox setFrame:CGRectMake(276, 134+65*(i), 16, 16)];
+                [checkBox setFrame:CGRectMake(276, 130+65*(i), 32, 32)];
                 [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
                 [self.view addSubview:checkBox];
@@ -137,16 +139,22 @@ NSURLConnection* setTodoCompletedConnection;
             NSString* dateString = todosArray[0][@"DueDate"];
             NSDate* date = [dateFormatter dateFromString:dateString];
             [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-            todosDueDate.text = [NSString stringWithFormat:@"DUE %@", [dateFormatter stringFromDate:date]];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE: %@", [dateFormatter stringFromDate:date]];
         } else {
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 24)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Dos Completed.";
+            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.view addSubview:todoLabel];
         }
     }
+}
+
+- (IBAction)openSideSwipeView
+{
+    [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void) markTodoCompleted:(UIButton*)sender

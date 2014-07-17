@@ -20,6 +20,7 @@ NSURLConnection* getScoreHistoryConnection;
 NSURLConnection* toDosConnection;
 NSURLConnection* dailyTipConnection;
 NSURLConnection* setTodoCompletedConnection;
+UIButton* currentPresentedScore;
 
 - (void)viewDidLoad
 {
@@ -186,10 +187,11 @@ NSURLConnection* setTodoCompletedConnection;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 39 + 65*(i), 189, 54)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 42 + 65*(i), 189, 54)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
+                nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
@@ -198,11 +200,12 @@ NSURLConnection* setTodoCompletedConnection;
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
                 todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;
-                [checkBox setFrame:CGRectMake(247, 50+65*(i), 16, 16)];
+                [checkBox setFrame:CGRectMake(247, 46+65*(i), 32, 32)];
                 [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
                 [self.todosView addSubview:checkBox];
@@ -225,11 +228,17 @@ NSURLConnection* setTodoCompletedConnection;
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Dos Completed.";
+            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.todosView addSubview:todoLabel];
         }
     }
+}
+
+- (IBAction)openSideSwipeView
+{
+    [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void) clickedPastScore:(UIButton*)sender
@@ -239,6 +248,24 @@ NSURLConnection* setTodoCompletedConnection;
     exerciseScore.text = scoreHistoryArray[sender.tag][@"ExerciseScore"];
     nutritionScore.text = scoreHistoryArray[sender.tag][@"NutritionScore"];
     stressScore.text = scoreHistoryArray[sender.tag][@"StressScore"];
+    
+    UILabel* pastScore = [[UILabel alloc] initWithFrame:CGRectMake(6, 6, 20, 20)];
+    pastScore.font = [UIFont fontWithName:@"Bebas" size:10];
+    pastScore.text = scoreHistoryArray[sender.tag][@"OverallScore"];
+    pastScore.textColor = [UIColor whiteColor];
+    pastScore.textAlignment = NSTextAlignmentCenter;
+    pastScore.tag = 99;
+    [sender setFrame:CGRectMake(sender.frame.origin.x-8, sender.frame.origin.y-8, 32, 32)];
+    [sender addSubview:pastScore];
+    if (currentPresentedScore != nil)
+    {
+        for (UIView* view in currentPresentedScore.subviews) {
+            if (view.tag == 99)
+                [view removeFromSuperview];
+        }
+        [currentPresentedScore setFrame:CGRectMake(currentPresentedScore.frame.origin.x+8, currentPresentedScore.frame.origin.y+8, 16, 16)];
+    }
+    currentPresentedScore = sender;
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

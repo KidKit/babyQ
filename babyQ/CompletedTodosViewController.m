@@ -28,7 +28,7 @@ int page;
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DOS";
+    self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DO'S";
     
     page = 0;
     completedTodosData = [[NSMutableData alloc] init];
@@ -82,15 +82,17 @@ int page;
             nextTodo.backgroundColor = [UIColor clearColor];
             nextTodo.editable = NO;
             nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextTodo.textColor = [UIColor colorWithRed:171.0/255.0f green:166.0/255.0f blue:164.0/255.0f alpha:1.0f];
             nextTodo.textAlignment = NSTextAlignmentCenter;
             nextTodo.userInteractionEnabled = NO;
             if (completedTodosArray[i][@"Body"] != (id)[NSNull null])
                 nextTodo.text = completedTodosArray[i][@"Body"];
             [self.scrollView addSubview:nextTodo];
             
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 150*i, 114, 21)];
-            todoLabel.text = completedTodosArray[i][@"ToDoType"];
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 312 + 150*i, 114, 21)];
+            todoLabel.text = [completedTodosArray[i][@"ToDoType"] uppercaseString];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:17];
+            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:todoLabel];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -100,12 +102,12 @@ int page;
             {
                 NSDate* tipDate = [dateFormatter dateFromString:dateString];
                 [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-                UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 150*i, 112, 21)];
+                UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 334 + 150*i, 112, 21)];
                 dateLabel.text = [dateFormatter stringFromDate:tipDate];
-                dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+                dateLabel.textColor = [UIColor colorWithRed:227.0/255.0f green:95.0/255.0f blue:62.0/255.0f alpha:1.0f];
+                dateLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:17];
                 dateLabel.highlighted = NO;
-                dateLabel.enabled = NO;
-                dateLabel.textColor = [UIColor colorWithRed:227.0f/255.0f green:95.0f/255.0f blue:62.0f/255.0f alpha:1.0f];
+                dateLabel.enabled = YES;
                 [self.scrollView addSubview:dateLabel];
             }
         }

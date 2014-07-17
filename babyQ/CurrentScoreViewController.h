@@ -47,6 +47,7 @@
 
 @property (nonatomic, retain) IBOutlet UIView* dailyTipView;
 
+- (IBAction)openSideSwipeView;
 -(IBAction)startSurvey;
 -(IBAction) getCompletedTodos;
 -(IBAction)getTipHistory;

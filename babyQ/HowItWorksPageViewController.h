@@ -18,5 +18,6 @@
 @property (strong, nonatomic) NSArray* pageTexts;
 
 -(IBAction)startSurvey;
+- (IBAction)openSideSwipeView;
 
 @end

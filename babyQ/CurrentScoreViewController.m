@@ -339,11 +339,12 @@ CGRect scoreSliderFrame;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 39 + 65*(i), 189, 54)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 42 + 65*(i), 189, 54)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextTodo.tag = i;
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
@@ -351,13 +352,14 @@ CGRect scoreSliderFrame;
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
                 todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
+                todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 todoNumber.tag = i;
                 [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;
-                [checkBox setFrame:CGRectMake(247, 50+65*(i), 16, 16)];
+                [checkBox setFrame:CGRectMake(247, 46+65*(i), 32, 32)];
                 [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
                 [self.todosView addSubview:checkBox];
@@ -380,7 +382,8 @@ CGRect scoreSliderFrame;
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Dos Completed.";
+            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
             [self.todosView addSubview:todoLabel];
         }
@@ -390,6 +393,11 @@ CGRect scoreSliderFrame;
 - (void) viewWillAppear:(BOOL)animated
 {
     self.navigationController.navigationBarHidden = YES;
+}
+
+- (IBAction)openSideSwipeView
+{
+     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (IBAction)startSurvey
