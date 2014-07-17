@@ -180,35 +180,6 @@
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S6c-HR-wyw">
-                                <rect key="frame" x="0.0" y="20" width="320" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Im-1a-ScJ">
-                                <rect key="frame" x="276" y="30" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_survey_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startSurvey" destination="YUz-wV-fL8" eventType="touchUpInside" id="FQj-2W-1L6"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="06J-kk-71G">
-                                <rect key="frame" x="20" y="30" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_menu_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="openSideSwipeView" destination="YUz-wV-fL8" eventType="touchUpInside" id="uHM-Hx-fqc"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="kNe-92-hmN">
                                 <rect key="frame" x="64" y="949" width="192" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -333,12 +304,52 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IQA-Gi-3mh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURRENT SCORE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S6c-HR-wyw">
+                                <rect key="frame" x="0.0" y="20" width="320" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8Im-1a-ScJ">
+                                <rect key="frame" x="276" y="30" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_survey_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startSurvey" destination="YUz-wV-fL8" eventType="touchUpInside" id="FQj-2W-1L6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="06J-kk-71G">
+                                <rect key="frame" x="20" y="30" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_menu_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openSideSwipeView" destination="YUz-wV-fL8" eventType="touchUpInside" id="uHM-Hx-fqc"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="delegate" destination="YUz-wV-fL8" id="0sv-qD-LOm"/>
                         </connections>
                     </scrollView>
                     <navigationItem key="navigationItem" id="Hyv-wt-kqr"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1390"/>
                     <connections>
@@ -352,6 +363,9 @@
                         <outlet property="exerciseLabel" destination="Ecp-MQ-0zv" id="1sC-QJ-cK4"/>
                         <outlet property="exerciseScore" destination="I0A-dV-AFF" id="bXC-DZ-TJ8"/>
                         <outlet property="goodWorkLabel" destination="UwI-xS-ohH" id="1oQ-dT-rDr"/>
+                        <outlet property="headerButton1" destination="06J-kk-71G" id="hyg-OW-yHr"/>
+                        <outlet property="headerButton2" destination="8Im-1a-ScJ" id="5JQ-K2-WdL"/>
+                        <outlet property="headerLabel" destination="S6c-HR-wyw" id="kBq-iV-HbS"/>
                         <outlet property="lifestyleLabel" destination="ZfG-Pq-qF8" id="lUe-Sa-nzC"/>
                         <outlet property="lifestyleScore" destination="Ggm-z6-aLi" id="5ev-G4-dCD"/>
                         <outlet property="nutritionLabel" destination="pF2-M1-W9h" id="qTx-He-SrD"/>
@@ -360,6 +374,7 @@
                         <outlet property="scrollDownLabel" destination="wtK-DF-ash" id="X71-ZZ-2pe"/>
                         <outlet property="scrollView" destination="Byi-Dh-nJt" id="f9h-oF-Dqd"/>
                         <outlet property="smallTotalLabel" destination="ysw-al-erj" id="5DO-cq-riZ"/>
+                        <outlet property="statusBarWhiteBG" destination="IQA-Gi-3mh" id="cCZ-00-Hhj"/>
                         <outlet property="stressLabel" destination="MtY-Iy-taz" id="GGv-5d-oHP"/>
                         <outlet property="stressScore" destination="bGG-Zh-Wdz" id="gqZ-co-una"/>
                         <outlet property="tipHistoryButton" destination="jKi-dp-7bS" id="AvV-dt-Zmp"/>
@@ -378,7 +393,7 @@
                 </imageView>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t1R-As-EGQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="652" y="63"/>
+            <point key="canvasLocation" x="574" y="53"/>
         </scene>
         <!--Side Swipe Table View Controller-->
         <scene sceneID="HWM-gh-dM6">

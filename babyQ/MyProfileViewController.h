@@ -13,6 +13,11 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
+@property (nonatomic, retain) IBOutlet UILabel* headerLabel;
+@property (nonatomic, retain) IBOutlet UILabel* statusBarWhiteBG;
+@property (nonatomic, retain) IBOutlet UIButton* headerButton1;
+@property (nonatomic, retain) IBOutlet UIButton* headerButton2;
+
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
 @property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;

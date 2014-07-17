@@ -113,7 +113,8 @@ int page;
         }
     } else {
         UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 319, 120, 21)];
-        tipLabel.text = @"No tip history.";
+        tipLabel.text = @"No tip history";
+        tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         tipLabel.textAlignment = NSTextAlignmentCenter;
         tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
         [self.scrollView addSubview:tipLabel];

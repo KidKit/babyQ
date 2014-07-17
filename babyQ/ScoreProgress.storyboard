@@ -12,37 +12,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE PROGRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BXp-0i-Eyf">
-                                <rect key="frame" x="0.0" y="20" width="320" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6te-CF-b1u">
-                                <rect key="frame" x="276" y="30" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_survey_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="startSurvey" destination="W68-iS-Tv3" eventType="touchUpInside" id="lio-iL-NZ2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oz4-Jx-5Ro">
-                                <rect key="frame" x="20" y="30" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_menu_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="openSideSwipeView" destination="W68-iS-Tv3" eventType="touchUpInside" id="4ZX-EU-z8U"/>
-                                </connections>
-                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_green_background.png" id="zHM-pB-qsX">
-                                <rect key="frame" x="0.0" y="62" width="320" height="277"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="269"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Xp0-g3-Dsn">
@@ -146,25 +117,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kxP-u3-9UK">
-                                <rect key="frame" x="39" y="585" width="32" height="21"/>
+                                <rect key="frame" x="36" y="585" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SC-oy-awF">
-                                <rect key="frame" x="114" y="585" width="32" height="21"/>
+                                <rect key="frame" x="111" y="585" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pCx-FH-Pmz">
-                                <rect key="frame" x="187" y="585" width="32" height="21"/>
+                                <rect key="frame" x="184" y="585" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TRj-nr-gFg">
-                                <rect key="frame" x="257" y="585" width="32" height="21"/>
+                                <rect key="frame" x="254" y="585" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="highlightedColor"/>
@@ -264,7 +235,48 @@
                                     <action selector="toggleTodosAndDaily:" destination="W68-iS-Tv3" eventType="valueChanged" id="zjn-Rm-zHe"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="stJ-Fo-uq7">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE PROGRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BXp-0i-Eyf">
+                                <rect key="frame" x="0.0" y="20" width="320" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6te-CF-b1u">
+                                <rect key="frame" x="276" y="30" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_survey_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="startSurvey" destination="W68-iS-Tv3" eventType="touchUpInside" id="lio-iL-NZ2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oz4-Jx-5Ro">
+                                <rect key="frame" x="20" y="30" width="24" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" image="babyq_menu_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="openSideSwipeView" destination="W68-iS-Tv3" eventType="touchUpInside" id="4ZX-EU-z8U"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <connections>
+                            <outlet property="delegate" destination="W68-iS-Tv3" id="E23-kZ-Nc2"/>
+                        </connections>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1500"/>
@@ -277,6 +289,9 @@
                         <outlet property="exerciseLabel" destination="Gbt-Uf-wKk" id="X3q-JE-1L0"/>
                         <outlet property="exerciseScore" destination="1SC-oy-awF" id="1MJ-fB-p8z"/>
                         <outlet property="goodWorkLabel" destination="QL9-Ym-t6o" id="T1c-GQ-DBw"/>
+                        <outlet property="headerButton1" destination="oz4-Jx-5Ro" id="JyV-un-ECA"/>
+                        <outlet property="headerButton2" destination="6te-CF-b1u" id="qv1-We-ryn"/>
+                        <outlet property="headerLabel" destination="BXp-0i-Eyf" id="8qe-oF-tbt"/>
                         <outlet property="lifestyleLabel" destination="ePR-O7-Gog" id="e6g-Jl-Y8X"/>
                         <outlet property="lifestyleScore" destination="kxP-u3-9UK" id="rA9-47-hLe"/>
                         <outlet property="nutritionLabel" destination="wO3-Bh-lmL" id="GZW-ST-KyE"/>
@@ -284,6 +299,7 @@
                         <outlet property="scoreDate" destination="zoW-5N-ed6" id="PXW-Gv-0rj"/>
                         <outlet property="scoreLabel" destination="ZC7-1s-vyx" id="b4q-9A-oUY"/>
                         <outlet property="scrollView" destination="INf-Lp-rFm" id="NAO-Ae-coL"/>
+                        <outlet property="statusBarWhiteBG" destination="stJ-Fo-uq7" id="EXN-xf-dMz"/>
                         <outlet property="stressLabel" destination="kCJ-0g-LeD" id="KI6-gc-IYA"/>
                         <outlet property="stressScore" destination="TRj-nr-gFg" id="dD2-HM-TrJ"/>
                         <outlet property="tipHistoryButton" destination="5LH-Gg-IAi" id="6uw-RC-3DN"/>

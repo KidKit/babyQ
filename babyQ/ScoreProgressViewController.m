@@ -14,7 +14,7 @@
 
 @implementation ScoreProgressViewController
 
-@synthesize scrollView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,todosDueDate;
+@synthesize scrollView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,todosDueDate;
 
 NSURLConnection* getScoreHistoryConnection;
 NSURLConnection* toDosConnection;
@@ -174,6 +174,10 @@ UIButton* currentPresentedScore;
         }
         [self clickedPastScore:graphView.circles[[graphView.circles count] -1]];
         [self.scrollView addSubview:graphView];
+        [self.scrollView bringSubviewToFront:headerLabel];
+        [self.scrollView bringSubviewToFront:headerButton1];
+        [self.scrollView bringSubviewToFront:headerButton2];
+        [self.scrollView bringSubviewToFront:statusBarWhiteBG];
         
     } else if (connection == toDosConnection)
     {
@@ -239,6 +243,34 @@ UIButton* currentPresentedScore;
 - (IBAction)openSideSwipeView
 {
     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self updateFloatingViewFrame];
+}
+
+- (void)updateFloatingViewFrame {
+    CGPoint contentOffset = scrollView.contentOffset;
+    
+    // The floating view should be at its original position or at top of
+    // the visible area, whichever is lower.
+    CGFloat labelY = contentOffset.y + 20;
+    CGFloat buttonY = contentOffset.y + 30;
+    
+    CGRect labelFrame = headerLabel.frame;
+    CGRect button1Frame = headerButton1.frame;
+    CGRect button2Frame = headerButton2.frame;
+    CGRect statusBGFrame = statusBarWhiteBG.frame;
+    if (labelY != labelFrame.origin.y) {
+        labelFrame.origin.y = labelY;
+        button1Frame.origin.y = buttonY;
+        button2Frame.origin.y = buttonY;
+        statusBGFrame.origin.y = contentOffset.y;
+        statusBarWhiteBG.frame = statusBGFrame;
+        headerLabel.frame = labelFrame;
+        headerButton1.frame = button1Frame;
+        headerButton2.frame = button2Frame;
+    }
 }
 
 - (void) clickedPastScore:(UIButton*)sender
