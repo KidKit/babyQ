@@ -45,7 +45,7 @@ int page;
 {
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DO'S";
 }
 
