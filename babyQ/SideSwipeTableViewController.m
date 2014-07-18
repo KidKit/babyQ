@@ -79,7 +79,6 @@
                                                     initWithCenterViewController:currentScoreView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -98,7 +97,6 @@
                                                     initWithCenterViewController:scoreProgressView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -118,7 +116,6 @@
                                                     
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -138,7 +135,6 @@
                                                     
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -162,7 +158,6 @@
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
             
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -187,7 +182,6 @@
                                leftDrawerViewController:sideSwipeTableView
                                rightDrawerViewController:nil];
             
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             

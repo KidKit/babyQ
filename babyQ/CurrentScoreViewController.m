@@ -226,7 +226,7 @@ CGRect scoreSliderFrame;
             self.totalScoreSmall.text = currentScoreData[@"OverallScore"];
             self.lifestyleScore.text = currentScoreData[@"LifestyleScore"];
             self.exerciseScore.text = currentScoreData[@"ExerciseScore"];
-            self.nutritionScore.text = currentScoreData[@"StressScore"];
+            self.nutritionScore.text = currentScoreData[@"NutritionScore"];
             self.stressScore.text = currentScoreData[@"StressScore"];
             self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
             int delta = [currentScoreData[@"OverallDelta"] intValue];

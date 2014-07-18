@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -32,6 +32,8 @@ NSURLConnection* setDeliveryConnection;
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     
     if ([fb_pic length] > 0)
     {

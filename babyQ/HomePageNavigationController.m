@@ -30,7 +30,7 @@
                                                  initWithCenterViewController:currentScoreView
                                                  leftDrawerViewController:sideSwipeTableView
                                                  rightDrawerViewController:nil];
-        [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+        //[swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
         [swipeController setShowsShadow:NO];
         [self pushViewController:swipeController animated:NO];

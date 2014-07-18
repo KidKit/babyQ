@@ -18,6 +18,16 @@
 @property (nonatomic, retain) IBOutlet UIButton* headerButton1;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton2;
 
+@property (nonatomic, retain) IBOutlet UILabel* nameLabel;
+@property (nonatomic, retain) IBOutlet UILabel* birthdayLabel;
+@property (nonatomic, retain) IBOutlet UILabel* zipCodeLabel;
+@property (nonatomic, retain) IBOutlet UILabel* isPregnantLabel;
+@property (nonatomic, retain) IBOutlet UILabel* dueDateLabel;
+@property (nonatomic, retain) IBOutlet UILabel* wasDeliveredLabel;
+@property (nonatomic, retain) IBOutlet UILabel* deliveredDateLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyWeightLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyLengthLabel;
+
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
 @property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;

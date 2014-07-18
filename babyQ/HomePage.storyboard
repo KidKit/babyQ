@@ -45,7 +45,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="rgm-FJ-y9w">
-                                <rect key="frame" x="0.0" y="453" width="320" height="940"/>
+                                <rect key="frame" x="0.0" y="453" width="320" height="1140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_menu_currentscore_icon.png" id="e9b-O7-jO5">

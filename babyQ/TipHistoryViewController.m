@@ -25,10 +25,6 @@ int page;
     [super viewDidLoad];
     page = 0;
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"TIP HISTORY";
     
     tipsData = [[NSMutableData alloc] init];
     tipsArray = [[NSArray alloc] init];
@@ -42,6 +38,14 @@ int page;
     [tipHistoryRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getTipsConnection = [[NSURLConnection alloc] initWithRequest:tipHistoryRequest delegate:self];
 
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.topItem.title = @"TIP HISTORY";
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
