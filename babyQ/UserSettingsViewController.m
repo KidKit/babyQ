@@ -27,10 +27,6 @@ NSURLConnection* setDeviceInactiveConnection;
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(320, 651)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"SETTINGS";
     
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     if ([fb_pic length] > 0)
@@ -80,6 +76,14 @@ NSURLConnection* setDeviceInactiveConnection;
     saveAccountButton.hidden = YES;
     cancelAccountButton.hidden = YES;
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.topItem.title = @"SETTINGS";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

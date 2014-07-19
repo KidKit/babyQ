@@ -14,6 +14,7 @@
 
 @interface LandingPageViewController : UIViewController
 
+-(IBAction)pushSignInJoinScreen;
 - (IBAction)loginWithFacebook:(id)sender;
 - (IBAction)signIn:(id)sender;
 - (IBAction)join:(id)sender;

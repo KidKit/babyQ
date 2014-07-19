@@ -25,10 +25,6 @@ int page;
     [super viewDidLoad];
     [self.scrollView setContentSize:CGSizeMake(320, 568)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    self.navigationController.navigationBarHidden = NO;
-    self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DO'S";
     
     page = 0;
     completedTodosData = [[NSMutableData alloc] init];
@@ -43,6 +39,14 @@ int page;
     [completedTodosRequest setHTTPMethod:@"POST"];
     [completedTodosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getCompletedTodosConnection = [[NSURLConnection alloc] initWithRequest:completedTodosRequest delegate:self];
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.navigationBar.backItem.title = @"";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DO'S";
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
@@ -70,8 +74,8 @@ int page;
                                                       error: nil];
         completedTodosArray = [completedTodosArray arrayByAddingObjectsFromArray:todos];
         
-        [self.scrollView setContentSize:CGSizeMake(320, 568 + 185*([completedTodosArray count]-1))];
-        [self.background setFrame:CGRectMake(0, 0, 320, 568 + 185*([completedTodosArray count]-1))];
+        [self.scrollView setContentSize:CGSizeMake(320, 568 + 150*([completedTodosArray count]-1))];
+        [self.background setFrame:CGRectMake(0, 0, 320, 768 + 150*([completedTodosArray count]-1))];
         for (int i = 0+7*page; i < [completedTodosArray count]; i++)
         {
             UIImageView* toDoImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+150*i, 32, 32)];

@@ -23,8 +23,9 @@ NSURLConnection* signInConnection;
     [super viewDidLoad];
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"SIGN IN";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationItem.title = @"SIGN IN";
     
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
@@ -73,7 +74,6 @@ NSURLConnection* signInConnection;
                                                     initWithCenterViewController:currentScoreView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             

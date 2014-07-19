@@ -26,7 +26,15 @@ NSURLConnection* registerDeviceConnection;
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    self.navigationController.navigationBarHidden = YES;
+    if ([self.restorationIdentifier isEqualToString:@"SignInJoin"])
+    {
+        self.navigationController.navigationBarHidden = NO;
+        self.navigationController.navigationBar.backItem.title = @"";
+        self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+        self.navigationController.navigationBar.topItem.title = @"SIGN IN OR JOIN";
+    }
+    else
+        self.navigationController.navigationBarHidden = YES;
 }
 
 - (IBAction)loginWithFacebook:(id)sender
@@ -130,7 +138,6 @@ NSURLConnection* registerDeviceConnection;
                                                         initWithCenterViewController:currentScoreView
                                                         leftDrawerViewController:sideSwipeTableView
                                                         rightDrawerViewController:nil];
-                [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
                 [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
                 [swipeController setShowsShadow:NO];
                 [self.navigationController pushViewController:swipeController animated:YES];
@@ -158,6 +165,12 @@ NSURLConnection* registerDeviceConnection;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     
+}
+
+- (IBAction)pushSignInJoinScreen
+{
+    LandingPageViewController* signInJoin = [self.storyboard instantiateViewControllerWithIdentifier:@"SignInJoin"];
+    [self.navigationController pushViewController:signInJoin animated:YES];
 }
 
 - (IBAction)signIn:(id)sender

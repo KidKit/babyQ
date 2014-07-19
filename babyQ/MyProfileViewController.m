@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -32,6 +32,8 @@ NSURLConnection* setDeliveryConnection;
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     
     if ([fb_pic length] > 0)
     {
@@ -240,6 +242,34 @@ NSURLConnection* setDeliveryConnection;
 - (IBAction)openSideSwipeView
 {
     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self updateFloatingViewFrame];
+}
+
+- (void)updateFloatingViewFrame {
+    CGPoint contentOffset = scrollView.contentOffset;
+    
+    // The floating view should be at its original position or at top of
+    // the visible area, whichever is lower.
+    CGFloat labelY = contentOffset.y + 20;
+    CGFloat buttonY = contentOffset.y + 30;
+    
+    CGRect labelFrame = headerLabel.frame;
+    CGRect button1Frame = headerButton1.frame;
+    CGRect button2Frame = headerButton2.frame;
+    CGRect statusBGFrame = statusBarWhiteBG.frame;
+    if (labelY != labelFrame.origin.y) {
+        labelFrame.origin.y = labelY;
+        button1Frame.origin.y = buttonY;
+        button2Frame.origin.y = buttonY;
+        statusBGFrame.origin.y = contentOffset.y;
+        statusBarWhiteBG.frame = statusBGFrame;
+        headerLabel.frame = labelFrame;
+        headerButton1.frame = button1Frame;
+        headerButton2.frame = button2Frame;
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

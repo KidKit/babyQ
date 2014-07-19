@@ -295,7 +295,6 @@ NSURLConnection* registerDeviceConnection;
                                                     initWithCenterViewController:currentScoreView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -322,8 +321,9 @@ NSURLConnection* registerDeviceConnection;
 {
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    self.navigationController.navigationBar.topItem.title = @"JOIN";
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    self.navigationController.navigationBar.topItem.title = @"";
+    self.navigationItem.title = @"JOIN";
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

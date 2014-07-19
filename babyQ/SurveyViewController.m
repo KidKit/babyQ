@@ -38,7 +38,7 @@ NSURLConnection* submitSurveyConnection;
     
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     
     UIButton *backButtonInternal = [[UIButton alloc] initWithFrame:CGRectMake(0,0,24,24)];
     [backButtonInternal setBackgroundImage:[UIImage imageNamed:@"babyq_survey_x.png"] forState:UIControlStateNormal];
@@ -53,6 +53,10 @@ NSURLConnection* submitSurveyConnection;
         answer_ids = [[NSMutableArray alloc] init];
         questionNumber.text = [NSString stringWithFormat:@"Q%@", question_number];
         answerNumber.text = [NSString stringWithFormat:@"A%@", question_number];
+        if ([question_number isEqualToString:@"1"])
+            previousButton.hidden = YES;
+        nextButton.enabled = NO;
+        
         if (survey_json == nil)
         {   survey_data = [[NSMutableData alloc] init];
             NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
@@ -66,10 +70,6 @@ NSURLConnection* submitSurveyConnection;
             getSurveyConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
             return;
         }
-        
-        if ([question_number isEqualToString:@"1"])
-            previousButton.hidden = YES;
-        nextButton.enabled = NO;
     
         float progress = ([question_number floatValue] - 1) / ([survey_json[@"ScoringQuestions"] count] + [survey_json[@"ExtraQuestions"] count]);
         progressView.progress = progress;
@@ -212,7 +212,6 @@ NSURLConnection* submitSurveyConnection;
                                             initWithCenterViewController:currentScoreView
                                             leftDrawerViewController:sideSwipeTableView
                                             rightDrawerViewController:nil];
-    [swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
     [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
     [swipeController setShowsShadow:NO];
     
