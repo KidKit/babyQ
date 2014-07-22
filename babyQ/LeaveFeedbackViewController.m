@@ -37,6 +37,10 @@
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     self.navigationController.navigationBar.topItem.title = @"LEAVE FEEDBACK";
+    self.navigationController.navigationBar.topItem.rightBarButtonItem = sendFeedbackButton;
+    
+    [sendFeedbackButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"MyriadPro-Semibold" size:14.0]} forState:UIControlStateNormal];
+    sendFeedbackButton.title = @"SUBMIT";
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -47,13 +51,11 @@
 - (void) keyboardDidShow:(NSNotification *) notif
 {
     [feedbackTextView setFrame:CGRectMake(feedbackTextView.frame.origin.x, feedbackTextView.frame.origin.y, feedbackTextView.frame.size.width, feedbackTextView.frame.size.height - 200)];
-    [sendFeedbackButton setFrame:CGRectMake(sendFeedbackButton.frame.origin.x, sendFeedbackButton.frame.origin.y - 200, sendFeedbackButton.frame.size.width, sendFeedbackButton.frame.size.height)];
 }
 
 - (void)keyboardDidHide: (NSNotification *) notif
 {
     [feedbackTextView setFrame:CGRectMake(feedbackTextView.frame.origin.x, feedbackTextView.frame.origin.y, feedbackTextView.frame.size.width, feedbackTextView.frame.size.height + 200)];
-    [sendFeedbackButton setFrame:CGRectMake(sendFeedbackButton.frame.origin.x, sendFeedbackButton.frame.origin.y, sendFeedbackButton.frame.size.width, sendFeedbackButton.frame.size.height + 200)];
 }
 
 - (IBAction)sendFeedback

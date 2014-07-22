@@ -20,13 +20,14 @@
 @property (nonatomic, retain) IBOutlet UIImageView* profilePicture;
 @property (nonatomic, retain) IBOutlet UIButton* saveAccountButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelAccountButton;
-@property (nonatomic,retain) IBOutlet UIButton* editAccountButton;
 
+@property (nonatomic, retain) IBOutlet UILabel* alertsHeader;
+@property (nonatomic, retain) IBOutlet UILabel* surveyAlertsLabel;
+@property (nonatomic, retain) IBOutlet UILabel* dailyTipAlertsLabel;
 @property (nonatomic,retain) IBOutlet UISwitch* surveyAlerts;
 @property (nonatomic,retain) IBOutlet UISwitch* dailyTipAlerts;
 @property (nonatomic,retain) IBOutlet UIButton* rateAppLink;
 
--(IBAction)editAccountFields;
 -(IBAction)saveAccountFields;
 -(IBAction)cancelAccountFields;
 

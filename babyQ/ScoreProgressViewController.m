@@ -111,33 +111,29 @@ UIButton* currentPresentedScore;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            NSString* title = @"TO-DO COMPLETED!";
-            NSString* message = @"Congrats! You've just taken another step closer to improving your babyQ. Keep it up!";
-            NSString* buttonTitle = @"OKAY, I GOT IT!";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:message delegate:self cancelButtonTitle:buttonTitle otherButtonTitles:nil];
-            alert.tag = 0;
-            [alert dismissWithClickedButtonIndex:0 animated:YES];
-            [alert show];
-            
-            for (UIView *subview in self.todosView.subviews) {
-                if (subview.tag < 10)
-                {
-                    [subview removeFromSuperview];
-                }
-            }
-            todosData = [[NSMutableData alloc] init];
-            NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
-            NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-            Constants* constants = [[Constants alloc] init];
-            NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
-            NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-            NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
-            [toDosRequest setHTTPMethod:@"POST"];
-            [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-            toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
+            [self performSelector:@selector(refreshTodosView) withObject:nil afterDelay:1.0];
         }
     }
-    
+}
+
+- (void) refreshTodosView
+{
+    for (UIView *subview in self.todosView.subviews) {
+        if (subview.tag < 10)
+        {
+            [subview removeFromSuperview];
+        }
+    }
+    todosData = [[NSMutableData alloc] init];
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    NSString* toDosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_CURRENT_TODOS_PATH];
+    NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+    NSMutableURLRequest *toDosRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:toDosURL]];
+    [toDosRequest setHTTPMethod:@"POST"];
+    [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+    toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -203,7 +199,7 @@ UIButton* currentPresentedScore;
                 [self.todosView addSubview:nextTodo];
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
-                todoNumber.text = [NSString stringWithFormat:@"%d.", i+1];
+                todoNumber.text = @"\u2022";
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.todosView addSubview:todoNumber];

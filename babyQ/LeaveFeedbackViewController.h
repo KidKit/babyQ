@@ -13,7 +13,7 @@
 @interface LeaveFeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate>
 
 @property (nonatomic,retain) IBOutlet UITextView* feedbackTextView;
-@property (nonatomic,retain) IBOutlet UIButton* sendFeedbackButton;
+@property (nonatomic,retain) IBOutlet UIBarButtonItem* sendFeedbackButton;
 @property (nonatomic,retain) IBOutlet UITabBar* tabBar;
 
 - (IBAction)sendFeedback;

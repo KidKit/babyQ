@@ -249,29 +249,28 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.74999999999999978" contentMode="scaleToFill" text="Questions/Comments" id="JmO-Jz-3lu">
-                                <rect key="frame" x="10" y="227" width="300" height="285"/>
+                                <rect key="frame" x="10" y="227" width="300" height="321"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bmM-Ay-jEv">
-                                <rect key="frame" x="101" y="520" width="118" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Send Feedback">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="sendFeedback" destination="nNU-8L-10w" eventType="touchUpInside" id="0l3-37-qUD"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="SUBMIT" id="b7X-8f-3x4">
+                            <color key="tintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="sendFeedback" destination="nNU-8L-10w" id="64X-3O-cOo"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="2JG-NA-CuW"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="feedbackTextView" destination="JmO-Jz-3lu" id="C60-lH-nnU"/>
-                        <outlet property="sendFeedbackButton" destination="bmM-Ay-jEv" id="hZR-xN-rFo"/>
+                        <outlet property="sendFeedbackButton" destination="b7X-8f-3x4" id="vkU-V5-IqW"/>
                         <outlet property="tabBar" destination="ntN-gn-87R" id="4FB-W1-LAc"/>
                     </connections>
                 </viewController>
@@ -379,7 +378,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="12q-FH-9bi">
-                                <rect key="frame" x="20" y="379" width="280" height="206"/>
+                                <rect key="frame" x="20" y="379" width="280" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_popup_divider.png" id="JdX-05-sdn">
@@ -404,16 +403,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="5wI-iB-VQ8">
-                                <rect key="frame" x="247" y="86" width="42" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_edit_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editAccountFields" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="6qO-FN-Rsl"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Retake the Survey every 2 weeks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xjo-9l-n5e">
                                 <rect key="frame" x="32" y="430" width="214" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -437,7 +426,7 @@
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="drQ-4b-5KZ">
-                                <rect key="frame" x="241" y="459" width="51" height="31"/>
+                                <rect key="frame" x="241" y="462" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -445,7 +434,7 @@
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="197-FT-Ws0">
-                                <rect key="frame" x="20" y="607" width="285" height="46"/>
+                                <rect key="frame" x="20" y="570" width="285" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="babyq_signout_button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -455,7 +444,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jiv-ST-EXz">
-                                <rect key="frame" x="70" y="520" width="178" height="30"/>
+                                <rect key="frame" x="70" y="506" width="178" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Rate BabyQ in the App Store">
@@ -472,9 +461,10 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="720"/>
                     <connections>
+                        <outlet property="alertsHeader" destination="Rdt-CG-hpb" id="W1b-gg-yd8"/>
                         <outlet property="cancelAccountButton" destination="wYP-HH-cv2" id="0HW-jy-hlb"/>
                         <outlet property="dailyTipAlerts" destination="drQ-4b-5KZ" id="kgW-Bt-bTN"/>
-                        <outlet property="editAccountButton" destination="5wI-iB-VQ8" id="lMo-rB-pwV"/>
+                        <outlet property="dailyTipAlertsLabel" destination="LYc-mH-nxb" id="0Rg-7x-mxv"/>
                         <outlet property="email" destination="kFn-EQ-9ft" id="ocl-E2-jPs"/>
                         <outlet property="password" destination="E3b-tB-EM3" id="12r-WA-t1N"/>
                         <outlet property="profilePicture" destination="0bF-re-8La" id="uaF-Ob-uT7"/>
@@ -482,6 +472,7 @@
                         <outlet property="saveAccountButton" destination="DR3-2K-Bjw" id="h4Z-2U-AZw"/>
                         <outlet property="scrollView" destination="1Mu-uP-Cc8" id="BZ2-1C-6vi"/>
                         <outlet property="surveyAlerts" destination="fwO-oD-38D" id="xcV-3T-WhD"/>
+                        <outlet property="surveyAlertsLabel" destination="xjo-9l-n5e" id="7Uw-v9-1Yh"/>
                         <outlet property="theNewPassword" destination="9Dy-aM-p3d" id="esk-0s-B73"/>
                     </connections>
                 </viewController>
@@ -493,7 +484,6 @@
     <resources>
         <image name="babyq_blog_button.png" width="486" height="105"/>
         <image name="babyq_currentscore_total_background.png" width="640" height="445"/>
-        <image name="babyq_edit_icon.png" width="81" height="22"/>
         <image name="babyq_facebook_icon.png" width="92" height="91"/>
         <image name="babyq_feedback_avatar.png" width="186" height="186"/>
         <image name="babyq_green_background.png" width="640" height="4500"/>

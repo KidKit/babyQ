@@ -14,7 +14,7 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,email,password,theNewPassword,saveAccountButton,cancelAccountButton,editAccountButton,surveyAlerts,dailyTipAlerts,rateAppLink;
+@synthesize scrollView,profilePicture,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
 
 NSString* prevEmail;
 NSString* prevPassword;
@@ -27,7 +27,7 @@ NSURLConnection* changePasswordConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 690)];
+    [self.scrollView setContentSize:CGSizeMake(320, 650)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
@@ -77,9 +77,17 @@ NSURLConnection* changePasswordConnection;
     password.delegate = self;
     theNewPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     theNewPassword.delegate = self;
-    rateAppLink.titleLabel.font = [UIFont fontWithName:@"Bebas" size:13];
-    saveAccountButton.hidden = YES;
-    cancelAccountButton.hidden = YES;
+    
+    surveyAlerts.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    dailyTipAlerts.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    
+    alertsHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    surveyAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    dailyTipAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    rateAppLink.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    
+    prevEmail = email.text;
+    prevPassword = password.text;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -106,18 +114,6 @@ NSURLConnection* changePasswordConnection;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
-}
-
--(IBAction)editAccountFields
-{
-    prevEmail = email.text;
-    prevPassword = password.text;
-    email.userInteractionEnabled = YES;
-    password.userInteractionEnabled = YES;
-    theNewPassword.userInteractionEnabled = YES;
-    editAccountButton.enabled = NO;
-    saveAccountButton.hidden = NO;
-    cancelAccountButton.hidden = NO;
 }
 
 -(IBAction)saveAccountFields
@@ -150,23 +146,12 @@ NSURLConnection* changePasswordConnection;
         [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
         changePasswordConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
     }
-    email.userInteractionEnabled = NO;
-    password.userInteractionEnabled = NO;
-    theNewPassword.userInteractionEnabled = NO;
-    editAccountButton.enabled = YES;
-    saveAccountButton.hidden = YES;
-    cancelAccountButton.hidden = YES;
 }
 
 -(IBAction)cancelAccountFields
 {
     email.text = prevEmail;
     password.text = prevPassword;
-    email.userInteractionEnabled = NO;
-    password.userInteractionEnabled = NO;
-    editAccountButton.enabled = YES;
-    saveAccountButton.hidden = YES;
-    cancelAccountButton.hidden = YES;
 }
 
 -(IBAction)openAppStore
@@ -263,7 +248,7 @@ NSURLConnection* changePasswordConnection;
                                                                           error: nil];
         if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
-            NSLog(@"email updated");
+            prevEmail = email.text;
         }
     }else if (connection == changePasswordConnection)
     {
@@ -274,7 +259,7 @@ NSURLConnection* changePasswordConnection;
                                                                           error: nil];
         if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
-            NSLog(@"password updated");
+            prevPassword = password.text;
         }
     }
 }

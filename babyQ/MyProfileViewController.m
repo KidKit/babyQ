@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,editAboutMeButton,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,editPregnantButton,savePregnantButton,cancelPregnantButton,editDeliveryButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -22,6 +22,16 @@ NSURLConnection* getPregnantConnection;
 NSURLConnection* setPregnantConnection;
 NSURLConnection* getDeliveryConnection;
 NSURLConnection* setDeliveryConnection;
+
+NSString* prevName;
+NSString* prevBirthdate;
+NSString* prevZipcode;
+bool prevIsPregnant;
+NSString* prevDueDate;
+bool prevWasDelivered;
+NSString* prevDeliveryDate;
+NSString* prevBabyWeight;
+NSString* prevBabyLength;
 
 - (void)viewDidLoad
 {
@@ -62,12 +72,6 @@ NSURLConnection* setDeliveryConnection;
             [profilePicture setImage:picImage forState:UIControlStateNormal];
         }
     }
-    saveAboutMeButton.hidden = YES;
-    cancelAboutMeButton.hidden = YES;
-    savePregnantButton.hidden = YES;
-    cancelPregnantButton.hidden = YES;
-    saveDeliveryButton.hidden = YES;
-    cancelDeliveryButton.hidden = YES;
     
     Constants* constants = [[Constants alloc] init];
     
@@ -152,6 +156,8 @@ NSURLConnection* setDeliveryConnection;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         nameField.text = json_dictionary[@"Name"];
+        prevName = json_dictionary[@"Name"];
+        
         NSArray* dobSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -160,8 +166,10 @@ NSURLConnection* setDeliveryConnection;
         NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
         
         dobField.text = formatted_birthdate;
+        prevBirthdate = formatted_birthdate;
         
         zipCodeField.text = json_dictionary[@"ZipCode"];
+        prevZipcode = json_dictionary[@"ZipCode"];
     } else if (connection == setAboutMeConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -172,7 +180,7 @@ NSURLConnection* setDeliveryConnection;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [self cancelEditingAboutMeFields];
+            
         }
     } else if (connection == getPregnantConnection)
     {
@@ -192,9 +200,15 @@ NSURLConnection* setDeliveryConnection;
         dueDateField.text = formatted_dueDate;
         
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
+        {
             isPregnant.on = YES;
+            prevIsPregnant = YES;
+        }
         else
+        {
             isPregnant.on = NO;
+            prevIsPregnant = NO;
+        }
     } else if (connection == setPregnantConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -205,7 +219,7 @@ NSURLConnection* setDeliveryConnection;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [self cancelEditingPregnantFields];
+            
         }
     } else if (connection == getDeliveryConnection)
     {
@@ -220,13 +234,20 @@ NSURLConnection* setDeliveryConnection;
         else
             wasDelivered.on = NO;
         if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
+        {
             babyLengthField.text = getDeliveryResponse[@"BabyLengthInches"];
+            prevBabyLength = getDeliveryResponse[@"BabyLengthInches"];
+        }
         if (getDeliveryResponse[@"BabyWeightOunces"] != (id)[NSNull null])
+        {
             babyWeightField.text = getDeliveryResponse[@"BabyWeightOunces"];
+            prevBabyWeight = getDeliveryResponse[@"BabyWeightOunces"];
+        }
         if (getDeliveryResponse[@"DeliveryDate"] != (id)[NSNull null])
         {
             NSArray* deliveryDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
             deliveryDateField.text = deliveryDateSplit[0];
+            prevDeliveryDate = deliveryDateSplit[0];
         }
     } else if (connection == setDeliveryConnection)
     {
@@ -238,7 +259,7 @@ NSURLConnection* setDeliveryConnection;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [self cancelEditingDeliveryFields];
+            
         }
     }
 }
@@ -300,14 +321,23 @@ NSURLConnection* setDeliveryConnection;
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:nameField.text];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-    NSDate* birthdate = [dateFormatter dateFromString:dobField.text];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
+    if ([dobField.text length] > 0 )
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        NSDate* birthdate = [dateFormatter dateFromString:dobField.text];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
+        postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_birthdate];
+    }
+    else
+        postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:@""
+                    ];
+    if ([zipCodeField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zipCodeField.text];
+    else
+        postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:@""];
     
-    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_birthdate];
-    postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zipCodeField.text];
     NSMutableURLRequest *setAboutMeRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setAboutMeURL]];
     [setAboutMeRequest setHTTPMethod:@"POST"];
     [setAboutMeRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
@@ -316,23 +346,9 @@ NSURLConnection* setDeliveryConnection;
 
 -(IBAction)cancelEditingAboutMeFields
 {
-    editAboutMeButton.enabled = YES;
-    saveAboutMeButton.hidden = YES;
-    cancelAboutMeButton.hidden = YES;
-    nameField.userInteractionEnabled = NO;
-    dobField.userInteractionEnabled = NO;
-    zipCodeField.userInteractionEnabled = NO;
-}
-
--(IBAction)editAboutMeFields
-{
-    editAboutMeButton.enabled = NO;
-    saveAboutMeButton.hidden = NO;
-    cancelAboutMeButton.hidden = NO;
-    nameField.userInteractionEnabled = YES;
-    dobField.userInteractionEnabled = YES;
-    zipCodeField.userInteractionEnabled = YES;
-    
+    nameField.text = prevName;
+    dobField.text = prevBirthdate;
+    zipCodeField.text = prevZipcode;
 }
 
 -(IBAction)savePregnantFields
@@ -344,47 +360,31 @@ NSURLConnection* setDeliveryConnection;
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant.on ? @"1" : @"0"];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-    NSDate* dueDate = [dateFormatter dateFromString:dueDateField.text];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
+    if ([dueDateField.text length] > 0)
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
+        NSDate* dueDate = [dateFormatter dateFromString:dueDateField.text];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
+        postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:formatted_dueDate];
+    }
+    else
+        postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:@""];
     
-    postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:formatted_dueDate];
     NSMutableURLRequest *setPregnantRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setPregnantURL]];
     [setPregnantRequest setHTTPMethod:@"POST"];
     [setPregnantRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setPregnantConnection = [[NSURLConnection alloc] initWithRequest:setPregnantRequest delegate:self];
 }
 
--(IBAction)editPregnantFields
-{
-    editPregnantButton.enabled = NO;
-    savePregnantButton.hidden = NO;
-    cancelPregnantButton.hidden = NO;
-    isPregnant.userInteractionEnabled = YES;
-    dueDateField.userInteractionEnabled = YES;
-}
 
 -(IBAction)cancelEditingPregnantFields
 {
-    editPregnantButton.enabled = YES;
-    savePregnantButton.hidden = YES;
-    cancelPregnantButton.hidden = YES;
-    isPregnant.userInteractionEnabled = NO;
-    dueDateField.userInteractionEnabled = NO;
+    isPregnant.on = prevIsPregnant;
+    dueDateField.text = prevDueDate;
 }
 
--(IBAction)editDeliveryFields
-{
-    editDeliveryButton.enabled = NO;
-    saveDeliveryButton.hidden = NO;
-    cancelDeliveryButton.hidden = NO;
-    wasDelivered.userInteractionEnabled = YES;
-    deliveryDateField.userInteractionEnabled = YES;
-    babyWeightField.userInteractionEnabled = YES;
-    babyLengthField.userInteractionEnabled = YES;
-}
 
 -(IBAction)saveDeliveryFields
 {
@@ -394,10 +394,19 @@ NSURLConnection* setDeliveryConnection;
     NSString* setDeliveryURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DELIVERY_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&Delivered="] stringByAppendingString:wasDelivered.on ? @"1" : @"0"];
-    postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:deliveryDateField.text];
+    if ([deliveryDateField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:deliveryDateField.text];
+    else
+        postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:@""];
     postData = [[postData stringByAppendingString:@"&BabyWeightPounds="] stringByAppendingString:@""];
-    postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:babyWeightField.text];
-    postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:babyLengthField.text];
+    if ([babyWeightField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:babyWeightField.text];
+    else
+        postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:@""];
+    if ([babyLengthField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:babyLengthField.text];
+    else
+        postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:@""];
     postData = [[postData stringByAppendingString:@"&BirthTypeId="] stringByAppendingString:@""];
     postData = [[postData stringByAppendingString:@"&ComplicationIds="] stringByAppendingString:@""];
     NSMutableURLRequest *setDeliveryRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setDeliveryURL]];
@@ -408,13 +417,10 @@ NSURLConnection* setDeliveryConnection;
 
 -(IBAction)cancelEditingDeliveryFields
 {
-    editDeliveryButton.enabled = YES;
-    saveDeliveryButton.hidden = YES;
-    cancelDeliveryButton.hidden = YES;
-    wasDelivered.userInteractionEnabled = NO;
-    deliveryDateField.userInteractionEnabled = NO;
-    babyWeightField.userInteractionEnabled = NO;
-    babyLengthField.userInteractionEnabled = NO;
+    wasDelivered.on = prevWasDelivered;
+    deliveryDateField.text = prevDeliveryDate;
+    babyLengthField.text = prevBabyLength;
+    babyWeightField.text = prevBabyWeight;
 }
 
 - (IBAction)startSurvey

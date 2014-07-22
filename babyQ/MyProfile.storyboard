@@ -28,26 +28,16 @@
                                 <rect key="frame" x="20" y="513" width="280" height="283"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="i05-4C-orx">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="i05-4C-orx">
                                 <rect key="frame" x="231" y="652" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
-                            <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="4Mn-iO-UQs">
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="4Mn-iO-UQs">
                                 <rect key="frame" x="231" y="949" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                             </switch>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="O5n-MR-erk">
-                                <rect key="frame" x="247" y="146" width="42" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_edit_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editAboutMeFields" destination="cZF-II-pYe" eventType="touchUpInside" id="2md-HN-BEZ"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="0Be-wU-L8d">
                                 <rect key="frame" x="40" y="215" width="240" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -81,7 +71,7 @@
                                 <color key="textColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" id="OeZ-0w-YYs">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" id="OeZ-0w-YYs">
                                 <rect key="frame" x="105" y="306" width="182" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -133,16 +123,6 @@
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sBf-OF-t7t">
-                                <rect key="frame" x="247" y="523" width="42" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_edit_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editPregnantFields" destination="cZF-II-pYe" eventType="touchUpInside" id="6qv-nj-zo9"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hWR-1d-FMq">
                                 <rect key="frame" x="30" y="306" width="67" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -151,13 +131,13 @@
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="c4s-Po-fge">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="c4s-Po-fge">
                                 <rect key="frame" x="105" y="344" width="182" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="wPa-0R-55X"/>
                                 </connections>
@@ -170,13 +150,13 @@
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" id="kDM-ia-QHE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="center" minimumFontSize="17" id="kDM-ia-QHE">
                                 <rect key="frame" x="107" y="382" width="182" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="PSE-l8-YXY"/>
                                 </connections>
@@ -211,16 +191,6 @@
                                 <color key="textColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SKm-Vz-jaU">
-                                <rect key="frame" x="247" y="824" width="42" height="12"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_edit_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="editDeliveryFields" destination="cZF-II-pYe" eventType="touchUpInside" id="7O0-H0-SBh"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B3E-Nl-DD6">
                                 <rect key="frame" x="32" y="690" width="91" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -277,46 +247,46 @@
                                     <action selector="savePregnantFields" destination="cZF-II-pYe" eventType="touchUpInside" id="ZpC-2e-Jl4"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="RRA-JW-yDW">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="RRA-JW-yDW">
                                 <rect key="frame" x="131" y="690" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="hc2-PF-5EG"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="IyI-IH-7FT">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="mm-dd-yyyy" textAlignment="center" minimumFontSize="17" id="IyI-IH-7FT">
                                 <rect key="frame" x="131" y="988" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="lQe-dD-uK3"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="1oE-0j-kte">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="1oE-0j-kte">
                                 <rect key="frame" x="156" y="1026" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="PXl-x2-IRM"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="3xd-4K-X0R">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" id="3xd-4K-X0R">
                                 <rect key="frame" x="156" y="1064" width="133" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
                                     <outlet property="delegate" destination="cZF-II-pYe" id="oL2-KT-JaL"/>
                                 </connections>
@@ -383,22 +353,26 @@
                     <size key="freeformSize" width="320" height="1230"/>
                     <connections>
                         <outlet property="babyLengthField" destination="3xd-4K-X0R" id="qCr-BT-7rq"/>
+                        <outlet property="babyLengthLabel" destination="YZL-kh-4Ig" id="y32-11-kRt"/>
                         <outlet property="babyWeightField" destination="1oE-0j-kte" id="ieL-qf-7cf"/>
+                        <outlet property="babyWeightLabel" destination="SR0-d7-7Vc" id="uqq-DY-Z1h"/>
+                        <outlet property="birthdayLabel" destination="GVQ-pW-PCB" id="H2H-h4-LVr"/>
                         <outlet property="cameraImage" destination="nlE-8P-YOm" id="JTJ-zU-7u1"/>
                         <outlet property="cancelAboutMeButton" destination="NnD-5Y-Nq0" id="edP-rS-xtv"/>
                         <outlet property="cancelDeliveryButton" destination="V1s-Yp-Gs6" id="0pz-c5-q3o"/>
                         <outlet property="cancelPregnantButton" destination="qXA-Ai-YEp" id="cPj-K1-xlY"/>
+                        <outlet property="deliveredDateLabel" destination="nnp-FB-OJo" id="Phx-tL-9Iq"/>
                         <outlet property="deliveryDateField" destination="IyI-IH-7FT" id="5l7-H9-5id"/>
                         <outlet property="dobField" destination="c4s-Po-fge" id="LON-9D-S7B"/>
                         <outlet property="dueDateField" destination="RRA-JW-yDW" id="SPW-ZE-CaI"/>
-                        <outlet property="editAboutMeButton" destination="O5n-MR-erk" id="Qvf-Mq-zed"/>
-                        <outlet property="editDeliveryButton" destination="SKm-Vz-jaU" id="Fu7-5X-6yO"/>
-                        <outlet property="editPregnantButton" destination="sBf-OF-t7t" id="wT2-ck-mgd"/>
+                        <outlet property="dueDateLabel" destination="B3E-Nl-DD6" id="DQq-rM-ocU"/>
                         <outlet property="headerButton1" destination="CUE-9y-kTd" id="TA8-Nf-pzZ"/>
                         <outlet property="headerButton2" destination="HV2-Uy-rSQ" id="6PF-uG-fVA"/>
                         <outlet property="headerLabel" destination="eXX-N8-Uea" id="jIl-rY-8zs"/>
                         <outlet property="isPregnant" destination="i05-4C-orx" id="9us-3y-Pmy"/>
+                        <outlet property="isPregnantLabel" destination="bdb-ZU-fLx" id="quk-zQ-xLS"/>
                         <outlet property="nameField" destination="OeZ-0w-YYs" id="5Jb-D2-E1S"/>
+                        <outlet property="nameLabel" destination="hWR-1d-FMq" id="9Gt-Sd-I9i"/>
                         <outlet property="profilePicture" destination="D1w-YP-TJU" id="2EA-uw-IDn"/>
                         <outlet property="saveAboutMeButton" destination="VqH-BG-EiM" id="sUg-58-3Pd"/>
                         <outlet property="saveDeliveryButton" destination="JH9-Px-NVd" id="Tri-GY-JaL"/>
@@ -406,7 +380,9 @@
                         <outlet property="scrollView" destination="Pqi-hi-M1M" id="mWb-yt-YUj"/>
                         <outlet property="statusBarWhiteBG" destination="gWm-Iw-ect" id="7VB-0f-S2t"/>
                         <outlet property="wasDelivered" destination="4Mn-iO-UQs" id="yMy-fT-02X"/>
+                        <outlet property="wasDeliveredLabel" destination="XvL-PW-SAB" id="lWL-oA-nvw"/>
                         <outlet property="zipCodeField" destination="kDM-ia-QHE" id="wdq-6T-HKn"/>
+                        <outlet property="zipCodeLabel" destination="IOy-bm-Qfy" id="veF-Qe-VMw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cpm-Ud-VwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -416,7 +392,6 @@
     </scenes>
     <resources>
         <image name="babyq_camera_icon.png" width="36" height="29"/>
-        <image name="babyq_edit_icon.png" width="81" height="22"/>
         <image name="babyq_green_background.png" width="640" height="4500"/>
         <image name="babyq_join_avatar.png" width="168" height="168"/>
         <image name="babyq_light_grid_background.png" width="640" height="4344"/>
