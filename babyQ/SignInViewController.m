@@ -32,6 +32,17 @@ NSURLConnection* signInConnection;
 
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.view addGestureRecognizer:tap];
+}
+
+-(void)dismissKeyboard {
+    [email resignFirstResponder];
+    [password resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -53,6 +64,9 @@ NSURLConnection* signInConnection;
             AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             appDelegate.api_token = json_dictionary[@"API TOKEN"];
             appDelegate.user_email = self.email.text;
+            
+            [[NSUserDefaults standardUserDefaults] setValue:appDelegate.user_email forKey:@"babyQ_email"];
+            [[NSUserDefaults standardUserDefaults] setValue:appDelegate.api_token forKey:@"babyQ_api_token"];
             
             Constants* constants = [[Constants alloc] init];
             NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];

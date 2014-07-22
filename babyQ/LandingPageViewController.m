@@ -26,6 +26,26 @@ NSURLConnection* registerDeviceConnection;
 
 - (void) viewWillAppear:(BOOL)animated
 {
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"babyQ_email"] length] > 0)
+    {
+        AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+        appDelegate.user_email = [[NSUserDefaults standardUserDefaults] objectForKey:@"babyQ_email"];
+        appDelegate.api_token = [[NSUserDefaults standardUserDefaults] objectForKey:@"babyQ_api_token"];
+        appDelegate.fb_profilePicture = [[NSUserDefaults standardUserDefaults] objectForKey:@"babyQ_fb_profilePicture"];
+        
+        UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
+        SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];
+        
+        CurrentScoreViewController* currentScoreView = [homeScreens instantiateViewControllerWithIdentifier:@"CurrentScoreView"];
+        
+        MMDrawerController * swipeController = [[MMDrawerController alloc]
+                                                initWithCenterViewController:currentScoreView
+                                                leftDrawerViewController:sideSwipeTableView
+                                                rightDrawerViewController:nil];
+        [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+        [swipeController setShowsShadow:NO];
+        [self.navigationController pushViewController:swipeController animated:YES];
+    }
     if ([self.restorationIdentifier isEqualToString:@"SignInJoin"])
     {
         self.navigationController.navigationBarHidden = NO;
@@ -58,7 +78,10 @@ NSURLConnection* registerDeviceConnection;
                  appDelegate.fb_birthday = user.birthday;
                  appDelegate.fb_name = user.name;
                  appDelegate.fb_profilePicture = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large", [user objectID]];
-             
+                 
+                 [[NSUserDefaults standardUserDefaults] setObject:appDelegate.fb_profilePicture forKey:@"babyQ_fb_profilePicture"];
+                 
+                 
                  if ([[(AppDelegate *)[UIApplication sharedApplication].delegate user_email] length] != 0)
                  {
                      NSString* email = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
@@ -128,6 +151,9 @@ NSURLConnection* registerDeviceConnection;
                 [request setHTTPMethod:@"POST"];
                 [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
                 registerDeviceConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+                
+                [[NSUserDefaults standardUserDefaults] setValue:em forKey:@"babyQ_email"];
+                [[NSUserDefaults standardUserDefaults] setValue:api_token forKey:@"babyQ_api_token"];
                 
                 UIStoryboard * homeScreens = [UIStoryboard storyboardWithName:@"HomePage" bundle:nil];
                 SideSwipeTableViewController* sideSwipeTableView = [homeScreens instantiateViewControllerWithIdentifier:@"SideSwipeTableView"];

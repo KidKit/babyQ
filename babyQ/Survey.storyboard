@@ -113,7 +113,7 @@
         <!--Survey View Controller-->
         <scene sceneID="751-yT-j4R">
             <objects>
-                <viewController storyboardIdentifier="Multiple Choice" id="Ydq-7j-kU2" customClass="SurveyViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SurveyQuestion" id="Ydq-7j-kU2" customClass="SurveyViewController" sceneMemberID="viewController">
                     <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" id="5ez-If-Rcd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="764"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -123,10 +123,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mzE-TP-6a5">
-                                <rect key="frame" x="125" y="20" width="82" height="21"/>
+                                <rect key="frame" x="73" y="20" width="175" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="SURVEY">
+                                    <fragment content="SURVEY PROGRESS">
                                         <attributes>
                                             <color key="NSColor" red="0.78899881114130432" green="0.39456411492448429" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
@@ -136,8 +136,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXc-eP-c7u">
-                                <rect key="frame" x="26" y="288" width="22" height="18"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTION TYPE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZXc-eP-c7u">
+                                <rect key="frame" x="26" y="288" width="146" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
@@ -153,28 +153,8 @@
                                 <rect key="frame" x="11" y="54" width="33" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F2N-l1-RhZ">
-                                <rect key="frame" x="26" y="119" width="22" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8k6-N9-Cv8">
-                                <rect key="frame" x="26" y="145" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.6705882352941176" green="0.65098039215686276" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aCa-Sf-8Ks">
-                                <rect key="frame" x="26" y="328" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.6705882353" green="0.65098039220000004" blue="0.64313725489999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" id="edb-qB-4St">
-                                <rect key="frame" x="45" y="142" width="230" height="128"/>
+                                <rect key="frame" x="45" y="144" width="230" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -245,7 +225,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="764"/>
                     <connections>
-                        <outlet property="answerNumber" destination="ZXc-eP-c7u" id="Wos-j2-geY"/>
                         <outlet property="answerOne" destination="MPa-0f-UE6" id="GmA-p8-iJP"/>
                         <outlet property="bottomDivider" destination="sYj-ul-93y" id="Gza-fz-cpc"/>
                         <outlet property="checkBoxOne" destination="LT2-nO-kzX" id="Zbf-nf-reU"/>
@@ -255,7 +234,7 @@
                         <outlet property="progressPercentage" destination="eDG-dE-RJN" id="yoi-8b-ZX1"/>
                         <outlet property="progressView" destination="fo3-Om-FVH" id="7Hw-yo-1hd"/>
                         <outlet property="question" destination="edb-qB-4St" id="VIg-fb-kaz"/>
-                        <outlet property="questionNumber" destination="F2N-l1-RhZ" id="SJu-KW-nrl"/>
+                        <outlet property="questionType" destination="ZXc-eP-c7u" id="4wo-je-Aj9"/>
                         <outlet property="scrollView" destination="5ez-If-Rcd" id="fGX-Jh-H0O"/>
                         <outlet property="surveyHeaderLabel" destination="mzE-TP-6a5" id="sF1-hc-0SR"/>
                     </connections>
@@ -338,24 +317,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Q#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gRF-ZG-uZ4">
-                                <rect key="frame" x="20" y="119" width="76" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UNF-bT-szx">
-                                <rect key="frame" x="20" y="145" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pAB-cm-83F">
-                                <rect key="frame" x="20" y="360" width="18" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" id="Ff4-9a-kpJ">
                                 <rect key="frame" x="39" y="142" width="230" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -404,7 +365,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="764"/>
                     <connections>
-                        <outlet property="answerNumber" destination="H20-sN-DEW" id="4nv-8j-0MD"/>
                         <outlet property="answerOne" destination="gsw-U0-U8x" id="qEt-8z-9EB"/>
                         <outlet property="bottomDivider" destination="2cQ-gc-iud" id="te2-8e-Oyv"/>
                         <outlet property="checkBoxOne" destination="pA5-Gn-BrK" id="jdg-4U-rCh"/>
@@ -414,9 +374,7 @@
                         <outlet property="progressPercentage" destination="mhb-qa-Qe0" id="WD5-1z-Wfc"/>
                         <outlet property="progressView" destination="1L4-lX-aKR" id="kvs-IT-B3O"/>
                         <outlet property="question" destination="Ff4-9a-kpJ" id="7HE-Br-maR"/>
-                        <outlet property="questionNumber" destination="gRF-ZG-uZ4" id="8x9-Bb-wVd"/>
                         <outlet property="scrollView" destination="82T-T7-e7H" id="tbJ-TK-1Am"/>
-                        <outlet property="selectAllLabel" destination="X8K-lk-jIA" id="meL-OO-Nqh"/>
                         <outlet property="surveyHeaderLabel" destination="Qcl-hi-0Nw" id="cAP-CF-JAQ"/>
                     </connections>
                 </viewController>

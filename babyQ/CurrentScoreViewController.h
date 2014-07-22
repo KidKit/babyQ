@@ -34,6 +34,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *exerciseLabel;
 @property (nonatomic, retain) IBOutlet UILabel *nutritionLabel;
 @property (nonatomic, retain) IBOutlet UILabel *stressLabel;
+@property (nonatomic, retain) IBOutlet UIImageView* scoreBar;
 @property (nonatomic, retain) IBOutlet UIImageView* scoreSlider;
 @property (nonatomic, retain) IBOutlet UITextView* workBlurb;
 @property (nonatomic, retain) IBOutlet UILabel* delta;

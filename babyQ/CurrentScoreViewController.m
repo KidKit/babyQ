@@ -14,7 +14,7 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
+@synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
 
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
@@ -85,6 +85,21 @@ CGRect scoreSliderFrame;
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanScoreSlider:)];
     [scoreSlider addGestureRecognizer:panGesture];
     scoreSliderFrame =  CGRectMake(30, 405, 24, 24);
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(tappedScoreBar:)];
+    
+    [scoreBar addGestureRecognizer:tap];
+}
+
+- (void) tappedScoreBar:(UITapGestureRecognizer *)sender
+{
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:sender.view.superview];
+        [self adjustSliderToPoint:CGRectMake(location.x, 405, 24, 24)];
+    }
 }
 
 -(void)handlePanScoreSlider:(UIPanGestureRecognizer *)sender
@@ -181,32 +196,37 @@ CGRect scoreSliderFrame;
     }
     if (sender.state == UIGestureRecognizerStateEnded)
     {
-        if (newFrame.origin.x <= 26)
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
-        else if (newFrame.origin.x >= 270)
-            scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 405, 24, 24);
-        else
+        [self adjustSliderToPoint:newFrame];
+    }
+}
+
+- (void) adjustSliderToPoint: (CGRect) newFrame
+{
+    if (newFrame.origin.x <= 26)
+        scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+    else if (newFrame.origin.x >= 270)
+        scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 405, 24, 24);
+    else
+    {
+        if (newFrame.origin.x < 60)
         {
-            if (newFrame.origin.x < 60)
-            {
-                scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
-            }
-            else if (newFrame.origin.x < 118)
-            {
-                scoreSlider.frame = scoreSliderFrame = CGRectMake(87, 405, 24, 24);
-            }
-            else if (newFrame.origin.x < 178)
-            {
-                scoreSlider.frame = scoreSliderFrame = CGRectMake(144, 405, 24, 24);
-            }
-            else if (newFrame.origin.x < 236)
-            {
-                scoreSlider.frame = scoreSliderFrame = CGRectMake(205, 405, 24, 24);
-            }
-            else if (newFrame.origin.x < 276)
-            {
-                scoreSlider.frame = scoreSliderFrame = CGRectMake(264, 405, 24, 24);
-            }
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+        }
+        else if (newFrame.origin.x < 118)
+        {
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(87, 405, 24, 24);
+        }
+        else if (newFrame.origin.x < 178)
+        {
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(144, 405, 24, 24);
+        }
+        else if (newFrame.origin.x < 236)
+        {
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(205, 405, 24, 24);
+        }
+        else if (newFrame.origin.x < 276)
+        {
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(264, 405, 24, 24);
         }
     }
 }
@@ -436,20 +456,26 @@ CGRect scoreSliderFrame;
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
     SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
     if (survey_json == nil)
+    {
         surveyController.question_number = @"1";
+        surveyController.question_type = @"Multiple Choice";
+    }
     else
     {
         if (extraQuestionsReached)
         {
             NSString* question_number = [NSString stringWithFormat:@"%lu", [selected_extra_answers count]+1];
             NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+            surveyController = [surveyScreens instantiateViewControllerWithIdentifier:@"SurveyQuestion"];
             NSString* type = survey_json[@"ExtraQuestions"][question_key][@"QuestionTypeDescription"];
-            surveyController = [surveyScreens instantiateViewControllerWithIdentifier:type];
             surveyController.question_number = question_number;
             surveyController.question_type = type;
         }
         else
+        {
             surveyController.question_number = [NSString stringWithFormat:@"%lu", [selected_answers count] + 1];
+            surveyController.question_type = @"Multiple Choice";
+        }
     }
 
     [self.navigationController pushViewController:surveyController animated:YES];

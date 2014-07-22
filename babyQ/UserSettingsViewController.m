@@ -14,18 +14,20 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,email,password,saveAccountButton,cancelAccountButton,editAccountButton,surveyAlerts,dailyTipAlerts,rateAppLink;
+@synthesize scrollView,profilePicture,email,password,theNewPassword,saveAccountButton,cancelAccountButton,editAccountButton,surveyAlerts,dailyTipAlerts,rateAppLink;
 
 NSString* prevEmail;
 NSString* prevPassword;
 NSURLConnection* setDeviceSettingsConnection;
 NSURLConnection* getDeviceSettingsConnection;
 NSURLConnection* setDeviceInactiveConnection;
+NSURLConnection* changeEmailConnection;
+NSURLConnection* changePasswordConnection;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 651)];
+    [self.scrollView setContentSize:CGSizeMake(320, 690)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
@@ -70,11 +72,20 @@ NSURLConnection* setDeviceInactiveConnection;
     
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
+    email.text = user_email;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
+    theNewPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    theNewPassword.delegate = self;
     rateAppLink.titleLabel.font = [UIFont fontWithName:@"Bebas" size:13];
     saveAccountButton.hidden = YES;
     cancelAccountButton.hidden = YES;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.scrollView addGestureRecognizer:tap];
     
 }
 
@@ -84,6 +95,12 @@ NSURLConnection* setDeviceInactiveConnection;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     self.navigationController.navigationBar.topItem.title = @"SETTINGS";
+}
+
+-(void)dismissKeyboard {
+    [email resignFirstResponder];
+    [password resignFirstResponder];
+    [theNewPassword resignFirstResponder];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -97,6 +114,7 @@ NSURLConnection* setDeviceInactiveConnection;
     prevPassword = password.text;
     email.userInteractionEnabled = YES;
     password.userInteractionEnabled = YES;
+    theNewPassword.userInteractionEnabled = YES;
     editAccountButton.enabled = NO;
     saveAccountButton.hidden = NO;
     cancelAccountButton.hidden = NO;
@@ -104,8 +122,37 @@ NSURLConnection* setDeviceInactiveConnection;
 
 -(IBAction)saveAccountFields
 {
+    
+    NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
+    NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    Constants* constants = [[Constants alloc] init];
+    
+    if (![email.text isEqualToString:prevEmail])
+    {
+        NSString* getCurrentScoreURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CHANGE_EMAIL_PATH];
+        NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+        postData = [[postData stringByAppendingString:@"&NewEmail="] stringByAppendingString:email.text];
+        
+        NSMutableURLRequest *currentScoreRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getCurrentScoreURL]];
+        [currentScoreRequest setHTTPMethod:@"POST"];
+        [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        changeEmailConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+    }
+    if ([password.text length] > 0 && [theNewPassword.text length] > 0)
+    {
+        NSString* getCurrentScoreURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CHANGE_PASSWORD_PATH];
+        NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
+        postData = [[postData stringByAppendingString:@"&CurrentPassword="] stringByAppendingString:password.text];
+        postData = [[postData stringByAppendingString:@"&NewPassword="] stringByAppendingString:theNewPassword.text];
+        
+        NSMutableURLRequest *currentScoreRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getCurrentScoreURL]];
+        [currentScoreRequest setHTTPMethod:@"POST"];
+        [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        changePasswordConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+    }
     email.userInteractionEnabled = NO;
     password.userInteractionEnabled = NO;
+    theNewPassword.userInteractionEnabled = NO;
     editAccountButton.enabled = YES;
     saveAccountButton.hidden = YES;
     cancelAccountButton.hidden = YES;
@@ -207,6 +254,28 @@ NSURLConnection* setDeviceInactiveConnection;
         {
             NSLog(@"device successfully set inactive");
         }
+    } else if (connection == changeEmailConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"email updated");
+        }
+    }else if (connection == changePasswordConnection)
+    {
+        NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSData* json_data = [json_response dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
+                                                                        options: NSJSONReadingMutableContainers
+                                                                          error: nil];
+        if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
+        {
+            NSLog(@"password updated");
+        }
     }
 }
 
@@ -249,6 +318,9 @@ NSURLConnection* setDeviceInactiveConnection;
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setDeviceInactiveConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"babyQ_email"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"babyQ_api_token"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"babyQ_fb_profilePicture"];
     appDelegate.api_token = nil;
     appDelegate.fb_name = nil;
     appDelegate.fb_userId = nil;

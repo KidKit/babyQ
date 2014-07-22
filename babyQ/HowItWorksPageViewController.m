@@ -109,20 +109,26 @@
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
     SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
     if (survey_json == nil)
+    {
         surveyController.question_number = @"1";
+        surveyController.question_type = @"Multiple Choice";
+    }
     else
     {
         if (extraQuestionsReached)
         {
             NSString* question_number = [NSString stringWithFormat:@"%lu", [selected_extra_answers count]+1];
             NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+            surveyController = [surveyScreens instantiateViewControllerWithIdentifier:@"SurveyQuestion"];
             NSString* type = survey_json[@"ExtraQuestions"][question_key][@"QuestionTypeDescription"];
-            surveyController = [surveyScreens instantiateViewControllerWithIdentifier:type];
             surveyController.question_number = question_number;
             surveyController.question_type = type;
         }
         else
+        {
             surveyController.question_number = [NSString stringWithFormat:@"%lu", [selected_answers count] + 1];
+            surveyController.question_type = @"Multiple Choice";
+        }
     }
     [self.navigationController pushViewController:surveyController animated:YES];
 }

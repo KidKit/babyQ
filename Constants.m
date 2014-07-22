@@ -22,6 +22,8 @@
         self.REGISTER_DEVICE_PATH = @"/RegisterDevice";
         self.SET_DEVICE_SETTINGS_PATH = @"/SetDeviceSettings";
         self.GET_DEVICE_SETTINGS_PATH = @"/GetDeviceSettings";
+        self.CHANGE_EMAIL_PATH = @"/ChangeEmail";
+        self.CHANGE_PASSWORD_PATH = @"/ChangePassword";
         self.GET_ABOUT_ME_PATH = @"/GetAboutMe";
         self.SET_ABOUT_ME_PATH = @"/SetAboutMe";
         self.GET_PREGNANCY_PATH = @"/GetPregnancy";

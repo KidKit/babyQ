@@ -16,6 +16,7 @@
 
 @property (nonatomic,retain) IBOutlet UITextField* email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
+@property (nonatomic,retain) IBOutlet UITextField* theNewPassword;
 @property (nonatomic, retain) IBOutlet UIImageView* profilePicture;
 @property (nonatomic, retain) IBOutlet UIButton* saveAccountButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelAccountButton;

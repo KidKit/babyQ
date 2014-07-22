@@ -20,6 +20,8 @@
 @property (nonatomic,retain) NSString *const REGISTER_DEVICE_PATH;
 @property (nonatomic,retain) NSString *const SET_DEVICE_SETTINGS_PATH;
 @property (nonatomic,retain) NSString *const GET_DEVICE_SETTINGS_PATH;
+@property (nonatomic,retain) NSString *const CHANGE_EMAIL_PATH;
+@property (nonatomic,retain) NSString *const CHANGE_PASSWORD_PATH;
 @property (nonatomic,retain) NSString *const GET_ABOUT_ME_PATH;
 @property (nonatomic,retain) NSString *const SET_ABOUT_ME_PATH;
 @property (nonatomic,retain) NSString *const GET_PREGNANCY_PATH;

@@ -68,10 +68,22 @@ NSURLConnection* registerDeviceConnection;
     [termsCheckbox setFrame:CGRectMake(termsCheckbox.frame.origin.x, termsCheckbox.frame.origin.y-180, termsCheckbox.frame.size.width, termsCheckbox.frame.size.height)];
     [termsLabelText setFrame:CGRectMake(termsLabelText.frame.origin.x, termsLabelText.frame.origin.y-180, termsLabelText.frame.size.width, termsLabelText.frame.size.height)];
     [termsLabelLink setFrame:CGRectMake(termsLabelLink.frame.origin.x, termsLabelLink.frame.origin.y-180, termsLabelLink.frame.size.width, termsLabelLink.frame.size.height)];
-    agreedToTerms = YES;
+    agreedToTerms = NO;
     madePregnantSelection = NO;
     isPregnant = NO;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
+    
+    [self.scrollView addGestureRecognizer:tap];
 }
+
+-(void)dismissKeyboard {
+    [email resignFirstResponder];
+    [password resignFirstResponder];
+    [zipcode resignFirstResponder];
+}
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
@@ -273,6 +285,9 @@ NSURLConnection* registerDeviceConnection;
             appDelegate.user_email = self.email.text;
             if ([json_dictionary[@"API TOKEN"] length] != 0)
                 appDelegate.api_token = json_dictionary[@"API TOKEN"];
+            
+            [[NSUserDefaults standardUserDefaults] setValue:appDelegate.user_email forKey:@"babyQ_email"];
+            [[NSUserDefaults standardUserDefaults] setValue:appDelegate.api_token forKey:@"babyQ_api_token"];
             
             NSString* em = self.email.text;
             Constants* constants = [[Constants alloc] init];
