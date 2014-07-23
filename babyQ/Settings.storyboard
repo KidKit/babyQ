@@ -220,24 +220,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <tabBar contentMode="scaleToFill" id="ntN-gn-87R">
-                                <rect key="frame" x="10" y="178" width="300" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="KUDOS" id="gDN-CX-UJe">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-30"/>
-                                    </tabBarItem>
-                                    <tabBarItem title="SUGGESTIONS" id="LLe-9B-G8m">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-30"/>
-                                    </tabBarItem>
-                                    <tabBarItem title="ERRORS" id="8v8-CV-JLl">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-30"/>
-                                    </tabBarItem>
-                                </items>
-                            </tabBar>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SXh-x7-gqT">
-                                <rect key="frame" x="10" y="119" width="300" height="59"/>
+                                <rect key="frame" x="10" y="119" width="300" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -245,7 +229,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_feedback_avatar.png" id="tFB-CO-wwJ">
-                                <rect key="frame" x="112" y="74" width="96" height="84"/>
+                                <rect key="frame" x="112" y="68" width="96" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.74999999999999978" contentMode="scaleToFill" text="Questions/Comments" id="JmO-Jz-3lu">
@@ -255,6 +239,36 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JYN-Ic-fmK">
+                                <rect key="frame" x="20" y="189" width="64" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="KUDOS">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedKudos:" destination="nNU-8L-10w" eventType="touchUpInside" id="GEa-yZ-uBw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6y5-zR-W6S">
+                                <rect key="frame" x="102" y="189" width="116" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="SUGGESTIONS">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedSuggestions:" destination="nNU-8L-10w" eventType="touchUpInside" id="sNM-88-jk0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2xw-xW-SaH">
+                                <rect key="frame" x="235" y="189" width="65" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ERRORS">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clickedErrors:" destination="nNU-8L-10w" eventType="touchUpInside" id="QDw-9Y-PKm"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -269,9 +283,11 @@
                     <navigationItem key="navigationItem" id="2JG-NA-CuW"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="errors" destination="2xw-xW-SaH" id="YpY-q0-duT"/>
                         <outlet property="feedbackTextView" destination="JmO-Jz-3lu" id="C60-lH-nnU"/>
+                        <outlet property="kudos" destination="JYN-Ic-fmK" id="1zH-Qj-G0c"/>
                         <outlet property="sendFeedbackButton" destination="b7X-8f-3x4" id="vkU-V5-IqW"/>
-                        <outlet property="tabBar" destination="ntN-gn-87R" id="4FB-W1-LAc"/>
+                        <outlet property="suggestions" destination="6y5-zR-W6S" id="grj-3u-OvJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lnh-9z-zsy" userLabel="First Responder" sceneMemberID="firstResponder"/>

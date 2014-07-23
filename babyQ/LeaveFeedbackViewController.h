@@ -14,8 +14,13 @@
 
 @property (nonatomic,retain) IBOutlet UITextView* feedbackTextView;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem* sendFeedbackButton;
-@property (nonatomic,retain) IBOutlet UITabBar* tabBar;
+@property (nonatomic,retain) IBOutlet UIButton* kudos;
+@property (nonatomic,retain) IBOutlet UIButton* suggestions;
+@property (nonatomic,retain) IBOutlet UIButton* errors;
 
+-(IBAction)clickedKudos:(UIButton*)sender;
+-(IBAction)clickedSuggestions:(UIButton*)sender;
+-(IBAction)clickedErrors:(UIButton*)sender;
 - (IBAction)sendFeedback;
 
 @end

@@ -126,6 +126,7 @@
 		5FC3D0C019479979003D3E94 /* babyQTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FC3D0BF19479979003D3E94 /* babyQTests.m */; };
 		5FC3D14C1947B5E5003D3E94 /* Survey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */; };
 		5FC3D14E1947CBA3003D3E94 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */; };
+		5FD48FE2197F3170005CC61D /* babyq_feedback_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */; };
 		5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD84C7C194A4F16003A711E /* MyProfileViewController.m */; };
 		5FDE03E41950EA1C0009A993 /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDE03E31950EA1C0009A993 /* Todos.storyboard */; };
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
@@ -286,6 +287,7 @@
 		5FC3D0BF19479979003D3E94 /* babyQTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = babyQTests.m; sourceTree = "<group>"; };
 		5FC3D14B1947B5E5003D3E94 /* Survey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Survey.storyboard; sourceTree = "<group>"; };
 		5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HomePage.storyboard; sourceTree = "<group>"; };
+		5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_feedback_tab.png; sourceTree = "<group>"; };
 		5FD84C7B194A4F16003A711E /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		5FD84C7C194A4F16003A711E /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
 		5FDE03E31950EA1C0009A993 /* Todos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 		5F7FF0101948035C00A48C86 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */,
 				5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */,
 				5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */,
 				5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */,
@@ -775,6 +778,7 @@
 				5F7FF0771948035C00A48C86 /* babyq_facebook_icon.png in Resources */,
 				5F7FF0651948035C00A48C86 /* babyq_dots_divider.png in Resources */,
 				5F7FF0591948035C00A48C86 /* babyq_get_started_button.png in Resources */,
+				5FD48FE2197F3170005CC61D /* babyq_feedback_tab.png in Resources */,
 				5F7FF07F1948035C00A48C86 /* babyq_progress_slider.png in Resources */,
 				5F7FF06B1948035C00A48C86 /* babyq_header_back_arrow.png in Resources */,
 				5F3FBD88194A311100FB0548 /* MyriadPro-Regular.otf in Resources */,

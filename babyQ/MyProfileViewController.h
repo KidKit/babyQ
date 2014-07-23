@@ -41,6 +41,7 @@
 @property (nonatomic, retain) IBOutlet UISwitch* isPregnant;
 @property (nonatomic, retain) IBOutlet UITextField* dueDateField;
 
+@property (nonatomic, retain) IBOutlet UIView* deliveredView;
 @property (nonatomic, retain) IBOutlet UIButton* saveDeliveryButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelDeliveryButton;
 @property (nonatomic, retain) IBOutlet UISwitch* wasDelivered;

@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -36,7 +36,7 @@ NSString* prevBabyLength;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(320, 1230)];
+    [self.scrollView setContentSize:CGSizeMake(320, 1230-366)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
@@ -98,6 +98,9 @@ NSString* prevBabyLength;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
+    
+    isPregnant.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    wasDelivered.transform = CGAffineTransformMakeScale(0.75, 0.75);
     
     [self.scrollView addGestureRecognizer:tap];
 }
@@ -198,6 +201,13 @@ NSString* prevBabyLength;
         NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
         
         dueDateField.text = formatted_dueDate;
+        if ([(NSDate*)[dueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+        {
+            deliveredView.hidden = NO;
+            [self.scrollView setContentSize:CGSizeMake(320, 1230)];
+        }
+        else
+            deliveredView.hidden = YES;
         
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
         {
