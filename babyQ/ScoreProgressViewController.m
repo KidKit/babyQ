@@ -188,7 +188,7 @@ UIButton* currentPresentedScore;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 42 + 65*(i), 189, 54)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 42 + 60*(i), 189, 54)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
@@ -198,7 +198,7 @@ UIButton* currentPresentedScore;
                     nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
                 
-                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 65*(i), 18, 18)];
+                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
                 todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
@@ -206,7 +206,7 @@ UIButton* currentPresentedScore;
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;
-                [checkBox setFrame:CGRectMake(247, 46+65*(i), 32, 32)];
+                [checkBox setFrame:CGRectMake(247, 42+60*(i), 32, 32)];
                 [checkBox setBackgroundImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(markTodoCompleted:) forControlEvents:UIControlEventTouchUpInside];
                 [self.todosView addSubview:checkBox];
@@ -216,8 +216,8 @@ UIButton* currentPresentedScore;
             if (numberOfTodos > 4)
             {
                 [self.scrollView setContentSize:CGSizeMake(320, 1500+(numberOfTodos-4))];
-                [self.todosView setFrame:CGRectMake(todosView.frame.origin.x, todosView.frame.origin.y, todosView.frame.size.width, todosView.frame.size.height+65*(numberOfTodos-4))];
-                [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +65*(numberOfTodos-4), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
+                [self.todosView setFrame:CGRectMake(todosView.frame.origin.x, todosView.frame.origin.y, todosView.frame.size.width, todosView.frame.size.height+60*(numberOfTodos-4))];
+                [completedTodosButton setFrame:CGRectMake(completedTodosButton.frame.origin.x, completedTodosButton.frame.origin.y +60*(numberOfTodos-4), completedTodosButton.frame.size.width, completedTodosButton.frame.size.height)];
             }
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

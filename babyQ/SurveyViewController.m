@@ -89,7 +89,7 @@ NSURLConnection* submitSurveyConnection;
         NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
         for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
         {
-            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
+            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = NO;
@@ -157,7 +157,7 @@ NSURLConnection* submitSurveyConnection;
         for (int i = 2; i <= [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"] count]; i++)
         {
             UITextView* nextAnswer;
-            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
+            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
             
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
@@ -246,7 +246,7 @@ NSURLConnection* submitSurveyConnection;
             NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
             for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
             {
-                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(45, 324 + 65*(i-1), 189, 54)];
+                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
                 nextAnswer.backgroundColor = [UIColor clearColor];
                 nextAnswer.editable = NO;
                 nextAnswer.userInteractionEnabled = NO;

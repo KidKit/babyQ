@@ -15,9 +15,9 @@
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(20,6,28,28);
+    self.imageView.frame = CGRectMake(20,8,24,24);
     if ([self.textLabel.text isEqualToString:@"My Profile"])
-        self.imageView.frame = CGRectMake(18,8,32,24);
+        self.imageView.frame = CGRectMake(18,10,28,20);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

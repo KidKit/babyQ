@@ -34,6 +34,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SideSwipeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideSwipeCell"];
+    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     switch (indexPath.row) {
         case 0:
             [cell.imageView setImage:[UIImage imageNamed:@"babyq_menu_currentscore_icon.png"]];
