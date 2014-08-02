@@ -45,6 +45,11 @@ bool isRefresh = NO;
     self.navigationController.navigationBarHidden = YES;
 }
 
+- (void) viewWillDisappear:(BOOL)animated
+{
+    isRefresh = NO;
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
 {
     if (connection == getTodosConnection)
