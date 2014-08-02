@@ -90,7 +90,7 @@ NSURLConnection* submitSurveyConnection;
         NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
         for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
         {
-            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
+            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 296 + 55*(i-1), 189, 54)];
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = NO;
@@ -102,7 +102,7 @@ NSURLConnection* submitSurveyConnection;
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
             checkBox.tag = i-1;
-            [checkBox setFrame:CGRectMake(265, 328+65*(i-1), 32, 32)];
+            [checkBox setFrame:CGRectMake(265, 295+55*(i-1), 32, 32)];
             [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:checkBox];
@@ -111,8 +111,8 @@ NSURLConnection* submitSurveyConnection;
         }
         if (numberOfAnswers > 1)
         {
-            [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
-            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
+            [self.scrollView setContentSize:CGSizeMake(320, 500 + 55 * (numberOfAnswers-1) )];
+            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         }
     }
     else
@@ -153,7 +153,7 @@ NSURLConnection* submitSurveyConnection;
         for (int i = 2; i <= [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"] count]; i++)
         {
             UITextView* nextAnswer;
-            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
+            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 296 + 55*(i-1), 189, 54)];
             
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
@@ -166,7 +166,7 @@ NSURLConnection* submitSurveyConnection;
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
             checkBox.tag = i-1;
-            [checkBox setFrame:CGRectMake(265, 328+65*(i-1), 32, 32)];
+            [checkBox setFrame:CGRectMake(265, 295+55*(i-1), 32, 32)];
             [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:checkBox];
@@ -175,8 +175,8 @@ NSURLConnection* submitSurveyConnection;
         }
         if (numberOfAnswers > 1)
         {
-            [self.scrollView setContentSize:CGSizeMake(320, 530 + 65 * (numberOfAnswers-1) )];
-            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
+            [self.scrollView setContentSize:CGSizeMake(320, 530 + 55 * (numberOfAnswers-1) )];
+            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         }
     }
 }
@@ -240,7 +240,7 @@ NSURLConnection* submitSurveyConnection;
             NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
             for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
             {
-                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 324 + 65*(i-1), 189, 54)];
+                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 296 + 55*(i-1), 189, 54)];
                 nextAnswer.backgroundColor = [UIColor clearColor];
                 nextAnswer.editable = NO;
                 nextAnswer.userInteractionEnabled = NO;
@@ -251,7 +251,7 @@ NSURLConnection* submitSurveyConnection;
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i-1;
-                [checkBox setFrame:CGRectMake(265, 328+65*(i-1), 32, 32)];
+                [checkBox setFrame:CGRectMake(265, 295+55*(i-1), 32, 32)];
                 [checkBox setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
                 [checkBox addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
                 [self.scrollView addSubview:checkBox];
@@ -260,8 +260,8 @@ NSURLConnection* submitSurveyConnection;
             }
             if (numberOfAnswers > 1)
             {
-                [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
-                [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
+                [self.scrollView setContentSize:CGSizeMake(320, 500 + 55 * (numberOfAnswers-1) )];
+                [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
             }
         }
     }
