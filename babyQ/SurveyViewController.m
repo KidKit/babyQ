@@ -19,7 +19,7 @@ BOOL extraQuestionsReached = NO;
 
 @implementation SurveyViewController
 
-@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionType,question,selectAllLabel,answerOne,checkBoxOne,nextButton,previousButton,bottomDivider,question_number,question_type,survey_data,answer_ids;
+@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionType,question,answerOne,checkBoxOne,nextButton,previousButton,bottomNavView,bottomDivider,question_number,question_type,survey_data,answer_ids;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -28,6 +28,8 @@ NSURLConnection* submitSurveyConnection;
 {
     [super viewDidLoad];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    
+    bottomNavView.hidden = YES;
     
     surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:18];
     questionType.font = [UIFont fontWithName:@"MyriadPro-Bold" size:12];
@@ -53,7 +55,6 @@ NSURLConnection* submitSurveyConnection;
         questionType.text = [question_type uppercaseString];
         if ([question_number isEqualToString:@"1"])
             previousButton.hidden = YES;
-        nextButton.enabled = NO;
         
         if (survey_json == nil)
         {   survey_data = [[NSMutableData alloc] init];
@@ -112,8 +113,6 @@ NSURLConnection* submitSurveyConnection;
         {
             [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
             [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
-            [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
-            [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
         }
     }
     else
@@ -123,7 +122,6 @@ NSURLConnection* submitSurveyConnection;
         answer_ids = [[NSMutableArray alloc] init];
         questionType.text = [question_type uppercaseString];
         
-        nextButton.enabled = NO;
         if ([question_number isEqualToString:@"1"])
             previousButton.hidden = YES;
         
@@ -140,10 +138,8 @@ NSURLConnection* submitSurveyConnection;
         
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
-            selectAllLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:13];
             if (selected_extra_answers[question_key] == nil)
                 selected_extra_answers[question_key] = [[NSMutableArray alloc] init];
-            nextButton.enabled = YES;
         }
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
@@ -181,8 +177,6 @@ NSURLConnection* submitSurveyConnection;
         {
             [self.scrollView setContentSize:CGSizeMake(320, 530 + 65 * (numberOfAnswers-1) )];
             [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
-            [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
-            [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
         }
     }
 }
@@ -268,8 +262,6 @@ NSURLConnection* submitSurveyConnection;
             {
                 [self.scrollView setContentSize:CGSizeMake(320, 500 + 65 * (numberOfAnswers-1) )];
                 [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+65*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
-                [self.nextButton setFrame:CGRectMake(nextButton.frame.origin.x, nextButton.frame.origin.y +65*(numberOfAnswers-1), nextButton.frame.size.width, nextButton.frame.size.height)];
-                [self.previousButton setFrame:CGRectMake(previousButton.frame.origin.x, previousButton.frame.origin.y +65*(numberOfAnswers-1), previousButton.frame.size.width, previousButton.frame.size.height)];
             }
         }
     }
@@ -314,7 +306,6 @@ NSURLConnection* submitSurveyConnection;
             selected_extra_answers[question_key] = answer_ids[sender.tag];
             [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
         }
-        nextButton.enabled = YES;
     }
     else
     {
@@ -329,8 +320,10 @@ NSURLConnection* submitSurveyConnection;
         }
         selected_answers[question_key] = answer_ids[sender.tag];
         [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
-        nextButton.enabled = YES;
     }
+    [bottomNavView setFrame:CGRectMake(0, 493 + scrollView.contentOffset.y, 320, 75)];
+    [self.scrollView bringSubviewToFront:bottomNavView];
+    bottomNavView.hidden = NO;
 }
 
 - (IBAction)previousQuestion
@@ -500,6 +493,19 @@ NSURLConnection* submitSurveyConnection;
             }
             break;
         }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self updateFloatingViewFrame];
+}
+
+- (void)updateFloatingViewFrame {
+    CGRect viewFrame = bottomNavView.frame;
+    if (scrollView.contentOffset.y > -500) {
+        viewFrame.origin.y = 493 + scrollView.contentOffset.y;
+        
+        bottomNavView.frame = viewFrame;
     }
 }
 

@@ -169,30 +169,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r9T-Fp-MV6">
-                                <rect key="frame" x="173" y="414" width="108" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" image="babyq_next_button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="nextQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="HLx-b5-7p3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yTU-cd-EWa">
-                                <rect key="frame" x="45" y="414" width="108" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="PREVIOUS">
-                                    <color key="titleColor" red="0.48627450979999998" green="0.7725490196" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="previousQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="BF6-r2-6QV"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LT2-nO-kzX">
                                 <rect key="frame" x="265" y="328" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -220,13 +196,48 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="whM-5g-WVV">
+                                <rect key="frame" x="0.0" y="365" width="320" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r9T-Fp-MV6">
+                                        <rect key="frame" x="170" y="14" width="108" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="babyq_next_button.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="HLx-b5-7p3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yTU-cd-EWa">
+                                        <rect key="frame" x="42" y="14" width="108" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="PREVIOUS">
+                                            <color key="titleColor" red="0.48627450979999998" green="0.7725490196" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previousQuestion" destination="Ydq-7j-kU2" eventType="touchUpInside" id="BF6-r2-6QV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
+                        <connections>
+                            <outlet property="delegate" destination="Ydq-7j-kU2" id="Da7-mc-u0N"/>
+                        </connections>
                     </scrollView>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="764"/>
                     <connections>
                         <outlet property="answerOne" destination="MPa-0f-UE6" id="GmA-p8-iJP"/>
                         <outlet property="bottomDivider" destination="sYj-ul-93y" id="Gza-fz-cpc"/>
+                        <outlet property="bottomNavView" destination="whM-5g-WVV" id="5lD-wK-fDF"/>
                         <outlet property="checkBoxOne" destination="LT2-nO-kzX" id="Zbf-nf-reU"/>
                         <outlet property="nextButton" destination="r9T-Fp-MV6" id="DVy-af-fkj"/>
                         <outlet property="previousButton" destination="yTU-cd-EWa" id="O0K-gj-hNm"/>
