@@ -14,6 +14,8 @@
 
 @implementation LandingPageViewController
 
+@synthesize headerLabel;
+
 NSURLConnection* fbLoginConnection;
 NSURLConnection* fbSaveDataConnection;
 NSURLConnection* registerDeviceConnection;
@@ -21,7 +23,7 @@ NSURLConnection* registerDeviceConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
 }
 
 - (void) viewWillAppear:(BOOL)animated

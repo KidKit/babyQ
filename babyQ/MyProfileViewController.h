@@ -28,6 +28,7 @@
 @property (nonatomic, retain) IBOutlet UILabel* babyWeightLabel;
 @property (nonatomic, retain) IBOutlet UILabel* babyLengthLabel;
 
+@property (nonatomic, retain) IBOutlet UIView* aboutMeView;
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
 @property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;
@@ -36,6 +37,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* saveAboutMeButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelAboutMeButton;
 
+@property (nonatomic, retain) IBOutlet UIView* pregnancyView;
 @property (nonatomic, retain) IBOutlet UIButton* savePregnantButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelPregnantButton;
 @property (nonatomic, retain) IBOutlet UISwitch* isPregnant;

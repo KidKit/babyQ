@@ -32,7 +32,7 @@ NSURLConnection* submitSurveyConnection;
     bottomNavView.hidden = YES;
     
     surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:18];
-    questionType.font = [UIFont fontWithName:@"MyriadPro-Bold" size:12];
+    questionType.font = [UIFont fontWithName:@"MyriadPro-Bold" size:14];
     
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     progressView.transform = transform;
@@ -77,10 +77,10 @@ NSURLConnection* submitSurveyConnection;
         progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
-        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
         question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
         answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         checkBoxOne.tag = 0;
@@ -95,7 +95,7 @@ NSURLConnection* submitSurveyConnection;
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = NO;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
-            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
             nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:nextAnswer];
@@ -132,7 +132,7 @@ NSURLConnection* submitSurveyConnection;
         progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
-        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
         question.text = survey_json[@"ExtraQuestions"][question_key][@"Question"];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         
@@ -142,7 +142,7 @@ NSURLConnection* submitSurveyConnection;
                 selected_extra_answers[question_key] = [[NSMutableArray alloc] init];
         }
         
-        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
         answerOne.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         checkBoxOne.tag = 0;
@@ -159,7 +159,7 @@ NSURLConnection* submitSurveyConnection;
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = NO;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
-            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
             nextAnswer.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:nextAnswer];

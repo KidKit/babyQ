@@ -9,6 +9,16 @@
 #import "HowItWorksPageViewController.h"
 #import "HowItWorksContentViewController.h"
 
+#define slide1Title @"How prepared are you for a healthy pregnancy?"
+#define slide2Title @"Get Scored"
+#define slide3Title @"Track your progress"
+#define slide4Title @"Get started today"
+
+#define slide1Body @"BabyQ is a pregnancy coach to track, manage and monitor the progress of your pregnancy."
+#define slide2Body  @"Know where your pregnancy health stands with the babyQ score."
+#define slide3Body  @"Be able to track and monitor your progress with our recommended personalized to do list."
+#define slide4Body  @"You and your baby deserve a healthy start. Let babyQ help unlock your potential to have a healthy pregnancy today."
+
 @interface HowItWorksPageViewController ()
 
 @end
@@ -21,8 +31,8 @@
 {
     [super viewDidLoad];
     
-    pageTitles = @[@"Over 200 Tips and Tricks", @"Discover Hidden Features", @"Bookmark Favorite Tip", @"Free Regular Update"];
-    pageTexts = @[@"Some page text...",@"Some page text...",@"Some page text...",@"Some page text..."];
+    pageTitles = @[slide1Title, slide2Title, slide3Title, slide4Title];
+    pageTexts = @[slide1Body,slide2Body,slide3Body,slide4Body];
     pageImages = @[@"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png"];
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HowItWorksPageViewController"];

@@ -72,14 +72,14 @@ CGRect scoreSliderFrame;
     self.delta.font = [UIFont fontWithName:@"Bebas" size:61];
     self.goodWorkLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     self.scrollDownLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    self.youImprovedLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    self.youImprovedLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
     self.workBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     self.bigTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
-    self.smallTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
-    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
-    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
-    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
-    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:10];
+    self.smallTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
+    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
+    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
+    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
+    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
     self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanScoreSlider:)];
@@ -362,7 +362,7 @@ CGRect scoreSliderFrame;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextTodo.tag = i;
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
@@ -372,7 +372,7 @@ CGRect scoreSliderFrame;
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 todoNumber.tag = i;
                 [self.todosView addSubview:todoNumber];
                 

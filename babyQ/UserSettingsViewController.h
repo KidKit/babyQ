@@ -14,6 +14,8 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
+@property (nonatomic,retain) IBOutlet UIView* emailView;
+
 @property (nonatomic,retain) IBOutlet UITextField* email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
 @property (nonatomic,retain) IBOutlet UITextField* theNewPassword;

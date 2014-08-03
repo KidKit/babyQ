@@ -193,14 +193,14 @@ UIButton* currentPresentedScore;
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
                 [self.todosView addSubview:nextTodo];
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.todosView addSubview:todoNumber];
                 

@@ -14,7 +14,7 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
+@synthesize scrollView,profilePicture,emailView,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
 
 NSString* prevEmail;
 NSString* prevPassword;
@@ -116,6 +116,14 @@ NSURLConnection* changePasswordConnection;
     return NO;
 }
 
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (emailView.frame.size.height < 200)
+        [UIView animateWithDuration:0.5f animations:^{
+            [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height + 107)];
+        }];
+}
+
 -(IBAction)saveAccountFields
 {
     
@@ -152,6 +160,12 @@ NSURLConnection* changePasswordConnection;
 {
     email.text = prevEmail;
     password.text = prevPassword;
+    [email resignFirstResponder];
+    [password resignFirstResponder];
+    [theNewPassword resignFirstResponder];
+    [UIView animateWithDuration:0.5f animations:^{
+        [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
+    }];
 }
 
 -(IBAction)openAppStore
@@ -248,7 +262,25 @@ NSURLConnection* changePasswordConnection;
                                                                           error: nil];
         if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
+            
+            if (emailView.frame.size.height > 200)
+                [UIView animateWithDuration:0.5f animations:^{
+                    [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
+                }];
+            [[NSUserDefaults standardUserDefaults] setValue:email.text forKey:@"babyQ_email"];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *oldImagePath = [documentsDirectory stringByAppendingPathComponent:[prevEmail stringByAppendingString:@"_latest_photo.png"]];
+            NSString *newImagePath = [documentsDirectory stringByAppendingPathComponent:[email.text stringByAppendingString:@"_latest_photo.png"]];
+            [[NSFileManager defaultManager] removeItemAtPath:newImagePath error:nil];
+            [[NSFileManager defaultManager] moveItemAtPath:oldImagePath toPath:newImagePath error:nil];
+            
             prevEmail = email.text;
+            AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
+            appDelegate.user_email = email.text;
+            [email resignFirstResponder];
+            [password resignFirstResponder];
+            [theNewPassword resignFirstResponder];
         }
     }else if (connection == changePasswordConnection)
     {
@@ -260,6 +292,13 @@ NSURLConnection* changePasswordConnection;
         if ([json_dictionary[@"VALID"] isEqualToString:@"Success"])
         {
             prevPassword = password.text;
+            if (emailView.frame.size.height > 200)
+                [UIView animateWithDuration:0.5f animations:^{
+                    [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
+                }];
+            [email resignFirstResponder];
+            [password resignFirstResponder];
+            [theNewPassword resignFirstResponder];
         }
     }
 }

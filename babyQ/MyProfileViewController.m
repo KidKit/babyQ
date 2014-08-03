@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
 
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
@@ -67,7 +67,6 @@ NSString* prevBabyLength;
             profilePicture.imageView.layer.cornerRadius = 50.0;
             profilePicture.imageView.layer.masksToBounds = YES;
             profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
-            cameraImage.hidden = YES;
             UIImage* picImage = [UIImage imageWithData:picData];
             [profilePicture setImage:picImage forState:UIControlStateNormal];
         }
@@ -133,7 +132,6 @@ NSString* prevBabyLength;
         profilePicture.imageView.layer.masksToBounds = YES;
         profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [profilePicture setImage:[info objectForKey:@"UIImagePickerControllerOriginalImage"] forState:UIControlStateNormal];
-        cameraImage.hidden = YES;
         //obtaining saving path
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -183,7 +181,9 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            
+            [UIView animateWithDuration:0.5f animations:^{
+                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
+            }];
         }
     } else if (connection == getPregnantConnection)
     {
@@ -229,7 +229,9 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            
+            [UIView animateWithDuration:0.5f animations:^{
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
+            }];
         }
     } else if (connection == getDeliveryConnection)
     {
@@ -269,7 +271,9 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            
+            [UIView animateWithDuration:0.5f animations:^{
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
+            }];
         }
     }
 }
@@ -322,6 +326,54 @@ NSString* prevBabyLength;
     return NO;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == nameField || textField == dobField || textField == zipCodeField)
+    {
+        if (aboutMeView.frame.size.height < 300)
+        {
+            [UIView animateWithDuration:0.5f animations:^{
+                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height + 75)];
+            }];
+        }
+    } else if (textField == dueDateField)
+    {
+        if (pregnancyView.frame.size.height < 250)
+        {
+            [UIView animateWithDuration:0.5f animations:^{
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
+            }];
+        }
+    } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
+        if (deliveredView.frame.size.height < 400)
+        {
+            [UIView animateWithDuration:0.5f animations:^{
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height + 75)];
+            }];
+        }
+}
+
+- (void) textFieldDidEndEditing:(UITextField *)textField
+{
+    if (textField == dueDateField)
+    {
+        if (pregnancyView.frame.size.height < 300)
+        {
+            [UIView animateWithDuration:0.5f animations:^{
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y+75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
+            }];
+        }
+    } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
+    {
+        if (deliveredView.frame.size.height < 400)
+        {
+            [UIView animateWithDuration:0.5f animations:^{
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y+75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
+            }];
+        }
+    }
+}
+
 - (IBAction)saveAboutMeFields
 {
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
@@ -359,6 +411,12 @@ NSString* prevBabyLength;
     nameField.text = prevName;
     dobField.text = prevBirthdate;
     zipCodeField.text = prevZipcode;
+    [nameField resignFirstResponder];
+    [dobField resignFirstResponder];
+    [zipCodeField resignFirstResponder];
+    [UIView animateWithDuration:0.5f animations:^{
+        [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
+    }];
 }
 
 -(IBAction)savePregnantFields
@@ -393,6 +451,10 @@ NSString* prevBabyLength;
 {
     isPregnant.on = prevIsPregnant;
     dueDateField.text = prevDueDate;
+    [dueDateField resignFirstResponder];
+    [UIView animateWithDuration:0.5f animations:^{
+        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
+    }];
 }
 
 
@@ -431,6 +493,12 @@ NSString* prevBabyLength;
     deliveryDateField.text = prevDeliveryDate;
     babyLengthField.text = prevBabyLength;
     babyWeightField.text = prevBabyWeight;
+    [deliveryDateField resignFirstResponder];
+    [babyWeightField resignFirstResponder];
+    [babyLengthField resignFirstResponder];
+    [UIView animateWithDuration:0.5f animations:^{
+        [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
+    }];
 }
 
 - (IBAction)startSurvey

@@ -14,5 +14,5 @@
 #import "HowItWorksPageViewController.h"
 
 @interface SideSwipeTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
-
+@property (nonatomic,retain) IBOutlet UILabel* headerLabel;
 @end

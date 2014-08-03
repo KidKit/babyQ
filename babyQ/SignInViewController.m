@@ -64,7 +64,7 @@ NSURLConnection* signInConnection;
             AppDelegate* appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             appDelegate.api_token = json_dictionary[@"API TOKEN"];
             appDelegate.user_email = self.email.text;
-            
+            appDelegate.fb_profilePicture = nil;
             [[NSUserDefaults standardUserDefaults] setValue:appDelegate.user_email forKey:@"babyQ_email"];
             [[NSUserDefaults standardUserDefaults] setValue:appDelegate.api_token forKey:@"babyQ_api_token"];
             

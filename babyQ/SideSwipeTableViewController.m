@@ -14,10 +14,13 @@
 
 @implementation SideSwipeTableViewController
 
+@synthesize headerLabel;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

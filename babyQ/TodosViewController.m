@@ -113,7 +113,7 @@ bool isRefresh = NO;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = NO;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
@@ -121,7 +121,7 @@ bool isRefresh = NO;
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.view addSubview:todoNumber];
                 
