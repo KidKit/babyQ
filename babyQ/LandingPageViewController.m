@@ -124,19 +124,28 @@ NSURLConnection* registerDeviceConnection;
             }
             else
             {
-                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-                NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
-                [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
                 Constants* constants = [[Constants alloc] init];
                 NSString* em = [(AppDelegate *)[UIApplication sharedApplication].delegate user_email];
                 NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
                 NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
                 NSString* pushDataURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
                 NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:em];
-                postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
-                postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                NSDate* fb_bday = [dateFormatter dateFromString:[(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_birthday]];
+                if (fb_bday != nil && fb_bday != (id)[NSNull null])
+                {
+                    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+                    NSString* formatted_bday =  [dateFormatter stringFromDate:fb_bday];
+                    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_bday];
+                } else
+                    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:@""];
+                
+                if ([fb_name length] > 0)
+                    postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:fb_name];
+                else
+                    postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:@""];
                 
                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:pushDataURL]];
                 [request setHTTPMethod:@"POST"];
