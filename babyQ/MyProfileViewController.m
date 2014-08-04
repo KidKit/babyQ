@@ -341,9 +341,12 @@ NSString* prevBabyLength;
         if (pregnancyView.frame.size.height < 250)
         {
             [UIView animateWithDuration:0.5f animations:^{
-                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
             }];
         }
+        [UIView animateWithDuration:0.5f animations:^{
+            [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
+        }];
     } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
         if (deliveredView.frame.size.height < 400)
         {

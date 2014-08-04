@@ -140,6 +140,7 @@ NSURLConnection* submitSurveyConnection;
         {
             if (selected_extra_answers[question_key] == nil)
                 selected_extra_answers[question_key] = [[NSMutableArray alloc] init];
+            bottomNavView.hidden = NO;
         }
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
