@@ -169,18 +169,18 @@ NSURLConnection* registerDeviceConnection;
     [self.navigationController pushViewController:termsOfUse animated:YES];
 }
 
-- (BOOL) validateEmail: (NSString *) candidate {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    
-    return [emailTest evaluateWithObject:candidate];
-}
-
 - (BOOL) validateZipcode: (NSString*) zipCode {
     NSString *zipcodeRegex = @"\\d{5}(?:[-\\s]\\d{4})?$";
     NSPredicate *zipcodeTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", zipcodeRegex];
     
     return [zipcodeTest evaluateWithObject:zipCode];
+}
+
+- (BOOL) validateEmail: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
 }
 
 - (BOOL) validateFields
@@ -315,6 +315,7 @@ NSURLConnection* registerDeviceConnection;
                                                     initWithCenterViewController:currentScoreView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             

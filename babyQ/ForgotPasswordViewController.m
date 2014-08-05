@@ -74,6 +74,15 @@ NSURLConnection* forgotPasswordConnection;
         resetButton.hidden = YES;
         okButton.hidden = NO;
         confirmSentMessage.hidden = NO;
+    } else {
+        enterEmail.hidden = YES;
+        forgotPassword.hidden = YES;
+        emailField.hidden = YES;
+        cancelButton.hidden = YES;
+        resetButton.hidden = YES;
+        okButton.hidden = NO;
+        confirmSentMessage.hidden = NO;
+        confirmSentMessage.text = @"This email does not exist in our system.";
     }
 }
 

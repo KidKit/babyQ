@@ -146,7 +146,7 @@
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" id="fo3-Om-FVH">
                                 <rect key="frame" x="26" y="80" width="280" height="3"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="progressTintColor" red="0.57020315219999995" green="0.70792289399999997" blue="0.69515581699999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="progressTintColor" red="0.48627450980392156" green="0.77254901960784317" blue="0.74117647058823533" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="trackTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_progressbar_bubble.png" id="nyB-7F-ukF">

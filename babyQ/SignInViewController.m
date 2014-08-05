@@ -13,7 +13,7 @@
 
 @implementation SignInViewController
 
-@synthesize email,password;
+@synthesize email,password,errorMessage;
 
 NSURLConnection* registerDeviceConnection;
 NSURLConnection* signInConnection;
@@ -33,6 +33,9 @@ NSURLConnection* signInConnection;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     password.delegate = self;
     
+    errorMessage.textColor = [UIColor redColor];
+    errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
@@ -48,6 +51,11 @@ NSURLConnection* signInConnection;
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return NO;
+}
+
+- (void) textFieldDidBeginEditing:(UITextField *)textField
+{
+    errorMessage.text = @"";
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data
@@ -88,10 +96,14 @@ NSURLConnection* signInConnection;
                                                     initWithCenterViewController:currentScoreView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
             [self.navigationController pushViewController:swipeController animated:YES];
+        } else
+        {
+            errorMessage.text = @"Email/Password combination invalid";
         }
     } else if (connection == registerDeviceConnection)
     {
@@ -116,18 +128,42 @@ NSURLConnection* signInConnection;
 {
     
 }
+- (BOOL) validateEmail: (NSString *) candidate {
+    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    
+    return [emailTest evaluateWithObject:candidate];
+}
+
+- (BOOL) validateFields
+{
+    if (![self validateEmail:self.email.text])
+    {
+        errorMessage.text = @"Invalid email address";
+        return NO;
+    }
+    else if ([self.password.text length] < 6)
+    {
+        errorMessage.text = @"Password too short";
+        return NO;
+    }
+    return YES;
+}
 
 - (IBAction) signIn
 {
-    NSString* em = self.email.text;
-    NSString* pwd = self.password.text;
-    Constants* constants = [[Constants alloc] init];
-    NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.LOGIN_PATH];
-    NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
-    signInConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    if ([self validateFields])
+    {
+        NSString* em = self.email.text;
+        NSString* pwd = self.password.text;
+        Constants* constants = [[Constants alloc] init];
+        NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.LOGIN_PATH];
+        NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:loginURL]];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
+        signInConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    }
 }
 
 - (IBAction)forgotPassword

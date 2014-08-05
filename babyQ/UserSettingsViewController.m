@@ -78,8 +78,8 @@ NSURLConnection* changePasswordConnection;
     theNewPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     theNewPassword.delegate = self;
     
-    surveyAlerts.transform = CGAffineTransformMakeScale(0.75, 0.75);
-    dailyTipAlerts.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    surveyAlerts.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    dailyTipAlerts.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     alertsHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     surveyAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];

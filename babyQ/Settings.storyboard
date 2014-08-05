@@ -243,6 +243,7 @@
                                 <rect key="frame" x="20" y="189" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="KUDOS">
+                                    <color key="titleColor" red="0.65098039215686276" green="0.6705882352941176" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -253,6 +254,7 @@
                                 <rect key="frame" x="102" y="189" width="116" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SUGGESTIONS">
+                                    <color key="titleColor" red="0.65098039215686276" green="0.6705882352941176" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -263,6 +265,7 @@
                                 <rect key="frame" x="235" y="189" width="65" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ERRORS">
+                                    <color key="titleColor" red="0.65098039215686276" green="0.6705882352941176" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -274,7 +277,7 @@
                     </view>
                     <toolbarItems>
                         <barButtonItem title="SUBMIT" id="b7X-8f-3x4">
-                            <color key="tintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.9137254901960784" green="0.44313725490196076" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="sendFeedback" destination="nNU-8L-10w" id="64X-3O-cOo"/>
                             </connections>
@@ -368,7 +371,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="fwO-oD-38D">
-                                <rect key="frame" x="241" y="425" width="51" height="31"/>
+                                <rect key="frame" x="241" y="423" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
@@ -376,7 +379,7 @@
                                 </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="drQ-4b-5KZ">
-                                <rect key="frame" x="241" y="462" width="51" height="31"/>
+                                <rect key="frame" x="241" y="460" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="onTintColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>

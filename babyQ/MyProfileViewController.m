@@ -98,8 +98,8 @@ NSString* prevBabyLength;
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    isPregnant.transform = CGAffineTransformMakeScale(0.75, 0.75);
-    wasDelivered.transform = CGAffineTransformMakeScale(0.75, 0.75);
+    isPregnant.transform = CGAffineTransformMakeScale(0.9, 0.9);
+    wasDelivered.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     [self.scrollView addGestureRecognizer:tap];
 }

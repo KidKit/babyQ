@@ -44,6 +44,7 @@ NSURLConnection* registerDeviceConnection;
                                                 initWithCenterViewController:currentScoreView
                                                 leftDrawerViewController:sideSwipeTableView
                                                 rightDrawerViewController:nil];
+        [swipeController setMaximumLeftDrawerWidth:262];
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
         [swipeController setShowsShadow:NO];
         [self.navigationController pushViewController:swipeController animated:YES];

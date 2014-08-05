@@ -14,7 +14,7 @@
 
 @property (nonatomic,retain) IBOutlet UITextField* email;
 @property (nonatomic,retain) IBOutlet UITextField* password;
-
+@property (nonatomic,retain) IBOutlet UILabel* errorMessage;
 
 - (IBAction) signIn;
 - (IBAction)forgotPassword;

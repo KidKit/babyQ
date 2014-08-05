@@ -31,6 +31,7 @@
                                                  leftDrawerViewController:sideSwipeTableView
                                                  rightDrawerViewController:nil];
         //[swipeController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModePanningCenterView];
+        [swipeController setMaximumLeftDrawerWidth:262];
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
         [swipeController setShowsShadow:NO];
         [self pushViewController:swipeController animated:NO];

@@ -522,7 +522,7 @@ CGRect scoreSliderFrame;
 
 -(void)awakeFromNib{
     float size = [self.font pointSize];
-    self.font = [UIFont fontWithName:@"Bebas" size:size];
+    self.font = [UIFont fontWithName:@"MyriadPro-Bold" size:size];
 }
 
 @end
