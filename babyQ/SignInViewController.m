@@ -43,6 +43,11 @@ NSURLConnection* signInConnection;
     [self.view addGestureRecognizer:tap];
 }
 
+-(void) viewDidAppear:(BOOL)animated
+{
+    self.navigationItem.title = @"SIGN IN";
+}
+
 -(void)dismissKeyboard {
     [email resignFirstResponder];
     [password resignFirstResponder];
