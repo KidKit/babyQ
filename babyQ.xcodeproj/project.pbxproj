@@ -35,6 +35,12 @@
 		5F461983196D05120014F5F3 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */; };
 		5F49D12819526ACF0073BD85 /* Constants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F49D12619526ACF0073BD85 /* Constants.h */; };
 		5F49D12919526ACF0073BD85 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F49D12719526ACF0073BD85 /* Constants.m */; };
+		5F4AAAF21991988D00571C1C /* SurveyComplete.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F4AAAF11991988D00571C1C /* SurveyComplete.storyboard */; };
+		5F4AAAF5199198B100571C1C /* SurveyCompleteViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F4AAAF3199198B100571C1C /* SurveyCompleteViewController.h */; };
+		5F4AAAF6199198B100571C1C /* SurveyCompleteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4AAAF4199198B100571C1C /* SurveyCompleteViewController.m */; };
+		5F4AAAF81991A4BB00571C1C /* StopSurvey.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F4AAAF71991A4BB00571C1C /* StopSurvey.storyboard */; };
+		5F4AAAFB1991A54000571C1C /* StopSurveyViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F4AAAF91991A54000571C1C /* StopSurveyViewController.h */; };
+		5F4AAAFC1991A54000571C1C /* StopSurveyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4AAAFA1991A54000571C1C /* StopSurveyViewController.m */; };
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
 		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
 		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
@@ -180,6 +186,12 @@
 		5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
 		5F49D12619526ACF0073BD85 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = ../Constants.h; sourceTree = "<group>"; };
 		5F49D12719526ACF0073BD85 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = ../Constants.m; sourceTree = "<group>"; };
+		5F4AAAF11991988D00571C1C /* SurveyComplete.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SurveyComplete.storyboard; sourceTree = "<group>"; };
+		5F4AAAF3199198B100571C1C /* SurveyCompleteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SurveyCompleteViewController.h; sourceTree = "<group>"; };
+		5F4AAAF4199198B100571C1C /* SurveyCompleteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SurveyCompleteViewController.m; sourceTree = "<group>"; };
+		5F4AAAF71991A4BB00571C1C /* StopSurvey.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSurvey.storyboard; sourceTree = "<group>"; };
+		5F4AAAF91991A54000571C1C /* StopSurveyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StopSurveyViewController.h; sourceTree = "<group>"; };
+		5F4AAAFA1991A54000571C1C /* StopSurveyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StopSurveyViewController.m; sourceTree = "<group>"; };
 		5F574FD019491A19006059D2 /* SideSwipeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewCell.h; sourceTree = "<group>"; };
 		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
 		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
@@ -557,6 +569,10 @@
 				5F461981196D05120014F5F3 /* ForgotPasswordViewController.m */,
 				5F3FBD7D194A1C8700FB0548 /* SurveyViewController.h */,
 				5F3FBD7E194A1C8700FB0548 /* SurveyViewController.m */,
+				5F4AAAF91991A54000571C1C /* StopSurveyViewController.h */,
+				5F4AAAFA1991A54000571C1C /* StopSurveyViewController.m */,
+				5F4AAAF3199198B100571C1C /* SurveyCompleteViewController.h */,
+				5F4AAAF4199198B100571C1C /* SurveyCompleteViewController.m */,
 				5FD84C7B194A4F16003A711E /* MyProfileViewController.h */,
 				5FD84C7C194A4F16003A711E /* MyProfileViewController.m */,
 				5FDE03E51950EF670009A993 /* TodosViewController.h */,
@@ -591,6 +607,8 @@
 				5F3AF701194FCAC200BD04CE /* HowItWorks.storyboard */,
 				5F2FD6811964CD9200B41E23 /* GetScore.storyboard */,
 				5F46197E196D02970014F5F3 /* ForgotPassword.storyboard */,
+				5F4AAAF11991988D00571C1C /* SurveyComplete.storyboard */,
+				5F4AAAF71991A4BB00571C1C /* StopSurvey.storyboard */,
 				5FC3D0AC19479979003D3E94 /* Images.xcassets */,
 				5FC3D09B19479979003D3E94 /* Supporting Files */,
 			);
@@ -633,8 +651,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4AAAFB1991A54000571C1C /* StopSurveyViewController.h in Headers */,
 				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
 				5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */,
+				5F4AAAF5199198B100571C1C /* SurveyCompleteViewController.h in Headers */,
 				5F461982196D05120014F5F3 /* ForgotPasswordViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -770,6 +790,7 @@
 				5F7FF0691948035C00A48C86 /* babyq_forgotpassword.png in Resources */,
 				5F7FF05A1948035C00A48C86 /* babyq_get_your_score_button.png in Resources */,
 				5FC3D14E1947CBA3003D3E94 /* HomePage.storyboard in Resources */,
+				5F4AAAF81991A4BB00571C1C /* StopSurvey.storyboard in Resources */,
 				5F3FBD82194A1E5500FB0548 /* babyq_circle_orange.png in Resources */,
 				5F7FF07D1948035C00A48C86 /* babyq_menu_settigns_icon.png in Resources */,
 				5F7FF07E1948035C00A48C86 /* babyq_menu_to-dos_icon.png in Resources */,
@@ -808,6 +829,7 @@
 				5F7FF0851948035C00A48C86 /* babyq_popover.png in Resources */,
 				5F7FF0831948035C00A48C86 /* babyq_twitter_icon.png in Resources */,
 				5F7FF06E1948035C00A48C86 /* babyq_take_the_survey_header.png in Resources */,
+				5F4AAAF21991988D00571C1C /* SurveyComplete.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -865,6 +887,7 @@
 				5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F49D12919526ACF0073BD85 /* Constants.m in Sources */,
+				5F4AAAFC1991A54000571C1C /* StopSurveyViewController.m in Sources */,
 				5F2FD6861964D47700B41E23 /* GetScoreViewController.m in Sources */,
 				5F94EAF1194B67F50077FD1D /* SettingsViewController.m in Sources */,
 				5F3AF707194FD1F500BD04CE /* HowItWorksPageViewController.m in Sources */,
@@ -878,6 +901,7 @@
 				5F95E492194B9ADD000E9F83 /* SignInViewController.m in Sources */,
 				5F95E495194B9AFC000E9F83 /* JoinViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
+				5F4AAAF6199198B100571C1C /* SurveyCompleteViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
 				5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */,
 				5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */,

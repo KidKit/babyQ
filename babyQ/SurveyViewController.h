@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SideSwipeTableViewController.h"
+#import "StopSurveyViewController.h"
+#import "SurveyCompleteViewController.h"
 
 extern NSDictionary* survey_json;
 extern NSMutableDictionary* selected_answers;
@@ -37,5 +39,7 @@ extern BOOL extraQuestionsReached;
 
 - (IBAction)nextQuestion;
 - (IBAction)previousQuestion;
+-(void) stopSurvey;
+-(void) submitSurvey;
 
 @end
