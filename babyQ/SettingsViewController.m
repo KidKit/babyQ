@@ -34,7 +34,7 @@
 - (IBAction)startSurvey
 {
     UIStoryboard* surveyScreens = [UIStoryboard storyboardWithName:@"Survey" bundle:nil];
-    SurveyViewController* surveyController = [surveyScreens instantiateViewControllerWithIdentifier:@"Multiple Choice"];
+    SurveyViewController* surveyController = [surveyScreens instantiateInitialViewController];
     if (survey_json == nil)
     {
         surveyController.question_number = @"1";
@@ -57,6 +57,7 @@
             surveyController.question_type = @"Multiple Choice";
         }
     }
+    
     [self.navigationController pushViewController:surveyController animated:YES];
 }
 

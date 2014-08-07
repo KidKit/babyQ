@@ -14,7 +14,7 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,emailView,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
+@synthesize scrollView,profilePicture,emailView,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsView,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
 
 NSString* prevEmail;
 NSString* prevPassword;
@@ -119,9 +119,14 @@ NSURLConnection* changePasswordConnection;
 - (void) textFieldDidBeginEditing:(UITextField *)textField
 {
     if (emailView.frame.size.height < 200)
+    {
+        [UIView animateWithDuration:0.5f animations:^{
+            [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y + 107, alertsView.frame.size.width, alertsView.frame.size.height)];
+        }];
         [UIView animateWithDuration:0.5f animations:^{
             [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height + 107)];
         }];
+    }
 }
 
 -(IBAction)saveAccountFields
@@ -164,6 +169,9 @@ NSURLConnection* changePasswordConnection;
     [password resignFirstResponder];
     [theNewPassword resignFirstResponder];
     [UIView animateWithDuration:0.5f animations:^{
+        [UIView animateWithDuration:0.5f animations:^{
+            [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
+        }];
         [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
     }];
 }
@@ -265,6 +273,9 @@ NSURLConnection* changePasswordConnection;
             
             if (emailView.frame.size.height > 200)
                 [UIView animateWithDuration:0.5f animations:^{
+                    [UIView animateWithDuration:0.5f animations:^{
+                        [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
+                    }];
                     [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
                 }];
             [[NSUserDefaults standardUserDefaults] setValue:email.text forKey:@"babyQ_email"];
@@ -294,6 +305,9 @@ NSURLConnection* changePasswordConnection;
             prevPassword = password.text;
             if (emailView.frame.size.height > 200)
                 [UIView animateWithDuration:0.5f animations:^{
+                    [UIView animateWithDuration:0.5f animations:^{
+                        [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
+                    }];
                     [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
                 }];
             [email resignFirstResponder];
