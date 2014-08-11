@@ -14,8 +14,9 @@
 
 @implementation UserSettingsViewController
 
-@synthesize scrollView,profilePicture,emailView,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsView,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink;
+@synthesize scrollView,profilePicture,emailView,email,password,theNewPassword,saveAccountButton,cancelAccountButton,alertsView,alertsHeader,surveyAlerts,dailyTipAlerts,surveyAlertsLabel,dailyTipAlertsLabel,rateAppLink,savedMessage,offlineMessage;
 
+BOOL internet;
 NSString* prevEmail;
 NSString* prevPassword;
 NSURLConnection* setDeviceSettingsConnection;
@@ -27,6 +28,7 @@ NSURLConnection* changePasswordConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
     [self.scrollView setContentSize:CGSizeMake(320, 650)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
@@ -70,6 +72,8 @@ NSURLConnection* changePasswordConnection;
     [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
     
+    savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    savedMessage.hidden = YES;
     email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
     email.delegate = self;
     email.text = user_email;
@@ -272,12 +276,20 @@ NSURLConnection* changePasswordConnection;
         {
             
             if (emailView.frame.size.height > 200)
+            {
                 [UIView animateWithDuration:0.5f animations:^{
-                    [UIView animateWithDuration:0.5f animations:^{
-                        [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
-                    }];
+                    [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
                     [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
                 }];
+                savedMessage.hidden = NO;
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [UIView animateWithDuration:2.0f animations:^{
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                } completion:^(BOOL finished) {
+                    if (finished)
+                        savedMessage.hidden = YES;
+                }];
+            }
             [[NSUserDefaults standardUserDefaults] setValue:email.text forKey:@"babyQ_email"];
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -304,12 +316,20 @@ NSURLConnection* changePasswordConnection;
         {
             prevPassword = password.text;
             if (emailView.frame.size.height > 200)
+            {
                 [UIView animateWithDuration:0.5f animations:^{
-                    [UIView animateWithDuration:0.5f animations:^{
-                        [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
-                    }];
+                    [alertsView setFrame:CGRectMake(alertsView.frame.origin.x, alertsView.frame.origin.y - 107, alertsView.frame.size.width, alertsView.frame.size.height)];
                     [emailView setFrame:CGRectMake(emailView.frame.origin.x, emailView.frame.origin.y, emailView.frame.size.width, emailView.frame.size.height - 107)];
                 }];
+                savedMessage.hidden = NO;
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [UIView animateWithDuration:2.0f animations:^{
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                } completion:^(BOOL finished) {
+                    if (finished)
+                        savedMessage.hidden = YES;
+                }];
+            }
             [email resignFirstResponder];
             [password resignFirstResponder];
             [theNewPassword resignFirstResponder];
@@ -366,6 +386,35 @@ NSURLConnection* changePasswordConnection;
     appDelegate.fb_birthday = nil;
     appDelegate.user_email = nil;
     appDelegate.fb_profilePicture = nil;
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        email.enabled = YES;
+        password.enabled = YES;
+        dailyTipAlerts.enabled = YES;
+        surveyAlerts.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        email.enabled = NO;
+        password.enabled = NO;
+        dailyTipAlerts.enabled = NO;
+        surveyAlerts.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 

@@ -14,12 +14,14 @@
 
 @implementation PrivacyPolicyViewController
 
-@synthesize privacyPolicy;
+@synthesize privacyPolicy,offlineMessage;
+
+bool internet;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self testInternetConnection];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"http://tutorial.babyq.com/privacy-policy/"] cachePolicy: NSURLRequestUseProtocolCachePolicy timeoutInterval: 1000];
     [self.privacyPolicy loadRequest: request];
     
@@ -31,6 +33,27 @@
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     self.navigationController.navigationBar.topItem.title = @"PRIVACY POLICY";
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

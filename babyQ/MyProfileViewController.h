@@ -13,10 +13,14 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
+
 @property (nonatomic, retain) IBOutlet UILabel* headerLabel;
 @property (nonatomic, retain) IBOutlet UILabel* statusBarWhiteBG;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton1;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton2;
+
+@property (nonatomic, retain) IBOutlet UILabel* savedMessage;
 
 @property (nonatomic, retain) IBOutlet UILabel* nameLabel;
 @property (nonatomic, retain) IBOutlet UILabel* birthdayLabel;

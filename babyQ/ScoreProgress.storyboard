@@ -61,6 +61,14 @@
                                 <rect key="frame" x="42" y="84" width="10" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OiV-i3-n7i">
+                                <rect key="frame" x="0.0" y="71" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TOTAL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Wcw-5K-xn4">
                                 <rect key="frame" x="132" y="461" width="68" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -192,7 +200,7 @@
                                         <rect key="frame" x="80" y="22" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" id="97H-Ie-3tj">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="97H-Ie-3tj">
                                         <rect key="frame" x="20" y="71" width="243" height="179"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -287,6 +295,7 @@
                         <outlet property="lifestyleScore" destination="kxP-u3-9UK" id="rA9-47-hLe"/>
                         <outlet property="nutritionLabel" destination="wO3-Bh-lmL" id="GZW-ST-KyE"/>
                         <outlet property="nutritionScore" destination="pCx-FH-Pmz" id="96G-O6-OcR"/>
+                        <outlet property="offlineMessage" destination="OiV-i3-n7i" id="8Is-ib-NIM"/>
                         <outlet property="scoreDate" destination="zoW-5N-ed6" id="PXW-Gv-0rj"/>
                         <outlet property="scoreLabel" destination="ZC7-1s-vyx" id="b4q-9A-oUY"/>
                         <outlet property="scrollView" destination="INf-Lp-rFm" id="NAO-Ae-coL"/>

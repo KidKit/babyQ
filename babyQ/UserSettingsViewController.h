@@ -14,6 +14,10 @@
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
+
+@property (nonatomic, retain) IBOutlet UILabel* savedMessage;
+
 @property (nonatomic,retain) IBOutlet UIView* emailView;
 @property (nonatomic, retain) IBOutlet UIView* alertsView;
 

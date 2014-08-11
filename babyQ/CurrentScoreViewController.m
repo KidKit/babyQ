@@ -14,8 +14,9 @@
 
 @implementation CurrentScoreViewController
 
-@synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel;
+@synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel,offlineMessage;
 
+BOOL internet;
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
 NSURLConnection* toDosConnection;
@@ -29,6 +30,8 @@ CGRect scoreSliderFrame;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
+    offlineMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
 	[self.scrollView setContentSize:CGSizeMake(320, 1390)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     dailyTipView.hidden = YES;
@@ -514,6 +517,33 @@ CGRect scoreSliderFrame;
         [todosView setHidden:YES];
         [dailyTipView setHidden:NO];
     }
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        headerButton2.enabled = YES;
+        completedTodosButton.enabled = YES;
+        tipHistoryButton.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        headerButton2.enabled = NO;
+        completedTodosButton.enabled = NO;
+        tipHistoryButton.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

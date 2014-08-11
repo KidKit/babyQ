@@ -14,8 +14,9 @@
 
 @implementation ScoreProgressViewController
 
-@synthesize scrollView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,todosDueDate;
+@synthesize scrollView,graphView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,tipHistoryButton,todosDueDate,offlineMessage;
 
+BOOL internet;
 NSURLConnection* getScoreHistoryConnection;
 NSURLConnection* toDosConnection;
 NSURLConnection* dailyTipConnection;
@@ -25,6 +26,7 @@ UIButton* currentPresentedScore;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
     [self.scrollView setContentSize:CGSizeMake(320, 1200)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     [scoreLabel setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
@@ -157,7 +159,7 @@ UIButton* currentPresentedScore;
             [pastScores addObject:scoreHistoryArray[i][@"OverallScore"]];
         }
         
-        ScoreProgressGraphView* graphView = [[ScoreProgressGraphView alloc] initWithFrame:CGRectMake(52, 84, 248, 184)];
+        graphView = [[ScoreProgressGraphView alloc] initWithFrame:CGRectMake(52, 84, 248, 184)];
         [graphView setContentSize:CGSizeMake(50*[pastScores count], 184)];
         graphView.scrollEnabled = YES;
         graphView.yValues = pastScores;
@@ -169,7 +171,8 @@ UIButton* currentPresentedScore;
             [graphView addSubview:pastScore];
         }
         [self clickedPastScore:graphView.circles[[graphView.circles count] -1]];
-        graphView.contentOffset = CGPointMake(50*[pastScores count]-248, 0);
+        if ([pastScores count] > 5)
+            graphView.contentOffset = CGPointMake(50*[pastScores count]-248, 0);
         [self.scrollView addSubview:graphView];
         [self.scrollView bringSubviewToFront:headerLabel];
         [self.scrollView bringSubviewToFront:headerButton1];
@@ -380,6 +383,33 @@ UIButton* currentPresentedScore;
         }
     }
     [self.navigationController pushViewController:surveyController animated:YES];
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        headerButton2.enabled = YES;
+        completedTodosButton.enabled = YES;
+        tipHistoryButton.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        headerButton2.enabled = NO;
+        completedTodosButton.enabled = NO;
+        tipHistoryButton.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

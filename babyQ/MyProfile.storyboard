@@ -262,7 +262,6 @@
                                         <state key="normal" title="Cancel"/>
                                         <connections>
                                             <action selector="cancelEditingDeliveryFields" destination="cZF-II-pYe" eventType="touchUpInside" id="xOY-et-AaC"/>
-                                            <action selector="cancelEditingPregnantFields" destination="cZF-II-pYe" eventType="touchUpInside" id="xwC-AA-DFC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JH9-Px-NVd">
@@ -322,6 +321,14 @@
                                     <action selector="getPhoto" destination="cZF-II-pYe" eventType="touchUpInside" id="i6O-iw-jwM"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jIP-6w-jTZ">
+                                <rect key="frame" x="0.0" y="47" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.48627450979999998" green="0.7725490196" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gWm-Iw-ect">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -364,6 +371,14 @@
                                 <rect key="frame" x="148" y="149" width="24" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OhB-Op-i4u">
+                                <rect key="frame" x="0.0" y="70" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <connections>
                             <outlet property="delegate" destination="cZF-II-pYe" id="T7V-4E-SNT"/>
@@ -395,11 +410,13 @@
                         <outlet property="isPregnantLabel" destination="bdb-ZU-fLx" id="quk-zQ-xLS"/>
                         <outlet property="nameField" destination="OeZ-0w-YYs" id="5Jb-D2-E1S"/>
                         <outlet property="nameLabel" destination="hWR-1d-FMq" id="9Gt-Sd-I9i"/>
+                        <outlet property="offlineMessage" destination="OhB-Op-i4u" id="7D6-PH-7J5"/>
                         <outlet property="pregnancyView" destination="zah-65-vdl" id="tJb-cv-fng"/>
                         <outlet property="profilePicture" destination="D1w-YP-TJU" id="2EA-uw-IDn"/>
                         <outlet property="saveAboutMeButton" destination="VqH-BG-EiM" id="sUg-58-3Pd"/>
                         <outlet property="saveDeliveryButton" destination="JH9-Px-NVd" id="Tri-GY-JaL"/>
                         <outlet property="savePregnantButton" destination="yVP-OL-D4H" id="G9m-uN-aMK"/>
+                        <outlet property="savedMessage" destination="jIP-6w-jTZ" id="qtk-2L-Zca"/>
                         <outlet property="scrollView" destination="Pqi-hi-M1M" id="mWb-yt-YUj"/>
                         <outlet property="statusBarWhiteBG" destination="gWm-Iw-ect" id="7VB-0f-S2t"/>
                         <outlet property="wasDelivered" destination="4Mn-iO-UQs" id="yMy-fT-02X"/>

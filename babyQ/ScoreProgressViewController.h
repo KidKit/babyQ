@@ -12,6 +12,8 @@
 
 @interface ScoreProgressViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
+
 @property (nonatomic, retain) IBOutlet UILabel* scoreLabel;
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UILabel* headerLabel;
@@ -24,6 +26,8 @@
 @property (nonatomic, retain) IBOutlet UILabel* nutritionScore;
 @property (nonatomic, retain) IBOutlet UILabel* exerciseScore;
 @property (nonatomic, retain) IBOutlet UILabel* stressScore;
+
+@property (nonatomic, retain) ScoreProgressGraphView* graphView;
 
 @property (nonatomic, retain) IBOutlet UILabel *bigTotalLabel;
 @property (nonatomic, retain) IBOutlet UILabel *lifestyleLabel;

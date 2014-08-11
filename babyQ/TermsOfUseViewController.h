@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Reachability.h"
 
 @interface TermsOfUseViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
 @property (nonatomic, retain) IBOutlet UIWebView* termsOfUse;
 
 @end

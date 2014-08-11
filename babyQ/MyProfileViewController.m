@@ -14,8 +14,9 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel,savedMessage,offlineMessage;
 
+BOOL internet;
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
 NSURLConnection* getPregnantConnection;
@@ -36,6 +37,7 @@ NSString* prevBabyLength;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
     [self.scrollView setContentSize:CGSizeMake(320, 1230-366)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
@@ -43,7 +45,9 @@ NSString* prevBabyLength;
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     
-    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    
+    savedMessage.hidden = YES;
     
     if ([fb_pic length] > 0)
     {
@@ -184,6 +188,15 @@ NSString* prevBabyLength;
             [UIView animateWithDuration:0.5f animations:^{
                 [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
             }];
+            savedMessage.hidden = NO;
+            [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            [UIView animateWithDuration:2.0f animations:^{
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            } completion:^(BOOL finished) {
+                if (finished)
+                    savedMessage.hidden = YES;
+            }];
+            
         }
     } else if (connection == getPregnantConnection)
     {
@@ -232,6 +245,15 @@ NSString* prevBabyLength;
             [UIView animateWithDuration:0.5f animations:^{
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
             }];
+            
+            savedMessage.hidden = NO;
+            [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            [UIView animateWithDuration:2.0f animations:^{
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            } completion:^(BOOL finished) {
+                if (finished)
+                    savedMessage.hidden = YES;
+            }];
         }
     } else if (connection == getDeliveryConnection)
     {
@@ -273,6 +295,16 @@ NSString* prevBabyLength;
         {
             [UIView animateWithDuration:0.5f animations:^{
                 [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
+                
+            }];
+            
+            savedMessage.hidden = NO;
+            [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            [UIView animateWithDuration:2.0f animations:^{
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            } completion:^(BOOL finished) {
+                if (finished)
+                    savedMessage.hidden = YES;
             }];
         }
     }
@@ -531,6 +563,47 @@ NSString* prevBabyLength;
         }
     }
     [self.navigationController pushViewController:surveyController animated:YES];
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        headerButton2.enabled = YES;
+        nameField.enabled = YES;
+        dobField.enabled = YES;
+        zipCodeField.enabled = YES;
+        isPregnant.enabled = YES;
+        dueDateField.enabled = YES;
+        wasDelivered.enabled = YES;
+        deliveryDateField.enabled = YES;
+        babyLengthField.enabled = YES;
+        babyWeightField.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        headerButton2.enabled = NO;
+        nameField.enabled = NO;
+        dobField.enabled = NO;
+        zipCodeField.enabled = NO;
+        isPregnant.enabled = NO;
+        dueDateField.enabled = NO;
+        wasDelivered.enabled = NO;
+        deliveryDateField.enabled = NO;
+        babyLengthField.enabled = NO;
+        babyWeightField.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

@@ -134,6 +134,9 @@
 		5FC3D14E1947CBA3003D3E94 /* HomePage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FC3D14D1947CBA3003D3E94 /* HomePage.storyboard */; };
 		5FD48FE2197F3170005CC61D /* babyq_feedback_tab.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */; };
 		5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD84C7C194A4F16003A711E /* MyProfileViewController.m */; };
+		5FDA535F19988DBC007E3F06 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FDA535E19988DBC007E3F06 /* SystemConfiguration.framework */; };
+		5FDA536219988E6D007E3F06 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FDA536019988E6D007E3F06 /* Reachability.h */; };
+		5FDA536319988E6D007E3F06 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDA536119988E6D007E3F06 /* Reachability.m */; };
 		5FDE03E41950EA1C0009A993 /* Todos.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FDE03E31950EA1C0009A993 /* Todos.storyboard */; };
 		5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E61950EF670009A993 /* TodosViewController.m */; };
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
@@ -303,6 +306,9 @@
 		5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_feedback_tab.png; sourceTree = "<group>"; };
 		5FD84C7B194A4F16003A711E /* MyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileViewController.h; sourceTree = "<group>"; };
 		5FD84C7C194A4F16003A711E /* MyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileViewController.m; sourceTree = "<group>"; };
+		5FDA535E19988DBC007E3F06 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5FDA536019988E6D007E3F06 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		5FDA536119988E6D007E3F06 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		5FDE03E31950EA1C0009A993 /* Todos.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Todos.storyboard; sourceTree = "<group>"; };
 		5FDE03E51950EF670009A993 /* TodosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodosViewController.h; sourceTree = "<group>"; };
 		5FDE03E61950EF670009A993 /* TodosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodosViewController.m; sourceTree = "<group>"; };
@@ -320,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FDA535F19988DBC007E3F06 /* SystemConfiguration.framework in Frameworks */,
 				5FC3D09719479979003D3E94 /* CoreGraphics.framework in Frameworks */,
 				5F3D2000196F53DE00248D0A /* FacebookSDK.framework in Frameworks */,
 				5FC3D09919479979003D3E94 /* UIKit.framework in Frameworks */,
@@ -526,6 +533,7 @@
 		5FC3D09319479979003D3E94 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5FDA535E19988DBC007E3F06 /* SystemConfiguration.framework */,
 				5F3D1FFF196F53DE00248D0A /* FacebookSDK.framework */,
 				5FC3D09419479979003D3E94 /* Foundation.framework */,
 				5FC3D09619479979003D3E94 /* CoreGraphics.framework */,
@@ -545,6 +553,8 @@
 				5FC3D0A419479979003D3E94 /* AppDelegate.m */,
 				5F49D12619526ACF0073BD85 /* Constants.h */,
 				5F49D12719526ACF0073BD85 /* Constants.m */,
+				5FDA536019988E6D007E3F06 /* Reachability.h */,
+				5FDA536119988E6D007E3F06 /* Reachability.m */,
 				5F95E48D194B9A68000E9F83 /* LandingPageViewController.h */,
 				5F95E48E194B9A68000E9F83 /* LandingPageViewController.m */,
 				5F95E490194B9ADD000E9F83 /* SignInViewController.h */,
@@ -654,6 +664,7 @@
 				5F4AAAFB1991A54000571C1C /* StopSurveyViewController.h in Headers */,
 				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
 				5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */,
+				5FDA536219988E6D007E3F06 /* Reachability.h in Headers */,
 				5F4AAAF5199198B100571C1C /* SurveyCompleteViewController.h in Headers */,
 				5F461982196D05120014F5F3 /* ForgotPasswordViewController.h in Headers */,
 			);
@@ -885,6 +896,7 @@
 				5F95E48F194B9A68000E9F83 /* LandingPageViewController.m in Sources */,
 				5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */,
 				5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */,
+				5FDA536319988E6D007E3F06 /* Reachability.m in Sources */,
 				5FD84C7D194A4F16003A711E /* MyProfileViewController.m in Sources */,
 				5F49D12919526ACF0073BD85 /* Constants.m in Sources */,
 				5F4AAAFC1991A54000571C1C /* StopSurveyViewController.m in Sources */,
@@ -1043,7 +1055,7 @@
 				);
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "71C30FF6-5696-4ECB-AA97-741F0F86A76C";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1156,7 +1168,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1170,7 +1182,7 @@
 				);
 				INFOPLIST_FILE = "babyQ/babyQ-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3B41975A-2F35-4300-8A72-479BA95DB904";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = "Ad-Hoc";

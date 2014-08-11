@@ -14,19 +14,20 @@
 
 @implementation TodosViewController
 
-@synthesize todosArray,todosData,completedTodosButton,todosDueDate;
+@synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton2,offlineMessage;
 
 NSURLConnection* getTodosConnection;
 NSURLConnection* setTodoCompletedConnection;
 bool isRefresh = NO;
+BOOL internet;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    [self testInternetConnection];
+    
     todosData = [[NSMutableData alloc] init];
-    
-    
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
@@ -210,6 +211,31 @@ bool isRefresh = NO;
         }
     }
     [self.navigationController pushViewController:surveyController animated:YES];
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        headerButton2.enabled = YES;
+        completedTodosButton.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        headerButton2.enabled = NO;
+        completedTodosButton.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

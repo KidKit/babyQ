@@ -14,13 +14,15 @@
 
 @implementation LeaveFeedbackViewController
 
-@synthesize feedbackTextView,sendFeedbackButton,kudos,suggestions,errors;
+@synthesize feedbackTextView,sendFeedbackButton,kudos,suggestions,errors,offlineMessage;
 
 int selected_tab;
+bool internet;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self testInternetConnection];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
@@ -131,6 +133,29 @@ int selected_tab;
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        internet = YES;
+        offlineMessage.hidden = YES;
+        sendFeedbackButton.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        internet = NO;
+        offlineMessage.hidden = NO;
+        sendFeedbackButton.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

@@ -196,11 +196,20 @@
                                     <outlet property="delegate" destination="ucH-d4-vNo" id="qFn-sR-xMX"/>
                                 </connections>
                             </webView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s0h-ri-HKZ">
+                                <rect key="frame" x="0.0" y="64" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="yu3-gR-zQH"/>
                     <connections>
+                        <outlet property="offlineMessage" destination="s0h-ri-HKZ" id="CYE-p9-hgW"/>
                         <outlet property="termsOfUse" destination="iZx-Bi-4yd" id="yWg-uS-7Sd"/>
                     </connections>
                 </viewController>
@@ -272,6 +281,14 @@
                                     <action selector="clickedErrors:" destination="nNU-8L-10w" eventType="touchUpInside" id="QDw-9Y-PKm"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F5x-rF-82B">
+                                <rect key="frame" x="0.0" y="64" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -289,6 +306,7 @@
                         <outlet property="errors" destination="2xw-xW-SaH" id="YpY-q0-duT"/>
                         <outlet property="feedbackTextView" destination="JmO-Jz-3lu" id="C60-lH-nnU"/>
                         <outlet property="kudos" destination="JYN-Ic-fmK" id="1zH-Qj-G0c"/>
+                        <outlet property="offlineMessage" destination="F5x-rF-82B" id="VFZ-17-xC5"/>
                         <outlet property="sendFeedbackButton" destination="b7X-8f-3x4" id="vkU-V5-IqW"/>
                         <outlet property="suggestions" destination="6y5-zR-W6S" id="grj-3u-OvJ"/>
                     </connections>
@@ -317,11 +335,20 @@
                                     <outlet property="delegate" destination="fJs-pU-pyh" id="BkQ-sG-xRA"/>
                                 </connections>
                             </webView>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sKu-jm-yL7">
+                                <rect key="frame" x="0.0" y="64" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="FaC-Cu-aCj"/>
                     <connections>
+                        <outlet property="offlineMessage" destination="sKu-jm-yL7" id="itr-LH-BJ2"/>
                         <outlet property="privacyPolicy" destination="ZC8-x0-XMu" id="dGd-AX-Wyb"/>
                     </connections>
                 </viewController>
@@ -410,10 +437,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="0bF-re-8La">
-                                <rect key="frame" x="112" y="21" width="96" height="96"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <view contentMode="scaleToFill" id="cj8-6N-o9J">
                                 <rect key="frame" x="18" y="246" width="285" height="237"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -488,6 +511,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_join_avatar.png" id="0bF-re-8La">
+                                <rect key="frame" x="112" y="21" width="96" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ith-sZ-8lQ">
+                                <rect key="frame" x="0.0" y="21" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.48627450979999998" green="0.7725490196" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gPR-FK-f2E">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </scrollView>
                     <navigationItem key="navigationItem" id="fZf-tT-J7C"/>
@@ -501,10 +544,12 @@
                         <outlet property="dailyTipAlertsLabel" destination="LYc-mH-nxb" id="0Rg-7x-mxv"/>
                         <outlet property="email" destination="kFn-EQ-9ft" id="ocl-E2-jPs"/>
                         <outlet property="emailView" destination="bFA-fF-2qi" id="KEP-xy-k5c"/>
+                        <outlet property="offlineMessage" destination="gPR-FK-f2E" id="drP-W5-IPC"/>
                         <outlet property="password" destination="E3b-tB-EM3" id="12r-WA-t1N"/>
                         <outlet property="profilePicture" destination="0bF-re-8La" id="uaF-Ob-uT7"/>
                         <outlet property="rateAppLink" destination="jiv-ST-EXz" id="chD-0O-H40"/>
                         <outlet property="saveAccountButton" destination="DR3-2K-Bjw" id="h4Z-2U-AZw"/>
+                        <outlet property="savedMessage" destination="ith-sZ-8lQ" id="Duk-fC-sXO"/>
                         <outlet property="scrollView" destination="1Mu-uP-Cc8" id="BZ2-1C-6vi"/>
                         <outlet property="surveyAlerts" destination="fwO-oD-38D" id="xcV-3T-WhD"/>
                         <outlet property="surveyAlertsLabel" destination="xjo-9l-n5e" id="7Uw-v9-1Yh"/>

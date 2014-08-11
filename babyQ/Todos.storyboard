@@ -66,11 +66,21 @@
                                     <action selector="getCompletedTodos" destination="NzC-Ou-NvD" eventType="touchUpInside" id="BLL-ML-U1b"/>
                                 </connections>
                             </button>
+                            <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO INTERNET CONNECTION" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eMU-W6-Ggx">
+                                <rect key="frame" x="0.0" y="62" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="completedTodosButton" destination="JI8-bN-yOa" id="7m4-Re-wCR"/>
+                        <outlet property="headerButton2" destination="yow-hL-Skb" id="9w4-0b-9y4"/>
+                        <outlet property="offlineMessage" destination="eMU-W6-Ggx" id="kkb-Lh-iBq"/>
                         <outlet property="todosDueDate" destination="Gpi-QH-c1D" id="DR9-YC-ggt"/>
                     </connections>
                 </viewController>

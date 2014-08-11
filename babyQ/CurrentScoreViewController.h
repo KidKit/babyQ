@@ -15,6 +15,7 @@
 @interface CurrentScoreViewController : UIViewController <UIScrollViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
 @property (nonatomic, retain) IBOutlet UILabel* headerLabel;
 @property (nonatomic, retain) IBOutlet UILabel* statusBarWhiteBG;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton1;

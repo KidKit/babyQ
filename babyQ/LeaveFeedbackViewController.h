@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "Reachability.h"
 
 @interface LeaveFeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate>
+
+@property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
 
 @property (nonatomic,retain) IBOutlet UITextView* feedbackTextView;
 @property (nonatomic,retain) IBOutlet UIBarButtonItem* sendFeedbackButton;
