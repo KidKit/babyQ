@@ -10,7 +10,7 @@
 
 @implementation AppDelegate
 
-@synthesize api_token,user_email,fb_userId;
+@synthesize api_token,user_email,fb_userId,pushToken;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -32,8 +32,23 @@
                                                                            fontWithName:@"MyriadPro-Bold" size:14], NSFontAttributeName,
                                 [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+
+    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken: %@", deviceToken);
+    // Stash the deviceToken data somewhere to send it to
+    // your application server.
+    
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    token = [[token componentsSeparatedByString:@" "] componentsJoinedByString:@""];
+    
+    pushToken = token;
 }
 
 // This method will handle ALL the session state changes in the app

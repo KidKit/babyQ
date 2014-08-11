@@ -62,7 +62,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="iY9-zb-yPQ">
-                                <rect key="frame" x="0.0" y="62" width="320" height="506"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="497"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" id="3hb-Jm-bTd">

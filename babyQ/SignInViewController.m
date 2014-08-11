@@ -85,7 +85,10 @@ NSURLConnection* signInConnection;
             NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
             NSString* postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:appDelegate.user_email];
             postData = [[postData stringByAppendingString:@"&IsActive=1&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
-            postData = [postData stringByAppendingString:@"&DeviceToken="];
+            if ([appDelegate.pushToken length] > 0)
+                postData = [[postData stringByAppendingString:@"&DeviceToken="] stringByAppendingString:appDelegate.pushToken];
+            else
+                [postData stringByAppendingString:@"&DeviceToken="];
             
             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
             [request setHTTPMethod:@"POST"];

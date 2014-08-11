@@ -157,7 +157,10 @@ NSURLConnection* registerDeviceConnection;
                 postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:appDelegate.user_email];
                 NSString* deviceUUID = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
                 postData = [[postData stringByAppendingString:@"&IsActive=1&DeviceId="] stringByAppendingString:deviceUUID];
-                postData = [postData stringByAppendingString:@"&DeviceToken="];
+                if ([appDelegate.pushToken length] > 0)
+                    postData = [[postData stringByAppendingString:@"&DeviceToken="] stringByAppendingString:appDelegate.pushToken];
+                else
+                    [postData stringByAppendingString:@"&DeviceToken="];
                 
                 request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
                 [request setHTTPMethod:@"POST"];
