@@ -85,7 +85,7 @@ int page;
             UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 150*i, 280, 160)];
             nextTodo.backgroundColor = [UIColor clearColor];
             nextTodo.editable = NO;
-            nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextTodo.textColor = [UIColor colorWithRed:171.0/255.0f green:166.0/255.0f blue:164.0/255.0f alpha:1.0f];
             nextTodo.textAlignment = NSTextAlignmentCenter;
             nextTodo.userInteractionEnabled = NO;
@@ -95,7 +95,7 @@ int page;
             
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 312 + 150*i, 114, 21)];
             todoLabel.text = [completedTodosArray[i][@"ToDoType"] uppercaseString];
-            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:17];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:todoLabel];
             
@@ -109,7 +109,7 @@ int page;
                 UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 334 + 150*i, 112, 21)];
                 dateLabel.text = [dateFormatter stringFromDate:tipDate];
                 dateLabel.textColor = [UIColor colorWithRed:227.0/255.0f green:95.0/255.0f blue:62.0/255.0f alpha:1.0f];
-                dateLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:17];
+                dateLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
                 dateLabel.highlighted = NO;
                 dateLabel.enabled = YES;
                 [self.scrollView addSubview:dateLabel];
@@ -129,7 +129,7 @@ int page;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(40, 319, 240, 24)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
             todoLabel.text = @"No completed To-Dos.";
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            todoLabel.font = [UIFont fontWithName:@"Bebas" size:18];
             [self.scrollView addSubview:todoLabel];
         }
     }

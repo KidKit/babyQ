@@ -45,7 +45,7 @@ NSString* prevBabyLength;
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     
-    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
     savedMessage.hidden = YES;
     

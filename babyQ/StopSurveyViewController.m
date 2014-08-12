@@ -19,9 +19,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    yesButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
-    noButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
-    message.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    yesButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:19];
+    noButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:19];
+    message.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
     // Do any additional setup after loading the view.
 }
 

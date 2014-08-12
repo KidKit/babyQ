@@ -31,8 +31,8 @@ NSURLConnection* submitSurveyConnection;
     
     bottomNavView.hidden = YES;
     
-    surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:18];
-    questionType.font = [UIFont fontWithName:@"MyriadPro-Bold" size:14];
+    surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:19];
+    questionType.font = [UIFont fontWithName:@"MyriadPro-Bold" size:15];
     
     CGAffineTransform transform = CGAffineTransformMakeScale(1.0f, 3.0f);
     progressView.transform = transform;
@@ -77,12 +77,17 @@ NSURLConnection* submitSurveyConnection;
         progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
-        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
         question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
         answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(clickedAnswer:)];
+        
+        [answerOne addGestureRecognizer:tap];
         checkBoxOne.tag = 0;
         [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -93,11 +98,17 @@ NSURLConnection* submitSurveyConnection;
             UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 296 + 55*(i-1), 189, 54)];
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
-            nextAnswer.userInteractionEnabled = NO;
+            nextAnswer.userInteractionEnabled = YES;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
-            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            nextAnswer.tag = i-1;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(clickedAnswer:)];
+            
+            [nextAnswer addGestureRecognizer:tap];
             [self.scrollView addSubview:nextAnswer];
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -132,7 +143,7 @@ NSURLConnection* submitSurveyConnection;
         progressPercentage.text = [NSString stringWithFormat:@"%.0f%%", progress*100];
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
-        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+        question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
         question.text = survey_json[@"ExtraQuestions"][question_key][@"Question"];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         
@@ -143,9 +154,14 @@ NSURLConnection* submitSurveyConnection;
             bottomNavView.hidden = NO;
         }
         
-        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+        answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
         answerOne.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                       initWithTarget:self
+                                       action:@selector(clickedAnswer:)];
+        
+        [answerOne addGestureRecognizer:tap];
         checkBoxOne.tag = 0;
         [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -158,11 +174,17 @@ NSURLConnection* submitSurveyConnection;
             
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
-            nextAnswer.userInteractionEnabled = NO;
+            nextAnswer.userInteractionEnabled = YES;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
-            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextAnswer.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            nextAnswer.tag = i-1;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(clickedAnswer:)];
+            
+            [nextAnswer addGestureRecognizer:tap];
             [self.scrollView addSubview:nextAnswer];
             
             UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -235,6 +257,11 @@ NSURLConnection* submitSurveyConnection;
             question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
             answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                           initWithTarget:self
+                                           action:@selector(clickedAnswer:)];
+            
+            [answerOne addGestureRecognizer:tap];
             checkBoxOne.tag = 0;
             [checkBoxOne addTarget:self action:@selector(clickedAnswer:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -245,10 +272,16 @@ NSURLConnection* submitSurveyConnection;
                 UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 296 + 55*(i-1), 189, 54)];
                 nextAnswer.backgroundColor = [UIColor clearColor];
                 nextAnswer.editable = NO;
-                nextAnswer.userInteractionEnabled = NO;
+                nextAnswer.userInteractionEnabled = YES;
                 NSString* i_string = [NSString stringWithFormat:@"%i", i];
                 nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
                 nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+                nextAnswer.tag = i-1;
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                               initWithTarget:self
+                                               action:@selector(clickedAnswer:)];
+                
+                [nextAnswer addGestureRecognizer:tap];
                 [self.scrollView addSubview:nextAnswer];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -274,8 +307,15 @@ NSURLConnection* submitSurveyConnection;
     self.navigationController.navigationBar.topItem.title = @"TAKE SURVEY";
 }
 
-- (void) clickedAnswer:(UIButton*)sender
+- (void) clickedAnswer:(UIGestureRecognizer*)sender
 {
+    UIButton* touchedView;
+    for (UIView* view in [self.scrollView subviews])
+    {
+        if ([view isKindOfClass:[UIButton class]] && view.tag == ((UIButton*)sender).tag)
+            touchedView = (UIButton*) view;
+        
+    }
     if (extraQuestionsReached)
     {
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
@@ -292,21 +332,21 @@ NSURLConnection* submitSurveyConnection;
         }
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
-            if ([selected_extra_answers[question_key] containsObject:answer_ids[sender.tag]])
+            if ([selected_extra_answers[question_key] containsObject:answer_ids[touchedView.tag]])
             {
-                [selected_extra_answers[question_key] removeObject:answer_ids[sender.tag]];
-                [sender setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+                [selected_extra_answers[question_key] removeObject:answer_ids[touchedView.tag]];
+                [touchedView setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             }
             else
             {
-                [selected_extra_answers[question_key] addObject:answer_ids[sender.tag]];
-                [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                [selected_extra_answers[question_key] addObject:answer_ids[touchedView.tag]];
+                [touchedView setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
             }
         }
         else
         {
-            selected_extra_answers[question_key] = answer_ids[sender.tag];
-            [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            selected_extra_answers[question_key] = answer_ids[touchedView.tag];
+            [touchedView setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
         }
     }
     else
@@ -320,8 +360,8 @@ NSURLConnection* submitSurveyConnection;
                     [button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
             }
         }
-        selected_answers[question_key] = answer_ids[sender.tag];
-        [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        selected_answers[question_key] = answer_ids[touchedView.tag];
+        [touchedView setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
     }
     [bottomNavView setFrame:CGRectMake(0, 493 + scrollView.contentOffset.y, 320, 75)];
     [self.scrollView bringSubviewToFront:bottomNavView];

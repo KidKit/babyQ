@@ -13,7 +13,7 @@
 
 @implementation SignInViewController
 
-@synthesize email,password,errorMessage;
+@synthesize email,password,errorMessage,forgotPasswordLabel;
 
 NSURLConnection* registerDeviceConnection;
 NSURLConnection* signInConnection;
@@ -27,14 +27,16 @@ NSURLConnection* signInConnection;
     self.navigationController.navigationBar.topItem.title = @"";
     self.navigationItem.title = @"SIGN IN";
     
-    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     email.delegate = self;
 
-    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     password.delegate = self;
     
+    forgotPasswordLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11];
+    
     errorMessage.textColor = [UIColor redColor];
-    errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self

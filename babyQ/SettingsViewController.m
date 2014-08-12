@@ -75,7 +75,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] init]; //[tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
     switch (indexPath.row) {
         case 0:
         {
@@ -112,7 +112,7 @@
     }
     
     // Configure the cell...
-    [cell.textLabel setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:15]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"MyriadPro-Regular" size:16]];
     [cell.textLabel setTextColor:[UIColor darkGrayColor]];
     
     return cell;

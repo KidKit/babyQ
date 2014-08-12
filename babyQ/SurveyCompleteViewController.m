@@ -20,9 +20,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    surveyCompleteHeader.font = [UIFont fontWithName:@"Bebas" size:18];
-    okButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
-    thankYouMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    surveyCompleteHeader.font = [UIFont fontWithName:@"Bebas" size:19];
+    okButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:19];
+    thankYouMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
 }
 
 -(IBAction)okPressed

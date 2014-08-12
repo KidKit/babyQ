@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    updateBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:10];
+    updateBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
 }
 
 - (IBAction)updateScore

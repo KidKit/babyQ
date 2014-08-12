@@ -21,9 +21,9 @@
     [super viewDidLoad];
     avatarImageView.image = [UIImage imageNamed:imageFile];
     titleLabel.text = titleText;
-    titleLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+    titleLabel.font = [UIFont fontWithName:@"Bebas" size:19];
     pageTextView.text = pageText;
-    pageTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    pageTextView.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
 }
 
 - (void)didReceiveMemoryWarning
