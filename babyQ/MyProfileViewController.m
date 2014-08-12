@@ -200,8 +200,10 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
+            [self dismissKeyboard];
             [UIView animateWithDuration:0.5f animations:^{
                 [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
             }];
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
@@ -257,8 +259,10 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
+            [self dismissKeyboard];
             [UIView animateWithDuration:0.5f animations:^{
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
             }];
             
             savedMessage.hidden = NO;
@@ -308,6 +312,7 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
+            [self dismissKeyboard];
             [UIView animateWithDuration:0.5f animations:^{
                 [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
                 
@@ -337,6 +342,7 @@ NSString* prevBabyLength;
 
 - (IBAction)openSideSwipeView
 {
+    [self dismissKeyboard];
     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
@@ -366,6 +372,14 @@ NSString* prevBabyLength;
         headerButton1.frame = button1Frame;
         headerButton2.frame = button2Frame;
     }
+    if (!savedMessage.hidden)
+    {
+        [savedMessage.layer removeAllAnimations];
+        savedMessage.frame = CGRectMake(savedMessage.frame.origin.x, 71 + contentOffset.y,savedMessage.frame.size.width, savedMessage.frame.size.height);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            savedMessage.hidden = YES;
+        });
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -390,6 +404,7 @@ NSString* prevBabyLength;
         {
             [UIView animateWithDuration:0.5f animations:^{
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
             }];
         }
         [UIView animateWithDuration:0.5f animations:^{
@@ -510,6 +525,7 @@ NSString* prevBabyLength;
     [dueDateField resignFirstResponder];
     [UIView animateWithDuration:0.5f animations:^{
         [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
+        [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
     }];
 }
 
