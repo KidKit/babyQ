@@ -67,6 +67,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="headerButton2" destination="JGW-s4-CSk" id="wjI-WH-xBk"/>
                         <outlet property="settingsTableView" destination="aku-NX-Vgk" id="0ty-ac-948"/>
                     </connections>
                 </viewController>

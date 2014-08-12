@@ -14,7 +14,7 @@
 
 @implementation SettingsViewController
 
-@synthesize settingsTableView;
+@synthesize settingsTableView,headerButton2;
 
 - (void)viewDidLoad
 {
@@ -152,6 +152,25 @@
             break;
         }
     }
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        headerButton2.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        headerButton2.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning

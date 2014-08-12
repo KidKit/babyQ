@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SurveyViewController.h"
+#import "Reachability.h"
 
 @interface HowItWorksPageViewController : UIViewController <UIPageViewControllerDataSource,UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UIPageViewController* pageViewController;
 @property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
+@property (nonatomic, retain) IBOutlet UIButton* headerButton2;
 @property (strong, nonatomic) NSArray* pageTitles;
 @property (strong, nonatomic) NSArray* pageImages;
 @property (strong, nonatomic) NSArray* pageTexts;

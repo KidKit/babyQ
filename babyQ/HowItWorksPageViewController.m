@@ -25,7 +25,7 @@
 
 @implementation HowItWorksPageViewController
 
-@synthesize pageImages, pageTitles, pageTexts, pageControl;
+@synthesize pageImages, pageTitles, pageTexts, pageControl,headerButton2;
 
 - (void)viewDidLoad
 {
@@ -141,6 +141,25 @@
         }
     }
     [self.navigationController pushViewController:surveyController animated:YES];
+}
+
+- (void)testInternetConnection
+{
+    Reachability* internetReachableFoo = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableFoo.reachableBlock = ^(Reachability*reach)
+    {
+        headerButton2.enabled = YES;
+    };
+    
+    // Internet is not reachable
+    internetReachableFoo.unreachableBlock = ^(Reachability*reach)
+    {
+        headerButton2.enabled = NO;
+    };
+    
+    [internetReachableFoo startNotifier];
 }
 
 - (void)didReceiveMemoryWarning
