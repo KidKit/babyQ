@@ -14,7 +14,7 @@
 
 @implementation TodosViewController
 
-@synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton2,offlineMessage;
+@synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton1,headerButton2,offlineMessage;
 
 NSURLConnection* getTodosConnection;
 NSURLConnection* setTodoCompletedConnection;
@@ -26,6 +26,9 @@ BOOL internet;
     [super viewDidLoad];
     
     [self testInternetConnection];
+    
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     todosData = [[NSMutableData alloc] init];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
@@ -110,19 +113,25 @@ BOOL internet;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(54, 120 + 60*(i), 189, 59)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(40, 120 + 60*(i), 210, 52)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
-                nextTodo.userInteractionEnabled = NO;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+                nextTodo.userInteractionEnabled = YES;
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                               initWithTarget:self
+                                               action:@selector(markTodoCompleted:)];
+                
+                [nextTodo addGestureRecognizer:tap];
+                nextTodo.tag = i;
                 [self.view addSubview:nextTodo];
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(35, 126 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 [self.view addSubview:todoNumber];
                 
@@ -144,15 +153,22 @@ BOOL internet;
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString* dateString = todosArray[0][@"DueDate"];
             NSDate* date = [dateFormatter dateFromString:dateString];
-            [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-            todosDueDate.text = [NSString stringWithFormat:@"DUE: %@", [dateFormatter stringFromDate:date]];
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                                     initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *comps = [gregorian components: NSDayCalendarUnit
+                                                   fromDate: [NSDate date]
+                                                     toDate: date
+                                                    options: 0];
+            int days = (int) [comps day];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE %i days from now", days];
         } else {
             todosDueDate.hidden = YES;
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 24)];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 72)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.numberOfLines = 3;
+            todoLabel.text = @"Congratulations! You've just completed your recommended list of to-do's";
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.view addSubview:todoLabel];
         }
     }
@@ -163,15 +179,25 @@ BOOL internet;
     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
-- (void) markTodoCompleted:(UIButton*)sender
+- (void) markTodoCompleted:(UITapGestureRecognizer*)sender
 {
-    [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    UIView* touchedView;
+    if (![sender isKindOfClass:[UIButton class]])
+        touchedView = sender.view;
+    else
+        touchedView = (UIView*)sender;
+    for (UIView* view in [self.view subviews])
+    {
+        if ([view isKindOfClass:[UIButton class]] && view.tag == touchedView.tag)
+            [(UIButton*)view setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        
+    }
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
     NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_TODO_COMPLETED_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[sender.tag][@"ToDoId"] ];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[touchedView.tag][@"ToDoId"] ];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];

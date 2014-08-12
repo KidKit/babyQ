@@ -23,7 +23,7 @@ NSURLConnection* registerDeviceConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
 }
 
 - (void) viewWillAppear:(BOOL)animated

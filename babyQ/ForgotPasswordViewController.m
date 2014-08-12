@@ -21,12 +21,12 @@ NSURLConnection* forgotPasswordConnection;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    forgotPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
-    enterEmail.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    confirmSentMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    cancelButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
-    resetButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
-    okButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
+    forgotPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:19];
+    enterEmail.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    confirmSentMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    cancelButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:19];
+    resetButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:19];
+    okButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:19];
     
     confirmSentMessage.hidden = YES;
     okButton.hidden = YES;

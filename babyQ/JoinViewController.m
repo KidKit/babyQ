@@ -39,10 +39,10 @@ NSURLConnection* registerDeviceConnection;
     [self.datePicker setFrame:CGRectMake(32, 395, 240, 150)];
     self.datePicker.datePickerMode = UIDatePickerModeDate;
     
-    hiddenNoticeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    hiddenNoticeLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     email.delegate = self;
-    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     password.delegate = self;
     if ([fb_email length] > 0)
     {
@@ -62,12 +62,12 @@ NSURLConnection* registerDeviceConnection;
         profilePicture.imageView.layer.masksToBounds = YES;
         profilePicture.imageView.contentMode = UIViewContentModeScaleAspectFill;
     }
-    zipcode.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    zipcode.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     zipcode.delegate = self;
-    currentlyPregnantLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    yesLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
-    noLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
-    whenDueLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    currentlyPregnantLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    yesLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    noLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    whenDueLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
     whenDueLabel.hidden = YES;
     datePicker.hidden = YES;
     [background setFrame:CGRectMake(background.frame.origin.x, background.frame.origin.y, background.frame.size.width, background.frame.size.height-180)];

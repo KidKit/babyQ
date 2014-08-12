@@ -20,7 +20,7 @@
 {
     [super viewDidLoad];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -37,7 +37,7 @@
          cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SideSwipeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SideSwipeCell"];
-    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    cell.textLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     switch (indexPath.row) {
         case 0:
             [cell.imageView setImage:[UIImage imageNamed:@"babyq_menu_currentscore_icon.png"]];

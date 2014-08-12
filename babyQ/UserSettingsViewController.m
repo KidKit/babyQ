@@ -72,23 +72,23 @@ NSURLConnection* changePasswordConnection;
     [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
     
-    savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     savedMessage.hidden = YES;
-    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     email.delegate = self;
     email.text = user_email;
-    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     password.delegate = self;
-    theNewPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    theNewPassword.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     theNewPassword.delegate = self;
     
     surveyAlerts.transform = CGAffineTransformMakeScale(0.9, 0.9);
     dailyTipAlerts.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
-    alertsHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
-    surveyAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-    dailyTipAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
-    rateAppLink.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:12];
+    alertsHeader.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    surveyAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
+    dailyTipAlertsLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
+    rateAppLink.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
     
     prevEmail = email.text;
     prevPassword = password.text;
@@ -284,7 +284,7 @@ NSURLConnection* changePasswordConnection;
                 savedMessage.hidden = NO;
                 [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 [UIView animateWithDuration:2.0f animations:^{
-                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 } completion:^(BOOL finished) {
                     if (finished)
                         savedMessage.hidden = YES;
@@ -323,8 +323,8 @@ NSURLConnection* changePasswordConnection;
                 }];
                 savedMessage.hidden = NO;
                 [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
-                [UIView animateWithDuration:2.0f animations:^{
-                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [UIView animateWithDuration:3.0f animations:^{
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 } completion:^(BOOL finished) {
                     if (finished)
                         savedMessage.hidden = YES;

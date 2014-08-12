@@ -79,7 +79,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uRV-nK-UgC">
-                                <rect key="frame" x="276" y="30" width="24" height="24"/>
+                                <rect key="frame" x="276" y="26" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_survey_icon.png">
@@ -90,7 +90,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MLW-rp-tXO">
-                                <rect key="frame" x="20" y="30" width="24" height="24"/>
+                                <rect key="frame" x="20" y="26" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_menu_icon.png">
@@ -104,6 +104,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="headerButton1" destination="MLW-rp-tXO" id="h1Z-Dh-Xu1"/>
+                        <outlet property="headerButton2" destination="uRV-nK-UgC" id="HHB-fe-MZa"/>
                         <outlet property="pageControl" destination="3hb-Jm-bTd" id="o4m-Ja-dEI"/>
                     </connections>
                 </viewController>

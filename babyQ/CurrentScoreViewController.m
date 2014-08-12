@@ -31,16 +31,21 @@ CGRect scoreSliderFrame;
 {
     [super viewDidLoad];
     [self testInternetConnection];
-    offlineMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    offlineMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
 	[self.scrollView setContentSize:CGSizeMake(320, 1390)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     dailyTipView.hidden = YES;
+    
+    todosDueDate.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMM dd"];
     todaysDate.text = [dateFormatter stringFromDate:now];
-    todaysDate.font = [UIFont fontWithName:@"Bebas" size:18];
+    todaysDate.font = [UIFont fontWithName:@"Bebas" size:19];
     
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -65,25 +70,25 @@ CGRect scoreSliderFrame;
     [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
     
-    self.totalScoreBig.font = [UIFont fontWithName:@"Bebas" size:61];
-    self.totalScoreSmall.font = [UIFont fontWithName:@"Bebas" size:18];
-    self.lifestyleScore.font = [UIFont fontWithName:@"Bebas" size:18];
-    self.exerciseScore.font = [UIFont fontWithName:@"Bebas" size:18];
-    self.nutritionScore.font = [UIFont fontWithName:@"Bebas" size:18];
-    self.stressScore.font = [UIFont fontWithName:@"Bebas" size:18];
-    self.deltaBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    self.delta.font = [UIFont fontWithName:@"Bebas" size:61];
-    self.goodWorkLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    self.scrollDownLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    self.youImprovedLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:13];
-    self.workBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    self.bigTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:18];
-    self.smallTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
-    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
-    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
-    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
-    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:11];
-    self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.totalScoreBig.font = [UIFont fontWithName:@"Bebas" size:62];
+    self.totalScoreSmall.font = [UIFont fontWithName:@"Bebas" size:19];
+    self.lifestyleScore.font = [UIFont fontWithName:@"Bebas" size:19];
+    self.exerciseScore.font = [UIFont fontWithName:@"Bebas" size:19];
+    self.nutritionScore.font = [UIFont fontWithName:@"Bebas" size:19];
+    self.stressScore.font = [UIFont fontWithName:@"Bebas" size:19];
+    self.deltaBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    self.delta.font = [UIFont fontWithName:@"Bebas" size:62];
+    self.goodWorkLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    self.scrollDownLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    self.youImprovedLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+    self.workBlurb.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    self.bigTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:19];
+    self.smallTotalLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+    self.lifestyleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+    self.exerciseLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+    self.nutritionLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+    self.stressLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:12];
+    self.tipHistoryButton.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanScoreSlider:)];
     [scoreSlider addGestureRecognizer:panGesture];
@@ -274,7 +279,7 @@ CGRect scoreSliderFrame;
             
             self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
             self.navigationController.view.userInteractionEnabled = NO;
-            [self.navigationController presentViewController:getScorePopup animated:YES completion:^(){
+            [self.navigationController presentViewController:getScorePopup animated:NO completion:^(){
                 //[getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
             }];
         }
@@ -286,7 +291,7 @@ CGRect scoreSliderFrame;
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
         dailyTip.text = json_dictionary[@"Body"];
-        dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+        dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
         NSString* dateString = json_dictionary[@"ReceivedDate"];
@@ -332,20 +337,30 @@ CGRect scoreSliderFrame;
     toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
 }
 
-- (void) markTodoCompleted:(UIButton*)sender
+- (void) markTodoCompleted:(UITapGestureRecognizer*)sender
 {
+    UIView* touchedView;
+    if (![sender isKindOfClass:[UIButton class]])
+        touchedView = sender.view;
+    else
+        touchedView = (UIView*)sender;
+    for (UIView* view in [todosView subviews])
+    {
+        if ([view isKindOfClass:[UIButton class]] && view.tag == touchedView.tag)
+            [(UIButton*)view setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        
+    }
+    
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
     NSString* todosURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_TODO_COMPLETED_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[sender.tag][@"ToDoId"] ];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:todosArray[touchedView.tag][@"ToDoId"] ];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:todosURL]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-    [sender setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -367,21 +382,26 @@ CGRect scoreSliderFrame;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(37, 42 + 60*(i), 189, 54)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(32, 40 + 60*(i), 210, 52)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
-                nextTodo.userInteractionEnabled = NO;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+                nextTodo.userInteractionEnabled = YES;
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                nextTodo.tag = i;
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
+                UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+                                               initWithTarget:self
+                                               action:@selector(markTodoCompleted:)];
+                
+                [nextTodo addGestureRecognizer:tap];
+                nextTodo.tag = i;
                 [self.todosView addSubview:nextTodo];
                 
                 UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
                 todoNumber.text = @"\u2022";
                 todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 todoNumber.tag = i;
                 [self.todosView addSubview:todoNumber];
                 
@@ -404,15 +424,22 @@ CGRect scoreSliderFrame;
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             NSString* dateString = todosArray[0][@"DueDate"];
             NSDate* date = [dateFormatter dateFromString:dateString];
-            [dateFormatter setDateFormat:@"MM.dd.yyyy"];
-            todosDueDate.text = [NSString stringWithFormat:@"DUE %@", [dateFormatter stringFromDate:date]];
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                                     initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *comps = [gregorian components: NSDayCalendarUnit
+                                                   fromDate: [NSDate date]
+                                                     toDate: date
+                                                    options: 0];
+            int days = (int) [comps day];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE %i days from now", days];
         } else {
             todosDueDate.hidden = YES;
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 72)];
+            todoLabel.numberOfLines = 3;
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.text = @"Congratulations! You've just completed your recommended list of to-do's";
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.todosView addSubview:todoLabel];
         }
     }

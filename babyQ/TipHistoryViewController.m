@@ -84,7 +84,7 @@ int page;
             UITextView* nextTip = [[UITextView alloc] initWithFrame:CGRectMake(20, 365 + 200*i, 280, 160)];
             nextTip.backgroundColor = [UIColor clearColor];
             nextTip.editable = NO;
-            nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
+            nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextTip.textAlignment = NSTextAlignmentCenter;
             nextTip.userInteractionEnabled = NO;
             nextTip.text = tipsArray[i][@"Body"];
@@ -92,7 +92,7 @@ int page;
             
             UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200*i, 114, 21)];
             tipLabel.text = @"DAILY TIP";
-            tipLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:17];
+            tipLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.scrollView addSubview:tipLabel];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -101,7 +101,7 @@ int page;
             [dateFormatter setDateFormat:@"MM.dd.yyyy"];
             UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 200*i, 112, 21)];
             dateLabel.text = [dateFormatter stringFromDate:tipDate];
-            dateLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+            dateLabel.font = [UIFont fontWithName:@"Bebas" size:18];
             dateLabel.highlighted = NO;
             dateLabel.enabled = NO;
             dateLabel.textColor = [UIColor colorWithRed:227.0f/255.0f green:95.0f/255.0f blue:62.0f/255.0f alpha:1.0f];
@@ -120,7 +120,7 @@ int page;
         tipLabel.text = @"No tip history";
         tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         tipLabel.textAlignment = NSTextAlignmentCenter;
-        tipLabel.font = [UIFont fontWithName:@"Bebas" size:17];
+        tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
         [self.scrollView addSubview:tipLabel];
     }
 }

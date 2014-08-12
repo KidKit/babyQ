@@ -29,7 +29,7 @@
     }
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont
-                                                                           fontWithName:@"MyriadPro-Bold" size:14], NSFontAttributeName,
+                                                                           fontWithName:@"MyriadPro-Bold" size:15], NSFontAttributeName,
                                 [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f], NSForegroundColorAttributeName, nil];
     [[UINavigationBar appearance] setTitleTextAttributes:attributes];
 

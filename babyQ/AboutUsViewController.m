@@ -20,9 +20,9 @@
 {
     [super viewDidLoad];
     
-    findUs.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
-    aboutUs.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
-    copyright.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    findUs.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:19];
+    aboutUs.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    copyright.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
 }
 
 - (void) viewWillAppear:(BOOL)animated

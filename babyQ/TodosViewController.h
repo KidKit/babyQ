@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSMutableData* todosData;
 
 @property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
+@property (nonatomic, retain) IBOutlet UIButton* headerButton1;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton2;
 
 @property (nonatomic, retain) IBOutlet UILabel* todosDueDate;

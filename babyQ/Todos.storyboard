@@ -20,7 +20,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yow-hL-Skb">
-                                <rect key="frame" x="276" y="30" width="24" height="24"/>
+                                <rect key="frame" x="276" y="22" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_survey_icon.png">
@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="00z-Dy-9ta">
-                                <rect key="frame" x="20" y="30" width="24" height="24"/>
+                                <rect key="frame" x="20" y="22" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" image="babyq_menu_icon.png">
@@ -45,8 +45,8 @@
                                 <rect key="frame" x="0.0" y="62" width="320" height="506"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE: APRIL 1ST" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gpi-QH-c1D">
-                                <rect key="frame" x="103" y="79" width="114" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DUE: APRIL 1ST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gpi-QH-c1D">
+                                <rect key="frame" x="20" y="81" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,6 +79,7 @@
                     </view>
                     <connections>
                         <outlet property="completedTodosButton" destination="JI8-bN-yOa" id="7m4-Re-wCR"/>
+                        <outlet property="headerButton1" destination="00z-Dy-9ta" id="dar-2F-pPm"/>
                         <outlet property="headerButton2" destination="yow-hL-Skb" id="9w4-0b-9y4"/>
                         <outlet property="offlineMessage" destination="eMU-W6-Ggx" id="kkb-Lh-iBq"/>
                         <outlet property="todosDueDate" destination="Gpi-QH-c1D" id="DR9-YC-ggt"/>

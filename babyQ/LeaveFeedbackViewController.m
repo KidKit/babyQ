@@ -36,9 +36,9 @@ bool internet;
     kudos.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     suggestions.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     errors.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-    kudos.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
-    suggestions.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
-    errors.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:14];
+    kudos.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    suggestions.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    errors.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -60,7 +60,7 @@ bool internet;
     self.navigationController.navigationBar.topItem.title = @"LEAVE FEEDBACK";
     self.navigationController.navigationBar.topItem.rightBarButtonItem = sendFeedbackButton;
     
-    [sendFeedbackButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"MyriadPro-Semibold" size:14.0]} forState:UIControlStateNormal];
+    [sendFeedbackButton setTitleTextAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"MyriadPro-Semibold" size:15.0]} forState:UIControlStateNormal];
     sendFeedbackButton.title = @"SUBMIT";
 }
 

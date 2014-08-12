@@ -41,7 +41,7 @@
     UIBezierPath *sparkline = [UIBezierPath bezierPath];
     for (int x = 0; x< yValues.count; x++) {
         UIButton* circle = [UIButton buttonWithType:UIButtonTypeCustom];
-        [circle setFrame:CGRectMake(x*xRatio, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue])-8, 16, 16)];
+        [circle setFrame:CGRectMake(x*xRatio-4, self.frame.size.height - (yRatio*[[yValues objectAtIndex:x] doubleValue])-12, 24, 24)];
         [circle setBackgroundImage:[UIImage imageNamed:@"babyq_circle_orange_no_fill.png"] forState:UIControlStateNormal];
         circle.tag = x;
         [circles addObject:circle];
