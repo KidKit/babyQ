@@ -25,11 +25,14 @@
 
 @implementation HowItWorksPageViewController
 
-@synthesize pageImages, pageTitles, pageTexts, pageControl,headerButton2;
+@synthesize pageImages, pageTitles, pageTexts, pageControl,headerButton1,headerButton2;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     pageTitles = @[slide1Title, slide2Title, slide3Title, slide4Title];
     pageTexts = @[slide1Body,slide2Body,slide3Body,slide4Body];

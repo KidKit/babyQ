@@ -28,9 +28,11 @@
 -(IBAction)yesPressed
 {
     HomePageNavigationController* nav = (HomePageNavigationController*) self.presentingViewController;
-    [nav dismissViewControllerAnimated:YES completion:nil];
-    nav.view.userInteractionEnabled = YES;
-    [presentingSurvey stopSurvey];
+    [nav dismissViewControllerAnimated:YES completion:^(){
+        nav.view.userInteractionEnabled = YES;
+        [presentingSurvey stopSurvey];
+    }];
+    
 }
 
 -(IBAction)noPressed

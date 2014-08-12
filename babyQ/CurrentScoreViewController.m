@@ -38,6 +38,9 @@ CGRect scoreSliderFrame;
     
     todosDueDate.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, MMM dd"];
@@ -276,7 +279,7 @@ CGRect scoreSliderFrame;
             
             self.navigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
             self.navigationController.view.userInteractionEnabled = NO;
-            [self.navigationController presentViewController:getScorePopup animated:YES completion:^(){
+            [self.navigationController presentViewController:getScorePopup animated:NO completion:^(){
                 //[getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
             }];
         }

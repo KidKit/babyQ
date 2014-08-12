@@ -12,6 +12,7 @@
 @interface SettingsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, retain) IBOutlet UITableView* settingsTableView;
+@property (nonatomic, retain) IBOutlet UIButton* headerButton1;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton2;
 
 - (IBAction)openSideSwipeView;

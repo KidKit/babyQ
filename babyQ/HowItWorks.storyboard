@@ -104,6 +104,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="headerButton1" destination="MLW-rp-tXO" id="h1Z-Dh-Xu1"/>
                         <outlet property="headerButton2" destination="uRV-nK-UgC" id="HHB-fe-MZa"/>
                         <outlet property="pageControl" destination="3hb-Jm-bTd" id="o4m-Ja-dEI"/>
                     </connections>

@@ -19,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     avatarImageView.image = [UIImage imageNamed:imageFile];
     titleLabel.text = titleText;
     titleLabel.font = [UIFont fontWithName:@"Bebas" size:19];

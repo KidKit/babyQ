@@ -14,11 +14,13 @@
 
 @implementation SettingsViewController
 
-@synthesize settingsTableView,headerButton2;
+@synthesize settingsTableView,headerButton1,headerButton2;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
 }
 
 - (void) viewWillAppear:(BOOL)animated

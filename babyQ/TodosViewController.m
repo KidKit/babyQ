@@ -14,7 +14,7 @@
 
 @implementation TodosViewController
 
-@synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton2,offlineMessage;
+@synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton1,headerButton2,offlineMessage;
 
 NSURLConnection* getTodosConnection;
 NSURLConnection* setTodoCompletedConnection;
@@ -26,6 +26,9 @@ BOOL internet;
     [super viewDidLoad];
     
     [self testInternetConnection];
+    
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     todosData = [[NSMutableData alloc] init];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];

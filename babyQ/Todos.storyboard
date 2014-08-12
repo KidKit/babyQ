@@ -79,6 +79,7 @@
                     </view>
                     <connections>
                         <outlet property="completedTodosButton" destination="JI8-bN-yOa" id="7m4-Re-wCR"/>
+                        <outlet property="headerButton1" destination="00z-Dy-9ta" id="dar-2F-pPm"/>
                         <outlet property="headerButton2" destination="yow-hL-Skb" id="9w4-0b-9y4"/>
                         <outlet property="offlineMessage" destination="eMU-W6-Ggx" id="kkb-Lh-iBq"/>
                         <outlet property="todosDueDate" destination="Gpi-QH-c1D" id="DR9-YC-ggt"/>

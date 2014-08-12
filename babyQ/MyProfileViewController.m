@@ -40,10 +40,14 @@ NSString* prevBabyLength;
     [self testInternetConnection];
     [self.scrollView setContentSize:CGSizeMake(320, 1230-366)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    
     // Do any additional setup after loading the view.
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
+    
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     
     nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     

@@ -151,7 +151,6 @@ NSURLConnection* submitSurveyConnection;
         {
             if (selected_extra_answers[question_key] == nil)
                 selected_extra_answers[question_key] = [[NSMutableArray alloc] init];
-            bottomNavView.hidden = NO;
         }
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
@@ -200,6 +199,11 @@ NSURLConnection* submitSurveyConnection;
         {
             [self.scrollView setContentSize:CGSizeMake(320, 530 + 55 * (numberOfAnswers-1) )];
             [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
+        }
+        if ([question_type isEqualToString:@"Check All That Apply"])
+        {
+            bottomNavView.hidden = NO;
+            [scrollView bringSubviewToFront:bottomNavView];
         }
     }
 }
@@ -310,12 +314,19 @@ NSURLConnection* submitSurveyConnection;
 - (void) clickedAnswer:(UIGestureRecognizer*)sender
 {
     UIButton* touchedView;
-    for (UIView* view in [self.scrollView subviews])
-    {
-        if ([view isKindOfClass:[UIButton class]] && view.tag == ((UIButton*)sender).tag)
-            touchedView = (UIButton*) view;
-        
-    }
+    if ([sender isKindOfClass:[UIButton class]])
+        touchedView = (UIButton*)sender;
+    else
+        for (UIView* view in [self.scrollView subviews])
+        {
+            if ([view isKindOfClass:[UIButton class]])
+                if (view.tag == ((UIButton*)sender.view).tag)
+                {
+                    touchedView = (UIButton*) view;
+                    break;
+                }
+            
+        }
     if (extraQuestionsReached)
     {
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];

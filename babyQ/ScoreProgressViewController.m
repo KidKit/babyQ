@@ -35,6 +35,9 @@ UIButton* currentPresentedScore;
     
     todosDueDate.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
