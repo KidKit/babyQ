@@ -284,7 +284,7 @@ NSURLConnection* changePasswordConnection;
                 savedMessage.hidden = NO;
                 [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 [UIView animateWithDuration:2.0f animations:^{
-                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 } completion:^(BOOL finished) {
                     if (finished)
                         savedMessage.hidden = YES;
@@ -323,8 +323,8 @@ NSURLConnection* changePasswordConnection;
                 }];
                 savedMessage.hidden = NO;
                 [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 64+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
-                [UIView animateWithDuration:2.0f animations:^{
-                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [UIView animateWithDuration:3.0f animations:^{
+                    [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
                 } completion:^(BOOL finished) {
                     if (finished)
                         savedMessage.hidden = YES;

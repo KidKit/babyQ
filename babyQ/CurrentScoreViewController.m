@@ -386,8 +386,8 @@ CGRect scoreSliderFrame;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = YES;
-                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+                nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = todosArray[i][@"Body"];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -434,11 +434,12 @@ CGRect scoreSliderFrame;
             todosDueDate.text = [NSString stringWithFormat:@"DUE %i days from now", days];
         } else {
             todosDueDate.hidden = YES;
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 72)];
+            todoLabel.numberOfLines = 3;
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.text = @"Congratulations! You've just completed your recommended list of to-do's";
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.todosView addSubview:todoLabel];
         }
     }

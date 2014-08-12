@@ -38,7 +38,7 @@ NSString* prevBabyLength;
 {
     [super viewDidLoad];
     [self testInternetConnection];
-    [self.scrollView setContentSize:CGSizeMake(320, 1230-366)];
+    [self.scrollView setContentSize:CGSizeMake(320, 1150-366)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
     // Do any additional setup after loading the view.
@@ -48,6 +48,17 @@ NSString* prevBabyLength;
     
     headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
     headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    
+    UIColor *color = [UIColor colorWithRed:124 green:197 blue:189 alpha:1.0f];
+    nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{NSForegroundColorAttributeName: color}];
+    dobField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"mm-dd-yyyy" attributes:@{NSForegroundColorAttributeName: color}];
+    zipCodeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Zip Code" attributes:@{NSForegroundColorAttributeName: color}];
+    dueDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Due Date" attributes:@{NSForegroundColorAttributeName: color}];
+    deliveryDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Delivery Date" attributes:@{NSForegroundColorAttributeName: color}];
+    babyLengthField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Baby Length (in)" attributes:@{NSForegroundColorAttributeName: color}];
+    babyWeightField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Baby Weight (oz)" attributes:@{NSForegroundColorAttributeName: color}];
+    
+
     
     nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
@@ -194,8 +205,8 @@ NSString* prevBabyLength;
             }];
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
-            [UIView animateWithDuration:2.0f animations:^{
-                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+            [UIView animateWithDuration:3.0f animations:^{
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             } completion:^(BOOL finished) {
                 if (finished)
                     savedMessage.hidden = YES;
@@ -253,7 +264,7 @@ NSString* prevBabyLength;
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:2.0f animations:^{
-                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             } completion:^(BOOL finished) {
                 if (finished)
                     savedMessage.hidden = YES;
@@ -305,7 +316,7 @@ NSString* prevBabyLength;
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:2.0f animations:^{
-                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-21, savedMessage.frame.size.width, savedMessage.frame.size.height)];
+                [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, savedMessage.frame.origin.y-38, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             } completion:^(BOOL finished) {
                 if (finished)
                     savedMessage.hidden = YES;
@@ -370,6 +381,7 @@ NSString* prevBabyLength;
         {
             [UIView animateWithDuration:0.5f animations:^{
                 [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height + 75)];
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y+75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
             }];
         }
     } else if (textField == dueDateField)
@@ -382,6 +394,8 @@ NSString* prevBabyLength;
         }
         [UIView animateWithDuration:0.5f animations:^{
             [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
+            [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y-75, aboutMeView.frame.size.width, aboutMeView.frame.size.height)];
+            [profilePicture setFrame:CGRectMake(profilePicture.frame.origin.x, profilePicture.frame.origin.y-75, profilePicture.frame.size.width, profilePicture.frame.size.height)];
         }];
     } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
         if (deliveredView.frame.size.height < 400)
@@ -400,6 +414,8 @@ NSString* prevBabyLength;
         {
             [UIView animateWithDuration:0.5f animations:^{
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y+75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
+                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y+75, aboutMeView.frame.size.width, aboutMeView.frame.size.height)];
+                [profilePicture setFrame:CGRectMake(profilePicture.frame.origin.x, profilePicture.frame.origin.y+75, profilePicture.frame.size.width, profilePicture.frame.size.height)];
             }];
         }
     } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
@@ -455,6 +471,7 @@ NSString* prevBabyLength;
     [zipCodeField resignFirstResponder];
     [UIView animateWithDuration:0.5f animations:^{
         [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
+        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
     }];
 }
 

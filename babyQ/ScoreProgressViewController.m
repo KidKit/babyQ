@@ -247,11 +247,12 @@ UIButton* currentPresentedScore;
             todosDueDate.text = [NSString stringWithFormat:@"DUE %i days from now", days];
         } else {
             todosDueDate.hidden = YES;
-            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 24)];
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 72)];
+            todoLabel.numberOfLines = 3;
             todoLabel.textAlignment = NSTextAlignmentCenter;
-            todoLabel.text = @"All To-Do's Completed";
+            todoLabel.text = @"Congratulations! You've just completed your recommended list of to-do's";
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-            todoLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.todosView addSubview:todoLabel];
         }
     }

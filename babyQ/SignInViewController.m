@@ -154,7 +154,7 @@ NSURLConnection* signInConnection;
     }
     else if ([self.password.text length] < 6)
     {
-        errorMessage.text = @"Password too short";
+        errorMessage.text = @"Invalid password";
         return NO;
     }
     return YES;
