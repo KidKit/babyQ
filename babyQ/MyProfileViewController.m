@@ -404,7 +404,7 @@ NSString* prevBabyLength;
         {
             [UIView animateWithDuration:0.5f animations:^{
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
-                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y+75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
             }];
         }
         [UIView animateWithDuration:0.5f animations:^{
