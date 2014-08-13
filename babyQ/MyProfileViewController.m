@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel,savedMessage,offlineMessage;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel,birthTypeLabel,vaginalLabel,cSectionLabel,complicationsLabel,complication1Label,complication2Label,complication3Label,complication4Label,complication5Label,complication6Label,complication7Label,complication8Label,yesDelivered,noDelivered,yesDeliveredLabel,noDeliveredLabel,vaginalButton,cSectionButton, savedMessage,offlineMessage;
 
 BOOL internet;
 NSURLConnection* getAboutMeConnection;
@@ -33,6 +33,10 @@ bool prevWasDelivered;
 NSString* prevDeliveryDate;
 NSString* prevBabyWeight;
 NSString* prevBabyLength;
+
+int delivered;
+int birthTypeId;
+NSMutableArray* complications;
 
 - (void)viewDidLoad
 {
@@ -60,8 +64,9 @@ NSString* prevBabyLength;
     
 
     
-    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = deliveredDateLabel.font = savedMessage.font = complication1Label.font = complication2Label.font = complication3Label.font = complication4Label.font = complication5Label.font = complication6Label.font = complication7Label.font = complication8Label.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     
+    wasDeliveredLabel.font =  babyWeightLabel.font = babyLengthLabel.font = birthTypeLabel.font = complicationsLabel.font =[UIFont fontWithName:@"MyriadPro-Bold" size:14];
     savedMessage.hidden = YES;
     
     if ([fb_pic length] > 0)
@@ -107,6 +112,9 @@ NSString* prevBabyLength;
     [getPregnantRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getPregnantConnection = [[NSURLConnection alloc] initWithRequest:getPregnantRequest delegate:self];
     
+    delivered = -1;
+    birthTypeId = -1;
+    complications = [[NSMutableArray alloc] init];
     NSString* getDeliveryURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_DELIVERY_PATH];
     postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     NSMutableURLRequest *getDeliveryRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getDeliveryURL]];
@@ -118,7 +126,6 @@ NSString* prevBabyLength;
                                    action:@selector(dismissKeyboard)];
     
     isPregnant.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    wasDelivered.transform = CGAffineTransformMakeScale(0.9, 0.9);
     
     [self.scrollView addGestureRecognizer:tap];
 }
@@ -234,7 +241,7 @@ NSString* prevBabyLength;
         if ([(NSDate*)[dueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
         {
             deliveredView.hidden = NO;
-            [self.scrollView setContentSize:CGSizeMake(320, 1230)];
+            [self.scrollView setContentSize:CGSizeMake(320, 2430)];
         }
         else
             deliveredView.hidden = YES;
@@ -282,10 +289,6 @@ NSString* prevBabyLength;
         NSDictionary* getDeliveryResponse = [NSJSONSerialization JSONObjectWithData: json_data
                                                                              options: NSJSONReadingMutableContainers
                                                                                error: nil];
-        if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"1"])
-            wasDelivered.on = YES;
-        else
-            wasDelivered.on = NO;
         if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
         {
             babyLengthField.text = getDeliveryResponse[@"BabyLengthInches"];
@@ -537,7 +540,7 @@ NSString* prevBabyLength;
     Constants* constants = [[Constants alloc] init];
     NSString* setDeliveryURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DELIVERY_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&Delivered="] stringByAppendingString:wasDelivered.on ? @"1" : @"0"];
+    postData = [[postData stringByAppendingString:@"&Delivered="] stringByAppendingString:delivered ? @"1" : @"0"];
     if ([deliveryDateField.text length] > 0)
         postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:deliveryDateField.text];
     else
@@ -551,6 +554,7 @@ NSString* prevBabyLength;
         postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:babyLengthField.text];
     else
         postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:@""];
+    
     postData = [[postData stringByAppendingString:@"&BirthTypeId="] stringByAppendingString:@""];
     postData = [[postData stringByAppendingString:@"&ComplicationIds="] stringByAppendingString:@""];
     NSMutableURLRequest *setDeliveryRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setDeliveryURL]];
@@ -561,7 +565,6 @@ NSString* prevBabyLength;
 
 -(IBAction)cancelEditingDeliveryFields
 {
-    wasDelivered.on = prevWasDelivered;
     deliveryDateField.text = prevDeliveryDate;
     babyLengthField.text = prevBabyLength;
     babyWeightField.text = prevBabyWeight;
@@ -617,7 +620,6 @@ NSString* prevBabyLength;
         zipCodeField.enabled = YES;
         isPregnant.enabled = YES;
         dueDateField.enabled = YES;
-        wasDelivered.enabled = YES;
         deliveryDateField.enabled = YES;
         babyLengthField.enabled = YES;
         babyWeightField.enabled = YES;
@@ -634,13 +636,47 @@ NSString* prevBabyLength;
         zipCodeField.enabled = NO;
         isPregnant.enabled = NO;
         dueDateField.enabled = NO;
-        wasDelivered.enabled = NO;
         deliveryDateField.enabled = NO;
         babyLengthField.enabled = NO;
         babyWeightField.enabled = NO;
     };
     
     [internetReachableFoo startNotifier];
+}
+
+-(IBAction)clickedDelivered:(UIButton*)sender
+{
+    delivered = (int) sender.tag;
+    [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    if (delivered == 1)
+        [noDelivered setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    else
+        [yesDelivered setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction)clickedBirthType:(UIButton*)sender
+{
+    birthTypeId = (int) sender.tag;
+    [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    if (birthTypeId == 0)
+        [cSectionButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    else
+        [vaginalButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction)clickedComplication:(UIButton*)sender
+{
+    NSString* tagString = [NSString stringWithFormat:@"%li",(long)sender.tag];
+    if (![complications containsObject:tagString])
+    {
+        [complications addObject:tagString];
+        [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [complications removeObject:tagString];
+        [sender setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning
