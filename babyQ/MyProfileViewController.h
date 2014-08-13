@@ -29,10 +29,13 @@
 @property (nonatomic, retain) IBOutlet UILabel* dueDateLabel;
 @property (nonatomic, retain) IBOutlet UILabel* wasDeliveredLabel;
 
+@property (nonatomic, retain) IBOutlet UILabel* aboutMeHeader;
+@property (nonatomic, retain) IBOutlet UILabel* pregnancyHeader;
+@property (nonatomic, retain) IBOutlet UILabel* deliveryHeader;
+
 
 @property (nonatomic, retain) IBOutlet UIView* aboutMeView;
 @property (nonatomic, retain) IBOutlet UITextField* nameField;
-@property (nonatomic, retain) IBOutlet UITextField* dobField;
 @property (nonatomic, retain) IBOutlet UITextField* zipCodeField;
 @property (nonatomic, retain) IBOutlet UIButton* profilePicture;
 @property (nonatomic, retain) IBOutlet UIImageView* cameraImage;
@@ -42,18 +45,28 @@
 @property (nonatomic, retain) IBOutlet UIView* pregnancyView;
 @property (nonatomic, retain) IBOutlet UIButton* savePregnantButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelPregnantButton;
-@property (nonatomic, retain) IBOutlet UISwitch* isPregnant;
-@property (nonatomic, retain) IBOutlet UITextField* dueDateField;
+@property (nonatomic, retain) IBOutlet UILabel* yesPregnant;
+@property (nonatomic, retain) IBOutlet UILabel* noPregnant;
+@property (nonatomic, retain) IBOutlet UIButton* yesPregnantButton;
+@property (nonatomic, retain) IBOutlet UIButton* noPregnantButton;
+@property (nonatomic, retain) IBOutlet UIDatePicker* dueDate;
 
 @property (nonatomic, retain) IBOutlet UIView* deliveredView;
 @property (nonatomic, retain) IBOutlet UIButton* saveDeliveryButton;
 @property (nonatomic, retain) IBOutlet UIButton* cancelDeliveryButton;
-@property (nonatomic, retain) IBOutlet UITextField* deliveryDateField;
-@property (nonatomic, retain) IBOutlet UITextField* babyWeightField;
-@property (nonatomic, retain) IBOutlet UITextField* babyLengthField;
-@property (nonatomic, retain) IBOutlet UILabel* deliveredDateLabel;
-@property (nonatomic, retain) IBOutlet UILabel* babyWeightLabel;
+@property (nonatomic, retain) IBOutlet UIDatePicker* birthday;
 @property (nonatomic, retain) IBOutlet UILabel* babyLengthLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyWeightLabel;
+@property (nonatomic, retain) IBOutlet UITextField* babyPoundsField;
+@property (nonatomic, retain) IBOutlet UITextField* babyOuncesField;
+@property (nonatomic, retain) IBOutlet UITextField* babyFeetField;
+@property (nonatomic, retain) IBOutlet UITextField* babyInchesField;
+@property (nonatomic, retain) IBOutlet UILabel* deliveredDateLabel;
+@property (nonatomic, retain) IBOutlet UIDatePicker* deliveryDate;
+@property (nonatomic, retain) IBOutlet UILabel* babyPoundsLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyOuncesLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyFeetLabel;
+@property (nonatomic, retain) IBOutlet UILabel* babyInchesLabel;
 @property (nonatomic, retain) IBOutlet UILabel* birthTypeLabel;
 @property (nonatomic, retain) IBOutlet UILabel* yesDeliveredLabel;
 @property (nonatomic, retain) IBOutlet UILabel* noDeliveredLabel;
@@ -70,8 +83,12 @@
 @property (nonatomic, retain) IBOutlet UILabel* complication4Label;
 @property (nonatomic, retain) IBOutlet UILabel* complication5Label;
 @property (nonatomic, retain) IBOutlet UILabel* complication6Label;
-@property (nonatomic, retain) IBOutlet UILabel* complication7Label;
-@property (nonatomic, retain) IBOutlet UILabel* complication8Label;
+@property (nonatomic, retain) IBOutlet UIButton* complication1Button;
+@property (nonatomic, retain) IBOutlet UIButton* complication2Button;
+@property (nonatomic, retain) IBOutlet UIButton* complication3Button;
+@property (nonatomic, retain) IBOutlet UIButton* complication4Button;
+@property (nonatomic, retain) IBOutlet UIButton* complication5Button;
+@property (nonatomic, retain) IBOutlet UIButton* complication6Button;
 
 -(IBAction)startSurvey;
 - (IBAction)openSideSwipeView;
