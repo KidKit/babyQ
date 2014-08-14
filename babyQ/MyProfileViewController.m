@@ -285,15 +285,18 @@ NSMutableArray* complications;
             }];
             [self dismissKeyboard];
             
-            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+            if (isPregnant)
             {
-                deliveredView.hidden = NO;
-                [self.scrollView setContentSize:CGSizeMake(320, 1350)];
-            }
-            else
-            {
-                deliveredView.hidden = YES;
-                [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+                if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+                {
+                    deliveredView.hidden = NO;
+                    [self.scrollView setContentSize:CGSizeMake(320, 1350)];
+                }
+                else
+                {
+                    deliveredView.hidden = YES;
+                    [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+                }
             }
         }
     } else if (connection == getDeliveryConnection)
