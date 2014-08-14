@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>30AB04DC-F239-4BDD-BFFD-E01480D3987F</string>
+	<string>6CA6930E-A3F5-4EC5-92BE-D9E28E6A9E46</string>
 	<key>IDESourceControlProjectName</key>
 	<string>babyQ</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8139DF50-72A1-49A8-82B5-853E6B12BECB</key>
-		<string>https://github.com/cdub32k/babyQ.git</string>
+		<key>78029DBB-AD29-44ED-88CE-C47BDCFC428E</key>
+		<string>https://bitbucket.org/tparkerdev/babyq-ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>babyQ.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8139DF50-72A1-49A8-82B5-853E6B12BECB</key>
+		<key>78029DBB-AD29-44ED-88CE-C47BDCFC428E</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/cdub32k/babyQ.git</string>
+	<string>https://bitbucket.org/tparkerdev/babyq-ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8139DF50-72A1-49A8-82B5-853E6B12BECB</string>
+	<string>78029DBB-AD29-44ED-88CE-C47BDCFC428E</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8139DF50-72A1-49A8-82B5-853E6B12BECB</string>
+			<string>78029DBB-AD29-44ED-88CE-C47BDCFC428E</string>
 			<key>IDESourceControlWCCName</key>
-			<string>babyQ</string>
+			<string>babyq-ios</string>
 		</dict>
 	</array>
 </dict>
