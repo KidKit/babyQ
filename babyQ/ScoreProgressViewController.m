@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 @implementation ScoreProgressViewController
 
 @synthesize scrollView,graphView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,tipHistoryButton,todosDueDate,offlineMessage;
@@ -35,8 +48,8 @@ UIButton* currentPresentedScore;
     
     todosDueDate.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -95,7 +108,7 @@ UIButton* currentPresentedScore;
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
-        dailyTip.text = json_dictionary[@"Body"];
+        dailyTip.text = [json_dictionary[@"Body"] stringByDecodingURLFormat];
         dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -203,7 +216,7 @@ UIButton* currentPresentedScore;
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
-                    nextTodo.text = todosArray[i][@"Body"];
+                    nextTodo.text = [todosArray[i][@"Body"] stringByDecodingURLFormat];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                                initWithTarget:self
                                                action:@selector(markTodoCompleted:)];

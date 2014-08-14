@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 @implementation TipHistoryViewController
 
 NSURLConnection* getTipsConnection;
@@ -87,7 +100,7 @@ int page;
             nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextTip.textAlignment = NSTextAlignmentCenter;
             nextTip.userInteractionEnabled = NO;
-            nextTip.text = tipsArray[i][@"Body"];
+            nextTip.text = [tipsArray[i][@"Body"] stringByDecodingURLFormat];
             [self.scrollView addSubview:nextTip];
             
             UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 319 + 200*i, 114, 21)];
@@ -109,19 +122,32 @@ int page;
         }
         if ([tipsArray count] % 7 == 0)
         {
-            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(137, 485+200*([tipsArray count]-1), 46, 30)];
+            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(37, 485+200*([tipsArray count]-1), 246, 30)];
             [moreButton setTitleColor:[UIColor colorWithRed:124/255.0 green:197/255.0 blue:189/255.0 alpha:1.0] forState:UIControlStateNormal];
             [moreButton setTitle:@"More" forState:UIControlStateNormal];
             [moreButton addTarget:self action:@selector(getMoreTips) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:moreButton];
         }
     } else {
-        UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 319, 120, 21)];
-        tipLabel.text = @"No tip history";
-        tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-        tipLabel.textAlignment = NSTextAlignmentCenter;
-        tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
-        [self.scrollView addSubview:tipLabel];
+        if ([tipsArray count] >0)
+        {
+            UILabel* tipLabel = [[UILabel alloc] initWithFrame:moreButton.frame];
+            tipLabel.text = @"No more tip history";
+            tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            tipLabel.textAlignment = NSTextAlignmentCenter;
+            tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            [moreButton removeFromSuperview];
+            [self.scrollView addSubview:tipLabel];
+        }
+        else
+        {
+            UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 319, 120, 21)];
+            tipLabel.text = @"No tip history";
+            tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            tipLabel.textAlignment = NSTextAlignmentCenter;
+            tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            [self.scrollView addSubview:tipLabel];
+        }
     }
 }
 

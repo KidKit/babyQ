@@ -52,8 +52,8 @@ NSMutableArray* complications;
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
     UIColor *color = [UIColor colorWithRed:124 green:197 blue:189 alpha:1.0f];
     nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{NSForegroundColorAttributeName: color}];

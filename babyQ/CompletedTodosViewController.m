@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 @implementation CompletedTodosViewController
 
 NSURLConnection* getCompletedTodosConnection;
@@ -90,11 +103,12 @@ int page;
             nextTodo.textAlignment = NSTextAlignmentCenter;
             nextTodo.userInteractionEnabled = NO;
             if (completedTodosArray[i][@"Body"] != (id)[NSNull null])
-                nextTodo.text = completedTodosArray[i][@"Body"];
+                nextTodo.text = [completedTodosArray[i][@"Body"] stringByDecodingURLFormat];
             [self.scrollView addSubview:nextTodo];
             
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 312 + 150*i, 114, 21)];
-            todoLabel.text = [completedTodosArray[i][@"ToDoType"] uppercaseString];
+            if (completedTodosArray[i][@"ToDoType"] != (id)[NSNull null])
+                todoLabel.text = [completedTodosArray[i][@"ToDoType"] uppercaseString];
             todoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:todoLabel];
@@ -117,7 +131,7 @@ int page;
         }
         if ([completedTodosArray count] % 7 == 0)
         {
-            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(137, 430+150*([completedTodosArray count]-1), 46, 30)];
+            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(37, 430+150*([completedTodosArray count]-1), 246, 30)];
             [moreButton setTitleColor:[UIColor colorWithRed:124/255.0 green:197/255.0 blue:189/255.0 alpha:1.0] forState:UIControlStateNormal];
             [moreButton setTitle:@"More" forState:UIControlStateNormal];
             [moreButton addTarget:self action:@selector(getMoreCompletedTodos) forControlEvents:UIControlEventTouchUpInside];
@@ -130,6 +144,15 @@ int page;
             todoLabel.textAlignment = NSTextAlignmentCenter;
             todoLabel.text = @"No completed To-Dos.";
             todoLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            [self.scrollView addSubview:todoLabel];
+        }
+        else
+        {
+            UILabel* todoLabel = [[UILabel alloc] initWithFrame:moreButton.frame];
+            todoLabel.textAlignment = NSTextAlignmentCenter;
+            todoLabel.text = @"No more completed To-Dos.";
+            todoLabel.font = [UIFont fontWithName:@"Bebas" size:18];
+            [moreButton removeFromSuperview];
             [self.scrollView addSubview:todoLabel];
         }
     }
@@ -145,7 +168,7 @@ int page;
     Constants* constants = [[Constants alloc] init];
     NSString* getMoreTipsURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_NEXT_COMPLETED_TODOS_GROUP_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:completedTodosArray[6][@"ToDoId"]];
+    postData = [[postData stringByAppendingString:@"&ToDoId="] stringByAppendingString:completedTodosArray[page*7-1][@"ToDoId"]];
     NSMutableURLRequest *moreTipsRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getMoreTipsURL]];
     [moreTipsRequest setHTTPMethod:@"POST"];
     [moreTipsRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];

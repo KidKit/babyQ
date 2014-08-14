@@ -19,8 +19,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
 }
 
 - (void) viewWillAppear:(BOOL)animated

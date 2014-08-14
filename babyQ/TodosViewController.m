@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 @implementation TodosViewController
 
 @synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton1,headerButton2,offlineMessage;
@@ -27,8 +40,8 @@ BOOL internet;
     
     [self testInternetConnection];
     
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
     todosData = [[NSMutableData alloc] init];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
@@ -120,7 +133,7 @@ BOOL internet;
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
-                    nextTodo.text = todosArray[i][@"Body"];
+                    nextTodo.text = [todosArray[i][@"Body"] stringByDecodingURLFormat];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                                initWithTarget:self
                                                action:@selector(markTodoCompleted:)];

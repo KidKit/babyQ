@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 NSDictionary* survey_json = nil;
 NSMutableDictionary* selected_answers = nil;
 NSMutableDictionary* selected_extra_answers = nil;
@@ -78,10 +91,10 @@ NSURLConnection* submitSurveyConnection;
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-        question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
+        question.text = [survey_json[@"ScoringQuestions"][question_index][@"Question"] stringByDecodingURLFormat];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-        answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
+        answerOne.text = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"] stringByDecodingURLFormat];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
@@ -101,7 +114,7 @@ NSURLConnection* submitSurveyConnection;
             nextAnswer.userInteractionEnabled = YES;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
             nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-            nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
+            nextAnswer.text = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"] stringByDecodingURLFormat];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             nextAnswer.tag = i-1;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -144,7 +157,7 @@ NSURLConnection* submitSurveyConnection;
         [progressPercentage setFrame:CGRectMake(progressPercentage.frame.origin.x + (295-26)*progress, progressPercentage.frame.origin.y, progressPercentage.frame.size.width, progressPercentage.frame.size.height)];
         NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
         question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-        question.text = survey_json[@"ExtraQuestions"][question_key][@"Question"];
+        question.text = [survey_json[@"ExtraQuestions"][question_key][@"Question"] stringByDecodingURLFormat];
         question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         
         if ([question_type isEqualToString:@"Check All That Apply"])
@@ -154,7 +167,7 @@ NSURLConnection* submitSurveyConnection;
         }
         
         answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-        answerOne.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"];
+        answerOne.text = [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][@"1"][@"Answer"] stringByDecodingURLFormat];
         answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
@@ -176,7 +189,7 @@ NSURLConnection* submitSurveyConnection;
             nextAnswer.userInteractionEnabled = YES;
             NSString* i_string = [NSString stringWithFormat:@"%i", i];
             nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-            nextAnswer.text = survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"];
+            nextAnswer.text = [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"][i_string][@"Answer"] stringByDecodingURLFormat];
             nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             nextAnswer.tag = i-1;
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -258,9 +271,9 @@ NSURLConnection* submitSurveyConnection;
             [progressBubble setFrame:CGRectMake(progressBubble.frame.origin.x + (295-26)*progress, progressBubble.frame.origin.y, progressBubble.frame.size.width, progressBubble.frame.size.height)];
             NSString* question_index = [[survey_json[@"ScoringQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
             question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
-            question.text = survey_json[@"ScoringQuestions"][question_index][@"Question"];
+            question.text = [survey_json[@"ScoringQuestions"][question_index][@"Question"] stringByDecodingURLFormat];
             question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-            answerOne.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"];
+            answerOne.text = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"] stringByDecodingURLFormat];
             answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -281,7 +294,7 @@ NSURLConnection* submitSurveyConnection;
                 nextAnswer.userInteractionEnabled = YES;
                 nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
                 NSString* i_string = [NSString stringWithFormat:@"%i", i];
-                nextAnswer.text = survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"];
+                nextAnswer.text = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"][i_string][@"Answer"] stringByDecodingURLFormat];
                 nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextAnswer.tag = i-1;
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]

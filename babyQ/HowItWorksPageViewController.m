@@ -31,8 +31,8 @@
 {
     [super viewDidLoad];
     
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
     pageTitles = @[slide1Title, slide2Title, slide3Title, slide4Title];
     pageTexts = @[slide1Body,slide2Body,slide3Body,slide4Body];

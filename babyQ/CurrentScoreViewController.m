@@ -12,6 +12,19 @@
 
 @end
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    return result;
+}
+@end
+
 @implementation CurrentScoreViewController
 
 @synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel,offlineMessage;
@@ -38,8 +51,8 @@ CGRect scoreSliderFrame;
     
     todosDueDate.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
-    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
-    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(4, 4, 4, 4);
+    headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
+    headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
     NSDate *now = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -92,7 +105,7 @@ CGRect scoreSliderFrame;
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanScoreSlider:)];
     [scoreSlider addGestureRecognizer:panGesture];
-    scoreSliderFrame =  CGRectMake(30, 405, 24, 24);
+    scoreSliderFrame =  CGRectMake(27, 402, 32, 32);
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -106,7 +119,7 @@ CGRect scoreSliderFrame;
     if (sender.state == UIGestureRecognizerStateEnded)
     {
         CGPoint location = [sender locationInView:sender.view.superview];
-        [self adjustSliderToPoint:CGRectMake(location.x, 405, 24, 24)];
+        [self adjustSliderToPoint:CGRectMake(location.x, 402, 32, 32)];
     }
 }
 
@@ -114,7 +127,7 @@ CGRect scoreSliderFrame;
 {
     if (newFrame.origin.x < 60)
     {
-        self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
+        self.deltaBlurb.text = [currentScoreData[@"OverallMessage"] stringByDecodingURLFormat];
         if ([currentScoreData[@"OverallDelta"] integerValue] >= 0)
         {
             self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"] ];
@@ -130,7 +143,7 @@ CGRect scoreSliderFrame;
     }
     else if (newFrame.origin.x < 118)
     {
-        self.deltaBlurb.text = currentScoreData[@"LifestyleMessage"];
+        self.deltaBlurb.text = [currentScoreData[@"LifestyleMessage"] stringByDecodingURLFormat];
         if ([currentScoreData[@"LifestyleDelta"] integerValue] >= 0)
         {
             self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"LifestyleDelta"]];
@@ -146,7 +159,7 @@ CGRect scoreSliderFrame;
     }
     else if (newFrame.origin.x < 178)
     {
-        self.deltaBlurb.text = currentScoreData[@"ExerciseMessage"];
+        self.deltaBlurb.text = [currentScoreData[@"ExerciseMessage"] stringByDecodingURLFormat];
         if ([currentScoreData[@"ExerciseDelta"] integerValue] >= 0)
         {
             self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"ExerciseDelta"]];
@@ -162,7 +175,7 @@ CGRect scoreSliderFrame;
     }
     else if (newFrame.origin.x < 236)
     {
-        self.deltaBlurb.text = currentScoreData[@"NutritionMessage"];
+        self.deltaBlurb.text = [currentScoreData[@"NutritionMessage"] stringByDecodingURLFormat];
         
         if ([currentScoreData[@"NutritionDelta"] integerValue] >= 0)
         {
@@ -179,7 +192,7 @@ CGRect scoreSliderFrame;
     }
     else if (newFrame.origin.x < 300)
     {
-        self.deltaBlurb.text = currentScoreData[@"StressMessage"];
+        self.deltaBlurb.text = [currentScoreData[@"StressMessage"] stringByDecodingURLFormat];
         if ([currentScoreData[@"StressDelta"] integerValue] >= 0)
         {
             self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"StressDelta"]];
@@ -216,30 +229,30 @@ CGRect scoreSliderFrame;
 - (void) adjustSliderToPoint: (CGRect) newFrame
 {
     if (newFrame.origin.x <= 26)
-        scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+        scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 402, 32, 32);
     else if (newFrame.origin.x >= 270)
-        scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 405, 24, 24);
+        scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 402, 32, 32);
     else
     {
         if (newFrame.origin.x < 60)
         {
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(27, 402, 32, 32);
         }
         else if (newFrame.origin.x < 118)
         {
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(87, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(84, 402, 32, 32);
         }
         else if (newFrame.origin.x < 178)
         {
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(144, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(141, 402, 32, 32);
         }
         else if (newFrame.origin.x < 236)
         {
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(205, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(202, 402, 32, 32);
         }
         else if (newFrame.origin.x < 276)
         {
-            scoreSlider.frame = scoreSliderFrame = CGRectMake(264, 405, 24, 24);
+            scoreSlider.frame = scoreSliderFrame = CGRectMake(261, 402, 32, 32);
         }
     }
     [self updateScores:newFrame];
@@ -262,7 +275,7 @@ CGRect scoreSliderFrame;
             self.exerciseScore.text = currentScoreData[@"ExerciseScore"];
             self.nutritionScore.text = currentScoreData[@"NutritionScore"];
             self.stressScore.text = currentScoreData[@"StressScore"];
-            self.deltaBlurb.text = currentScoreData[@"OverallMessage"];
+            self.deltaBlurb.text = [currentScoreData[@"OverallMessage"] stringByDecodingURLFormat];
             int delta = [currentScoreData[@"OverallDelta"] intValue];
             if (delta >= 0)
                 self.delta.text = [NSString stringWithFormat:@"+%@", currentScoreData[@"OverallDelta"]];
@@ -290,7 +303,7 @@ CGRect scoreSliderFrame;
         NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
                                                                         options: NSJSONReadingMutableContainers
                                                                           error: nil];
-        dailyTip.text = json_dictionary[@"Body"];
+        dailyTip.text = [json_dictionary[@"Body"] stringByDecodingURLFormat];
         dailyTip.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -389,7 +402,7 @@ CGRect scoreSliderFrame;
                 nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
-                    nextTodo.text = todosArray[i][@"Body"];
+                    nextTodo.text = [todosArray[i][@"Body"] stringByDecodingURLFormat];
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                                initWithTarget:self
                                                action:@selector(markTodoCompleted:)];
