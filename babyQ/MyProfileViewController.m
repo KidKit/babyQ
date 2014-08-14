@@ -185,13 +185,19 @@ NSMutableArray* complications;
         nameField.text = json_dictionary[@"Name"];
         prevName = json_dictionary[@"Name"];
         
-        NSArray* dueDateSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
-        birthday.date = savedDueDate;
-        prevBirthdate = savedDueDate;
-        
+        if ([json_dictionary[@"Birthdate"] length] > 0)
+        {
+            NSArray* dueDateSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+            
+            if (savedDueDate)
+            {
+                birthday.date = savedDueDate;
+                prevBirthdate = savedDueDate;
+            }
+        }
         zipCodeField.text = json_dictionary[@"ZipCode"];
         prevZipcode = json_dictionary[@"ZipCode"];
     } else if (connection == setAboutMeConnection)
@@ -291,14 +297,16 @@ NSMutableArray* complications;
         
         NSDictionary* getDeliveryResponse = [NSJSONSerialization JSONObjectWithData: json_data
                                                                              options: NSJSONReadingMutableContainers
-                                                                               error: nil];
-        NSArray* dueDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
-        //deliveryDate.date = savedDueDate;
-        //prevDeliveryDate = savedDueDate;
-        
+                                                                        error: nil];
+        if (getDeliveryResponse[@"DeliveryDate"] != (id)[NSNull null])
+        {
+            NSArray* dueDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+            //deliveryDate.date = savedDueDate;
+            //prevDeliveryDate = savedDueDate;
+        }
         if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
         {
             prevBabyInches = getDeliveryResponse[@"BabyLengthInches"];
