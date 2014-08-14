@@ -229,13 +229,19 @@ NSMutableArray* complications;
         
         NSDictionary* getPregnantResponse = [NSJSONSerialization JSONObjectWithData: json_data
                                                                              options: NSJSONReadingMutableContainers
-                                                                               error: nil];
-        NSArray* dueDateSplit = [getPregnantResponse[@"DueDate"] componentsSeparatedByString:@" "];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
-        dueDate.date = savedDueDate;
-        prevDueDate = savedDueDate;
+                                                                              error: nil];
+        if (getPregnantResponse[@"DueDate"] != (id)[NSNull null])
+        {
+            NSArray* dueDateSplit = [getPregnantResponse[@"DueDate"] componentsSeparatedByString:@" "];
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+            NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+            if (savedDueDate)
+            {
+                dueDate.date = savedDueDate;
+                prevDueDate = savedDueDate;
+            }
+        }
         
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
         {
@@ -304,8 +310,12 @@ NSMutableArray* complications;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
-            //deliveryDate.date = savedDueDate;
-            //prevDeliveryDate = savedDueDate;
+            
+            if (savedDueDate)
+            {
+                deliveryDate.date = savedDueDate;
+                prevDeliveryDate = savedDueDate;
+            }
         }
         if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
         {
