@@ -14,7 +14,7 @@
 
 @implementation LeaveFeedbackViewController
 
-@synthesize feedbackTextView,sendFeedbackButton,kudos,suggestions,errors,offlineMessage;
+@synthesize feedbackTextView,sendFeedbackButton,kudos,suggestions,errors,offlineMessage,sentMessage;
 
 int selected_tab;
 bool internet;
@@ -39,6 +39,9 @@ bool internet;
     kudos.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     suggestions.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     errors.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    
+    sentMessage.hidden = YES;
+    sentMessage.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -133,6 +136,18 @@ bool internet;
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    if (result == MFMailComposeResultSent || result == MFMailComposeResultSaved)
+    {
+        sentMessage.hidden = NO;
+        [sentMessage setFrame:CGRectMake(sentMessage.frame.origin.x, 64, sentMessage.frame.size.width, sentMessage.frame.size.height)];
+        [UIView animateWithDuration:3.0f animations:^{
+            [sentMessage setFrame:CGRectMake(sentMessage.frame.origin.x, sentMessage.frame.origin.y-38, sentMessage.frame.size.width, sentMessage.frame.size.height)];
+        } completion:^(BOOL finished) {
+            if (finished)
+                sentMessage.hidden = YES;
+        }];
+        feedbackTextView.text = @"Questions/Comments";
+    }
 }
 
 - (void)testInternetConnection

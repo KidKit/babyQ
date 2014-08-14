@@ -167,10 +167,6 @@
                                 <rect key="frame" x="28" y="252" width="280" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_popup_divider.png" id="sYj-ul-93y">
-                                <rect key="frame" x="28" y="338" width="280" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eDG-dE-RJN">
                                 <rect key="frame" x="17" y="22" width="29" height="13"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -218,7 +214,6 @@
                     <size key="freeformSize" width="320" height="764"/>
                     <connections>
                         <outlet property="answerOne" destination="MPa-0f-UE6" id="GmA-p8-iJP"/>
-                        <outlet property="bottomDivider" destination="sYj-ul-93y" id="Gza-fz-cpc"/>
                         <outlet property="bottomNavView" destination="whM-5g-WVV" id="5lD-wK-fDF"/>
                         <outlet property="checkBoxOne" destination="LT2-nO-kzX" id="Zbf-nf-reU"/>
                         <outlet property="nextButton" destination="r9T-Fp-MV6" id="DVy-af-fkj"/>

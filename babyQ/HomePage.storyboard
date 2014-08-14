@@ -144,7 +144,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="You can raise your score by performing an action such as completing to-do's." textAlignment="center" id="0O0-mH-SI9">
-                                <rect key="frame" x="75" y="496" width="171" height="73"/>
+                                <rect key="frame" x="75" y="488" width="171" height="82"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="textColor" red="0.6705882352941176" green="0.65098039215686276" blue="0.64313725490196072" alpha="1" colorSpace="calibratedRGB"/>
@@ -173,7 +173,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today's Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sGu-28-hgm">
-                                <rect key="frame" x="117" y="100" width="147" height="21"/>
+                                <rect key="frame" x="117" y="100" width="173" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="0.8901960784313725" green="0.37254901960784315" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>

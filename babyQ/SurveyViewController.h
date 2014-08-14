@@ -30,7 +30,6 @@ extern BOOL extraQuestionsReached;
 @property (nonatomic, retain) IBOutlet UIView* bottomNavView;
 @property (nonatomic, retain) IBOutlet UIButton* nextButton;
 @property (nonatomic, retain) IBOutlet UIButton* previousButton;
-@property (nonatomic, retain) IBOutlet UIImageView* bottomDivider;
 
 @property (nonatomic, retain) NSMutableData* survey_data;
 @property (nonatomic,retain) NSString* question_number;

@@ -286,7 +286,7 @@ UIButton* currentPresentedScore;
     // The floating view should be at its original position or at top of
     // the visible area, whichever is lower.
     CGFloat labelY = contentOffset.y + 20;
-    CGFloat buttonY = contentOffset.y + 30;
+    CGFloat buttonY = contentOffset.y + 20;
     
     CGRect labelFrame = headerLabel.frame;
     CGRect button1Frame = headerButton1.frame;

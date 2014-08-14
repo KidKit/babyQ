@@ -32,7 +32,7 @@ BOOL extraQuestionsReached = NO;
 
 @implementation SurveyViewController
 
-@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionType,question,answerOne,checkBoxOne,nextButton,previousButton,bottomNavView,bottomDivider,question_number,question_type,survey_data,answer_ids;
+@synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionType,question,answerOne,checkBoxOne,nextButton,previousButton,bottomNavView,question_number,question_type,survey_data,answer_ids;
 
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
@@ -108,7 +108,7 @@ NSURLConnection* submitSurveyConnection;
         NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
         for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
         {
-            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 189, 54)];
+            UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 220, 54)];
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
             nextAnswer.userInteractionEnabled = YES;
@@ -136,7 +136,6 @@ NSURLConnection* submitSurveyConnection;
         if (numberOfAnswers > 1)
         {
             [self.scrollView setContentSize:CGSizeMake(320, 500 + 55 * (numberOfAnswers-1) )];
-            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         }
     }
     else
@@ -182,7 +181,7 @@ NSURLConnection* submitSurveyConnection;
         for (int i = 2; i <= [survey_json[@"ExtraQuestions"][question_key][@"PossibleAnswers"] count]; i++)
         {
             UITextView* nextAnswer;
-            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 189, 54)];
+            nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 220, 54)];
             
             nextAnswer.backgroundColor = [UIColor clearColor];
             nextAnswer.editable = NO;
@@ -211,7 +210,6 @@ NSURLConnection* submitSurveyConnection;
         if (numberOfAnswers > 1)
         {
             [self.scrollView setContentSize:CGSizeMake(320, 530 + 55 * (numberOfAnswers-1) )];
-            [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
         }
         if ([question_type isEqualToString:@"Check All That Apply"])
         {
@@ -288,7 +286,7 @@ NSURLConnection* submitSurveyConnection;
             NSUInteger numberOfAnswers = [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count];
             for (int i = 2; i <= [survey_json[@"ScoringQuestions"][question_index][@"PossibleAnswers"] count]; i++)
             {
-                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 189, 54)];
+                UITextView* nextAnswer = [[UITextView alloc] initWithFrame:CGRectMake(40, 262 + 55*(i-1), 220, 54)];
                 nextAnswer.backgroundColor = [UIColor clearColor];
                 nextAnswer.editable = NO;
                 nextAnswer.userInteractionEnabled = YES;
@@ -316,7 +314,6 @@ NSURLConnection* submitSurveyConnection;
             if (numberOfAnswers > 1)
             {
                 [self.scrollView setContentSize:CGSizeMake(320, 500 + 55 * (numberOfAnswers-1) )];
-                [self.bottomDivider setFrame:CGRectMake(bottomDivider.frame.origin.x, bottomDivider.frame.origin.y+55*(numberOfAnswers-1), bottomDivider.frame.size.width, bottomDivider.frame.size.height)];
             }
         }
     }
