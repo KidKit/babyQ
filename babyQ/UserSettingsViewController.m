@@ -109,6 +109,11 @@ NSURLConnection* changePasswordConnection;
     self.navigationController.navigationBar.topItem.title = @"SETTINGS";
 }
 
+-(void) viewWillDisappear:(BOOL)animated
+{
+    [self dismissKeyboard];
+}
+
 -(void)dismissKeyboard {
     [email resignFirstResponder];
     [password resignFirstResponder];

@@ -14,6 +14,11 @@
 
 @implementation AboutUsViewController
 
+#define facebookURL @"https://www.facebook.com/babyQapp"
+#define twitterURL @"https://twitter.com/babyQapp"
+#define websiteURL @"https://www.babyq.com/"
+#define blogURL @"https://www.babyq.com/blog/"
+
 @synthesize copyright,aboutUs,findUs;
 
 - (void)viewDidLoad
@@ -35,22 +40,38 @@
 
 -(IBAction)twitter:(id)sender
 {
+    NSURL *url = [NSURL URLWithString:twitterURL];
     
+    SVModalWebViewController *webBrowser = [[SVModalWebViewController alloc] initWithURL:url];
+    webBrowser.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentViewController:webBrowser animated:YES completion:nil];
 }
 
 -(IBAction)facebook:(id)sender
 {
+    NSURL *url = [NSURL URLWithString:facebookURL];
     
+    SVModalWebViewController *webBrowser = [[SVModalWebViewController alloc] initWithURL:url];
+    webBrowser.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentViewController:webBrowser animated:YES completion:nil];
 }
 
 -(IBAction)website:(id)sender
 {
+    NSURL *url = [NSURL URLWithString:websiteURL];
     
+    SVModalWebViewController *webBrowser = [[SVModalWebViewController alloc] initWithURL:url];
+    webBrowser.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentViewController:webBrowser animated:YES completion:nil];
 }
 
 -(IBAction)blog:(id)sender
 {
+    NSURL *url = [NSURL URLWithString:blogURL];
     
+    SVModalWebViewController *webBrowser = [[SVModalWebViewController alloc] initWithURL:url];
+    webBrowser.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self presentViewController:webBrowser animated:YES completion:nil];
 }
 
 

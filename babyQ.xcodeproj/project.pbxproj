@@ -142,6 +142,13 @@
 		5FDE03EA1950F0E00009A993 /* CompletedTodosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03E91950F0E00009A993 /* CompletedTodosViewController.m */; };
 		5FDE03ED1950FBC10009A993 /* TipHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */; };
 		5FE6DB9C195D3F4300E31C76 /* babyq_circle_orange_no_fill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */; };
+		5FF6D14A199C4603004CE3D1 /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FF6D143199C4603004CE3D1 /* SVWebViewController.strings */; };
+		5FF6D14B199C4603004CE3D1 /* SVModalWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF6D144199C4603004CE3D1 /* SVModalWebViewController.h */; };
+		5FF6D14C199C4603004CE3D1 /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF6D145199C4603004CE3D1 /* SVModalWebViewController.m */; };
+		5FF6D14D199C4603004CE3D1 /* SVWebViewController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5FF6D146199C4603004CE3D1 /* SVWebViewController.bundle */; };
+		5FF6D14E199C4603004CE3D1 /* SVWebViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF6D147199C4603004CE3D1 /* SVWebViewController.h */; };
+		5FF6D14F199C4603004CE3D1 /* SVWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FF6D148199C4603004CE3D1 /* SVWebViewController.m */; };
+		5FF6D150199C4603004CE3D1 /* SVWebViewDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5FF6D149199C4603004CE3D1 /* SVWebViewDelegate.h */; };
 		F84296B819785E1200887FA8 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = F84296B719785E1200887FA8 /* Entitlements.plist */; };
 /* End PBXBuildFile section */
 
@@ -317,6 +324,13 @@
 		5FDE03EB1950FBC10009A993 /* TipHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipHistoryViewController.h; sourceTree = "<group>"; };
 		5FDE03EC1950FBC10009A993 /* TipHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipHistoryViewController.m; sourceTree = "<group>"; };
 		5FE6DB9B195D3F4300E31C76 /* babyq_circle_orange_no_fill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_circle_orange_no_fill.png; sourceTree = "<group>"; };
+		5FF6D143199C4603004CE3D1 /* SVWebViewController.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = SVWebViewController.strings; sourceTree = "<group>"; };
+		5FF6D144199C4603004CE3D1 /* SVModalWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVModalWebViewController.h; sourceTree = "<group>"; };
+		5FF6D145199C4603004CE3D1 /* SVModalWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVModalWebViewController.m; sourceTree = "<group>"; };
+		5FF6D146199C4603004CE3D1 /* SVWebViewController.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVWebViewController.bundle; sourceTree = "<group>"; };
+		5FF6D147199C4603004CE3D1 /* SVWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewController.h; sourceTree = "<group>"; };
+		5FF6D148199C4603004CE3D1 /* SVWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVWebViewController.m; sourceTree = "<group>"; };
+		5FF6D149199C4603004CE3D1 /* SVWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVWebViewDelegate.h; sourceTree = "<group>"; };
 		E89BC0EF117C4B498CA04172 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F84296B719785E1200887FA8 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -547,6 +561,7 @@
 		5FC3D09A19479979003D3E94 /* babyQ */ = {
 			isa = PBXGroup;
 			children = (
+				5FF6D142199C45F3004CE3D1 /* svwebview */,
 				5F3FBD84194A1F5000FB0548 /* Fonts */,
 				5F7FF0051948035C00A48C86 /* Slices */,
 				5FC3D0A319479979003D3E94 /* AppDelegate.h */,
@@ -654,6 +669,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5FF6D142199C45F3004CE3D1 /* svwebview */ = {
+			isa = PBXGroup;
+			children = (
+				5FF6D143199C4603004CE3D1 /* SVWebViewController.strings */,
+				5FF6D144199C4603004CE3D1 /* SVModalWebViewController.h */,
+				5FF6D145199C4603004CE3D1 /* SVModalWebViewController.m */,
+				5FF6D146199C4603004CE3D1 /* SVWebViewController.bundle */,
+				5FF6D147199C4603004CE3D1 /* SVWebViewController.h */,
+				5FF6D148199C4603004CE3D1 /* SVWebViewController.m */,
+				5FF6D149199C4603004CE3D1 /* SVWebViewDelegate.h */,
+			);
+			name = svwebview;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -662,11 +691,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F4AAAFB1991A54000571C1C /* StopSurveyViewController.h in Headers */,
+				5FF6D150199C4603004CE3D1 /* SVWebViewDelegate.h in Headers */,
+				5FF6D14E199C4603004CE3D1 /* SVWebViewController.h in Headers */,
 				5F49D12819526ACF0073BD85 /* Constants.h in Headers */,
 				5F2FD6851964D47700B41E23 /* GetScoreViewController.h in Headers */,
 				5FDA536219988E6D007E3F06 /* Reachability.h in Headers */,
 				5F4AAAF5199198B100571C1C /* SurveyCompleteViewController.h in Headers */,
 				5F461982196D05120014F5F3 /* ForgotPasswordViewController.h in Headers */,
+				5FF6D14B199C4603004CE3D1 /* SVModalWebViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +793,7 @@
 				5F7FF0601948035C00A48C86 /* babyq_signin_orange_button.png in Resources */,
 				5F7FF0631948035C00A48C86 /* babyq_view_progress_button.png in Resources */,
 				5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */,
+				5FF6D14D199C4603004CE3D1 /* SVWebViewController.bundle in Resources */,
 				5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */,
 				5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */,
 				5F7FF0741948035C00A48C86 /* babyq_check_mark.png in Resources */,
@@ -829,6 +862,7 @@
 				5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */,
 				5F0296C0195C009F0094F542 /* babyq_survey_x.png in Resources */,
 				5F7FF0671948035C00A48C86 /* babyq_completed_to-do_header in Resources */,
+				5FF6D14A199C4603004CE3D1 /* SVWebViewController.strings in Resources */,
 				5F7FF07A1948035C00A48C86 /* babyq_menu_icon.png in Resources */,
 				5F7FF0541948035C00A48C86 /* babyq_green_background.png in Resources */,
 				5F7FF0621948035C00A48C86 /* babyq_update_your_score_button.png in Resources */,
@@ -914,6 +948,7 @@
 				5F95E495194B9AFC000E9F83 /* JoinViewController.m in Sources */,
 				5F3FBD7F194A1C8700FB0548 /* SurveyViewController.m in Sources */,
 				5F4AAAF6199198B100571C1C /* SurveyCompleteViewController.m in Sources */,
+				5FF6D14F199C4603004CE3D1 /* SVWebViewController.m in Sources */,
 				5FC3D0A119479979003D3E94 /* main.m in Sources */,
 				5F94EAF7194B77C40077FD1D /* AboutUsViewController.m in Sources */,
 				5FDE03E71950EF670009A993 /* TodosViewController.m in Sources */,
@@ -922,6 +957,7 @@
 				5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */,
 				5F3AF6FD194F72A000BD04CE /* ScoreProgressViewController.m in Sources */,
 				5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */,
+				5FF6D14C199C4603004CE3D1 /* SVModalWebViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

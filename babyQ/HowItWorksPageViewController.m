@@ -42,7 +42,7 @@
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
-    self.pageViewController.view.frame = CGRectMake(0, 71, self.view.frame.size.width, 509-71);
+    self.pageViewController.view.frame = CGRectMake(0, 71, self.view.frame.size.width, 568-70);
     
     HowItWorksContentViewController* startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];

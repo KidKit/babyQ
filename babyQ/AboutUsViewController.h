@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SVModalWebViewController.h"
+#import "SVWebViewController.h"
 
 @interface AboutUsViewController : UIViewController
 

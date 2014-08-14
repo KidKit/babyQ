@@ -14,7 +14,7 @@
 
 @implementation MyProfileViewController
 
-@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,dobField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,isPregnant,dueDateField,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,wasDelivered,deliveryDateField,babyLengthField,babyWeightField,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,babyWeightLabel,babyLengthLabel,savedMessage,offlineMessage;
+@synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,zipCodeField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,birthTypeLabel,vaginalLabel,cSectionLabel,complicationsLabel,complication1Label,complication2Label,complication3Label,complication4Label,complication5Label,complication6Label,complication1Button,complication2Button,complication3Button,complication4Button,complication5Button,complication6Button,yesDelivered,noDelivered,yesDeliveredLabel,noDeliveredLabel,vaginalButton,cSectionButton, savedMessage,offlineMessage,dueDate,deliveryDate,birthday,aboutMeHeader,pregnancyHeader,deliveryHeader,noPregnantButton,yesPregnantButton,noPregnant,yesPregnant,babyFeetField,babyInchesField,babyFeetLabel,babyInchesLabel,babyPoundsField,babyOuncesField,babyPoundsLabel,babyOuncesLabel,babyLengthLabel;
 
 BOOL internet;
 NSURLConnection* getAboutMeConnection;
@@ -25,23 +25,29 @@ NSURLConnection* getDeliveryConnection;
 NSURLConnection* setDeliveryConnection;
 
 NSString* prevName;
-NSString* prevBirthdate;
+NSDate* prevBirthdate;
 NSString* prevZipcode;
 bool prevIsPregnant;
-NSString* prevDueDate;
+NSDate* prevDueDate;
 bool prevWasDelivered;
-NSString* prevDeliveryDate;
-NSString* prevBabyWeight;
-NSString* prevBabyLength;
+int prevBirthType;
+NSDate* prevDeliveryDate;
+NSString* prevBabyOunces;
+NSString* prevBabyPounds;
+NSString* prevBabyInches;
+
+int isPregnant;
+int delivered;
+int birthTypeId;
+NSMutableArray* complications;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self testInternetConnection];
-    [self.scrollView setContentSize:CGSizeMake(320, 1150-366)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    
     // Do any additional setup after loading the view.
+    deliveredView.hidden = YES;
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -51,17 +57,18 @@ NSString* prevBabyLength;
     
     UIColor *color = [UIColor colorWithRed:124 green:197 blue:189 alpha:1.0f];
     nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{NSForegroundColorAttributeName: color}];
-    dobField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"mm-dd-yyyy" attributes:@{NSForegroundColorAttributeName: color}];
     zipCodeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Zip Code" attributes:@{NSForegroundColorAttributeName: color}];
-    dueDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Due Date" attributes:@{NSForegroundColorAttributeName: color}];
-    deliveryDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Delivery Date" attributes:@{NSForegroundColorAttributeName: color}];
-    babyLengthField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Baby Length (in)" attributes:@{NSForegroundColorAttributeName: color}];
-    babyWeightField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Baby Weight (oz)" attributes:@{NSForegroundColorAttributeName: color}];
     
-
+    dueDate.datePickerMode = UIDatePickerModeDate;
+    [dueDate setMinimumDate:[NSDate date]];
+    deliveryDate.datePickerMode = UIDatePickerModeDate;
+    birthday.datePickerMode = UIDatePickerModeDate;
     
-    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = deliveredDateLabel.font = babyWeightLabel.font = babyLengthLabel.font = savedMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    savedMessage.font = complication1Label.font = complication2Label.font = complication3Label.font = complication4Label.font = complication5Label.font = complication6Label.font = noPregnant.font = yesPregnant.font = [UIFont fontWithName:@"MyriadPro-Regular" size:14];
     
+    nameLabel.font = birthdayLabel.font = zipCodeLabel.font = isPregnantLabel.font = dueDateLabel.font = wasDeliveredLabel.font = birthTypeLabel.font = complicationsLabel.font = deliveredDateLabel.font = babyLengthLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:14];
+    
+    aboutMeHeader.font = pregnancyHeader.font = deliveryHeader.font = [UIFont fontWithName:@"MyriadPro-Bold" size:19];
     savedMessage.hidden = YES;
     
     if ([fb_pic length] > 0)
@@ -107,6 +114,10 @@ NSString* prevBabyLength;
     [getPregnantRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     getPregnantConnection = [[NSURLConnection alloc] initWithRequest:getPregnantRequest delegate:self];
     
+    delivered = -1;
+    birthTypeId = -1;
+    complications = [[NSMutableArray alloc] init];
+    
     NSString* getDeliveryURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.GET_DELIVERY_PATH];
     postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     NSMutableURLRequest *getDeliveryRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:getDeliveryURL]];
@@ -117,20 +128,16 @@ NSString* prevBabyLength;
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    isPregnant.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    wasDelivered.transform = CGAffineTransformMakeScale(0.9, 0.9);
-    
     [self.scrollView addGestureRecognizer:tap];
 }
 
 -(void)dismissKeyboard {
     [nameField resignFirstResponder];
-    [dobField resignFirstResponder];
     [zipCodeField resignFirstResponder];
-    [dueDateField resignFirstResponder];
-    [deliveryDateField resignFirstResponder];
-    [babyWeightField resignFirstResponder];
-    [babyLengthField resignFirstResponder];
+    [babyOuncesField resignFirstResponder];
+    [babyPoundsField resignFirstResponder];
+    [babyInchesField resignFirstResponder];
+    [babyFeetField resignFirstResponder];
 }
 - (IBAction)getPhoto
 {
@@ -178,15 +185,12 @@ NSString* prevBabyLength;
         nameField.text = json_dictionary[@"Name"];
         prevName = json_dictionary[@"Name"];
         
-        NSArray* dobSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
+        NSArray* dueDateSplit = [json_dictionary[@"Birthdate"] componentsSeparatedByString:@" "];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate* birthdate = [dateFormatter dateFromString:dobSplit[0]];
-        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-        NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
-        
-        dobField.text = formatted_birthdate;
-        prevBirthdate = formatted_birthdate;
+        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+        birthday.date = savedDueDate;
+        prevBirthdate = savedDueDate;
         
         zipCodeField.text = json_dictionary[@"ZipCode"];
         prevZipcode = json_dictionary[@"ZipCode"];
@@ -200,9 +204,8 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [UIView animateWithDuration:0.5f animations:^{
-                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
-            }];
+            [self dismissKeyboard];
+
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:3.0f animations:^{
@@ -224,29 +227,32 @@ NSString* prevBabyLength;
         NSArray* dueDateSplit = [getPregnantResponse[@"DueDate"] componentsSeparatedByString:@" "];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSDate* dueDate = [dateFormatter dateFromString:dueDateSplit[0]];
-        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-        NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
-        
-        dueDateField.text = formatted_dueDate;
-        if ([(NSDate*)[dueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
-        {
-            deliveredView.hidden = NO;
-            [self.scrollView setContentSize:CGSizeMake(320, 1230)];
-        }
-        else
-            deliveredView.hidden = YES;
+        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+        dueDate.date = savedDueDate;
+        prevDueDate = savedDueDate;
         
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
         {
-            isPregnant.on = YES;
-            prevIsPregnant = YES;
+                [yesPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, 428)];
+            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+            {
+                deliveredView.hidden = NO;
+                [self.scrollView setContentSize:CGSizeMake(320, 1425)];
+            }
+            else
+            {
+                deliveredView.hidden = YES;
+                [self.scrollView setContentSize:CGSizeMake(320, 1075)];
+            }
+            
         }
-        else
+        else if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"0"])
         {
-            isPregnant.on = NO;
-            prevIsPregnant = NO;
+            [noPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            [self.scrollView setContentSize:CGSizeMake(320, 850)];
         }
+        
     } else if (connection == setPregnantConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -257,10 +263,6 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [UIView animateWithDuration:0.5f animations:^{
-                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
-            }];
-            
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:2.0f animations:^{
@@ -269,6 +271,18 @@ NSString* prevBabyLength;
                 if (finished)
                     savedMessage.hidden = YES;
             }];
+            [self dismissKeyboard];
+            
+            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+            {
+                deliveredView.hidden = NO;
+                [self.scrollView setContentSize:CGSizeMake(320, 1350)];
+            }
+            else
+            {
+                deliveredView.hidden = YES;
+                [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+            }
         }
     } else if (connection == getDeliveryConnection)
     {
@@ -278,25 +292,69 @@ NSString* prevBabyLength;
         NSDictionary* getDeliveryResponse = [NSJSONSerialization JSONObjectWithData: json_data
                                                                              options: NSJSONReadingMutableContainers
                                                                                error: nil];
-        if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"1"])
-            wasDelivered.on = YES;
-        else
-            wasDelivered.on = NO;
+        NSArray* dueDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSDate* savedDueDate = [dateFormatter dateFromString:dueDateSplit[0]];
+        //deliveryDate.date = savedDueDate;
+        //prevDeliveryDate = savedDueDate;
+        
         if (getDeliveryResponse[@"BabyLengthInches"] != (id)[NSNull null])
         {
-            babyLengthField.text = getDeliveryResponse[@"BabyLengthInches"];
-            prevBabyLength = getDeliveryResponse[@"BabyLengthInches"];
+            prevBabyInches = getDeliveryResponse[@"BabyLengthInches"];
+            babyInchesField.text = getDeliveryResponse[@"BabyLengthInches"];
         }
         if (getDeliveryResponse[@"BabyWeightOunces"] != (id)[NSNull null])
         {
-            babyWeightField.text = getDeliveryResponse[@"BabyWeightOunces"];
-            prevBabyWeight = getDeliveryResponse[@"BabyWeightOunces"];
+            prevBabyOunces = getDeliveryResponse[@"BabyWeightOunces"];
+            babyOuncesField.text = getDeliveryResponse[@"BabyWeightOunces"];
         }
-        if (getDeliveryResponse[@"DeliveryDate"] != (id)[NSNull null])
+        if (getDeliveryResponse[@"BabyWeightPounds"] != (id)[NSNull null])
         {
-            NSArray* deliveryDateSplit = [getDeliveryResponse[@"DeliveryDate"] componentsSeparatedByString:@" "];
-            deliveryDateField.text = deliveryDateSplit[0];
-            prevDeliveryDate = deliveryDateSplit[0];
+            prevBabyPounds = getDeliveryResponse[@"BabyWeightPounds"];
+            babyPoundsField.text = getDeliveryResponse[@"BabyWeightPounds"];
+        }
+        if (getDeliveryResponse[@"Delivered"] != (id)[NSNull null])
+        {
+            if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"1"])
+            {
+                delivered = 1;
+                [yesDelivered setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                pregnancyView.hidden = YES;
+                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-495, deliveredView.frame.size.width, 1042)];
+                [scrollView setContentSize:CGSizeMake(320, 1800)];
+            }
+            else if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"0"])
+            {
+                [noDelivered setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                delivered = 0;
+            }
+        }
+        if (getDeliveryResponse[@"BirthTypeId"] != (id)[NSNull null])
+        {
+            if ([getDeliveryResponse[@"BirthTypeId"] isEqualToString:@"0"])
+                [vaginalButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            else if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"1"])
+                [cSectionButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        }
+        if (getDeliveryResponse[@"ComplicationIds"] != (id)[NSNull null])
+        {
+            complications = [[getDeliveryResponse[@"ComplicationIds"] componentsSeparatedByString:@","] mutableCopy];
+            for (NSString* tag in complications)
+            {
+                if ([tag isEqualToString:@"0"])
+                    [complication1Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                else if ([tag isEqualToString:@"1"])
+                    [complication2Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                else if ([tag isEqualToString:@"2"])
+                    [complication3Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                else if ([tag isEqualToString:@"3"])
+                    [complication4Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                else if ([tag isEqualToString:@"4"])
+                    [complication5Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+                else if ([tag isEqualToString:@"5"])
+                    [complication6Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            }
         }
     } else if (connection == setDeliveryConnection)
     {
@@ -308,10 +366,7 @@ NSString* prevBabyLength;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [UIView animateWithDuration:0.5f animations:^{
-                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
-                
-            }];
+            [self dismissKeyboard];
             
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
@@ -337,6 +392,7 @@ NSString* prevBabyLength;
 
 - (IBAction)openSideSwipeView
 {
+    [self dismissKeyboard];
     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
@@ -366,6 +422,14 @@ NSString* prevBabyLength;
         headerButton1.frame = button1Frame;
         headerButton2.frame = button2Frame;
     }
+    if (!savedMessage.hidden)
+    {
+        [savedMessage.layer removeAllAnimations];
+        savedMessage.frame = CGRectMake(savedMessage.frame.origin.x, 71 + contentOffset.y,savedMessage.frame.size.width, savedMessage.frame.size.height);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            savedMessage.hidden = YES;
+        });
+    }
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -375,57 +439,23 @@ NSString* prevBabyLength;
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == nameField || textField == dobField || textField == zipCodeField)
+    if (textField == nameField || textField == zipCodeField)
     {
-        if (aboutMeView.frame.size.height < 300)
-        {
-            [UIView animateWithDuration:0.5f animations:^{
-                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height + 75)];
-                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y+75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
-            }];
-        }
-    } else if (textField == dueDateField)
+        
+    } else if (false)
     {
-        if (pregnancyView.frame.size.height < 250)
-        {
-            [UIView animateWithDuration:0.5f animations:^{
-                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height + 75)];
-            }];
-        }
-        [UIView animateWithDuration:0.5f animations:^{
-            [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
-            [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y-75, aboutMeView.frame.size.width, aboutMeView.frame.size.height)];
-            [profilePicture setFrame:CGRectMake(profilePicture.frame.origin.x, profilePicture.frame.origin.y-75, profilePicture.frame.size.width, profilePicture.frame.size.height)];
-        }];
-    } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
-        if (deliveredView.frame.size.height < 400)
-        {
-            [UIView animateWithDuration:0.5f animations:^{
-                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y-75, deliveredView.frame.size.width, deliveredView.frame.size.height + 75)];
-            }];
-        }
+        
+    } else if (false)
+    {
+        
+    }
 }
 
 - (void) textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField == dueDateField)
+    if (false)
     {
-        if (pregnancyView.frame.size.height < 300)
-        {
-            [UIView animateWithDuration:0.5f animations:^{
-                [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y+75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
-                [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y+75, aboutMeView.frame.size.width, aboutMeView.frame.size.height)];
-                [profilePicture setFrame:CGRectMake(profilePicture.frame.origin.x, profilePicture.frame.origin.y+75, profilePicture.frame.size.width, profilePicture.frame.size.height)];
-            }];
-        }
-    } else if (textField == deliveryDateField || textField == babyWeightField || textField == babyLengthField)
-    {
-        if (deliveredView.frame.size.height < 400)
-        {
-            [UIView animateWithDuration:0.5f animations:^{
-                [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y+75, deliveredView.frame.size.width, deliveredView.frame.size.height)];
-            }];
-        }
+        
     }
 }
 
@@ -437,19 +467,12 @@ NSString* prevBabyLength;
     NSString* setAboutMeURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_ABOUT_ME_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
     postData = [[postData stringByAppendingString:@"&Name="] stringByAppendingString:nameField.text];
-    
-    if ([dobField.text length] > 0 )
-    {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-        NSDate* birthdate = [dateFormatter dateFromString:dobField.text];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString* formatted_birthdate = [dateFormatter stringFromDate:birthdate];
-        postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:formatted_birthdate];
-    }
-    else
-        postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:@""
-                    ];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* date = [dateFormatter stringFromDate: birthday.date];
+    postData = [[postData stringByAppendingString:@"&Birthdate="] stringByAppendingString:date];
+
     if ([zipCodeField.text length] > 0)
         postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zipCodeField.text];
     else
@@ -464,15 +487,10 @@ NSString* prevBabyLength;
 -(IBAction)cancelEditingAboutMeFields
 {
     nameField.text = prevName;
-    dobField.text = prevBirthdate;
+    birthday.date = prevBirthdate;
     zipCodeField.text = prevZipcode;
     [nameField resignFirstResponder];
-    [dobField resignFirstResponder];
     [zipCodeField resignFirstResponder];
-    [UIView animateWithDuration:0.5f animations:^{
-        [aboutMeView setFrame:CGRectMake(aboutMeView.frame.origin.x, aboutMeView.frame.origin.y, aboutMeView.frame.size.width, aboutMeView.frame.size.height - 75)];
-        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y-75, pregnancyView.frame.size.width, pregnancyView.frame.size.height)];
-    }];
 }
 
 -(IBAction)savePregnantFields
@@ -482,19 +500,15 @@ NSString* prevBabyLength;
     Constants* constants = [[Constants alloc] init];
     NSString* setPregnantURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_PREGNANCY_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant.on ? @"1" : @"0"];
+    postData = [[postData stringByAppendingString:@"&IsPregnant="] stringByAppendingString:isPregnant ? @"1" : @"0"];
     
-    if ([dueDateField.text length] > 0)
-    {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MM-dd-yyyy"];
-        NSDate* dueDate = [dateFormatter dateFromString:dueDateField.text];
-        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-        NSString* formatted_dueDate = [dateFormatter stringFromDate:dueDate];
-        postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:formatted_dueDate];
-    }
-    else
-        postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:@""];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* date = [dateFormatter stringFromDate: dueDate.date];
+    prevDueDate = dueDate.date;
+    postData = [[postData stringByAppendingString:@"&DueDate="] stringByAppendingString:date];
+
     
     NSMutableURLRequest *setPregnantRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setPregnantURL]];
     [setPregnantRequest setHTTPMethod:@"POST"];
@@ -505,12 +519,8 @@ NSString* prevBabyLength;
 
 -(IBAction)cancelEditingPregnantFields
 {
-    isPregnant.on = prevIsPregnant;
-    dueDateField.text = prevDueDate;
-    [dueDateField resignFirstResponder];
-    [UIView animateWithDuration:0.5f animations:^{
-        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, pregnancyView.frame.size.height - 75)];
-    }];
+    isPregnant = prevIsPregnant;
+    dueDate.date = prevDueDate;
 }
 
 
@@ -521,22 +531,45 @@ NSString* prevBabyLength;
     Constants* constants = [[Constants alloc] init];
     NSString* setDeliveryURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DELIVERY_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&Delivered="] stringByAppendingString:wasDelivered.on ? @"1" : @"0"];
-    if ([deliveryDateField.text length] > 0)
-        postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:deliveryDateField.text];
+    postData = [[postData stringByAppendingString:@"&Delivered="] stringByAppendingString:delivered ? @"1" : @"0"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString* date = [dateFormatter stringFromDate: deliveryDate.date];
+    prevDeliveryDate = deliveryDate.date;
+    if (delivered)
+        postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:date];
     else
         postData = [[postData stringByAppendingString:@"&DeliveryDate="] stringByAppendingString:@""];
+
     postData = [[postData stringByAppendingString:@"&BabyWeightPounds="] stringByAppendingString:@""];
-    if ([babyWeightField.text length] > 0)
-        postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:babyWeightField.text];
+    
+    if ([babyPoundsField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&BabyWeightPounds="] stringByAppendingString:babyPoundsField.text];
+    else
+        postData = [[postData stringByAppendingString:@"&BabyWeightPounds="] stringByAppendingString:@""];
+    if ([babyOuncesField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:babyOuncesField.text];
     else
         postData = [[postData stringByAppendingString:@"&BabyWeightOunces="] stringByAppendingString:@""];
-    if ([babyLengthField.text length] > 0)
-        postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:babyLengthField.text];
+
+    if ([babyInchesField.text length] > 0)
+        postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:babyInchesField.text];
     else
         postData = [[postData stringByAppendingString:@"&BabyLengthInches="] stringByAppendingString:@""];
-    postData = [[postData stringByAppendingString:@"&BirthTypeId="] stringByAppendingString:@""];
-    postData = [[postData stringByAppendingString:@"&ComplicationIds="] stringByAppendingString:@""];
+    
+    if (birthTypeId >= 0)
+        postData = [[postData stringByAppendingString:@"&BirthTypeId="] stringByAppendingString:[NSString stringWithFormat:@"%d", birthTypeId]];
+    else
+        postData = [[postData stringByAppendingString:@"&BirthTypeId="] stringByAppendingString:@""];
+    if ([complications count] > 0)
+    {
+        NSString* complicationsString = [complications componentsJoinedByString:@","];
+        postData = [[postData stringByAppendingString:@"&ComplicationIds="] stringByAppendingString:complicationsString];
+    }
+    else
+        postData = [[postData stringByAppendingString:@"&ComplicationIds="] stringByAppendingString:@""];
+    
     NSMutableURLRequest *setDeliveryRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:setDeliveryURL]];
     [setDeliveryRequest setHTTPMethod:@"POST"];
     [setDeliveryRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
@@ -545,16 +578,39 @@ NSString* prevBabyLength;
 
 -(IBAction)cancelEditingDeliveryFields
 {
-    wasDelivered.on = prevWasDelivered;
-    deliveryDateField.text = prevDeliveryDate;
-    babyLengthField.text = prevBabyLength;
-    babyWeightField.text = prevBabyWeight;
-    [deliveryDateField resignFirstResponder];
-    [babyWeightField resignFirstResponder];
-    [babyLengthField resignFirstResponder];
-    [UIView animateWithDuration:0.5f animations:^{
-        [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y, deliveredView.frame.size.width, deliveredView.frame.size.height - 75)];
-    }];
+    [babyPoundsField resignFirstResponder];
+    [babyOuncesField resignFirstResponder];
+    [babyInchesField resignFirstResponder];
+    deliveryDate.date = prevDeliveryDate;
+    babyPoundsField.text = prevBabyPounds;
+    babyOuncesField.text = prevBabyOunces;
+    babyInchesField.text = prevBabyInches;
+    [complication1Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    [complication2Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    [complication3Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    [complication4Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    [complication5Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    [complication6Button setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    for (NSString* tag in complications)
+    {
+        if ([tag isEqualToString:@"0"])
+            [complication1Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        else if ([tag isEqualToString:@"1"])
+            [complication2Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        else if ([tag isEqualToString:@"2"])
+            [complication3Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        else if ([tag isEqualToString:@"3"])
+            [complication4Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        else if ([tag isEqualToString:@"4"])
+            [complication5Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+        else if ([tag isEqualToString:@"5"])
+            [complication6Button setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    }
+    birthTypeId = prevBirthType;
+    if (birthTypeId == 0)
+        [cSectionButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    else
+        [vaginalButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
 }
 
 - (IBAction)startSurvey
@@ -597,14 +653,9 @@ NSString* prevBabyLength;
         offlineMessage.hidden = YES;
         headerButton2.enabled = YES;
         nameField.enabled = YES;
-        dobField.enabled = YES;
         zipCodeField.enabled = YES;
-        isPregnant.enabled = YES;
-        dueDateField.enabled = YES;
-        wasDelivered.enabled = YES;
-        deliveryDateField.enabled = YES;
-        babyLengthField.enabled = YES;
-        babyWeightField.enabled = YES;
+        babyPoundsField.enabled = YES;
+        babyFeetField.enabled = YES;
     };
     
     // Internet is not reachable
@@ -614,17 +665,80 @@ NSString* prevBabyLength;
         offlineMessage.hidden = NO;
         headerButton2.enabled = NO;
         nameField.enabled = NO;
-        dobField.enabled = NO;
         zipCodeField.enabled = NO;
-        isPregnant.enabled = NO;
-        dueDateField.enabled = NO;
-        wasDelivered.enabled = NO;
-        deliveryDateField.enabled = NO;
-        babyLengthField.enabled = NO;
-        babyWeightField.enabled = NO;
+        babyPoundsField.enabled = NO;
+        babyFeetField.enabled = NO;
     };
     
     [internetReachableFoo startNotifier];
+}
+
+-(IBAction)clickedIsPregnant:(UIButton*)sender
+{
+    isPregnant = (int) sender.tag;
+    [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    
+    if (isPregnant == 1)
+    {
+        [noPregnantButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, 428)];
+    }else
+    {
+        [yesPregnantButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, 132)];
+        [self savePregnantFields];
+    }
+    if (!delivered && isPregnant)
+        [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+    if (!delivered && !isPregnant)
+        [self.scrollView setContentSize:CGSizeMake(320, 850)];
+}
+
+-(IBAction)clickedDelivered:(UIButton*)sender
+{
+    delivered = (int) sender.tag;
+    [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    if (delivered == 1)
+    {
+        pregnancyView.hidden = YES;
+        [noDelivered setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y - 495, deliveredView.frame.size.width, 1042)];
+        [self.scrollView setContentSize:CGSizeMake(320, 1850)];
+        [self.scrollView setContentOffset:CGPointMake(scrollView.contentOffset.x, scrollView.contentOffset.y - 500)];
+    }else
+    {
+        pregnancyView.hidden = NO;
+        [yesDelivered setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+        [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y+495, deliveredView.frame.size.width, 168)];
+        [self.scrollView setContentSize:CGSizeMake(320, 1400)];
+        [self saveDeliveryFields];
+    }
+}
+
+-(IBAction)clickedBirthType:(UIButton*)sender
+{
+    birthTypeId = (int) sender.tag;
+    prevBirthType = birthTypeId;
+    [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    if (birthTypeId == 0)
+        [cSectionButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    else
+        [vaginalButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+}
+
+-(IBAction)clickedComplication:(UIButton*)sender
+{
+    NSString* tagString = [NSString stringWithFormat:@"%li",(long)sender.tag];
+    if (![complications containsObject:tagString])
+    {
+        [complications addObject:tagString];
+        [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [complications removeObject:tagString];
+        [sender setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
+    }
 }
 
 - (void)didReceiveMemoryWarning
