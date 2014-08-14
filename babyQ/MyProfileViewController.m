@@ -46,8 +46,8 @@ NSMutableArray* complications;
     [super viewDidLoad];
     [self testInternetConnection];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
-    [self.scrollView setContentSize:CGSizeMake(320, 1050)];
     // Do any additional setup after loading the view.
+    deliveredView.hidden = YES;
     NSString* fb_pic = [(AppDelegate *)[UIApplication sharedApplication].delegate fb_profilePicture];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
@@ -235,10 +235,23 @@ NSMutableArray* complications;
         {
                 [yesPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
                 [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, 428)];
+            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+            {
+                deliveredView.hidden = NO;
+                [self.scrollView setContentSize:CGSizeMake(320, 1425)];
+            }
+            else
+            {
+                deliveredView.hidden = YES;
+                [self.scrollView setContentSize:CGSizeMake(320, 1075)];
+            }
             
         }
         else if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"0"])
+        {
             [noPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
+            [self.scrollView setContentSize:CGSizeMake(320, 850)];
+        }
         
     } else if (connection == setPregnantConnection)
     {
@@ -250,19 +263,6 @@ NSMutableArray* complications;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
-            [self dismissKeyboard];
-            
-            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
-            {
-                //deliveredView.hidden = NO;
-                [self.scrollView setContentSize:CGSizeMake(320, 2325)];
-            }
-            else
-            {
-                //deliveredView.hidden = YES;
-                [self.scrollView setContentSize:CGSizeMake(320, 1100)];
-            }
-            
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:2.0f animations:^{
@@ -271,6 +271,18 @@ NSMutableArray* complications;
                 if (finished)
                     savedMessage.hidden = YES;
             }];
+            [self dismissKeyboard];
+            
+            if ([(NSDate*)[prevDueDate dateByAddingTimeInterval:-60*60*24*14] compare:[NSDate date] ] == NSOrderedAscending )
+            {
+                deliveredView.hidden = NO;
+                [self.scrollView setContentSize:CGSizeMake(320, 1350)];
+            }
+            else
+            {
+                deliveredView.hidden = YES;
+                [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+            }
         }
     } else if (connection == getDeliveryConnection)
     {
@@ -316,7 +328,6 @@ NSMutableArray* complications;
             {
                 [noDelivered setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
                 delivered = 0;
-                 [scrollView setContentSize:CGSizeMake(320, 1400)];
             }
         }
         if (getDeliveryResponse[@"BirthTypeId"] != (id)[NSNull null])
@@ -675,9 +686,10 @@ NSMutableArray* complications;
     {
         [yesPregnantButton setImage:[UIImage imageNamed:@"babyq_circle.png"] forState:UIControlStateNormal];
         [pregnancyView setFrame:CGRectMake(pregnancyView.frame.origin.x, pregnancyView.frame.origin.y, pregnancyView.frame.size.width, 132)];
+        [self savePregnantFields];
     }
     if (!delivered && isPregnant)
-        [self.scrollView setContentSize:CGSizeMake(320, 1450)];
+        [self.scrollView setContentSize:CGSizeMake(320, 1100)];
     if (!delivered && !isPregnant)
         [self.scrollView setContentSize:CGSizeMake(320, 850)];
 }

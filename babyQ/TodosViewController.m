@@ -166,7 +166,7 @@ BOOL internet;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 72)];
             todoLabel.textAlignment = NSTextAlignmentCenter;
             todoLabel.numberOfLines = 3;
-            todoLabel.text = @"Congratulations! You've just completed your recommended list of to-do's";
+            todoLabel.text = @"Congratulations!\nYou've just completed your recommended list of to-do's";
             todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
             todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.view addSubview:todoLabel];
