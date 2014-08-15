@@ -318,10 +318,10 @@ UIButton* currentPresentedScore;
     pastScore.textColor = [UIColor whiteColor];
     pastScore.textAlignment = NSTextAlignmentCenter;
     pastScore.tag = 99;
-    [sender setFrame:CGRectMake(sender.frame.origin.x-8, sender.frame.origin.y-8, 36, 36)];
     [sender addSubview:pastScore];
-    if (currentPresentedScore != nil)
+    if (currentPresentedScore != sender)
     {
+        [sender setFrame:CGRectMake(sender.frame.origin.x-8, sender.frame.origin.y-8, 36, 36)];
         for (UIView* view in currentPresentedScore.subviews) {
             if (view.tag == 99)
                 [view removeFromSuperview];
