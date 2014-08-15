@@ -12,6 +12,7 @@
 
 @interface AboutUsViewController : UIViewController
 
+@property (nonatomic, retain) IBOutlet UIScrollView* scrollView;
 @property (nonatomic, retain) IBOutlet UILabel* copyright;
 @property (nonatomic, retain) IBOutlet UITextView* aboutUs;
 @property (nonatomic, retain) IBOutlet UILabel* findUs;

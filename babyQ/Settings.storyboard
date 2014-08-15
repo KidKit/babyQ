@@ -80,106 +80,106 @@
         <scene sceneID="VYR-Of-dEz">
             <objects>
                 <viewController storyboardIdentifier="AboutUs" id="j6r-UK-26R" customClass="AboutUsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6cJ-BR-2sJ">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Kcw-bW-uGw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_green_background.png" id="feX-59-p55">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="n3f-Eh-I3Z">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="318"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_light_grid_background.png" id="LMr-Qg-XAk">
+                                <rect key="frame" x="0.0" y="276" width="320" height="830"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="VBt-tw-kBQ">
-                                <rect key="frame" x="15" y="188" width="291" height="501"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_green_background.png" id="kfe-Lk-BZy">
+                                <rect key="frame" x="0.0" y="-227" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="Ghr-zx-G4i">
+                                <rect key="frame" x="15" y="285" width="291" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <mutableString key="text">When you’re pregnant, BabyQ helps you take the best possible care of your developing child. 
-There are lots of things to consider when caring for the baby inside you: 
-•	“What do I eat?” 
-•	“How much should I exercise?” 
-•	“How much sleep do I need?” 
-•	“Can I drink a little alcohol?” 
-•	How am I doing compared to other women like me? 
+There are lots of things to consider when caring for the baby inside you:  
+•   “What do I eat?” 
+•   “How much should I exercise?” 
+•   “How much sleep do I need?” 
+•   “Can I drink a little alcohol?” 
+•   How am I doing compared to other women like me?  
 It would be almost impossible to research the answers to all these questions during your pregnancy, so we did it for you. Created by physicians, Dr. Mark Gostine, MD and Dr. Gareth Forde, MD, PhD that saw a need to help mothers have a guide for healthy pregnancies through a convenient mobile app created BabyQ. We are 
 We spent years putting together helpful information from our analysis of more than 39,000 pregnancies, along with data from the World Health Organization and the American College of Obstetricians and Gynecologists. We did this so we could construct a simple guide that keeps you on the right path while pregnant – babyQ was born.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©2014 BabyQ Version 2.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I36-pG-4BE">
-                                <rect key="frame" x="63" y="169" width="195" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_logo.png" id="6lL-XA-oha">
-                                <rect key="frame" x="112" y="65" width="96" height="96"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_currentscore_total_background.png" id="bfj-mN-wbJ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_currentscore_total_background.png" id="mK7-So-idU">
-                                <rect key="frame" x="0.0" y="318" width="320" height="124"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ulO-MQ-rYd">
-                                <rect key="frame" x="100" y="371" width="42" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_twitter_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="twitter:" destination="j6r-UK-26R" eventType="touchUpInside" id="orn-9B-r7P"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="KJu-8F-m6h">
-                                <rect key="frame" x="178" y="371" width="42" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_facebook_icon.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebook:" destination="j6r-UK-26R" eventType="touchUpInside" id="lpZ-My-vXD"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oFH-k5-V0Y">
-                                <rect key="frame" x="63" y="450" width="195" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JKZ-cI-RgO">
+                                <rect key="frame" x="69" y="152" width="195" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="babyq_blog_button.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="blog:" destination="j6r-UK-26R" eventType="touchUpInside" id="z1u-Cz-UkO"/>
-                                    <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="mSA-oF-AId"/>
+                                    <action selector="blog:" destination="j6r-UK-26R" eventType="touchUpInside" id="dcW-A7-5aq"/>
+                                    <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="aCt-5m-9hi"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jVO-Aw-tcV">
-                                <rect key="frame" x="63" y="504" width="195" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="babyq_website_button.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="3U7-y2-dFA"/>
-                                    <action selector="website:" destination="j6r-UK-26R" eventType="touchUpInside" id="FhP-Hv-Nsv"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• FIND US •" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hys-eF-U2y">
-                                <rect key="frame" x="105" y="332" width="110" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="• FIND US •" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tW1-hh-x9p">
+                                <rect key="frame" x="105" y="31" width="110" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.89019607840000003" green="0.37254901959999998" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="babyq_logo.png" id="IXu-lS-psp">
+                                <rect key="frame" x="112" y="791" width="96" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Tgu-Xn-JMM">
+                                <rect key="frame" x="100" y="65" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="babyq_facebook_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebook:" destination="j6r-UK-26R" eventType="touchUpInside" id="lXg-SB-xRJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mUm-Zv-cZv">
+                                <rect key="frame" x="177" y="65" width="42" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="babyq_twitter_icon.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="twitter:" destination="j6r-UK-26R" eventType="touchUpInside" id="anQ-Nb-X9T"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1pW-0V-mH6">
+                                <rect key="frame" x="69" y="212" width="195" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="babyq_website_button.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="3IS-tk-AUs"/>
+                                    <action selector="website:" destination="j6r-UK-26R" eventType="touchUpInside" id="5ed-UX-GHD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="©2014 BabyQ Version 2.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LpP-2n-ZaY">
+                                <rect key="frame" x="63" y="895" width="195" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </scrollView>
                     <navigationItem key="navigationItem" id="sld-Wv-cQh"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="568"/>
                     <connections>
-                        <outlet property="aboutUs" destination="VBt-tw-kBQ" id="FC3-Pp-ml5"/>
-                        <outlet property="copyright" destination="I36-pG-4BE" id="Ylp-nO-jss"/>
-                        <outlet property="findUs" destination="hys-eF-U2y" id="NnS-fJ-thW"/>
+                        <outlet property="scrollView" destination="Kcw-bW-uGw" id="aNh-0I-cmN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a4S-md-MnJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

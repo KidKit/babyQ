@@ -19,12 +19,12 @@
 #define websiteURL @"https://www.babyq.com/"
 #define blogURL @"https://www.babyq.com/blog/"
 
-@synthesize copyright,aboutUs,findUs;
+@synthesize scrollView,copyright,aboutUs,findUs;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [scrollView setContentSize:CGSizeMake(320, 950)];
     findUs.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:19];
     aboutUs.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
     copyright.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
