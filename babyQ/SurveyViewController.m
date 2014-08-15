@@ -390,8 +390,20 @@ NSURLConnection* submitSurveyConnection;
         submit_survey_json[@"Questions"][question_number_string] = [[NSMutableDictionary alloc] init];
         submit_survey_json[@"Questions"][question_number_string][@"QuestionId"] = survey_json[@"Questions"][question_number_string][@"QuestionId"];
         submit_survey_json[@"Questions"][question_number_string][@"PossibleAnswers"] = [[NSMutableDictionary alloc] init];
+        if ([selected_answers[question_number_string] isKindOfClass:[NSArray class]])
+        {
+            for (int y = 0; y < [selected_answers[question_number_string] count]; y++)
+            {
+                NSString* answer_key = [NSString stringWithFormat:@"%d", y+1];
+                submit_survey_json[@"Questions"][question_number_string][@"PossibleAnswers"][answer_key] = [[NSMutableDictionary alloc] init];
+                submit_survey_json[@"Questions"][question_number_string][@"PossibleAnswers"][answer_key][@"PossibleAnswerId"] = selected_answers[question_number_string][y];
+            }
+        }
+        else
+        {
         submit_survey_json[@"Questions"][question_number_string][@"PossibleAnswers"][@"1"] = [[NSMutableDictionary alloc] init];
         submit_survey_json[@"Questions"][question_number_string][@"PossibleAnswers"][@"1"][@"PossibleAnswerId"] = selected_answers[question_number_string];
+        }
     }
     
     NSData *jsonSurveyData = [NSJSONSerialization dataWithJSONObject:submit_survey_json
