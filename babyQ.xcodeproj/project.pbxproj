@@ -47,6 +47,7 @@
 		5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */; };
 		5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */; };
 		5F68D801195E3D1D00C799E7 /* babyq_slider_vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */; };
+		5F6F46FC199D85DA00CD2971 /* babyQ_rateInAppStore_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F46FB199D85DA00CD2971 /* babyQ_rateInAppStore_button.png */; };
 		5F7B25CA1949035F006EDB4D /* CurrentScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */; };
 		5F7B25CD194907E6006EDB4D /* HomePageNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F7B25CC194907E6006EDB4D /* HomePageNavigationController.m */; };
 		5F7FF04C1948035C00A48C86 /* babyq_dropdown_arrow_survey.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0081948035C00A48C86 /* babyq_dropdown_arrow_survey.png */; };
@@ -209,6 +210,7 @@
 		5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_score_background.png; sourceTree = "<group>"; };
 		5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_horizontal.png; sourceTree = "<group>"; };
 		5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_vertical.png; sourceTree = "<group>"; };
+		5F6F46FB199D85DA00CD2971 /* babyQ_rateInAppStore_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyQ_rateInAppStore_button.png; sourceTree = "<group>"; };
 		5F7B25C81949035F006EDB4D /* CurrentScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentScoreViewController.h; sourceTree = "<group>"; };
 		5F7B25C91949035F006EDB4D /* CurrentScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentScoreViewController.m; sourceTree = "<group>"; };
 		5F7B25CB194907E6006EDB4D /* HomePageNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageNavigationController.h; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		5F7FF0141948035C00A48C86 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
+				5F6F46FB199D85DA00CD2971 /* babyQ_rateInAppStore_button.png */,
 				5F0296BD195BFE5B0094F542 /* babyq_next_button.png */,
 				5F7FF0151948035C00A48C86 /* baby_q_signinjoin_button.png */,
 				5F7FF0161948035C00A48C86 /* babyq_blog_button.png */,
@@ -862,6 +865,7 @@
 				5F7FF04D1948035C00A48C86 /* babyq_menu_arrow_right.png in Resources */,
 				5F0296C0195C009F0094F542 /* babyq_survey_x.png in Resources */,
 				5F7FF0671948035C00A48C86 /* babyq_completed_to-do_header in Resources */,
+				5F6F46FC199D85DA00CD2971 /* babyQ_rateInAppStore_button.png in Resources */,
 				5FF6D14A199C4603004CE3D1 /* SVWebViewController.strings in Resources */,
 				5F7FF07A1948035C00A48C86 /* babyq_menu_icon.png in Resources */,
 				5F7FF0541948035C00A48C86 /* babyq_green_background.png in Resources */,

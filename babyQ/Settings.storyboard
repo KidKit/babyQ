@@ -507,11 +507,10 @@
                                             <action selector="signOut" destination="8PZ-5Y-m7H" eventType="touchUpInside" id="yFn-ss-FIj"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jiv-ST-EXz">
-                                        <rect key="frame" x="11" y="132" width="178" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jiv-ST-EXz">
+                                        <rect key="frame" x="60" y="133" width="164" height="33"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                        <state key="normal" title="Rate BabyQ in the App Store">
+                                        <state key="normal" image="babyQ_rateInAppStore_button.png">
                                             <color key="titleColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -573,6 +572,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="babyQ_rateInAppStore_button.png" width="525" height="105"/>
         <image name="babyq_blog_button.png" width="486" height="105"/>
         <image name="babyq_currentscore_total_background.png" width="640" height="445"/>
         <image name="babyq_facebook_icon.png" width="92" height="91"/>

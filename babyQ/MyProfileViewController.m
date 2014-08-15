@@ -62,6 +62,13 @@ NSMutableArray* complications;
     dueDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Due Date" attributes:@{NSForegroundColorAttributeName: color}];
     deliveryDateField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Delivery Date" attributes:@{NSForegroundColorAttributeName: color}];
     
+    cancelAboutMeButton.enabled = NO;
+    saveAboutMeButton.enabled = NO;
+    cancelPregnantButton.enabled = NO;
+    savePregnantButton.enabled = NO;
+    cancelDeliveryButton.enabled = NO;
+    saveDeliveryButton.enabled = NO;
+    
     dueDate.datePickerMode = UIDatePickerModeDate;
     [dueDate setMinimumDate:[NSDate date]];
     dueDate.hidden = YES;
@@ -222,7 +229,8 @@ NSMutableArray* complications;
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
             [self dismissKeyboard];
-
+            cancelAboutMeButton.enabled = NO;
+            saveAboutMeButton.enabled = NO;
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:3.0f animations:^{
@@ -281,6 +289,7 @@ NSMutableArray* complications;
         if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
         {
             isPregnant = 1;
+            [self.scrollView setContentSize:CGSizeMake(320, 855)];
             [yesPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
             if (pregnancyView.frame.size.height < 290)
             {
@@ -299,11 +308,10 @@ NSMutableArray* complications;
             else
             {
                 deliveredView.hidden = YES;
-                [self.scrollView setContentSize:CGSizeMake(320, 1075)];
             }
             
         }
-        else if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"0"])
+        else if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"0"] && delivered<=0)
         {
             [noPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
             [self.scrollView setContentSize:CGSizeMake(320, 850)];
@@ -319,6 +327,8 @@ NSMutableArray* complications;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
+            cancelPregnantButton.enabled = NO;
+            savePregnantButton.enabled = NO;
             savedMessage.hidden = NO;
             [savedMessage setFrame:CGRectMake(savedMessage.frame.origin.x, 71+scrollView.contentOffset.y, savedMessage.frame.size.width, savedMessage.frame.size.height)];
             [UIView animateWithDuration:2.0f animations:^{
@@ -355,7 +365,7 @@ NSMutableArray* complications;
                 else
                 {
                     deliveredView.hidden = YES;
-                    [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+                    [self.scrollView setContentSize:CGSizeMake(320, 850)];
                 }
             }
         }
@@ -452,6 +462,8 @@ NSMutableArray* complications;
                                                                                error: nil];
         if ([setCompletedResponse[@"VALID"] isEqualToString:@"Success"])
         {
+            cancelDeliveryButton.enabled = NO;
+            saveDeliveryButton.enabled = NO;
             [self dismissKeyboard];
             deliveryDate.hidden = YES;
             prevDeliveryDate = deliveryDate.date;
@@ -568,9 +580,12 @@ NSMutableArray* complications;
 {
     if (textField == nameField || textField == zipCodeField)
     {
-        
+        cancelAboutMeButton.enabled = YES;
+        saveAboutMeButton.enabled = YES;
     } else if (textField == birthdayField)
     {
+        cancelAboutMeButton.enabled = YES;
+        saveAboutMeButton.enabled = YES;
         birthdayField.hidden = YES;
         birthday.hidden = NO;
         [birthdayField resignFirstResponder];
@@ -585,6 +600,9 @@ NSMutableArray* complications;
         
     } else if (textField == dueDateField)
     {
+        cancelPregnantButton.enabled = YES;
+        savePregnantButton.enabled = YES;
+        
         dueDate.hidden = NO;
         dueDateField.hidden = YES;
         [self dismissKeyboard];
@@ -594,8 +612,10 @@ NSMutableArray* complications;
         [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, deliveredView.frame.origin.y+145, deliveredView.frame.size.width, deliveredView.frame.size.height)];
         [scrollView setContentSize:CGSizeMake(320, scrollView.contentSize.height+145)];
     } else if (textField == deliveryDateField)
-    
     {
+        cancelDeliveryButton.enabled = YES;
+        saveDeliveryButton.enabled = YES;
+        
         deliveryDate.hidden = NO;
         deliveryDateField.hidden = YES;
         [deliveryDateField resignFirstResponder];
@@ -629,6 +649,10 @@ NSMutableArray* complications;
         [cancelDeliveryButton setFrame:CGRectMake(cancelDeliveryButton.frame.origin.x, cancelDeliveryButton.frame.origin.y+145, cancelDeliveryButton.frame.size.width, cancelDeliveryButton.frame.size.height)];
         [saveDeliveryButton setFrame:CGRectMake(saveDeliveryButton.frame.origin.x, saveDeliveryButton.frame.origin.y+145, saveDeliveryButton.frame.size.width, saveDeliveryButton.frame.size.height)];
         [scrollView setContentSize:CGSizeMake(320, scrollView.contentSize.height+145)];
+    } else
+    {
+        cancelDeliveryButton.enabled = YES;
+        saveDeliveryButton.enabled = YES;
     }
 }
 
@@ -667,6 +691,8 @@ NSMutableArray* complications;
 
 -(IBAction)cancelEditingAboutMeFields
 {
+    cancelAboutMeButton.enabled = NO;
+    saveAboutMeButton.enabled = NO;
     nameField.text = prevName;
     birthday.date = prevBirthdate;
     zipCodeField.text = prevZipcode;
@@ -720,6 +746,8 @@ NSMutableArray* complications;
 
 -(IBAction)cancelEditingPregnantFields
 {
+    cancelPregnantButton.enabled = NO;
+    savePregnantButton.enabled = NO;
     isPregnant = prevIsPregnant;
     dueDate.date = prevDueDate;
     dueDate.hidden = YES;
@@ -796,6 +824,8 @@ NSMutableArray* complications;
 
 -(IBAction)cancelEditingDeliveryFields
 {
+    cancelDeliveryButton.enabled = NO;
+    saveDeliveryButton.enabled = NO;
     [babyPoundsField resignFirstResponder];
     [babyOuncesField resignFirstResponder];
     [babyInchesField resignFirstResponder];
@@ -953,7 +983,7 @@ NSMutableArray* complications;
         [self savePregnantFields];
     }
     if (!delivered && isPregnant)
-        [self.scrollView setContentSize:CGSizeMake(320, 1100)];
+        [self.scrollView setContentSize:CGSizeMake(320, 850)];
     if (!delivered && !isPregnant)
         [self.scrollView setContentSize:CGSizeMake(320, 650)];
 }
@@ -983,6 +1013,8 @@ NSMutableArray* complications;
 
 -(IBAction)clickedBirthType:(UIButton*)sender
 {
+    cancelDeliveryButton.enabled = YES;
+    saveDeliveryButton.enabled = YES;
     birthTypeId = (int) sender.tag;
     prevBirthType = birthTypeId;
     [sender setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
@@ -994,6 +1026,8 @@ NSMutableArray* complications;
 
 -(IBAction)clickedComplication:(UIButton*)sender
 {
+    cancelDeliveryButton.enabled = YES;
+    saveDeliveryButton.enabled = YES;
     NSString* tagString = [NSString stringWithFormat:@"%li",(long)sender.tag];
     if (![complications containsObject:tagString])
     {
