@@ -70,6 +70,7 @@ NSURLConnection* registerDeviceConnection;
      ^(FBSession *session, FBSessionState state, NSError *error) {
          
          // Retrieve the app delegate
+         [FBSession setActiveSession:session];
          AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
          // Call the app delegate's sessionStateChanged:state:error method to handle session state changes
          [[FBRequest requestForMe] startWithCompletionHandler:^(FBRequestConnection *connection, NSDictionary<FBGraphUser> *user, NSError *error) {
