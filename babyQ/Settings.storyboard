@@ -93,10 +93,18 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" id="VBt-tw-kBQ">
-                                <rect key="frame" x="15" y="188" width="291" height="122"/>
+                                <rect key="frame" x="15" y="188" width="291" height="501"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </string>
+                                <mutableString key="text">When you’re pregnant, BabyQ helps you take the best possible care of your developing child. 
+There are lots of things to consider when caring for the baby inside you: 
+•	“What do I eat?” 
+•	“How much should I exercise?” 
+•	“How much sleep do I need?” 
+•	“Can I drink a little alcohol?” 
+•	How am I doing compared to other women like me? 
+It would be almost impossible to research the answers to all these questions during your pregnancy, so we did it for you. Created by physicians, Dr. Mark Gostine, MD and Dr. Gareth Forde, MD, PhD that saw a need to help mothers have a guide for healthy pregnancies through a convenient mobile app created BabyQ. We are 
+We spent years putting together helpful information from our analysis of more than 39,000 pregnancies, along with data from the World Health Organization and the American College of Obstetricians and Gynecologists. We did this so we could construct a simple guide that keeps you on the right path while pregnant – babyQ was born.</mutableString>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

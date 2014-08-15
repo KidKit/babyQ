@@ -173,7 +173,7 @@ BOOL internet;
                                                      toDate: date
                                                     options: 0];
             int days = (int) [comps day];
-            todosDueDate.text = [NSString stringWithFormat:@"DUE %i days from now", days];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE: %i days from now", days];
         } else {
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(36, 126, 240, 72)];
@@ -234,21 +234,13 @@ BOOL internet;
     }
     else
     {
-        if (extraQuestionsReached)
-        {
-            NSString* question_number = [NSString stringWithFormat:@"%lu", [selected_extra_answers count]+1];
-            NSString* question_key = [[survey_json[@"ExtraQuestions"] allKeys] objectAtIndex:([question_number intValue]-1)];
-            surveyController = [surveyScreens instantiateViewControllerWithIdentifier:@"SurveyQuestion"];
-            NSString* type = survey_json[@"ExtraQuestions"][question_key][@"QuestionTypeDescription"];
-            surveyController.question_number = question_number;
-            surveyController.question_type = type;
-        }
-        else
-        {
-            surveyController.question_number = [NSString stringWithFormat:@"%lu", [selected_answers count] + 1];
-            surveyController.question_type = @"Multiple Choice";
-        }
+        NSString* question_number = [NSString stringWithFormat:@"%lu", [selected_answers count]+1];
+        NSString* question_key = [[survey_json[@"Questions"] allKeys] objectAtIndex:([question_number intValue]-1)];
+        NSString* type = survey_json[@"Questions"][question_key][@"QuestionTypeDescription"];
+        surveyController.question_number = [NSString stringWithFormat:@"%lu", [selected_answers count] + 1];
+        surveyController.question_type = type;
     }
+    
     [self.navigationController pushViewController:surveyController animated:YES];
 }
 

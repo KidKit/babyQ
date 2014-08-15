@@ -13,8 +13,6 @@
 
 extern NSDictionary* survey_json;
 extern NSMutableDictionary* selected_answers;
-extern NSMutableDictionary* selected_extra_answers;
-extern BOOL extraQuestionsReached;
 
 @interface SurveyViewController : UIViewController <UIAlertViewDelegate>
 

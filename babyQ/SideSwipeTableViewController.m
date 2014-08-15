@@ -102,6 +102,7 @@
                                                     initWithCenterViewController:scoreProgressView
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -121,6 +122,7 @@
                                                     
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -140,6 +142,7 @@
                                                     
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -162,7 +165,7 @@
                                                     initWithCenterViewController:myProfileViewController
                                                     leftDrawerViewController:sideSwipeTableView
                                                     rightDrawerViewController:nil];
-            
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
@@ -186,7 +189,7 @@
                                initWithCenterViewController:settingsViewController
                                leftDrawerViewController:sideSwipeTableView
                                rightDrawerViewController:nil];
-            
+            [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             

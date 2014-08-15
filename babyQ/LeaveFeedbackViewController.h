@@ -11,7 +11,7 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "Reachability.h"
 
-@interface LeaveFeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate>
+@interface LeaveFeedbackViewController : UIViewController <MFMailComposeViewControllerDelegate,UITextFieldDelegate,UITextViewDelegate>
 
 @property (nonatomic, retain) IBOutlet UILabel* offlineMessage;
 @property (nonatomic, retain) IBOutlet UILabel* sentMessage;

@@ -75,6 +75,8 @@ bool internet;
 - (void) keyboardDidShow:(NSNotification *) notif
 {
     [feedbackTextView setFrame:CGRectMake(feedbackTextView.frame.origin.x, feedbackTextView.frame.origin.y, feedbackTextView.frame.size.width, feedbackTextView.frame.size.height - 200)];
+    if ([feedbackTextView.text isEqualToString:@"Questions/Comments"])
+        feedbackTextView.text = @"";
 }
 
 - (void)keyboardDidHide: (NSNotification *) notif
