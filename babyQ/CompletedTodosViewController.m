@@ -27,6 +27,7 @@
 
 @implementation CompletedTodosViewController
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* getCompletedTodosConnection;
 NSURLConnection* getMoreCompletedTodosConnection;
 int page;
@@ -36,6 +37,13 @@ int page;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     [self.scrollView setContentSize:CGSizeMake(320, 568)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
@@ -137,6 +145,7 @@ int page;
             [moreButton addTarget:self action:@selector(getMoreCompletedTodos) forControlEvents:UIControlEventTouchUpInside];
             [self.scrollView addSubview:moreButton];
         }
+        [spinner stopAnimating];
     } else {
         if (page == 0)
         {
@@ -161,6 +170,7 @@ int page;
 -(void) getMoreCompletedTodos
 {
     page++;
+    [spinner startAnimating];
     [moreButton removeFromSuperview];
     completedTodosData = [[NSMutableData alloc] init];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];

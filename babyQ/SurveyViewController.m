@@ -32,12 +32,19 @@ NSMutableDictionary* selected_answers = nil;
 
 @synthesize scrollView,surveyHeaderLabel,progressView,progressBubble,progressPercentage,questionType,question,answerOne,checkBoxOne,nextButton,previousButton,bottomNavView,question_number,question_type,survey_data,answer_ids;
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* getSurveyConnection;
 NSURLConnection* submitSurveyConnection;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
     surveyHeaderLabel.font = [UIFont fontWithName:@"Bebas" size:20];
@@ -150,6 +157,7 @@ NSURLConnection* submitSurveyConnection;
         nextButton.hidden = NO;
         [scrollView bringSubviewToFront:bottomNavView];
     }
+    [spinner stopAnimating];
 }
 
 - (void) goHome
@@ -259,6 +267,7 @@ NSURLConnection* submitSurveyConnection;
                 nextButton.hidden = YES;
             }
         }
+        [spinner stopAnimating];
     }
 }
 

@@ -30,6 +30,7 @@
 @synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel,offlineMessage;
 
 BOOL internet;
+UIActivityIndicatorView *spinner;
 NSURLConnection* currentScoreConnection;
 NSURLConnection* dailyTipConnection;
 NSURLConnection* toDosConnection;
@@ -44,6 +45,13 @@ CGRect scoreSliderFrame;
 {
     [super viewDidLoad];
     [self testInternetConnection];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     offlineMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
 	[self.scrollView setContentSize:CGSizeMake(320, 1390)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
@@ -296,6 +304,7 @@ CGRect scoreSliderFrame;
                 //[getScorePopup.view setFrame:CGRectMake(35, 100, 250, 260)];
             }];
         }
+        [spinner stopAnimating];
     } else if (connection ==  dailyTipConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];

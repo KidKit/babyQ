@@ -17,6 +17,7 @@
 @synthesize scrollView,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,profilePicture,cameraImage,aboutMeView,nameField,zipCodeField,birthdayField,saveAboutMeButton,cancelAboutMeButton,pregnancyView,savePregnantButton,cancelPregnantButton,deliveredView,saveDeliveryButton,cancelDeliveryButton,nameLabel,birthdayLabel,zipCodeLabel,isPregnantLabel,dueDateField,dueDateLabel,wasDeliveredLabel,deliveredDateLabel,birthTypeLabel,vaginalLabel,cSectionLabel,complicationsLabel,complication1Label,complication2Label,complication3Label,complication4Label,complication5Label,complication6Label,complication1Button,complication2Button,complication3Button,complication4Button,complication5Button,complication6Button,yesDelivered,noDelivered,yesDeliveredLabel,noDeliveredLabel,vaginalButton,cSectionButton, savedMessage,offlineMessage,dueDate,deliveryDate,birthday,aboutMeHeader,pregnancyHeader,deliveryHeader,noPregnantButton,yesPregnantButton,noPregnant,yesPregnant,babyInchesField,babyInchesLabel,babyPoundsField,babyOuncesField,babyPoundsLabel,babyOuncesLabel,babyLengthLabel,deliveryDateField,babyWeightLabel;
 
 BOOL internet;
+UIActivityIndicatorView *spinner;
 NSURLConnection* getAboutMeConnection;
 NSURLConnection* setAboutMeConnection;
 NSURLConnection* getPregnantConnection;
@@ -45,6 +46,12 @@ NSMutableArray* complications;
 {
     [super viewDidLoad];
     [self testInternetConnection];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     // Do any additional setup after loading the view.
     deliveredView.hidden = YES;
@@ -262,6 +269,7 @@ NSMutableArray* complications;
             }
             
         }
+        [spinner stopAnimating];
     } else if (connection == getPregnantConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -316,7 +324,7 @@ NSMutableArray* complications;
             [noPregnantButton setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
             [self.scrollView setContentSize:CGSizeMake(320, 850)];
         }
-        
+        [spinner stopAnimating];
     } else if (connection == setPregnantConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -369,6 +377,7 @@ NSMutableArray* complications;
                 }
             }
         }
+        [spinner stopAnimating];
     } else if (connection == getDeliveryConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -516,6 +525,7 @@ NSMutableArray* complications;
                     savedMessage.hidden = YES;
             }];
         }
+        [spinner stopAnimating];
     }
 }
 
@@ -666,6 +676,8 @@ NSMutableArray* complications;
 
 - (IBAction)saveAboutMeFields
 {
+    spinner.center = CGPointMake(160, 240+scrollView.contentOffset.y);
+    [spinner startAnimating];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
@@ -722,6 +734,8 @@ NSMutableArray* complications;
 
 -(IBAction)savePregnantFields
 {
+    spinner.center = CGPointMake(160, 240+scrollView.contentOffset.y);
+    [spinner startAnimating];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];
@@ -772,6 +786,8 @@ NSMutableArray* complications;
 
 -(IBAction)saveDeliveryFields
 {
+    spinner.center = CGPointMake(160, 240+scrollView.contentOffset.y);
+    [spinner startAnimating];
     NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
     Constants* constants = [[Constants alloc] init];

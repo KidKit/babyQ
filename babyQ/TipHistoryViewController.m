@@ -27,6 +27,7 @@
 
 @implementation TipHistoryViewController
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* getTipsConnection;
 NSURLConnection* getMoreTipsConnection;
 int page;
@@ -36,6 +37,12 @@ int page;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     page = 0;
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     
@@ -149,6 +156,7 @@ int page;
             [self.scrollView addSubview:tipLabel];
         }
     }
+    [spinner stopAnimating];
 }
 
 -(void) getMoreTips

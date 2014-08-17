@@ -29,6 +29,7 @@
 
 @synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton1,headerButton2,offlineMessage;
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* getTodosConnection;
 NSURLConnection* setTodoCompletedConnection;
 bool isRefresh = NO;
@@ -39,6 +40,12 @@ BOOL internet;
     [super viewDidLoad];
     
     [self testInternetConnection];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
     
     headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
@@ -184,6 +191,7 @@ BOOL internet;
             todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.view addSubview:todoLabel];
         }
+        [spinner stopAnimating];
     }
 }
 

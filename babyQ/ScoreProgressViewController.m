@@ -30,6 +30,7 @@
 @synthesize scrollView,graphView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,tipHistoryButton,todosDueDate,offlineMessage;
 
 BOOL internet;
+UIActivityIndicatorView *spinner;
 NSURLConnection* getScoreHistoryConnection;
 NSURLConnection* toDosConnection;
 NSURLConnection* dailyTipConnection;
@@ -40,6 +41,13 @@ UIButton* currentPresentedScore;
 {
     [super viewDidLoad];
     [self testInternetConnection];
+    
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 240);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     [self.scrollView setContentSize:CGSizeMake(320, 1200)];
     [self.scrollView setBackgroundColor:[UIColor whiteColor]];
     [scoreLabel setTransform:CGAffineTransformMakeRotation(-M_PI / 2)];
@@ -197,6 +205,7 @@ UIButton* currentPresentedScore;
         [self.scrollView bringSubviewToFront:headerButton2];
         [self.scrollView bringSubviewToFront:statusBarWhiteBG];
         
+        [spinner stopAnimating];
     } else if (connection == toDosConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:todosData encoding:NSUTF8StringEncoding];
