@@ -453,7 +453,7 @@ CGRect scoreSliderFrame;
                                                      toDate: date
                                                     options: 0];
             int days = (int) [comps day];
-            todosDueDate.text = [NSString stringWithFormat:@"DUE: %i days from now", days];
+            todosDueDate.text = [NSString stringWithFormat:@"DUE in %i days", days];
         } else {
             todosDueDate.hidden = YES;
             UILabel* todoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 39, 240, 72)];

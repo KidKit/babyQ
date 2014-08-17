@@ -62,7 +62,7 @@ NSMutableArray* complications;
     headerButton1.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     headerButton2.imageEdgeInsets = UIEdgeInsetsMake(12, 12, 12, 12);
     
-    UIColor *color = [UIColor colorWithRed:124 green:197 blue:189 alpha:1.0f];
+    UIColor *color = [UIColor blackColor];
     nameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name" attributes:@{NSForegroundColorAttributeName: color}];
     birthdayField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Birthday " attributes:@{NSForegroundColorAttributeName: color}];
     zipCodeField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Zip Code" attributes:@{NSForegroundColorAttributeName: color}];

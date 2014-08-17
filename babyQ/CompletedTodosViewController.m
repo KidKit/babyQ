@@ -139,7 +139,7 @@ int page;
         }
         if ([completedTodosArray count] % 7 == 0)
         {
-            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(37, 430+150*([completedTodosArray count]-1), 246, 30)];
+            moreButton = [[UIButton alloc] initWithFrame:CGRectMake(37, 450+150*([completedTodosArray count]-1), 246, 30)];
             [moreButton setTitleColor:[UIColor colorWithRed:124/255.0 green:197/255.0 blue:189/255.0 alpha:1.0] forState:UIControlStateNormal];
             [moreButton setTitle:@"More" forState:UIControlStateNormal];
             [moreButton addTarget:self action:@selector(getMoreCompletedTodos) forControlEvents:UIControlEventTouchUpInside];

@@ -30,10 +30,10 @@ NSURLConnection* signInConnection;
     self.navigationController.navigationBar.topItem.title = @"";
     self.navigationItem.title = @"SIGN IN";
     
-    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    email.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:16];
     email.delegate = self;
 
-    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:16];
     password.delegate = self;
     
     UITapGestureRecognizer *forgotTap = [[UITapGestureRecognizer alloc]
@@ -44,7 +44,7 @@ NSURLConnection* signInConnection;
     
     
     errorMessage.textColor = [UIColor redColor];
-    errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
+    errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:16];
     
     UITapGestureRecognizer *keyboardTap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
