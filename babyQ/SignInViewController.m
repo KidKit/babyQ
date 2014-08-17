@@ -15,12 +15,15 @@
 
 @synthesize email,password,errorMessage,forgotPasswordLabel;
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* registerDeviceConnection;
 NSURLConnection* signInConnection;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    
     self.navigationController.navigationBarHidden = NO;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
@@ -33,16 +36,21 @@ NSURLConnection* signInConnection;
     password.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     password.delegate = self;
     
+    UITapGestureRecognizer *forgotTap = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(forgotPassword)];
+    [forgotPasswordLabel addGestureRecognizer:forgotTap];
     forgotPasswordLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:11];
+    
     
     errorMessage.textColor = [UIColor redColor];
     errorMessage.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
+    UITapGestureRecognizer *keyboardTap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];
     
-    [self.view addGestureRecognizer:tap];
+    [self.view addGestureRecognizer:keyboardTap];
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -109,7 +117,7 @@ NSURLConnection* signInConnection;
             [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
-            
+            [spinner stopAnimating];
             [self.navigationController pushViewController:swipeController animated:YES];
         } else
         {
@@ -164,6 +172,11 @@ NSURLConnection* signInConnection;
 {
     if ([self validateFields])
     {
+        spinner.center = CGPointMake(160, 240);
+        spinner.hidesWhenStopped = YES;
+        [self.view addSubview:spinner];
+        [spinner startAnimating];
+        
         NSString* em = self.email.text;
         NSString* pwd = self.password.text;
         Constants* constants = [[Constants alloc] init];

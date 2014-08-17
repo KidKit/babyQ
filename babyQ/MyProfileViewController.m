@@ -294,7 +294,7 @@ NSMutableArray* complications;
             }
         }
         
-        if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"])
+        if ([getPregnantResponse[@"IsPregnant"] isEqualToString:@"1"] && delivered<=0)
         {
             isPregnant = 1;
             [self.scrollView setContentSize:CGSizeMake(320, 855)];
@@ -424,6 +424,7 @@ NSMutableArray* complications;
             if ([getDeliveryResponse[@"Delivered"] isEqualToString:@"1"])
             {
                 delivered = 1;
+                deliveredView.hidden = NO;
                 [yesDelivered setImage:[UIImage imageNamed:@"babyq_circle_orange.png"] forState:UIControlStateNormal];
                 pregnancyView.hidden = YES;
                 [deliveredView setFrame:CGRectMake(deliveredView.frame.origin.x, pregnancyView.frame.origin.y, deliveredView.frame.size.width, 910)];

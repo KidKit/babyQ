@@ -14,6 +14,7 @@
 
 @implementation ForgotPasswordViewController
 
+UIActivityIndicatorView *spinner;
 NSURLConnection* forgotPasswordConnection;
 
 @synthesize forgotPassword,enterEmail,emailField,cancelButton,resetButton,confirmSentMessage,okButton;
@@ -48,6 +49,12 @@ NSURLConnection* forgotPasswordConnection;
 
 - (IBAction)clickedReset
 {
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    spinner.center = CGPointMake(160, 120);
+    spinner.hidesWhenStopped = YES;
+    [self.view addSubview:spinner];
+    [spinner startAnimating];
+    
     NSString* email = emailField.text;
     Constants* constants = [[Constants alloc] init];
     NSString* loginURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FORGOT_PASSWORD_PATH];
@@ -65,7 +72,7 @@ NSURLConnection* forgotPasswordConnection;
     NSDictionary* json_dictionary = [NSJSONSerialization JSONObjectWithData: json_data
                                                                     options: NSJSONReadingMutableContainers
                                                                       error: nil];
-    if ([json_dictionary[@"VALID"] isEqualToString:@"An email has been sent to your account with instructions on how to reset your password!"])
+    if ([json_dictionary[@"VALID"] isEqualToString:@"A request to reset your password was successfully sent. Check your email for instructions."])
     {
         enterEmail.hidden = YES;
         forgotPassword.hidden = YES;
@@ -84,6 +91,7 @@ NSURLConnection* forgotPasswordConnection;
         confirmSentMessage.hidden = NO;
         confirmSentMessage.text = @"This email does not exist in our system.";
     }
+    [spinner stopAnimating];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

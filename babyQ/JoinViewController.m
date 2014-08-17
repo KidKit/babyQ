@@ -20,6 +20,7 @@ BOOL madePregnantSelection;
 BOOL isPregnant;
 BOOL agreedToTerms;
 UIImage* profileImage;
+UIActivityIndicatorView *spinner;
 NSURLConnection* createAccountConnection;
 NSURLConnection* facebookFinalizeConnection;
 NSURLConnection* registerDeviceConnection;
@@ -238,6 +239,11 @@ NSURLConnection* registerDeviceConnection;
     {
         if ([self validateFields])
         {
+            spinner.center = CGPointMake(160, 240);
+            spinner.hidesWhenStopped = YES;
+            [self.view addSubview:spinner];
+            [spinner startAnimating];
+            
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.CREATE_ACCOUNT_PATH];
             NSString* postData = [[[@"Email=" stringByAppendingString:em] stringByAppendingString:@"&Password="] stringByAppendingString:pwd];
             postData = [[postData stringByAppendingString:@"&ZipCode="] stringByAppendingString:zip];
@@ -259,6 +265,11 @@ NSURLConnection* registerDeviceConnection;
     } else {
         if ([self validateFields])
         {
+            spinner.center = CGPointMake(160, 240);
+            spinner.hidesWhenStopped = YES;
+            [self.view addSubview:spinner];
+            [spinner startAnimating];
+            
             NSString* api_token = [(AppDelegate *)[[UIApplication sharedApplication] delegate] api_token];
             NSString* fb_name = [(AppDelegate *)[[UIApplication sharedApplication] delegate] fb_name];
             NSString* joinURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.FACEBOOK_FINALIZE_PATH];
@@ -335,10 +346,13 @@ NSURLConnection* registerDeviceConnection;
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
             
+            [spinner stopAnimating];
+            
             [self.navigationController pushViewController:swipeController animated:YES];
         } else if ([json_dictionary[@"ERROR"] isEqualToString:@"Email Address Already In Use"])
         {
             hiddenNoticeLabel.text = @"Email Address Already In Use";
+            [spinner stopAnimating];
         }
     } else if (connection == registerDeviceConnection)
     {
