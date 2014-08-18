@@ -371,10 +371,9 @@ NSURLConnection* changePasswordConnection;
     
     Constants* constants = [[Constants alloc] init];
     NSString* user_email = [(AppDelegate *)[[UIApplication sharedApplication] delegate] user_email];
-    NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.REGISTER_DEVICE_PATH];
+    NSString* registerDeviceURL = [[constants.HOST stringByAppendingString:constants.VERSION] stringByAppendingString:constants.SET_DEVICE_SETTINGS_PATH];
     NSString* postData = [[[@"ApiToken=" stringByAppendingString:appDelegate.api_token] stringByAppendingString:@"&Email="] stringByAppendingString:user_email];
-    postData = [[postData stringByAppendingString:@"&IsActive=0&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
-    postData = [postData stringByAppendingString:@"&DeviceToken="];
+    postData = [[postData stringByAppendingString:@"&IsActive=0&DailyTipNotification=&SurveyReminder=&DeviceId="] stringByAppendingString:[[[UIDevice currentDevice] identifierForVendor] UUIDString]];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:registerDeviceURL]];
     [request setHTTPMethod:@"POST"];

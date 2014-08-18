@@ -218,7 +218,7 @@ UIButton* currentPresentedScore;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(32, 40 + 60*(i), 210, 52)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(18, 40 + 60*(i), 228, 52)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = YES;
@@ -233,12 +233,6 @@ UIButton* currentPresentedScore;
                 [nextTodo addGestureRecognizer:tap];
                 nextTodo.tag = i;
                 [self.todosView addSubview:nextTodo];
-                
-                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
-                todoNumber.text = @"\u2022";
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
-                todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;

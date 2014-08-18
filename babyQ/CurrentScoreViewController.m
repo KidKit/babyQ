@@ -237,7 +237,7 @@ CGRect scoreSliderFrame;
 - (void) adjustSliderToPoint: (CGRect) newFrame
 {
     if (newFrame.origin.x <= 26)
-        scoreSlider.frame = scoreSliderFrame = CGRectMake(30, 402, 32, 32);
+        scoreSlider.frame = scoreSliderFrame = CGRectMake(27, 402, 32, 32);
     else if (newFrame.origin.x >= 270)
         scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 402, 32, 32);
     else
@@ -404,7 +404,7 @@ CGRect scoreSliderFrame;
                                                            error: nil];
             for (int i = 0; i < [todosArray count]; i++)
             {
-                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(32, 40 + 60*(i), 210, 52)];
+                UITextView* nextTodo = [[UITextView alloc] initWithFrame:CGRectMake(18, 40 + 60*(i), 228, 52)];
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = YES;
@@ -419,13 +419,6 @@ CGRect scoreSliderFrame;
                 [nextTodo addGestureRecognizer:tap];
                 nextTodo.tag = i;
                 [self.todosView addSubview:nextTodo];
-                
-                UILabel* todoNumber = [[UILabel alloc] initWithFrame:CGRectMake(18, 48 + 60*(i), 18, 18)];
-                todoNumber.text = @"\u2022";
-                todoNumber.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-                todoNumber.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
-                todoNumber.tag = i;
-                [self.todosView addSubview:todoNumber];
                 
                 UIButton* checkBox = [UIButton buttonWithType:UIButtonTypeCustom];
                 checkBox.tag = i;

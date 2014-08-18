@@ -119,12 +119,13 @@ NSURLConnection* signInConnection;
             [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
             [swipeController setShowsShadow:NO];
-            [spinner stopAnimating];
+            
             [self.navigationController pushViewController:swipeController animated:YES];
         } else
         {
             errorMessage.text = @"Email/Password combination invalid";
         }
+        [spinner stopAnimating];
     } else if (connection == registerDeviceConnection)
     {
         NSString* json_response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
