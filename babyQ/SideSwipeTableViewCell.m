@@ -15,7 +15,7 @@
 - (void) layoutSubviews
 {
     [super layoutSubviews];
-    self.imageView.frame = CGRectMake(20,8,24,24);
+    self.imageView.frame = CGRectMake(20,8,24,23);
     if ([self.textLabel.text isEqualToString:@"My Profile"])
         self.imageView.frame = CGRectMake(18,10,28,20);
 }

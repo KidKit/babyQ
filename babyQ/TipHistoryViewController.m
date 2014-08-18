@@ -120,7 +120,18 @@ int page;
             NSDate* tipDate = [dateFormatter dateFromString:tipsArray[i][@"ReceivedDate"]];
             [dateFormatter setDateFormat:@"MM.dd.yyyy"];
             UILabel* dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(144, 341 + 200*i, 112, 21)];
-            dateLabel.text = [dateFormatter stringFromDate:tipDate];
+            
+           
+            NSCalendar *gregorian = [[NSCalendar alloc]
+                                     initWithCalendarIdentifier:NSGregorianCalendar];
+            NSDateComponents *comps = [gregorian components: NSDayCalendarUnit
+                                                   fromDate: tipDate
+                                                     toDate: [NSDate date]
+                                                    options: 0];
+            int days = (int) [comps day];
+            
+            
+            dateLabel.text = [NSString stringWithFormat:@"%d  days ago", days];
             dateLabel.font = [UIFont fontWithName:@"Bebas" size:18];
             dateLabel.highlighted = NO;
             dateLabel.enabled = NO;
