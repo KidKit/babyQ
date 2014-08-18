@@ -45,7 +45,9 @@ NSURLConnection* registerDeviceConnection;
                                                 leftDrawerViewController:sideSwipeTableView
                                                 rightDrawerViewController:nil];
         [swipeController setMaximumLeftDrawerWidth:262];
+        [swipeController setCenterHiddenInteractionMode: MMDrawerOpenCenterInteractionModeFull];
         [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+        [swipeController setCenterHiddenInteractionMode: MMDrawerOpenCenterInteractionModeFull];
         [swipeController setShowsShadow:NO];
         [self.navigationController pushViewController:swipeController animated:YES];
     }
@@ -181,6 +183,7 @@ NSURLConnection* registerDeviceConnection;
                                                         leftDrawerViewController:sideSwipeTableView
                                                         rightDrawerViewController:nil];
                 [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+                [swipeController setCenterHiddenInteractionMode: MMDrawerOpenCenterInteractionModeFull];
                 [swipeController setShowsShadow:NO];
                 [self.navigationController pushViewController:swipeController animated:YES];
             }

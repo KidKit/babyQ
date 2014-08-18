@@ -173,6 +173,7 @@ NSURLConnection* submitSurveyConnection;
                                             rightDrawerViewController:nil];
     [swipeController setMaximumLeftDrawerWidth:262];
     [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+    [swipeController setCenterHiddenInteractionMode: MMDrawerOpenCenterInteractionModeFull];
     [swipeController setShowsShadow:NO];
     
     [self.navigationController pushViewController:swipeController animated:YES];

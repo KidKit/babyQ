@@ -344,6 +344,7 @@ NSURLConnection* registerDeviceConnection;
                                                     rightDrawerViewController:nil];
             [swipeController setMaximumLeftDrawerWidth:262];
             [swipeController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeBezelPanningCenterView];
+            [swipeController setCenterHiddenInteractionMode: MMDrawerOpenCenterInteractionModeFull];
             [swipeController setShowsShadow:NO];
             
             [spinner stopAnimating];

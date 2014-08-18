@@ -467,7 +467,11 @@ CGRect scoreSliderFrame;
 
 - (IBAction)openSideSwipeView
 {
-     [(MMDrawerController* )self.navigationController.topViewController openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
+    MMDrawerController* sideSwipe = (MMDrawerController* )self.navigationController.topViewController;
+    if (sideSwipe.openSide == MMDrawerSideLeft)
+        [sideSwipe closeDrawerAnimated:YES completion:nil];
+    else
+        [sideSwipe openDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
