@@ -90,7 +90,7 @@ NSURLConnection* submitSurveyConnection;
     NSString* question_index = [[survey_json[@"Questions"] allKeys] objectAtIndex:([question_number intValue]-1)];
     question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
     question.text = [survey_json[@"Questions"][question_index][@"Question"] stringByDecodingURLFormat];
-    question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    question.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
     if ([question_type isEqualToString:@"Check All That Apply"])
     {
         NSString* question_key = [[survey_json[@"Questions"] allKeys] objectAtIndex:([question_number intValue]-1)];
@@ -100,7 +100,7 @@ NSURLConnection* submitSurveyConnection;
     
     answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
     answerOne.text = [survey_json[@"Questions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"] stringByDecodingURLFormat];
-    answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    answerOne.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(clickedAnswer:)];
@@ -120,7 +120,7 @@ NSURLConnection* submitSurveyConnection;
         NSString* i_string = [NSString stringWithFormat:@"%i", i];
         nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
         nextAnswer.text = [survey_json[@"Questions"][question_index][@"PossibleAnswers"][i_string][@"Answer"] stringByDecodingURLFormat];
-        nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+        nextAnswer.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
         nextAnswer.tag = i-1;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                        initWithTarget:self
@@ -212,9 +212,9 @@ NSURLConnection* submitSurveyConnection;
             NSString* question_index = [[survey_json[@"Questions"] allKeys] objectAtIndex:([question_number intValue]-1)];
             question.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
             question.text = [survey_json[@"Questions"][question_index][@"Question"] stringByDecodingURLFormat];
-            question.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            question.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             answerOne.text = [survey_json[@"Questions"][question_index][@"PossibleAnswers"][@"1"][@"Answer"] stringByDecodingURLFormat];
-            answerOne.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            answerOne.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             answerOne.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
             UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                            initWithTarget:self
@@ -235,7 +235,7 @@ NSURLConnection* submitSurveyConnection;
                 nextAnswer.font = [UIFont fontWithName:@"MyriadPro-Regular" size:16];
                 NSString* i_string = [NSString stringWithFormat:@"%i", i];
                 nextAnswer.text = [survey_json[@"Questions"][question_index][@"PossibleAnswers"][i_string][@"Answer"] stringByDecodingURLFormat];
-                nextAnswer.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+                nextAnswer.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
                 nextAnswer.tag = i-1;
                 UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                                initWithTarget:self

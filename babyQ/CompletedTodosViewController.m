@@ -96,7 +96,7 @@ int page;
         completedTodosArray = [completedTodosArray arrayByAddingObjectsFromArray:todos];
         
         [self.scrollView setContentSize:CGSizeMake(320, 568 + 150*([completedTodosArray count]-1))];
-        [self.background setFrame:CGRectMake(0, 0, 320, 768 + 150*([completedTodosArray count]-1))];
+        [self.background setFrame:CGRectMake(self.background.frame.origin.x, self.background.frame.origin.y, 320, 968 + 150*([completedTodosArray count]-1))];
         for (int i = 0+7*page; i < [completedTodosArray count]; i++)
         {
             UIImageView* toDoImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+150*i, 32, 32)];
@@ -107,7 +107,7 @@ int page;
             nextTodo.backgroundColor = [UIColor clearColor];
             nextTodo.editable = NO;
             nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
-            nextTodo.textColor = [UIColor colorWithRed:171.0/255.0f green:166.0/255.0f blue:164.0/255.0f alpha:1.0f];
+            nextTodo.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             nextTodo.textAlignment = NSTextAlignmentCenter;
             nextTodo.userInteractionEnabled = NO;
             if (completedTodosArray[i][@"Body"] != (id)[NSNull null])
@@ -118,7 +118,7 @@ int page;
             if (completedTodosArray[i][@"ToDoType"] != (id)[NSNull null])
                 todoLabel.text = [completedTodosArray[i][@"ToDoType"] uppercaseString];
             todoLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:18];
-            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            todoLabel.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             [self.scrollView addSubview:todoLabel];
             
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

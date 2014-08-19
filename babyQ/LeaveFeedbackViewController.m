@@ -33,9 +33,9 @@ bool internet;
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
-    kudos.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-    suggestions.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
-    errors.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+    kudos.tintColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
+    suggestions.tintColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
+    errors.tintColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
     kudos.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     suggestions.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];
     errors.titleLabel.font = [UIFont fontWithName:@"MyriadPro-Semibold" size:15];

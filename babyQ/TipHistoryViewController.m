@@ -93,7 +93,7 @@ int page;
         tipsArray = [tipsArray arrayByAddingObjectsFromArray:tips];
         
         [self.scrollView setContentSize:CGSizeMake(320, 568 + 205*([tipsArray count]-1))];
-        [self.background setFrame:CGRectMake(0, 0, 320, 568 + 205*([tipsArray count]-1))];
+        [self.background setFrame:CGRectMake(self.background.frame.origin.x, self.background.frame.origin.y, 320, 968 + 205*([tipsArray count]-1))];
         for (int i = 0+7*page; i < [tipsArray count]; i++)
         {
             UIImageView* tipImage = [[UIImageView alloc] initWithFrame:CGRectMake(97, 319+200*i, 32, 32)];
@@ -151,7 +151,7 @@ int page;
         {
             UILabel* tipLabel = [[UILabel alloc] initWithFrame:moreButton.frame];
             tipLabel.text = @"No more tip history";
-            tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            tipLabel.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             tipLabel.textAlignment = NSTextAlignmentCenter;
             tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
             [moreButton removeFromSuperview];
@@ -161,7 +161,7 @@ int page;
         {
             UILabel* tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(100, 319, 120, 21)];
             tipLabel.text = @"No tip history";
-            tipLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            tipLabel.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             tipLabel.textAlignment = NSTextAlignmentCenter;
             tipLabel.font = [UIFont fontWithName:@"Bebas" size:18];
             [self.scrollView addSubview:tipLabel];

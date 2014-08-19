@@ -408,7 +408,7 @@ CGRect scoreSliderFrame;
                 nextTodo.backgroundColor = [UIColor clearColor];
                 nextTodo.editable = NO;
                 nextTodo.userInteractionEnabled = YES;
-                nextTodo.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+                nextTodo.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
                 nextTodo.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
                 if (todosArray[i][@"Body"] != (id)[NSNull null])
                     nextTodo.text = [todosArray[i][@"Body"] stringByDecodingURLFormat];
@@ -453,7 +453,7 @@ CGRect scoreSliderFrame;
             todoLabel.numberOfLines = 3;
             todoLabel.textAlignment = NSTextAlignmentCenter;
             todoLabel.text = @"Congratulations!\nYou've just completed your recommended list of to-do's";
-            todoLabel.textColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
+            todoLabel.textColor = [UIColor colorWithRed:100.0/255.0f green:100.0/255.0f blue:100.0/255.0f alpha:1.0f];
             todoLabel.font = [UIFont fontWithName:@"MyriadPro-Bold" size:18];
             [self.todosView addSubview:todoLabel];
         }
