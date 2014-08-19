@@ -65,6 +65,8 @@ NSURLConnection* signInConnection;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    if (textField == email)
+        [password becomeFirstResponder];
     if (textField == password)
         [self signIn];
     return NO;

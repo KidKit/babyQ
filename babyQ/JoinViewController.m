@@ -99,6 +99,10 @@ NSURLConnection* registerDeviceConnection;
 
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if (textField == email)
+        [password becomeFirstResponder];
+    if (textField == password)
+        [zipcode becomeFirstResponder];
     [textField resignFirstResponder];
     return NO;
 }
