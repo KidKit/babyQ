@@ -96,7 +96,7 @@
                                 <rect key="frame" x="15" y="285" width="291" height="548"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">When you’re pregnant, BabyQ helps you take the best possible care of your developing child. 
+                                <string key="text">When you’re pregnant, BabyQ helps you take the best possible care of your developing child. 
 There are lots of things to consider when caring for the baby inside you:  
 •   “What do I eat?” 
 •   “How much should I exercise?” 
@@ -104,7 +104,7 @@ There are lots of things to consider when caring for the baby inside you:  
 •   “Can I drink a little alcohol?” 
 •   How am I doing compared to other women like me?  
 It would be almost impossible to research the answers to all these questions during your pregnancy, so we did it for you. Created by physicians, Dr. Mark Gostine, MD and Dr. Gareth Forde, MD, PhD that saw a need to help mothers have a guide for healthy pregnancies through a convenient mobile app created BabyQ. We are 
-We spent years putting together helpful information from our analysis of more than 39,000 pregnancies, along with data from the World Health Organization and the American College of Obstetricians and Gynecologists. We did this so we could construct a simple guide that keeps you on the right path while pregnant – babyQ was born.</mutableString>
+We spent years putting together helpful information from our analysis of more than 39,000 pregnancies, along with data from the World Health Organization and the American College of Obstetricians and Gynecologists. We did this so we could construct a simple guide that keeps you on the right path while pregnant – babyQ was born.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -395,7 +395,7 @@ We spent years putting together helpful information from our analysis of more th
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="249"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" id="E3b-tB-EM3">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Current Password" textAlignment="center" minimumFontSize="17" id="E3b-tB-EM3">
                                         <rect key="frame" x="14" y="92" width="253" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
