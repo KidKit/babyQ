@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UIPageControl* pageControl;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton1;
 @property (nonatomic, retain) IBOutlet UIButton* headerButton2;
+@property (nonatomic, retain) IBOutlet UILabel* headerLabel;
 @property (strong, nonatomic) NSArray* pageTitles;
 @property (strong, nonatomic) NSArray* pageImages;
 @property (strong, nonatomic) NSArray* pageTexts;

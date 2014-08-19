@@ -25,7 +25,7 @@
 
 @implementation HowItWorksPageViewController
 
-@synthesize pageImages, pageTitles, pageTexts, pageControl,headerButton1,headerButton2;
+@synthesize pageImages, pageTitles, pageTexts, pageControl,headerButton1,headerButton2,headerLabel;
 
 - (void)viewDidLoad
 {
@@ -36,13 +36,13 @@
     
     pageTitles = @[slide1Title, slide2Title, slide3Title, slide4Title];
     pageTexts = @[slide1Body,slide2Body,slide3Body,slide4Body];
-    pageImages = @[@"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png", @"babyq_cloud.png"];
+    pageImages = @[@"how-it-works-1.png", @"how-it-works-2.png", @"how-it-works-3.png", @"how-it-works-4.png"];
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HowItWorksPageViewController"];
     self.pageViewController.dataSource = self;
     self.pageViewController.delegate = self;
     
-    self.pageViewController.view.frame = CGRectMake(0, 71, self.view.frame.size.width, 568-70);
+    self.pageViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, 568);
     
     HowItWorksContentViewController* startingViewController = [self viewControllerAtIndex:0];
     NSArray *viewControllers = @[startingViewController];
@@ -50,8 +50,12 @@
     
     [self addChildViewController:self.pageViewController];
     [self.view addSubview:self.pageViewController.view];
-    [self.pageViewController didMoveToParentViewController:self];
     
+    [self.pageViewController didMoveToParentViewController:self];
+    [self.view bringSubviewToFront:headerLabel];
+    [self.view bringSubviewToFront:headerButton1];
+    [self.view bringSubviewToFront:headerButton2];
+    [self.view bringSubviewToFront:self.pageControl];
     //pageControl.currentPage = 0;
     
 }
@@ -77,6 +81,10 @@
     {
         return;
     }
+    [self.view bringSubviewToFront:headerLabel];
+    [self.view bringSubviewToFront:headerButton1];
+    [self.view bringSubviewToFront:headerButton2];
+    [self.view bringSubviewToFront:self.pageControl];
     pageControl.currentPage = ((HowItWorksContentViewController*) [previousViewControllers objectAtIndex:0]).pageIndex;
 }
 
@@ -89,7 +97,6 @@
     if ((index == 0) || (index == NSNotFound)) {
         return nil;
     }
-    
     index--;
     
     return [self viewControllerAtIndex:index];
@@ -111,6 +118,7 @@
     
     return [self viewControllerAtIndex:index];
 }
+
 
 - (IBAction)openSideSwipeView
 {

@@ -44,6 +44,10 @@
 		5F574FD219491A19006059D2 /* SideSwipeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */; };
 		5F574FD5194927BC006059D2 /* SideSwipeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */; };
 		5F574FD91949397B006059D2 /* babyq_dropdown_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F7FF0071948035C00A48C86 /* babyq_dropdown_arrow.png */; };
+		5F5BCA5E19A3CE38009EE282 /* How-It-Works-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F5BCA5A19A3CE38009EE282 /* How-It-Works-1.png */; };
+		5F5BCA5F19A3CE38009EE282 /* How-It-Works-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F5BCA5B19A3CE38009EE282 /* How-It-Works-2.png */; };
+		5F5BCA6019A3CE38009EE282 /* How-It-Works-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F5BCA5C19A3CE38009EE282 /* How-It-Works-3.png */; };
+		5F5BCA6119A3CE38009EE282 /* How-It-Works-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F5BCA5D19A3CE38009EE282 /* How-It-Works-4.png */; };
 		5F68D7FF195E3D1D00C799E7 /* babyq_score_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */; };
 		5F68D800195E3D1D00C799E7 /* babyq_slider_horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */; };
 		5F68D801195E3D1D00C799E7 /* babyq_slider_vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */; };
@@ -207,6 +211,10 @@
 		5F574FD119491A19006059D2 /* SideSwipeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewCell.m; sourceTree = "<group>"; };
 		5F574FD3194927BC006059D2 /* SideSwipeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideSwipeTableViewController.h; sourceTree = "<group>"; };
 		5F574FD4194927BC006059D2 /* SideSwipeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideSwipeTableViewController.m; sourceTree = "<group>"; };
+		5F5BCA5A19A3CE38009EE282 /* How-It-Works-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "How-It-Works-1.png"; sourceTree = "<group>"; };
+		5F5BCA5B19A3CE38009EE282 /* How-It-Works-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "How-It-Works-2.png"; sourceTree = "<group>"; };
+		5F5BCA5C19A3CE38009EE282 /* How-It-Works-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "How-It-Works-3.png"; sourceTree = "<group>"; };
+		5F5BCA5D19A3CE38009EE282 /* How-It-Works-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "How-It-Works-4.png"; sourceTree = "<group>"; };
 		5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_score_background.png; sourceTree = "<group>"; };
 		5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_horizontal.png; sourceTree = "<group>"; };
 		5F68D7FE195E3D1D00C799E7 /* babyq_slider_vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = babyq_slider_vertical.png; sourceTree = "<group>"; };
@@ -418,6 +426,10 @@
 		5F7FF0101948035C00A48C86 /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
+				5F5BCA5A19A3CE38009EE282 /* How-It-Works-1.png */,
+				5F5BCA5B19A3CE38009EE282 /* How-It-Works-2.png */,
+				5F5BCA5C19A3CE38009EE282 /* How-It-Works-3.png */,
+				5F5BCA5D19A3CE38009EE282 /* How-It-Works-4.png */,
 				5FD48FE1197F3170005CC61D /* babyq_feedback_tab.png */,
 				5F68D7FC195E3D1D00C799E7 /* babyq_score_background.png */,
 				5F68D7FD195E3D1D00C799E7 /* babyq_slider_horizontal.png */,
@@ -808,6 +820,7 @@
 				5F68D801195E3D1D00C799E7 /* babyq_slider_vertical.png in Resources */,
 				5F7FF05B1948035C00A48C86 /* babyq_join_button.png in Resources */,
 				5F3AF6FA194F711400BD04CE /* ScoreProgress.storyboard in Resources */,
+				5F5BCA5E19A3CE38009EE282 /* How-It-Works-1.png in Resources */,
 				5F7FF0501948035C00A48C86 /* babyq_orange_arrow_thin_right.png in Resources */,
 				5F7FF0611948035C00A48C86 /* babyq_signout_button.png in Resources */,
 				5F7FF0711948035C00A48C86 /* babyq_update_babyq_score_header.png in Resources */,
@@ -819,6 +832,7 @@
 				5FC3D0AD19479979003D3E94 /* Images.xcassets in Resources */,
 				5F7FF0521948035C00A48C86 /* babyq_join_avatar.png in Resources */,
 				5F7FF06F1948035C00A48C86 /* babyq_to-do_completed_header.png in Resources */,
+				5F5BCA6119A3CE38009EE282 /* How-It-Works-4.png in Resources */,
 				5F7FF06C1948035C00A48C86 /* babyq_instructions_header.png in Resources */,
 				5F7FF0661948035C00A48C86 /* babyq_popup_divider.png in Resources */,
 				5F7FF05E1948035C00A48C86 /* babyq_save_button.png in Resources */,
@@ -831,6 +845,7 @@
 				5F7FF07B1948035C00A48C86 /* babyq_menu_my_profile_icon.png in Resources */,
 				5F7FF0791948035C00A48C86 /* babyq_menu_how-to_icon.png in Resources */,
 				5F7FF0561948035C00A48C86 /* baby_q_signinjoin_button.png in Resources */,
+				5F5BCA6019A3CE38009EE282 /* How-It-Works-3.png in Resources */,
 				5F7FF0531948035C00A48C86 /* babyq_currentscore_total_background.png in Resources */,
 				5F7FF06D1948035C00A48C86 /* babyq_survey_complete_header.png in Resources */,
 				5F7FF0681948035C00A48C86 /* babyq_currentscore_header.png in Resources */,
@@ -853,6 +868,7 @@
 				5F7FF07F1948035C00A48C86 /* babyq_progress_slider.png in Resources */,
 				5F7FF06B1948035C00A48C86 /* babyq_header_back_arrow.png in Resources */,
 				5F3FBD88194A311100FB0548 /* MyriadPro-Regular.otf in Resources */,
+				5F5BCA5F19A3CE38009EE282 /* How-It-Works-2.png in Resources */,
 				5F7FF0701948035C00A48C86 /* babyq_tutorials_header.png in Resources */,
 				5F7FF0821948035C00A48C86 /* babyq_take_survey_X.png in Resources */,
 				5F7FF0881948053600A48C86 /* LandingPage.storyboard in Resources */,
