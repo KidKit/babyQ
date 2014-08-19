@@ -36,7 +36,7 @@
     
     pageTitles = @[slide1Title, slide2Title, slide3Title, slide4Title];
     pageTexts = @[slide1Body,slide2Body,slide3Body,slide4Body];
-    pageImages = @[@"how-it-works-1.png", @"how-it-works-2.png", @"how-it-works-3.png", @"how-it-works-4.png"];
+    pageImages = @[@"How-It-Works-1.png", @"How-It-Works-2.png", @"How-It-Works-3.png", @"How-It-Works-4.png"];
     
     self.pageViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"HowItWorksPageViewController"];
     self.pageViewController.dataSource = self;
