@@ -12,19 +12,6 @@
 
 @end
 
-@interface NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat;
-@end
-
-@implementation NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat
-{
-    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
-}
-@end
-
 @implementation CurrentScoreViewController
 
 @synthesize scrollView,currentScoreData,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,todosView,dailyTipView,dailyTip,completedTodosButton,todosData,todosArray,todaysDate,scoreSlider,scoreBar,dailyTipDate,todosDueDate,goodWorkLabel,youImprovedLabel,tipHistoryButton,scrollDownLabel,offlineMessage;
@@ -239,7 +226,7 @@ CGRect scoreSliderFrame;
     if (newFrame.origin.x <= 26)
         scoreSlider.frame = scoreSliderFrame = CGRectMake(27, 402, 32, 32);
     else if (newFrame.origin.x >= 270)
-        scoreSlider.frame = scoreSliderFrame =  CGRectMake(264, 402, 32, 32);
+        scoreSlider.frame = scoreSliderFrame =  CGRectMake(261, 402, 32, 32);
     else
     {
         if (newFrame.origin.x < 60)
@@ -383,6 +370,20 @@ CGRect scoreSliderFrame;
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setTodoCompletedConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

@@ -12,19 +12,6 @@
 
 @end
 
-@interface NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat;
-@end
-
-@implementation NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat
-{
-    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
-}
-@end
-
 @implementation TodosViewController
 
 @synthesize todosArray,todosData,completedTodosButton,todosDueDate,headerButton1,headerButton2,offlineMessage;
@@ -72,6 +59,20 @@ BOOL internet;
 - (void) viewWillDisappear:(BOOL)animated
 {
     isRefresh = NO;
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data

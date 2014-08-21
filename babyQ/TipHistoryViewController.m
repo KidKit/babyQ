@@ -12,19 +12,6 @@
 
 @end
 
-@interface NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat;
-@end
-
-@implementation NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat
-{
-    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
-}
-@end
-
 @implementation TipHistoryViewController
 
 UIActivityIndicatorView *spinner;
@@ -68,6 +55,20 @@ int page;
     self.navigationController.navigationBar.topItem.title = @"TIP HISTORY";
 }
 
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
 }
 
@@ -107,6 +108,7 @@ int page;
             nextTip.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
             nextTip.textAlignment = NSTextAlignmentCenter;
             nextTip.userInteractionEnabled = NO;
+            NSString* text = [tipsArray[i][@"Body"] stringByDecodingURLFormat];
             nextTip.text = [tipsArray[i][@"Body"] stringByDecodingURLFormat];
             [self.scrollView addSubview:nextTip];
             

@@ -187,9 +187,8 @@ NSURLConnection* changePasswordConnection;
 
 -(IBAction)openAppStore
 {
-    NSString* appID = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
-    NSString* url = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@", appID];
-    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: url]];
+    NSString *iTunesLink = @"itms-apps://itunes.apple.com/app/id531976567";
+    [[UIApplication sharedApplication] openURL: [NSURL URLWithString: iTunesLink]];
 }
 
 -(IBAction)toggleSurveyAlerts:(id)sender
@@ -225,6 +224,20 @@ NSURLConnection* changePasswordConnection;
     [currentScoreRequest setHTTPMethod:@"POST"];
     [currentScoreRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     setDeviceSettingsConnection = [[NSURLConnection alloc] initWithRequest:currentScoreRequest delegate:self];
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data

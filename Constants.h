@@ -9,6 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 
+@interface NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat;
+@end
+
+@implementation NSString (stringByDecodingURLFormat)
+- (NSString *)stringByDecodingURLFormat
+{
+    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUnicodeStringEncoding];
+    return result;
+}
+@end
+
 @interface Constants : NSObject
 
 @property (nonatomic,retain) NSString *const HOST;

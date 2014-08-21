@@ -12,19 +12,6 @@
 
 @end
 
-@interface NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat;
-@end
-
-@implementation NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat
-{
-    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
-}
-@end
-
 @implementation CompletedTodosViewController
 
 UIActivityIndicatorView *spinner;
@@ -68,6 +55,20 @@ int page;
     self.navigationController.navigationBar.backItem.title = @"";
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:120.0/255.0f green:120.0/255.0f blue:120.0/255.0f alpha:1.0f];
     self.navigationController.navigationBar.topItem.title = @"COMPLETED TO-DO'S";
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 -(void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{

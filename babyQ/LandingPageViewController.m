@@ -14,7 +14,7 @@
 
 @implementation LandingPageViewController
 
-@synthesize headerLabel;
+@synthesize headerLabel,facebookErrorLabel;
 
 NSURLConnection* fbLoginConnection;
 NSURLConnection* fbSaveDataConnection;
@@ -24,6 +24,7 @@ NSURLConnection* registerDeviceConnection;
 {
     [super viewDidLoad];
     headerLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
+    facebookErrorLabel.font = [UIFont fontWithName:@"MyriadPro-Regular" size:15];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -100,9 +101,27 @@ NSURLConnection* registerDeviceConnection;
                      [request setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
                      fbLoginConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
                  }
+                 else
+                 {
+                     facebookErrorLabel.text = @"Facebook login failed. Please create a standard babyQ account or update your Facebook privacy settings to display your email address.";
+                 }
              }
         }];
     }];
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData*)data

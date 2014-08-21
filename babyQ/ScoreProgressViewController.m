@@ -12,19 +12,6 @@
 
 @end
 
-@interface NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat;
-@end
-
-@implementation NSString (stringByDecodingURLFormat)
-- (NSString *)stringByDecodingURLFormat
-{
-    NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
-    result = [result stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    return result;
-}
-@end
-
 @implementation ScoreProgressViewController
 
 @synthesize scrollView,graphView,scoreLabel,todosView,dailyTipView,scoreHistoryData,scoreHistoryArray,todosData,todosArray,completedTodosButton,dailyTip,headerLabel,statusBarWhiteBG,headerButton1,headerButton2,totalScoreBig,lifestyleScore,nutritionScore,exerciseScore,stressScore,scoreDate,dailyTipDate,tipHistoryButton,todosDueDate,offlineMessage;
@@ -162,6 +149,20 @@ UIButton* currentPresentedScore;
     [toDosRequest setHTTPMethod:@"POST"];
     [toDosRequest setHTTPBody:[postData dataUsingEncoding:NSUTF8StringEncoding]];
     toDosConnection = [[NSURLConnection alloc] initWithRequest:toDosRequest delegate:self];
+}
+
+- (BOOL)connection:(NSURLConnection *)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace {
+    return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error

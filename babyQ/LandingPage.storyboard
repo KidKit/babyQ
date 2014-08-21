@@ -49,10 +49,18 @@
                                     <action selector="loginWithFacebook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Ufz-tx-Dk5"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iB7-7G-UTi">
+                                <rect key="frame" x="14" y="512" width="294" height="56"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="facebookErrorLabel" destination="iB7-7G-UTi" id="msH-NU-jr8"/>
                         <outlet property="headerLabel" destination="nbx-E3-oDe" id="6bJ-6o-4B8"/>
                     </connections>
                 </viewController>

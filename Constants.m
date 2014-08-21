@@ -11,7 +11,7 @@
 @implementation Constants
 - (id)init {
     if( (self = [super init]) ) {
-        self.HOST = @"http://api.babyq.com/babyq-backend/";
+        self.HOST = @"https://api.babyq.com/babyq-backend/";
         self.VERSION = @"v1";
 
         self.CREATE_ACCOUNT_PATH = @"/CreateStandardAccount";

@@ -15,6 +15,7 @@
 @interface LandingPageViewController : UIViewController
 
 @property (nonatomic,retain) IBOutlet UILabel* headerLabel;
+@property (nonatomic,retain) IBOutlet UILabel* facebookErrorLabel;
 
 -(IBAction)pushSignInJoinScreen;
 - (IBAction)loginWithFacebook:(id)sender;
